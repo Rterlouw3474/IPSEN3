@@ -1,0 +1,33 @@
+* {
+  margin: 10px;
+}
+
+.create-form {
+  width: 500px;
+  background: #f1f1f1;
+  height: 300px;
+  padding: 80px 40px;
+  border-radius: 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.create {
+  text-align: center;
+}
+
+.backbtn, .createbtn {
+  font-size: 15px;
+  width: 100px;
+  height: 40px;
+  align-content: center;
+}
+
+input {
+  width: 50%;
+  height: 30px;
+  font-size: medium;
+  alignment: center;
+}

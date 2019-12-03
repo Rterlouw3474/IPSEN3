@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+.bg-img {
+  background: url("assets/images/traffic-jamm.jpg") no-repeat 0 0 fixed;
+  -webkit-background-size: cover; /* For WebKit*/
+  -moz-background-size: cover;    /* Mozilla*/
+  -o-background-size: cover;      /* Opera*/
+  background-size: cover;         /* Generic*/
+  overflow: hidden;
+}
+
+button, a {
+  cursor: pointer;
+}
+
+input {
+}
+
+input:focus {
+  outline: none !important;
+  border:5px solid #56c8ad;
+  border-radius: 5px;
+}
+
+.container {
+  width: 500px;
+  height: 500px;
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
