@@ -2,6 +2,19 @@
   font-family: Arial;
 }
 
+app-header{
+  background-color: #5D656F;
+  width: 100%;
+  height: 82px;
+  display: block;
+  z-index: 1000;
+  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+  position: fixed;
+}
+
+app-dashboard {
+  z-index: 0;
+}
 
 footer {
   position: fixed;

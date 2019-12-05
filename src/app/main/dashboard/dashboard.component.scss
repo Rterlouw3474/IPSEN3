@@ -3,10 +3,18 @@ h1 {
 }
 
 .dashboard{
-  margin-top: 1%;
-  width: 67%;
-  height: 87%;
-  box-shadow: 0 0 8px 0 rgba(0,0,0,.2);
+  top:275px;
+  width: 800px;
+  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+  #welkom {
+    height: 100%;
+    background-color: #56C8AD;
+    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    border:none;
+    h1{
+      padding-top: 70px;
+    }
+  }
 }
 
 .kmicon{
