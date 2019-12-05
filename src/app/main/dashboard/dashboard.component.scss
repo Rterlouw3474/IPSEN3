@@ -43,11 +43,12 @@ h1 {
 
 .dashboard-text{
   text-align: center;
+  color: #5D656F;
 }
 
 .dashboard-dec-row{
   width: 1100px;
-  height: 64px;
+  height: 66px;
 }
 
 .dashboard-declarations{
@@ -65,6 +66,19 @@ h1 {
   color: #44524F;
   padding-top: 10px;
   font-size: 17px;
+}
+
+.new-declaration{
+  background: url("src/assets/images/newdec80.png") no-repeat;
+  height: 80px;
+  width: 80px;
+  border:none;
+  margin-top: 230px;
+  margin-left: 185px;
+  z-index: 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
+  position: fixed;
+  bottom: 0;
+  left: 900px;
 }
 
 .kmicon{

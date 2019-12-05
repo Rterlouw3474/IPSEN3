@@ -1,5 +1,11 @@
+@font-face
+{
+  font-family: Lato;
+  src: url('../font/Lato-Regular.ttf');
+}
+
 * {
-  font-family: Arial;
+  font-family: Lato, sans-serif;
 }
 
 app-header{

@@ -1,3 +1,54 @@
 h1 {
   text-align: center;
 }
+
+.dashboard{
+  width: 1250px;
+  height: 900px;
+  background-color: #EBEFF0;
+  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+}
+
+.dashboard-text{
+  text-align: center;
+  color: #5D656F;
+}
+
+.dashboard-dec-row{
+  width: 1100px;
+  height: 66px;
+}
+
+.declaration-declarations{
+  width: 1100px;
+  height: 300px;
+}
+
+.dec-description-text{
+  text-align: center;
+  color: #858C93;
+}
+
+.dec-text{
+  text-align: center;
+  color: #44524F;
+  padding-top: 10px;
+  font-size: 17px;
+}
+
+.new-declaration{
+  background: url("src/assets/images/newdec80.png") no-repeat;
+  height: 80px;
+  width: 80px;
+  border:none;
+  margin-top: 230px;
+  margin-left: 185px;
+  z-index: 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
+  position: fixed;
+  bottom: 0;
+  left: 900px;
+}
+
+
+
+
