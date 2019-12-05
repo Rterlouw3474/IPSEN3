@@ -11,6 +11,7 @@ import { ProfileComponent } from './main/profile/profile.component';
 import { DeclarationsComponent } from './main/declarations/declarations.component';
 import { CreateDeclarationComponent } from './main/declarations/create-declaration/create-declaration.component';
 import { HeaderComponent } from './header/header.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { HeaderComponent } from './header/header.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],

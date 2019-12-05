@@ -1,4 +1,17 @@
 <div class="container">
   <h1>Declaraties</h1>
+
+  <table style="width:100%">
+    <tr>
+      <th>Omschrijving</th>
+      <th>Auto</th>
+      <th>Datum</th>
+      <th>Aantal kilometers</th>
+      <th>Bedrag</th>
+    </tr>
+    <tr *ngFor="let declaration of declarations">
+      <td *ngFor="let field of declaration">{{ field }}</td>
+    </tr>
+  </table>
 </div>
 <router-outlet></router-outlet>
