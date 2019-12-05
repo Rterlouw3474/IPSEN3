@@ -1,22 +1,37 @@
+.dflogo{
+  background: url("src/assets/images/dfresized.png") no-repeat;
+  width: 82px;
+  height: 82px;
+  margin-left: 50%;
+}
+
+
+
 ul {
   list-style-type: none;
-  margin: 0;
   padding: 0;
+  margin-top: 0;
   width: 100%;
   overflow: hidden;
-  background-color: #333;
+  background-color: #5D656F;
+  box-shadow: 0 3px 12px 0 rgba(0,0,0,.2);
+  position: fixed;
+  z-index: 1000;
 }
 
 li {
   float: left;
+  padding-left: 5%;
 }
 
 li a {
   display: block;
-  color: white;
+  color: #999B9F;
   text-align: center;
-  padding: 14px 16px;
+  padding: 30px 16px;
+  max-width: 100px;
   text-decoration: none;
+  font-size: 18px;
 }
 
 /* Change the link color to #111 (black) on hover */

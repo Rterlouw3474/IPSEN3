@@ -1,3 +1,31 @@
 h1 {
   text-align: center;
 }
+
+.dashboard{
+  margin-top: 1%;
+  width: 67%;
+  height: 87%;
+  box-shadow: 0 0 8px 0 rgba(0,0,0,.2);
+}
+
+.kmicon{
+  background: url("src/assets/images/dashboard-distance.png") no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+.moneyicon{
+  background: url("src/assets/images/dashboard-money.png") no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+.decicon{
+  background: url("src/assets/images/dashboard-declarations.png") no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+
+
