@@ -1,17 +1,27 @@
-<div class="container">
-  <h1>Declaraties</h1>
+<div class="container dashboard">
 
-  <table style="width:100%">
+  <table style="width:100% ; margin-top: 120px">
     <tr>
-      <th>Omschrijving</th>
-      <th>Auto</th>
-      <th>Datum</th>
-      <th>Aantal kilometers</th>
-      <th>Bedrag</th>
+      <th class="dec-description-text">Omschrijving</th>
+      <th class="dec-description-text">Auto</th>
+      <th class="dec-description-text">Datum</th>
+      <th class="dec-description-text">Aantal kilometers</th>
+      <th class="dec-description-text">Bedrag</th>
     </tr>
-    <tr *ngFor="let declaration of declarations">
-      <td *ngFor="let field of declaration">{{ field }}</td>
+    <tr *ngFor="let declaration of declarations" class="dashboard-dec-row" >
+        <td class="dec-text">{{declaration.description}}</td>
+        <td class="dec-text">{{declaration.beginPost}}</td>
+        <td class="dec-text">{{declaration.endPost}}</td>
+        <td class="dec-text">{{declaration.km}}</td>
+        <td class="dec-text">{{declaration.amount}}</td>
     </tr>
   </table>
-</div>
+
+      <div>
+        <button class="new-declaration">
+        </button>
+      </div>
+
+    </div>
+
 <router-outlet></router-outlet>

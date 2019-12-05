@@ -1,28 +1,29 @@
+.headerContainer{
+  width:800px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.navigatorHeader{
+  display: inline-block;
+}
+
 .dflogo{
   background: url("src/assets/images/dfresized.png") no-repeat;
   width: 82px;
   height: 82px;
-  margin-left: 50%;
+  display: inline-block;
 }
-
-
 
 ul {
   list-style-type: none;
-  padding: 0;
-  margin-top: 0;
-  width: 100%;
-  overflow: hidden;
-  background-color: #5D656F;
-  box-shadow: 0 3px 12px 0 rgba(0,0,0,.2);
-  position: fixed;
+  li{
+    float: left;
+  }
   z-index: 1000;
 }
 
-li {
-  float: left;
-  padding-left: 5%;
-}
 
 li a {
   display: block;

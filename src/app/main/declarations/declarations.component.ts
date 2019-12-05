@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Declaration} from "./declaration.model";
 
 @Component({
   selector: 'app-declarations',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 
 
 export class DeclarationsComponent implements OnInit {
+  declarations : Declaration[] = [];
 
   constructor() { }
 
@@ -15,6 +17,10 @@ export class DeclarationsComponent implements OnInit {
   declarations: string[][] = [this.declaration];
 
   ngOnInit() {
+    this.declarations = [
+      new Declaration("a", "a", "a", 5,5),
+      new Declaration("b", "b", "b", 3,2)
+    ]
   }
 
 }
