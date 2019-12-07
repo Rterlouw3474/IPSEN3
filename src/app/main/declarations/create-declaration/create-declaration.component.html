@@ -1,7 +1,7 @@
 <div class="container dashboard">
 
 
-  <div class="row" style="padding-top: 100px">
+  <div class="row" style="padding-top: 100px; padding-left: 100px">
     <div class="col-sm-3">
       <h2>Beginlocatie</h2>
       <h4>Postcode</h4>
@@ -37,26 +37,55 @@
       <h4>€ / Km</h4>
       <input type="text">
       <h4>Omschrijving</h4>
-      <input type="text" style="height: 160px; width: 300px">
+      <input type="text" style="height: 160px; width: 270px">
     </div>
 
 
-    <div class="col-sm-3">
-      <script src="js/bootstrap.min.js"></script>
-      <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          About Us
+    <div class="col-xs-1" style="padding-top: 80px">
+      <div ngbDropdown class="dropdown">
+        <button style="width: 130px"  ngbDropdownToggle class="btn btn-default dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Klant
           <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu" aria-labelledby="about-us">
-          <li class="dropdown-header">Company Information</li>
-          <li><a href="#">Our Story</a></li>
-          <li><a href="#">Our Team</a></li>
-          <li class="dropdown-header">Contact Us</li>
-          <li><a href="#">Call Center</a></li>
-          <li><a href="#">Store Locations</a></li>
+        <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="about-us">
+          <li><a href="#">Klant 1</a></li>
+          <li><a href="#">Klant 2</a></li>
+          <li><a href="#">Klant 3</a></li>
         </ul>
       </div>
+
+      <div ngbDropdown class="dropdown" style="padding-top: 16px">
+        <button style="width: 130px" ngbDropdownToggle class="btn btn-default dropdown-toggle" type="button" id="about-us2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Project
+          <span class="caret"></span>
+        </button>
+        <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="about-us">
+          <li><a href="#">Project 1</a></li>
+          <li><a href="#">Project 2</a></li>
+          <li><a href="#">Project 3</a></li>
+        </ul>
+      </div>
+
+      <div ngbDropdown class="dropdown" style="padding-top: 16px">
+        <button style="width: 130px"  ngbDropdownToggle class="btn btn-default dropdown-toggle" type="button" id="about-us3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Auto
+          <span class="caret"></span>
+        </button>
+        <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="about-us">
+          <li><a href="#">Auto 1</a></li>
+          <li><a href="#">Auto 2</a></li>
+          <li><a href="#">Auto 3</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-xs-1" style="padding-top: 80px; padding-left: 60px">
+      <button style="width: 40px"                    class="btn btn-success dropdown-toggle" type="button"> + </button>
+      <button style="width: 40px; margin-top: 16px" class="btn btn-success dropdown-toggle" type="button"> + </button>
+      <button style="width: 40px; margin-top: 16px" class="btn btn-success dropdown-toggle" type="button"> + </button>
+    </div>
+
+  </div>
 </div>
 
   <div>
