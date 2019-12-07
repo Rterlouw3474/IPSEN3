@@ -3,8 +3,10 @@ h1 {
 }
 
 .dashboard{
-  top:275px;
-  width: 1000px;
+  top:470px;
+  width: 1250px;
+  height: 900px;
+  background-color: #EBEFF0;
   box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
   #welkom {
     height: 100%;
@@ -71,12 +73,10 @@ h1 {
   height: 80px;
   width: 80px;
   border:none;
-  margin-top: 230px;
-  margin-left: 185px;
+  margin-top: 245px;
+  margin-left: 173px;
   z-index: 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
   position: fixed;
-  bottom: 0;
-  left: 900px;
 }
 
 .kmicon{

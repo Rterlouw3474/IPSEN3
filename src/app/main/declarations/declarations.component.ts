@@ -15,8 +15,19 @@ export class DeclarationsComponent implements OnInit {
 
   ngOnInit() {
     this.declarations = [
-      new Declaration('a', 'a', 'a', 5, 5 ),
-      new Declaration('b', 'b', 'b', 3, 2 )
+      new Declaration('Rit naar werk', 'Ferrari', '21-12-2019', 37, 7 ),
+      new Declaration('Rit naar huis', 'Ferrari', '21-12-2019', 37, 7 ),
+      new Declaration('Rit naar werk', 'Ferrari', '22-12-2019', 37, 7 ),
+      new Declaration('Rit naar huis', 'Ferrari', '22-12-2019', 37, 7 ),
+      new Declaration('Ritje naar Amerika', 'Ferrari', '23-12-2019', 4582, 503 ),
+      new Declaration('Ritje naar Amerika', 'Ferrari', '23-12-2019', 4582, 503 ),
+      new Declaration('Ritje naar Amerika', 'Ferrari', '23-12-2019', 4582, 503 ),
+      new Declaration('Ritje naar Amerika', 'Ferrari', '23-12-2019', 4582, 503 ),
+      new Declaration('Ritje naar Amerika', 'Ferrari', '23-12-2019', 4582, 503 ),
+      new Declaration('Ritje naar Amerika', 'Ferrari', '23-12-2019', 4582, 503 ),
+      new Declaration('Ritje naar Amerika', 'Ferrari', '23-12-2019', 4582, 503 ),
+      new Declaration('Ritje naar Amerika', 'Ferrari', '23-12-2019', 4582, 503 ),
+      new Declaration('Ritje naar Amerika', 'Ferrari', '23-12-2019', 4582, 503 )
     ];
   }
 

@@ -12,6 +12,7 @@ import { DeclarationsComponent } from './main/declarations/declarations.componen
 import { CreateDeclarationComponent } from './main/declarations/create-declaration/create-declaration.component';
 import { HeaderComponent } from './header/header.component';
 import {HttpClientModule} from '@angular/common/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [

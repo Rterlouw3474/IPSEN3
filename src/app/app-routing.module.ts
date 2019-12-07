@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'create', component: CreateAccountComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'test', component: CreateDeclarationComponent },
   { path: 'declarations', component: DeclarationsComponent, children: [
       { path: 'new', component: CreateDeclarationComponent }
     ]},

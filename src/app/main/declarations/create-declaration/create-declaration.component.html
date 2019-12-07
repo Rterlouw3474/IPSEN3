@@ -1,1 +1,68 @@
-<p>create-declaration works!</p>
+<div class="container dashboard">
+
+
+  <div class="row" style="padding-top: 100px">
+    <div class="col-sm-3">
+      <h2>Beginlocatie</h2>
+      <h4>Postcode</h4>
+      <input type="text">
+      <h4>Huisnummer</h4>
+      <input type="text">
+      <h4>Straatnaam</h4>
+      <input type="text">
+      <h4>Plaatsnaam</h4>
+      <input type="text">
+      <h4>Land</h4>
+      <input type="text">
+  </div>
+
+    <div class="col-sm-3">
+      <h2>Eindlocatie</h2>
+      <h4>Postcode</h4>
+      <input type="text">
+      <h4>Huisnummer</h4>
+      <input type="text">
+      <h4>Straatnaam</h4>
+      <input type="text">
+      <h4>Plaatsnaam</h4>
+      <input type="text">
+      <h4>Land</h4>
+      <input type="text">
+    </div>
+
+    <div class="col-sm-3">
+      <h2>Registartie</h2>
+      <h4>Kilometers</h4>
+      <input type="text">
+      <h4>€ / Km</h4>
+      <input type="text">
+      <h4>Omschrijving</h4>
+      <input type="text" style="height: 160px; width: 300px">
+    </div>
+
+
+    <div class="col-sm-3">
+      <script src="js/bootstrap.min.js"></script>
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          About Us
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="about-us">
+          <li class="dropdown-header">Company Information</li>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Our Team</a></li>
+          <li class="dropdown-header">Contact Us</li>
+          <li><a href="#">Call Center</a></li>
+          <li><a href="#">Store Locations</a></li>
+        </ul>
+      </div>
+</div>
+
+  <div>
+    <button class="new-declaration">
+    </button>
+  </div>
+
+
+  <router-outlet></router-outlet>

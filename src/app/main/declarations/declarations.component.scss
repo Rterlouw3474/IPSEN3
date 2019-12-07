@@ -16,7 +16,7 @@ h1 {
 
 .dashboard-dec-row{
   width: 1100px;
-  height: 66px;
+  height: 60px;
 }
 
 .declaration-declarations{
@@ -27,13 +27,17 @@ h1 {
 .dec-description-text{
   text-align: center;
   color: #858C93;
+  font-size: 20px;
 }
 
 .dec-text{
   text-align: center;
   color: #44524F;
-  padding-top: 10px;
-  font-size: 17px;
+  font-size: 19px;
+}
+
+.notOdd{
+  background-color: #C4EAE1;
 }
 
 .new-declaration{
@@ -41,12 +45,10 @@ h1 {
   height: 80px;
   width: 80px;
   border:none;
-  margin-top: 230px;
-  margin-left: 185px;
+  margin-bottom: 20px;
+  margin-left: 1150px;
   z-index: 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
   position: fixed;
-  bottom: 0;
-  left: 900px;
 }
 
 

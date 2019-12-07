@@ -1,21 +1,38 @@
 <div class="container dashboard">
 
-  <table style="width:100% ; margin-top: 120px">
+  <table style="width:90% ; margin-top: 120px; margin-left: 60px">
     <tr>
-      <th class="dec-description-text">Omschrijving</th>
-      <th class="dec-description-text">Auto</th>
-      <th class="dec-description-text">Datum</th>
-      <th class="dec-description-text">Aantal kilometers</th>
-      <th class="dec-description-text">Bedrag</th>
+      <th><input type="checkbox" name="vehicle1" value="Bike"> <br></th>
+      <th class="dec-description-text" style="width: 40%">Omschrijving</th>
+      <th class="dec-description-text" style="width: 15%">Auto</th>
+      <th class="dec-description-text" style="width: 15%">Datum</th>
+      <th class="dec-description-text" style="width: 15%">Aantal kilometers</th>
+      <th class="dec-description-text" style="width: 15%">Bedrag</th>
     </tr>
-    <tr *ngFor="let declaration of declarations" class="dashboard-dec-row" >
-        <td class="dec-text">{{declaration.description}}</td>
-        <td class="dec-text">{{declaration.beginPost}}</td>
-        <td class="dec-text">{{declaration.endPost}}</td>
-        <td class="dec-text">{{declaration.km}}</td>
-        <td class="dec-text">{{declaration.amount}}</td>
+    <tr *ngFor="let declaration of declarations.slice(0,10); let odd=odd" class="dashboard-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
+        <td><input type="checkbox" name="vehicle1" value="Bike"><br></td>
+        <td class="dec-text" >{{declaration.description}}</td>
+        <td class="dec-text" >{{declaration.beginPost}}</td>
+        <td class="dec-text" >{{declaration.endPost}}</td>
+        <td class="dec-text" >{{declaration.km}}</td>
+        <td class="dec-text" >€{{declaration.amount}}</td>
     </tr>
   </table>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <button>1</button>
+      <button>2</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+    </div>
+  </div>
 
       <div>
         <button class="new-declaration">

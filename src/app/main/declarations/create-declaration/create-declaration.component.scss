@@ -1,0 +1,56 @@
+h1 {
+  text-align: center;
+}
+
+.dashboard{
+  width: 1250px;
+  height: 900px;
+  background-color: #EBEFF0;
+  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+}
+
+.dashboard-text{
+  text-align: center;
+  color: #5D656F;
+}
+
+.dashboard-dec-row{
+  width: 1100px;
+  height: 60px;
+}
+
+.declaration-declarations{
+  width: 1100px;
+  height: 750px;
+}
+
+.dec-description-text{
+  text-align: center;
+  color: #858C93;
+  font-size: 20px;
+}
+
+.dec-text{
+  text-align: center;
+  color: #44524F;
+  font-size: 19px;
+}
+
+.notOdd{
+  background-color: #C4EAE1;
+}
+
+.new-declaration{
+  background: url("src/assets/images/newdec80.png") no-repeat;
+  height: 80px;
+  width: 80px;
+  border:none;
+  margin-bottom: 20px;
+  margin-left: 1150px;
+  z-index: 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
+  position: fixed;
+}
+
+
+
+
