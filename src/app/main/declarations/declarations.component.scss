@@ -3,6 +3,7 @@ h1 {
 }
 
 .dashboard{
+  top:470px;
   width: 1250px;
   height: 900px;
   background-color: #EBEFF0;
@@ -45,10 +46,37 @@ h1 {
   height: 80px;
   width: 80px;
   border:none;
-  margin-bottom: 20px;
+  margin-top: 20px;
   margin-left: 1150px;
   z-index: 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
   position: fixed;
+}
+
+.dec-edit-button{
+  box-shadow: 0 2px 3px rgba(39, 39, 39, 0.5);
+  background-color: #9ADECE;
+  border-radius: 100%;
+  width: 72px;
+  height: 72px;
+  position: fixed;
+  bottom: 38px;
+}
+
+.page-button{
+  box-shadow: 0 2px 3px rgba(39, 39, 39, 0.5);
+  background-color: #56C8AD;
+  border-radius: 8%;
+  width:92px;
+  height: 35px;
+  position: fixed;
+  bottom: 128px;
+  border: none;
+  font-size: 24px;
+  color: white;
+}
+
+.dec-edit-button:hover{
+  cursor: hand;
 }
 
 

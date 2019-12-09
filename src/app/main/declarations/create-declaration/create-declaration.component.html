@@ -4,40 +4,59 @@
   <div class="row" style="padding-top: 100px; padding-left: 100px">
     <div class="col-sm-3">
       <h2>Beginlocatie</h2>
-      <h4>Postcode</h4>
-      <input type="text">
-      <h4>Huisnummer</h4>
-      <input type="text">
-      <h4>Straatnaam</h4>
-      <input type="text">
-      <h4>Plaatsnaam</h4>
-      <input type="text">
-      <h4>Land</h4>
-      <input type="text">
+      <form class="example-form">
+        <mat-form-field class="example-full-width" style="border-width: 0" >
+          <input matInput placeholder="Postcode" value="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Huisnummer" value="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Straatnaam" value="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Plaatsnaam" value="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Land" value="">
+        </mat-form-field>
+      </form>
   </div>
 
     <div class="col-sm-3">
       <h2>Eindlocatie</h2>
-      <h4>Postcode</h4>
-      <input type="text">
-      <h4>Huisnummer</h4>
-      <input type="text">
-      <h4>Straatnaam</h4>
-      <input type="text">
-      <h4>Plaatsnaam</h4>
-      <input type="text">
-      <h4>Land</h4>
-      <input type="text">
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Postcode" value="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Huisnummer" value="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Straatnaam" value="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Plaatsnaam" value="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Land" value="">
+        </mat-form-field>
+      </form>
     </div>
 
     <div class="col-sm-3">
       <h2>Registartie</h2>
-      <h4>Kilometers</h4>
-      <input type="text">
-      <h4>€ / Km</h4>
-      <input type="text">
-      <h4>Omschrijving</h4>
-      <input type="text" style="height: 160px; width: 270px">
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Kilometers" value="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="€ / Km" value="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Omschrijving"></textarea>
+        </mat-form-field>
+      </form>
     </div>
 
 
@@ -86,12 +105,13 @@
     </div>
 
   </div>
-</div>
-
   <div>
-    <button class="new-declaration">
+    <button class="new-declaration" >
     </button>
   </div>
+</div>
+
+
 
 
   <router-outlet></router-outlet>

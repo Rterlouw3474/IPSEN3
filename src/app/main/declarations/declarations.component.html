@@ -1,16 +1,16 @@
 <div class="container dashboard">
 
-  <table style="width:90% ; margin-top: 120px; margin-left: 60px">
+  <table style="width:90% ; margin-top: 100px; margin-left: 60px">
     <tr>
-      <th><input type="checkbox" name="vehicle1" value="Bike"> <br></th>
+      <th><mat-checkbox style="margin-left: 40px"></mat-checkbox></th>
       <th class="dec-description-text" style="width: 40%">Omschrijving</th>
       <th class="dec-description-text" style="width: 15%">Auto</th>
       <th class="dec-description-text" style="width: 15%">Datum</th>
       <th class="dec-description-text" style="width: 15%">Aantal kilometers</th>
       <th class="dec-description-text" style="width: 15%">Bedrag</th>
     </tr>
-    <tr *ngFor="let declaration of declarations.slice(0,10); let odd=odd" class="dashboard-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
-        <td><input type="checkbox" name="vehicle1" value="Bike"><br></td>
+    <tr *ngFor="let declaration of declarations.slice(getMinimum() , getMaximum()); let odd=odd" class="dashboard-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
+        <td><mat-checkbox style="margin-left: 40px"></mat-checkbox></td>
         <td class="dec-text" >{{declaration.description}}</td>
         <td class="dec-text" >{{declaration.beginPost}}</td>
         <td class="dec-text" >{{declaration.endPost}}</td>
@@ -19,18 +19,24 @@
     </tr>
   </table>
 
-  <div class="row">
-    <div class="col-sm-3">
-      <button>1</button>
-      <button>2</button>
+  <div class="row" style="margin-left: 490px">
+    <div class="col-sm-2">
+      <button class="page-button" (click)="prevPage()"><<</button>
+    </div>
+    <div class="col-sm-2">
+      <button class="page-button" (click)="nextPage()">>></button>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-sm-3">
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
+  <div class="row" style="margin-left: 430px">
+    <div class="col-sm-2">
+      <div class="dec-edit-button" ></div>
+    </div>
+    <div class="col-sm-2">
+      <div class="dec-edit-button" ></div>
+    </div>
+    <div class="col-sm-2">
+      <div class="dec-edit-button" ></div>
     </div>
   </div>
 

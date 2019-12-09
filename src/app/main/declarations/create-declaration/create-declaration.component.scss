@@ -3,6 +3,7 @@ h1 {
 }
 
 .dashboard{
+  top:470px;
   width: 1250px;
   height: 900px;
   background-color: #EBEFF0;
@@ -45,10 +46,16 @@ h1 {
   height: 80px;
   width: 80px;
   border:none;
-  margin-bottom: 20px;
+  margin-top: 369px;
   margin-left: 1150px;
   z-index: 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
   position: fixed;
+}
+
+input:focus {
+  outline: none !important;
+  border:0px solid #56c8ad;
+  border-radius: 5px;
 }
 
 

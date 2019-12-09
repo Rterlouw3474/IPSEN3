@@ -10,6 +10,29 @@ import {Declaration} from './declaration.model';
 
 export class DeclarationsComponent implements OnInit {
   declarations: Declaration[] = [];
+  pageNumberMinimum: number = 0;
+  pageNumberMaximum: number = 10;
+
+  getMinimum(){
+    return this.pageNumberMinimum;
+  }
+
+  getMaximum(){
+    return this.pageNumberMaximum
+  }
+
+  nextPage(){
+    this.pageNumberMinimum += 10;
+    this.pageNumberMaximum += 10;
+  }
+
+  prevPage(){
+    if(this.pageNumberMinimum > 0){
+      this.pageNumberMinimum -= 10;
+      this.pageNumberMaximum -= 10;
+    }
+  }
+
 
   constructor() { }
 
