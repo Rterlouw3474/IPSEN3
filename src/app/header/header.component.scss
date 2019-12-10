@@ -1,5 +1,5 @@
 .headerContainer{
-  width:1000px;
+  width:1056px;
   display: flex;
   margin-left: auto;
   margin-right: auto;
@@ -18,36 +18,38 @@
 
 .navigatorHeader{
   position:absolute;
-  width: 1000px;
+  width: 600px;
+  left: 0;
+  right: 0;
+  margin: auto;
   top: 25px;
   display: block;
   text-align: center;
+  z-index: 10;
   a {
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-    color: #999B9F;
     font-size: 24px;
     transition: opacity 0.2s ease;
     padding-bottom:5px;
   }
   p {
     font-weight: bold;
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-    color: #999B9F;
     font-size: 22px;
     padding-left: 50px;
     padding-right: 50px;
     vertical-align: top;
   }
+  a, p {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    color: #999B9F;
+  }
 }
 
 
 .logUit {
-  position:absolute;
-  width: 1000px;
+  position: absolute;
+  width: 1056px;
   top: 28px;
   display: block;
   text-align: right;
@@ -61,6 +63,6 @@
 }
 
 /* Change the link color to #111 (black) on hover */
-li a:hover, .logUit a:hover {
+.navigatorHeader a:hover, .logUit a:hover {
   opacity: 0.6;
 }
