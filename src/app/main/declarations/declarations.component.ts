@@ -22,8 +22,10 @@ export class DeclarationsComponent implements OnInit {
   }
 
   nextPage(){
-    this.pageNumberMinimum += 10;
-    this.pageNumberMaximum += 10;
+    if(!(this.pageNumberMinimum+10>this.declarations.length)){
+      this.pageNumberMinimum += 10;
+      this.pageNumberMaximum += 10;
+    }
   }
 
   prevPage(){
