@@ -1,3 +1,97 @@
-h1 {
+
+.dashboard{
+  top:470px;
+  width: 1056px;
+  height: 900px;
+  background-color: #EBEFF0;
+  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+}
+
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 301px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #56C8AD; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+  box-shadow: 3px 0px 5px 0px rgba(57,63,72,0.3);
+  .img-wrapper{
+    margin-top:95px;
+    height:125px;
+    width: 100%;
+    text-align: center;
+    img{
+      display: inline-block;
+      height:125px;
+      width: 125px;
+      object-fit: cover;
+      border-radius: 100%;
+      box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    }
+  }
+  .nameHeading{
+    width: 100%;
+    height: 70px;
+    background-color: #5d656f;
+    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    text-align: center;
+    margin-top: 24px;
+    z-index: 2;
+    &:hover{
+      cursor: pointer;
+      p{
+        opacity: 0.6;
+      }
+    }
+    p{
+      color:#c4eae1;
+      line-height: 67px;
+      font-size: 32px;
+      font-family: Lato, sans-serif;
+      font-weight: lighter;
+      letter-spacing: 2px;
+      transition: opacity 0.2s ease;
+    }
+  }
+
+  .profielMenu{
+    list-style: none;
+    margin-top: 24px;
+    font-size: 30px;
+    li{
+      margin-top: 20px;
+      color:#5D656F;
+      a{
+        color:#5D656F;
+        transition: opacity 0.2s ease;
+        &:hover{
+          text-decoration: none;
+          cursor: pointer;
+          opacity: 0.6;
+        }
+      }
+      svg{
+        position: relative;
+        top:4px;
+        margin-right: 10px;
+        fill: #5D656F;
+      }
+    }
+  }
+}
+.profielView{
+  margin-top: 100px;
+  margin-left: 301px;
+}
+.dashboard-text{
   text-align: center;
+  color: #5D656F;
+}
+
+.dashboard-dec-row{
+  width: 1100px;
+  height: 60px;
 }

@@ -15,7 +15,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
-import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {ProfileSettingsComponent} from './main/profile/profile-settings/profile-settings.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     DeclarationsComponent,
     CreateDeclarationComponent,
     HeaderComponent,
+    ProfileSettingsComponent
   ],
   imports: [
     BrowserModule,
