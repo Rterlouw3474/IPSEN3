@@ -16,6 +16,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { DesktopDashboardComponent } from './main/dashboard/desktop/desktop-dashboard.component';
+import { MobileDashboardComponent } from './main/dashboard/mobile/mobile-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,11 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     DeclarationsComponent,
     CreateDeclarationComponent,
     HeaderComponent,
+    DesktopDashboardComponent,
+    MobileDashboardComponent,
+  ],
+  entryComponents: [
+    MobileDashboardComponent
   ],
   imports: [
     BrowserModule,
