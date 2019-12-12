@@ -1,4 +1,10 @@
+a{
+  text-decoration: none;
+}
 
+.active{
+  font-weight: bold;
+}
 .dashboard{
   top:470px;
   width: 1056px;
@@ -42,6 +48,9 @@
     z-index: 2;
     &:hover{
       cursor: pointer;
+      a{
+        text-decoration: none;
+      }
       p{
         opacity: 0.6;
       }
@@ -83,7 +92,6 @@
   }
 }
 .profielView{
-  margin-top: 100px;
   margin-left: 301px;
 }
 .dashboard-text{

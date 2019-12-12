@@ -17,6 +17,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {ProfileSettingsComponent} from './main/profile/profile-settings/profile-settings.component';
+import { ProfileProjectsComponent } from './main/profile/profile-projects/profile-projects.component';
+import { ProfileClientsComponent } from './main/profile/profile-clients/profile-clients.component';
+import { ProfileCarsComponent } from './main/profile/profile-cars/profile-cars.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import {ProfileSettingsComponent} from './main/profile/profile-settings/profile-
     DeclarationsComponent,
     CreateDeclarationComponent,
     HeaderComponent,
-    ProfileSettingsComponent
+    ProfileSettingsComponent,
+    ProfileProjectsComponent,
+    ProfileClientsComponent,
+    ProfileCarsComponent
   ],
   imports: [
     BrowserModule,

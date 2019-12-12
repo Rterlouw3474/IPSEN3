@@ -1,15 +1,40 @@
-<h1>Algemene gegevens</h1>
-<ul>
-  <li>
-    Naam
-  </li>
-  <li>
-    Email-adres
-  </li>
-  <li>
-    Wachtwoord
-  </li>
-  <li>
-    Rekeningnummer
-  </li>
-</ul>
+<div class="headerContainer"><h1>Algemene gegevens</h1></div>
+<form action="submit">
+  <table>
+    <tr>
+      <td>
+        Naam:
+      </td>
+      <td>
+        <mat-form-field class="EditNaam">
+          <input matInput name="naam" value="Tijmen">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Email-adres:
+      </td>
+      <td>
+        tijmen@yolo.nl
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button class="btn">
+          <p>Wijzig profielfoto</p>
+        </button>
+      </td>
+    </tr>
+  </table>
+  <div class="btn-wrapper">
+    <button class="btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+        <path d="M0 0h24v24H0z" fill="none"/>
+        <path
+          d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/>
+      </svg>
+    </button>
+  </div>
+</form>
+
