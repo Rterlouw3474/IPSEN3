@@ -21,8 +21,8 @@ import { ProfileClientsComponent } from './main/profile/profile-clients/profile-
 import { ProfileCarsComponent } from './main/profile/profile-cars/profile-cars.component';
 import { DesktopDashboardComponent } from './main/dashboard/desktop/desktop-dashboard.component';
 import { MobileDashboardComponent } from './main/dashboard/mobile/mobile-dashboard.component';
-import {HttpHandlerService} from "./http-handler.service";
-import {FormsModule} from "@angular/forms";
+import {HttpHandlerService} from './http-handler.service';
+import {FormsModule} from '@angular/forms';
 import { DesktopDeclarationsComponent } from './main/declarations/desktop-declarations/desktop-declarations.component';
 import { MobileDeclarationsComponent } from './main/declarations/mobile-declarations/mobile-declarations.component';
 

@@ -16,7 +16,7 @@ export abstract class DeclarationsComponent implements OnInit {
 
   public allCheckboxesSelected = false;
 
-  constructor(private router: Router, private applicationStateService: ApplicationStateService) {
+  protected constructor(private router: Router, private applicationStateService: ApplicationStateService) {
     this.model = new DeclarationsComponentModel();
     this.myViewModel = new DeclarationsComponentModel();
     // this.loadData()      //TODO Load the declarations from the backend
