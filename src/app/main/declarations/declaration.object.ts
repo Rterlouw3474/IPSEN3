@@ -2,7 +2,7 @@ export class Declaration{
 
   ownerID : number;
   decDesc : string;
-  //decDate : date;
+  // decDate : date;
   decKilometers : number;
   decDeclaration : number;
 

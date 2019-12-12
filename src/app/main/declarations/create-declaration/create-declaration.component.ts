@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Declaration} from "../declaration.model";
+import {Declaration} from "../declaration.object";
 import {HttpHandlerService} from "../../../http-handler.service";
-import {User} from "../../profile/user.model";
+import {User} from "../../profile/user.object";
 
 @Component({
   selector: 'app-create-declaration',

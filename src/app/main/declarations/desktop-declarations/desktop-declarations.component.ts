@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import {DeclarationsComponent} from '../declarations.component';
+import {Router} from '@angular/router';
+import {ApplicationStateService} from '../../../application-state.service';
 
 @Component({
   selector: 'app-desktop-declarations',
   templateUrl: './desktop-declarations.component.html',
   styleUrls: ['./desktop-declarations.component.scss']
 })
-export class DesktopDeclarationsComponent implements OnInit {
+export class DesktopDeclarationsComponent extends DeclarationsComponent {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(router: Router, applicationStateService: ApplicationStateService) {
+    super(router, applicationStateService);
   }
 
 }

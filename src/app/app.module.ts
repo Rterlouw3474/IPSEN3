@@ -23,6 +23,8 @@ import { DesktopDashboardComponent } from './main/dashboard/desktop/desktop-dash
 import { MobileDashboardComponent } from './main/dashboard/mobile/mobile-dashboard.component';
 import {HttpHandlerService} from "./http-handler.service";
 import {FormsModule} from "@angular/forms";
+import { DesktopDeclarationsComponent } from './main/declarations/desktop-declarations/desktop-declarations.component';
+import { MobileDeclarationsComponent } from './main/declarations/mobile-declarations/mobile-declarations.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import {FormsModule} from "@angular/forms";
     NotfoundComponent,
     DashboardComponent,
     ProfileComponent,
-    DeclarationsComponent,
+    DesktopDeclarationsComponent,
+    MobileDeclarationsComponent,
     CreateDeclarationComponent,
     HeaderComponent,
     DesktopDashboardComponent,
@@ -40,10 +43,13 @@ import {FormsModule} from "@angular/forms";
     ProfileSettingsComponent,
     ProfileProjectsComponent,
     ProfileClientsComponent,
-    ProfileCarsComponent
+    ProfileCarsComponent,
+    DesktopDeclarationsComponent,
+    MobileDeclarationsComponent
   ],
   entryComponents: [
     MobileDashboardComponent,
+    MobileDeclarationsComponent,
     ProfileSettingsComponent,
     ProfileProjectsComponent,
     ProfileClientsComponent,

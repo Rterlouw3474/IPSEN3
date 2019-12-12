@@ -15,6 +15,8 @@ import {ProfileSettingsComponent} from './main/profile/profile-settings/profile-
 import {ProfileProjectsComponent} from './main/profile/profile-projects/profile-projects.component';
 import {ProfileClientsComponent} from './main/profile/profile-clients/profile-clients.component';
 import {ProfileCarsComponent} from './main/profile/profile-cars/profile-cars.component';
+import {MobileDeclarationsComponent} from './main/declarations/mobile-declarations/mobile-declarations.component';
+import {DesktopDeclarationsComponent} from './main/declarations/desktop-declarations/desktop-declarations.component';
 
 const desktopRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -29,7 +31,7 @@ const desktopRoutes: Routes = [
       { path: 'profile-cars', component: ProfileCarsComponent}
     ] },
   { path: 'test', component: CreateDeclarationComponent },
-  { path: 'declarations', component: DeclarationsComponent, children: [
+  { path: 'declarations', component: DesktopDeclarationsComponent, children: [
       { path: 'new', component: CreateDeclarationComponent }
     ]},
   { path: 'not-found', component: NotfoundComponent, data: {message: 'Page not found!'} },
@@ -49,27 +51,7 @@ const mobileRoutes: Routes = [
       { path: 'profile-cars', component: ProfileCarsComponent}
     ] },
   { path: 'test', component: CreateDeclarationComponent },
-  { path: 'declarations', component: DeclarationsComponent, children: [
-      { path: 'new', component: CreateDeclarationComponent }
-    ]},
-  { path: 'not-found', component: NotfoundComponent, data: {message: 'Page not found!'} },
-  { path: '**', redirectTo: '/not-found' }
-];
-
-const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'create', component: CreateAccountComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'profile', component: ProfileComponent, children: [
-      { path: '', redirectTo: 'profile-settings', pathMatch: 'full'},
-      { path: 'profile-settings', component: ProfileSettingsComponent},
-      { path: 'profile-projects', component: ProfileProjectsComponent},
-      { path: 'profile-clients', component: ProfileClientsComponent},
-      { path: 'profile-cars', component: ProfileCarsComponent}
-    ] },
-  { path: 'test', component: CreateDeclarationComponent },
-  { path: 'declarations', component: DeclarationsComponent, children: [
+  { path: 'declarations', component: MobileDeclarationsComponent, children: [
       { path: 'new', component: CreateDeclarationComponent }
     ]},
   { path: 'not-found', component: NotfoundComponent, data: {message: 'Page not found!'} },

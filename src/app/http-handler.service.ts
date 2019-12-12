@@ -3,10 +3,10 @@ import {
   HttpClient, HttpErrorResponse,
   HttpHeaders
 } from "@angular/common/http";
-import {User} from "./main/profile/user.model";
+import {User} from "./main/profile/user.object";
 import {Observable, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
-import {Declaration} from "./main/declarations/declaration.model";
+import {Declaration} from "./main/declarations/declaration.object";
 
 @Injectable()
 export class HttpHandlerService {
