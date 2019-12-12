@@ -20,8 +20,14 @@ const desktopRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'create', component: CreateAccountComponent },
-  { path: 'dashboard', component: DesktopDashboardComponent},
-  { path: 'profile', component: ProfileComponent },
+  { path: 'dashboard', component: DesktopDashboardComponent },
+  { path: 'profile', component: ProfileComponent, children: [
+      { path: '', redirectTo: 'profile-settings', pathMatch: 'full'},
+      { path: 'profile-settings', component: ProfileSettingsComponent},
+      { path: 'profile-projects', component: ProfileProjectsComponent},
+      { path: 'profile-clients', component: ProfileClientsComponent},
+      { path: 'profile-cars', component: ProfileCarsComponent}
+    ] },
   { path: 'test', component: CreateDeclarationComponent },
   { path: 'declarations', component: DeclarationsComponent, children: [
       { path: 'new', component: CreateDeclarationComponent }
@@ -34,8 +40,14 @@ const mobileRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'create', component: CreateAccountComponent },
-  { path: 'dashboard', component: MobileDashboardComponent},
-  { path: 'profile', component: ProfileComponent },
+  { path: 'dashboard', component: MobileDashboardComponent },
+  { path: 'profile', component: ProfileComponent, children: [
+      { path: '', redirectTo: 'profile-settings', pathMatch: 'full'},
+      { path: 'profile-settings', component: ProfileSettingsComponent},
+      { path: 'profile-projects', component: ProfileProjectsComponent},
+      { path: 'profile-clients', component: ProfileClientsComponent},
+      { path: 'profile-cars', component: ProfileCarsComponent}
+    ] },
   { path: 'test', component: CreateDeclarationComponent },
   { path: 'declarations', component: DeclarationsComponent, children: [
       { path: 'new', component: CreateDeclarationComponent }
