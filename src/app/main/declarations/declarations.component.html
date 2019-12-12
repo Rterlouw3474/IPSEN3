@@ -15,11 +15,11 @@
             (click)="onCheckboxEvent(declaration, checkbox.checked, id)"
             [checked]="allCheckboxesSelected"
             style="margin-left: 40px"></mat-checkbox></td>
-        <td class="dec-text" >{{declaration.description}}</td>
-        <td class="dec-text" >{{declaration.beginPost}}</td>
-        <td class="dec-text" >{{declaration.endPost}}</td>
-        <td class="dec-text" >{{declaration.km}}</td>
-        <td class="dec-text" >€{{declaration.amount}}</td>
+        <td class="dec-text" >{{declaration.decDesc}}</td>
+        <td class="dec-text" >{{declaration.decBeginPostal}}</td>
+        <td class="dec-text" >{{declaration.decEndPostal}}</td>
+        <td class="dec-text" >{{declaration.decKilometers}}</td>
+        <td class="dec-text" >€{{declaration.decDeclaration}}</td>
     </tr>
   </table>
 

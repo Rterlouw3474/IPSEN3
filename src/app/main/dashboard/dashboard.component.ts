@@ -13,7 +13,8 @@ export class DashboardComponent implements OnInit {
   email: string = 'emaedewffffeil@email.com';
   username: string = "vis";
   password: string = '43951a7a2aa519b05ddc0bc8';
-  login = {email: this.email, username: this.username, password: this.password};
+
+  private users = [];
 
 
   constructor(private httpHandler : HttpHandlerService) {
@@ -23,19 +24,12 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClick(){
-    //console.log(this.httpHandler.getListOfGroup("/user/getUserByID/1"));
 
-    this.httpHandler
-      .getListOfGroup("/user/get/test@test.test")
-      .subscribe(
-        data => {
-          console.log(data);
-        },
-        err => {
-          console.log(err);
-        }
-      );
+  onClick() {
+    this.httpHandler.getUser("/user/get/test@test.test").subscribe((res : any[])=>{
+      console.log(res);
+      this.users = res;
+    });
   }
 
   http (){

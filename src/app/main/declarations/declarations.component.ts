@@ -26,18 +26,17 @@ export class DeclarationsComponent implements OnInit {
     this.allCheckboxesSelected = !checked;
 
     if(this.allCheckboxesSelected){
-      this.selectedDeclarations.splice(0, 100);
+      this.selectedDeclarations.splice(0, 1000);
       for(let counter:number = this.getMinimum(); counter<this.getMaximum(); counter++){
         for(let arrayDeclarations of this.declarations){
-          if(counter === arrayDeclarations.id){
+          if(counter === arrayDeclarations.ownerID){
             this.selectedDeclarations.push(arrayDeclarations);
           }
         }
       }
     }else{
-      this.selectedDeclarations.splice(0, 100);
+      this.selectedDeclarations.splice(0, 1000);
     }
-
     console.log(this.selectedDeclarations);
   }
 
@@ -49,7 +48,7 @@ export class DeclarationsComponent implements OnInit {
     }else{
       let counter = 0;
       for(let arrayDeclarations of this.selectedDeclarations){
-        if(arrayDeclarations.id === id){
+        if(arrayDeclarations.ownerID === id){
           this.selectedDeclarations.splice(counter);
         }
         counter++;
@@ -84,19 +83,19 @@ export class DeclarationsComponent implements OnInit {
 
   ngOnInit() {
     this.declarations = [
-      new Declaration(0, 'Rit naar werk', 'Ferrari', '21-12-2019', 37, 7 ),
-      new Declaration(1, 'Rit naar huis', 'Ferrari', '21-12-2019', 37, 7 ),
-      new Declaration(2, 'Rit naar werk', 'Ferrari', '22-12-2019', 37, 7 ),
-      new Declaration(3, 'Rit naar huis', 'Ferrari', '22-12-2019', 37, 7 ),
-      new Declaration(4, 'Ritje naar Amerika', 'Ferrari', '23-12-2019', 4582, 503 ),
-      new Declaration(5, 'Ritje naar Amerika', 'Ferrari', '23-12-2019', 4582, 503 ),
-      new Declaration(6, 'Ritje naar Amerika', 'Ferrari', '23-12-2019', 4582, 503 ),
-      new Declaration(7, 'Ritje naar Amerika', 'Ferrari', '23-12-2019', 4582, 503 ),
-      new Declaration(8, 'Ritje naar Amerika', 'Ferrari', '23-12-2019', 4582, 503 ),
-      new Declaration(9, 'Ritje naar Amerika', 'Ferrari', '23-12-2019', 4582, 503 ),
-      new Declaration(10, 'Ritje naar Amerika', 'Ferrari', '23-12-2019', 4582, 503 ),
-      new Declaration(11, 'Ritje naar Amerika', 'Ferrari', '23-12-2019', 4582, 503 ),
-      new Declaration(12, 'Ritje naar Amerika', 'Ferrari', '23-12-2019', 4582, 503 )
+      new Declaration(0, "Dit is een registratie", 70, 3.80, "2351JT", 87, "Leithonpark", "Leiderdorp", "Nederland", "2352DA", 65, "Hartelstein", "Leiderdorp", "Nederland"),
+      new Declaration(1, "Dit is een registratie", 70, 3.80, "2351JT", 87, "Leithonpark", "Leiderdorp", "Nederland", "2352DA", 65, "Hartelstein", "Leiderdorp", "Nederland"),
+      new Declaration(2, "Dit is een registratie", 70, 3.80, "2351JT", 87, "Leithonpark", "Leiderdorp", "Nederland", "2352DA", 65, "Hartelstein", "Leiderdorp", "Nederland"),
+      new Declaration(3, "Dit is een registratie", 70, 3.80, "2351JT", 87, "Leithonpark", "Leiderdorp", "Nederland", "2352DA", 65, "Hartelstein", "Leiderdorp", "Nederland"),
+      new Declaration(4, "Dit is een registratie", 70, 3.80, "2351JT", 87, "Leithonpark", "Leiderdorp", "Nederland", "2352DA", 65, "Hartelstein", "Leiderdorp", "Nederland"),
+      new Declaration(5, "Dit is een registratie", 70, 3.80, "2351JT", 87, "Leithonpark", "Leiderdorp", "Nederland", "2352DA", 65, "Hartelstein", "Leiderdorp", "Nederland"),
+      new Declaration(6, "Dit is een registratie", 70, 3.80, "2351JT", 87, "Leithonpark", "Leiderdorp", "Nederland", "2352DA", 65, "Hartelstein", "Leiderdorp", "Nederland"),
+      new Declaration(7, "Dit is een registratie", 70, 3.80, "2351JT", 87, "Leithonpark", "Leiderdorp", "Nederland", "2352DA", 65, "Hartelstein", "Leiderdorp", "Nederland"),
+      new Declaration(8, "Dit is een registratie", 70, 3.80, "2351JT", 87, "Leithonpark", "Leiderdorp", "Nederland", "2352DA", 65, "Hartelstein", "Leiderdorp", "Nederland"),
+      new Declaration(9, "Dit is een registratie", 70, 3.80, "2351JT", 87, "Leithonpark", "Leiderdorp", "Nederland", "2352DA", 65, "Hartelstein", "Leiderdorp", "Nederland"),
+      new Declaration(10, "Dit is een registratie", 70, 3.80, "2351JT", 87, "Leithonpark", "Leiderdorp", "Nederland", "2352DA", 65, "Hartelstein", "Leiderdorp", "Nederland"),
+      new Declaration(11, "Dit is een registratie", 70, 3.80, "2351JT", 87, "Leithonpark", "Leiderdorp", "Nederland", "2352DA", 65, "Hartelstein", "Leiderdorp", "Nederland"),
+      new Declaration(12, "Dit is een registratie", 70, 3.80, "2351JT", 87, "Leithonpark", "Leiderdorp", "Nederland", "2352DA", 65, "Hartelstein", "Leiderdorp", "Nederland"),
     ];
   }
 
