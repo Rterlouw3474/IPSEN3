@@ -2,62 +2,59 @@
 
 
   <div class="row" style="padding-top: 100px; padding-left: 100px">
+    <form class="example-form">
     <div class="col-sm-3">
       <h2>Beginlocatie</h2>
-      <form class="example-form">
         <mat-form-field class="example-full-width" style="border-width: 0" >
-          <input matInput placeholder="Postcode" value="">
+          <input matInput placeholder="Postcode" value="" [(ngModel)]="beginPostcode" name="beginPostcode">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Huisnummer" value="">
+          <input matInput placeholder="Huisnummer" value="" [(ngModel)]="beginHuisnummer" name="beginHuisnummer">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Straatnaam" value="">
+          <input matInput placeholder="Straatnaam" value="" [(ngModel)]="beginStraatnaam" name="beginStraatnaam">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Plaatsnaam" value="">
+          <input matInput placeholder="Plaatsnaam" value="" [(ngModel)]="beginPlaatsnaam" name="beginPlaatsnaam">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Land" value="">
+          <input matInput placeholder="Land" value="" [(ngModel)]="beginLand" name="beginLand">
         </mat-form-field>
-      </form>
   </div>
 
     <div class="col-sm-3">
       <h2>Eindlocatie</h2>
-      <form class="example-form">
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Postcode" value="">
+          <input matInput placeholder="Postcode" value="" [(ngModel)]="eindPostcode" name="eindPostcode">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Huisnummer" value="">
+          <input matInput placeholder="Huisnummer" value="" [(ngModel)]="eindHuisnummer" name="eindHuisnummer">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Straatnaam" value="">
+          <input matInput placeholder="Straatnaam" value="" [(ngModel)]="eindStraatnaam" name="eindStraatnaam">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Plaatsnaam" value="">
+          <input matInput placeholder="Plaatsnaam" value="" [(ngModel)]="eindPlaatsnaam" name="eindPlaatsnaam">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Land" value="">
+          <input matInput placeholder="Land" value="" [(ngModel)]="eindLand" name="eindLand">
         </mat-form-field>
-      </form>
     </div>
 
     <div class="col-sm-3">
       <h2>Registartie</h2>
-      <form class="example-form">
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Kilometers" value="">
+          <input matInput placeholder="Kilometers" value="" [(ngModel)]="kilometers" name="kilometers">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="€ / Km" value="">
+          <input matInput placeholder="&nbsp;/ Km" value="" [(ngModel)]="declaratie" name="declaratie">
+          <span matPrefix>&euro;</span>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <textarea matInput placeholder="Omschrijving"></textarea>
+          <textarea matInput placeholder="Omschrijving" [(ngModel)]="omschrijving" name="omschrijving"></textarea>
         </mat-form-field>
-      </form>
     </div>
+  </form>
 
 
     <div class="col-xs-1" style="padding-top: 80px">
@@ -108,6 +105,10 @@
   <div>
     <button class="new-declaration" >
     </button>
+  </div>
+
+  <div>
+    <button (click)="onCreateDeclaration()">create dec</button>
   </div>
 </div>
 

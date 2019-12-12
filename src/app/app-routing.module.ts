@@ -11,6 +11,10 @@ import {CreateDeclarationComponent} from './main/declarations/create-declaration
 import {DesktopDashboardComponent} from './main/dashboard/desktop/desktop-dashboard.component';
 import {MobileDashboardComponent} from './main/dashboard/mobile/mobile-dashboard.component';
 import {ApplicationStateService} from './application-state.service';
+import {ProfileSettingsComponent} from './main/profile/profile-settings/profile-settings.component';
+import {ProfileProjectsComponent} from './main/profile/profile-projects/profile-projects.component';
+import {ProfileClientsComponent} from './main/profile/profile-clients/profile-clients.component';
+import {ProfileCarsComponent} from './main/profile/profile-cars/profile-cars.component';
 
 const desktopRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -45,7 +49,13 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'create', component: CreateAccountComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent, children: [
+      { path: '', redirectTo: 'profile-settings', pathMatch: 'full'},
+      { path: 'profile-settings', component: ProfileSettingsComponent},
+      { path: 'profile-projects', component: ProfileProjectsComponent},
+      { path: 'profile-clients', component: ProfileClientsComponent},
+      { path: 'profile-cars', component: ProfileCarsComponent}
+    ] },
   { path: 'test', component: CreateDeclarationComponent },
   { path: 'declarations', component: DeclarationsComponent, children: [
       { path: 'new', component: CreateDeclarationComponent }

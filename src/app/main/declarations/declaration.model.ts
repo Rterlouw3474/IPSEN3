@@ -1,16 +1,38 @@
 export class Declaration{
 
-  public description: string;
-  public beginPost: string;
-  public endPost: string;
-  public km : number;
-  public amount : number;
+  ownerID : number;
+  decDesc : string;
+  //decDate : date;
+  decKilometers : number;
+  decDeclaration : number;
 
-  constructor(description : string, beginPost: string, endPost: string, km : number, amount : number){
-    this.description = description;
-    this.beginPost = beginPost;
-    this.endPost = endPost;
-    this.km = km;
-    this.amount = amount;
+  decBeginPostal : string;
+  decBeginHouseNumber : number;
+  decBeginStreet : string;
+  decBeginCity : string;
+  decBeginCountry : string;
+
+  decEndPostal : string;
+  decEndHouseNumber : number;
+  decEndStreet : string;
+  decEndCity : string;
+  decEndCountry : string;
+
+  constructor(ownerID : number, decDesc : string, decKilometers : number, decDeclaration : number, decBeginPostal : string, decBeginHouseNumber : number, decBeginStreet : string, decBeginCity : string, decBeginCountry : string, decEndPostal : string, decEndHouseNumber : number, decEndStreet : string, decEndCity : string, decEndCountry : string){
+    this.ownerID = ownerID;
+    this.decDesc = decDesc;
+    this.decKilometers = decKilometers;
+    this.decDeclaration = decDeclaration;
+    this.decBeginPostal = decBeginPostal;
+    this.decBeginHouseNumber = decBeginHouseNumber;
+    this.decBeginStreet = decBeginStreet;
+    this.decBeginCity = decBeginCity;
+    this.decBeginCountry = decBeginCountry;
+    this.decEndPostal = decEndPostal;
+    this.decEndHouseNumber = decEndHouseNumber;
+    this.decEndStreet = decEndStreet;
+    this.decEndCity = decEndCity;
+    this.decEndCountry = decEndCountry;
+
   }
 }

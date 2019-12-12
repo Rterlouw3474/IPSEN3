@@ -10,7 +10,7 @@
       <div class="kmicon"></div>
       <div class="dashboard-text">
         <h4>Totaal aantal kilometers</h4>
-        <h3>123</h3>
+        <h3>{{totalKilometers}}</h3>
       </div>
     </div>
     <div class="col-sm-10 money-column">
@@ -126,7 +126,8 @@
       </div>
 
       <div>
-        <a routerLink="/test"><button class="new-declaration"></button></a>
+        <a routerLink="/test">
+        <button (click)="onClick()" class="new-declaration"></button></a>
       </div>
 
     </div>

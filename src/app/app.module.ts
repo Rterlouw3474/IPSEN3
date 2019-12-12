@@ -15,9 +15,16 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {ProfileSettingsComponent} from './main/profile/profile-settings/profile-settings.component';
+import { ProfileProjectsComponent } from './main/profile/profile-projects/profile-projects.component';
+import { ProfileClientsComponent } from './main/profile/profile-clients/profile-clients.component';
+import { ProfileCarsComponent } from './main/profile/profile-cars/profile-cars.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { DesktopDashboardComponent } from './main/dashboard/desktop/desktop-dashboard.component';
 import { MobileDashboardComponent } from './main/dashboard/mobile/mobile-dashboard.component';
+import {HttpHandlerService} from "./http-handler.service";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -35,6 +42,10 @@ import { MobileDashboardComponent } from './main/dashboard/mobile/mobile-dashboa
   ],
   entryComponents: [
     MobileDashboardComponent
+    ProfileSettingsComponent,
+    ProfileProjectsComponent,
+    ProfileClientsComponent,
+    ProfileCarsComponent
   ],
   imports: [
     BrowserModule,
@@ -43,9 +54,10 @@ import { MobileDashboardComponent } from './main/dashboard/mobile/mobile-dashboa
     NgbModule,
     BrowserAnimationsModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [HttpHandlerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
