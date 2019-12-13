@@ -24,6 +24,7 @@ import {HttpHandlerService} from './http-handler.service';
 import {FormsModule} from '@angular/forms';
 import { DesktopDeclarationsComponent } from './main/declarations/desktop-declarations/desktop-declarations.component';
 import { MobileDeclarationsComponent } from './main/declarations/mobile-declarations/mobile-declarations.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [

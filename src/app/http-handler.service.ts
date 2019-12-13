@@ -42,6 +42,18 @@ export class HttpHandlerService {
     return this.http.get(this.databaseUrl + url);
   }
 
+  getDeclarations(ownerId:number): Observable<Declaration[]>{
+    //return this.http.get(this.databaseUrl + "/declaration/getDeclarationsByOwnerID/" + ownerId);
+    return this.http
+      .get(this.databaseUrl + "/declaration/getDeclarationsByOwnerID/" + ownerId)
+      .pipe(map(res => <Declaration[]>res));
+  }
+
+
+
+
+
+
 
 }
 
