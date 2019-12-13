@@ -5,6 +5,8 @@ import {MAT_CHECKBOX_CLICK_ACTION, MatCheckbox} from '@angular/material/checkbox
 import {DeclarationsComponentModel} from './declarations.component.model';
 import {Router} from '@angular/router';
 import {ApplicationStateService} from '../../application-state.service';
+import {HttpSentEvent} from "@angular/common/http";
+import {HttpHandlerService} from "../../http-handler.service";
 
 export abstract class DeclarationsComponent implements OnInit {
 
@@ -16,14 +18,17 @@ export abstract class DeclarationsComponent implements OnInit {
 
   public allCheckboxesSelected = false;
 
-  protected constructor(private router: Router, private applicationStateService: ApplicationStateService) {
-    this.model = new DeclarationsComponentModel();
-    this.myViewModel = new DeclarationsComponentModel();
+  protected constructor(private router: Router, private applicationStateService: ApplicationStateService, private http: HttpHandlerService) {
+    this.model = new DeclarationsComponentModel(http);
+    this.myViewModel = new DeclarationsComponentModel(http);
+
     // this.loadData()      //TODO Load the declarations from the backend
     // this.updateView();   //**Activate only when you want ultimate MVC powers**
   }
 
-  ngOnInit() {  }
+  ngOnInit() {
+    this.model.getDeclarationArray();
+  }
 
   private updateView(): void {
     this.myViewModel = this.model.clone();
@@ -49,7 +54,6 @@ export abstract class DeclarationsComponent implements OnInit {
 
   onCheckboxEvent(declaration: Declaration, checked: boolean, id: number) {
     id = id + this.getMinimum();
-
     if (!checked) {
       this.model.selectedDeclarations.push(declaration);
     } else {
@@ -68,7 +72,7 @@ export abstract class DeclarationsComponent implements OnInit {
   }
 
   getMaximum() {
-    return this.pageNumberMaximum;
+      return this.pageNumberMaximum;
   }
 
   nextPage() {

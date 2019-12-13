@@ -35,8 +35,6 @@ export class DesktopDashboardComponent implements OnInit {
   }
 
   updateDashboardValues(){
-    //this.getDeclarationArray();
-
     this.totalKilometers = 0;
     this.totalMoney = 0;
     this.totalDeclarations = 0;
