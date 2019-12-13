@@ -1,1 +1,69 @@
 <div class="headerContainer"><h1>Klanten</h1></div>
+<table style="width:90% ; margin-top: 50px; margin-left: 50px">
+  <tr class="table-dec-row">
+    <th><mat-checkbox #checkbox="matCheckbox"  (click)="onSelectAllCheckboxes(checkbox.checked)" style="margin-left: 40px"></mat-checkbox></th>
+    <th class="table-description-text" style="width: 48%">Naam</th>
+    <th class="table-description-text" style="width: 26%">Postcode</th>
+    <th class="table-description-text" style="width: 26%">Huisnummer</th>
+  </tr>
+  <tr class="table-dec-row notOdd">
+    <td><mat-checkbox
+        #checkbox="matCheckbox"
+        (click)="onCheckboxEvent(declaration, checkbox.checked, id)"
+        [checked]="allCheckboxesSelected"
+        style="margin-left: 40px"></mat-checkbox></td>
+    <td class="table-text" >Jansen</td>
+    <td class="table-text" >1234 AB</td>
+    <td class="table-text" >106a</td>
+  </tr>
+  <tr class="table-dec-row ">
+    <td><mat-checkbox
+        #checkbox="matCheckbox"
+        (click)="onCheckboxEvent(declaration, checkbox.checked, id)"
+        [checked]="allCheckboxesSelected"
+        style="margin-left: 40px"></mat-checkbox></td>
+    <td class="table-text" >De Vries</td>
+    <td class="table-text" >3214 JK</td>
+    <td class="table-text" >99</td>
+  </tr>
+  <tr class="table-dec-row notOdd">
+    <td><mat-checkbox
+        #checkbox="matCheckbox"
+        (click)="onCheckboxEvent(declaration, checkbox.checked, id)"
+        [checked]="allCheckboxesSelected"
+        style="margin-left: 40px"></mat-checkbox></td>
+    <td class="table-text" >Jansen</td>
+    <td class="table-text" >1234 AB</td>
+    <td class="table-text" >106a</td>
+  </tr>
+  <tr class="table-dec-row ">
+    <td><mat-checkbox
+        #checkbox="matCheckbox"
+        (click)="onCheckboxEvent(declaration, checkbox.checked, id)"
+        [checked]="allCheckboxesSelected"
+        style="margin-left: 40px"></mat-checkbox></td>
+    <td class="table-text" >De Vries</td>
+    <td class="table-text" >3214 JK</td>
+    <td class="table-text" >99</td>
+  </tr>
+  <tr class="table-dec-row notOdd">
+    <td><mat-checkbox
+        #checkbox="matCheckbox"
+        (click)="onCheckboxEvent(declaration, checkbox.checked, id)"
+        [checked]="allCheckboxesSelected"
+        style="margin-left: 40px"></mat-checkbox></td>
+    <td class="table-text" >Jansen</td>
+    <td class="table-text" >1234 AB</td>
+    <td class="table-text" >106a</td>
+  </tr>
+  <tr class="table-dec-row ">
+    <td><mat-checkbox
+        #checkbox="matCheckbox"
+        (click)="onCheckboxEvent(declaration, checkbox.checked, id)"
+        [checked]="allCheckboxesSelected"
+        style="margin-left: 40px"></mat-checkbox></td>
+    <td class="table-text" >De Vries</td>
+    <td class="table-text" >3214 JK</td>
+    <td class="table-text" >99</td>
+  </tr>
+</table>

@@ -1,1 +1,69 @@
 <div class="headerContainer"><h1>Projecten</h1></div>
+<table style="width:90% ; margin-top: 50px; margin-left: 50px">
+  <tr class="table-dec-row">
+    <th><mat-checkbox #checkbox="matCheckbox"  (click)="onSelectAllCheckboxes(checkbox.checked)" style="margin-left: 40px"></mat-checkbox></th>
+    <th class="table-description-text" style="width: 48%">Naam</th>
+    <th class="table-description-text" style="width: 26%">Van</th>
+    <th class="table-description-text" style="width: 26%">Tot</th>
+  </tr>
+  <tr class="table-dec-row notOdd">
+    <td><mat-checkbox
+        #checkbox="matCheckbox"
+        (click)="onCheckboxEvent(declaration, checkbox.checked, id)"
+        [checked]="allCheckboxesSelected"
+        style="margin-left: 40px"></mat-checkbox></td>
+    <td class="table-text" >Project 1</td>
+    <td class="table-text" >11-06-2019</td>
+    <td class="table-text" >12-12-2019</td>
+  </tr>
+  <tr class="table-dec-row ">
+    <td><mat-checkbox
+        #checkbox="matCheckbox"
+        (click)="onCheckboxEvent(declaration, checkbox.checked, id)"
+        [checked]="allCheckboxesSelected"
+        style="margin-left: 40px"></mat-checkbox></td>
+    <td class="table-text" >Project 1</td>
+    <td class="table-text" >11-06-2019</td>
+    <td class="table-text" >12-12-2019</td>
+  </tr>
+  <tr class="table-dec-row notOdd">
+    <td><mat-checkbox
+        #checkbox="matCheckbox"
+        (click)="onCheckboxEvent(declaration, checkbox.checked, id)"
+        [checked]="allCheckboxesSelected"
+        style="margin-left: 40px"></mat-checkbox></td>
+    <td class="table-text" >Project 1</td>
+    <td class="table-text" >11-06-2019</td>
+    <td class="table-text" >12-12-2019</td>
+  </tr>
+  <tr class="table-dec-row ">
+    <td><mat-checkbox
+        #checkbox="matCheckbox"
+        (click)="onCheckboxEvent(declaration, checkbox.checked, id)"
+        [checked]="allCheckboxesSelected"
+        style="margin-left: 40px"></mat-checkbox></td>
+    <td class="table-text" >Project 1</td>
+    <td class="table-text" >11-06-2019</td>
+    <td class="table-text" >12-12-2019</td>
+  </tr>
+  <tr class="table-dec-row notOdd">
+    <td><mat-checkbox
+        #checkbox="matCheckbox"
+        (click)="onCheckboxEvent(declaration, checkbox.checked, id)"
+        [checked]="allCheckboxesSelected"
+        style="margin-left: 40px"></mat-checkbox></td>
+    <td class="table-text" >Project 1</td>
+    <td class="table-text" >11-06-2019</td>
+    <td class="table-text" >12-12-2019</td>
+  </tr>
+  <tr class="table-dec-row ">
+    <td><mat-checkbox
+        #checkbox="matCheckbox"
+        (click)="onCheckboxEvent(declaration, checkbox.checked, id)"
+        [checked]="allCheckboxesSelected"
+        style="margin-left: 40px"></mat-checkbox></td>
+    <td class="table-text" >Project 1</td>
+    <td class="table-text" >11-06-2019</td>
+    <td class="table-text" >12-12-2019</td>
+  </tr>
+</table>
