@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {Routes, RouterModule, Router} from '@angular/router';
 
 import {LoginComponent} from './account/login/login.component';
 import {NotfoundComponent} from './notfound/notfound.component';
@@ -8,17 +8,21 @@ import {DashboardComponent} from './main/dashboard/dashboard.component';
 import {ProfileComponent} from './main/profile/profile.component';
 import {DeclarationsComponent} from './main/declarations/declarations.component';
 import {CreateDeclarationComponent} from './main/declarations/create-declaration/create-declaration.component';
+import {DesktopDashboardComponent} from './main/dashboard/desktop/desktop-dashboard.component';
+import {MobileDashboardComponent} from './main/dashboard/mobile/mobile-dashboard.component';
+import {ApplicationStateService} from './application-state.service';
 import {ProfileSettingsComponent} from './main/profile/profile-settings/profile-settings.component';
 import {ProfileProjectsComponent} from './main/profile/profile-projects/profile-projects.component';
 import {ProfileClientsComponent} from './main/profile/profile-clients/profile-clients.component';
 import {ProfileCarsComponent} from './main/profile/profile-cars/profile-cars.component';
+import {MobileDeclarationsComponent} from './main/declarations/mobile-declarations/mobile-declarations.component';
+import {DesktopDeclarationsComponent} from './main/declarations/desktop-declarations/desktop-declarations.component';
 
-
-const routes: Routes = [
+const desktopRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'create', component: CreateAccountComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DesktopDashboardComponent },
   { path: 'profile', component: ProfileComponent, children: [
       { path: '', redirectTo: 'profile-settings', pathMatch: 'full'},
       { path: 'profile-settings', component: ProfileSettingsComponent},
@@ -27,7 +31,27 @@ const routes: Routes = [
       { path: 'profile-cars', component: ProfileCarsComponent}
     ] },
   { path: 'test', component: CreateDeclarationComponent },
-  { path: 'declarations', component: DeclarationsComponent, children: [
+  { path: 'declarations', component: DesktopDeclarationsComponent, children: [
+      { path: 'new', component: CreateDeclarationComponent }
+    ]},
+  { path: 'not-found', component: NotfoundComponent, data: {message: 'Page not found!'} },
+  { path: '**', redirectTo: '/not-found' }
+];
+
+const mobileRoutes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'create', component: CreateAccountComponent },
+  { path: 'dashboard', component: MobileDashboardComponent },
+  { path: 'profile', component: ProfileComponent, children: [
+      { path: '', redirectTo: 'profile-settings', pathMatch: 'full'},
+      { path: 'profile-settings', component: ProfileSettingsComponent},
+      { path: 'profile-projects', component: ProfileProjectsComponent},
+      { path: 'profile-clients', component: ProfileClientsComponent},
+      { path: 'profile-cars', component: ProfileCarsComponent}
+    ] },
+  { path: 'test', component: CreateDeclarationComponent },
+  { path: 'declarations', component: MobileDeclarationsComponent, children: [
       { path: 'new', component: CreateDeclarationComponent }
     ]},
   { path: 'not-found', component: NotfoundComponent, data: {message: 'Page not found!'} },
@@ -35,7 +59,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(desktopRoutes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  public constructor(private router: Router,
+                     private applicationStateService: ApplicationStateService) {
+
+    if (applicationStateService.getIsMobileResolution()) {
+      router.resetConfig(mobileRoutes);
+    }
+  }
+}
