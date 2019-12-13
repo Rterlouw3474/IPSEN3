@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Declaration} from "../declaration.model";
 import {HttpHandlerService} from "../../../http-handler.service";
-import {User} from "../../profile/user.model";
 
 @Component({
   selector: 'app-create-declaration',
@@ -35,7 +34,6 @@ export class CreateDeclarationComponent implements OnInit {
     const newDec = new Declaration(1, this.omschrijving, this.kilometers, this.declaratie,
       this.beginPostcode, this.beginHuisnummer, this.beginStraatnaam, this.beginPlaatsnaam, this.beginLand,
       this.eindPostcode, this.eindHuisnummer, this.eindStraatnaam, this.eindPlaatsnaam, this.eindLand,)
-    console.log(newDec);
     this.httpHandler.postDeclaration(newDec, "/declaration/create")
   }
 
