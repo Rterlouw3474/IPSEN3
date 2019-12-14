@@ -34,21 +34,23 @@ export abstract class DeclarationsComponent implements OnInit {
     this.myViewModel = this.model.clone();
   }
 
-  //TODO: kapot gegaan bij inladen van echte declaraties.
+  //TODO: de 'selectAll' checkbox heeft 2 clicks nodig per actie (??)
+  // 5 euro voor de persoon die de bug fixt.
   onSelectAllCheckboxes(checked: boolean) {
     this.allCheckboxesSelected = !checked;
 
     if (this.allCheckboxesSelected) {
-      this.model.selectedDeclarations.splice(0, 1000);
-      for (let counter: number = this.getMinimum(); counter < this.getMaximum(); counter++) {
-        for (const arrayDeclarations of this.model.declarations) {
-          if (counter === arrayDeclarations.ownerID) {
-            //this.model.selectedDeclarations.push(arrayDeclarations);
-          }
+      this.resetSelectedDeclarations();
+      const tempArray : Declaration[] = this.model.declarations.slice(this.getMinimum() , this.getMaximum());
+      let id = this.getMinimum();
+
+      for (const declaration of tempArray) {
+            this.model.selectedDeclarations.push({id, declaration});
+            id++;
         }
-      }
+
     } else {
-      this.model.selectedDeclarations.splice(0, 1000);
+      this.resetSelectedDeclarations();
     }
     console.log(this.model.selectedDeclarations);
   }
@@ -87,6 +89,8 @@ export abstract class DeclarationsComponent implements OnInit {
 
   nextPage() {
     if (!(this.pageNumberMinimum + 10 > this.model.declarations.length)) {
+      this.allCheckboxesSelected = false;
+      this.resetSelectedDeclarations();
       this.pageNumberMinimum += 10;
       this.pageNumberMaximum += 10;
     }
@@ -94,9 +98,15 @@ export abstract class DeclarationsComponent implements OnInit {
 
   prevPage() {
     if (this.pageNumberMinimum > 0) {
+      this.allCheckboxesSelected = false;
+      this.resetSelectedDeclarations();
       this.pageNumberMinimum -= 10;
       this.pageNumberMaximum -= 10;
     }
+  }
+
+  resetSelectedDeclarations(){
+    this.model.selectedDeclarations.splice(0, 1000);
   }
 
 }

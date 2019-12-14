@@ -2,7 +2,11 @@
 
   <table style="width:90% ; margin-top: 80px; margin-left: 50px">
     <tr>
-      <th><mat-checkbox #checkbox="matCheckbox"  (click)="onSelectAllCheckboxes(checkbox.checked)" style="margin-left: 40px"></mat-checkbox></th>
+      <th><mat-checkbox
+          #checkbox="matCheckbox"
+          [checked]="allCheckboxesSelected"
+          (click)="onSelectAllCheckboxes(checkbox.checked)"
+          style="margin-left: 40px"></mat-checkbox></th>
       <th class="dec-description-text" style="width: 40%">Omschrijving</th>
       <th class="dec-description-text" style="width: 15%">Auto</th>
       <th class="dec-description-text" style="width: 15%">Datum</th>
