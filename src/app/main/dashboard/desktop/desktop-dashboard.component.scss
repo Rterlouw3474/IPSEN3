@@ -19,6 +19,27 @@ h1 {
   }
 }
 
+.dec-description-text{
+  text-align: center;
+  color: #858C93;
+  font-size: 18px;
+}
+
+.dec-text{
+  text-align: center;
+  color: #44524F;
+  font-size: 24px;
+}
+
+.dashboard-dec-row{
+  width: 1100px;
+  height: 50px;
+}
+
+.notOdd{
+  background-color: #C4EAE1;
+}
+
 .iconContainer{
   height: 230px;
   width: 100%;
@@ -73,12 +94,10 @@ h1 {
   height: 80px;
   width: 80px;
   border:none;
-  margin-top: 245px;
-  margin-left: 173px;
   z-index: 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
   position: fixed;
-  bottom: 0;
-  left: 800px;
+  bottom: 10px;
+  right: 10px;
 }
 
 .kmicon{
