@@ -34,6 +34,7 @@ export abstract class DeclarationsComponent implements OnInit {
     this.myViewModel = this.model.clone();
   }
 
+  //TODO: kapot gegaan bij inladen van echte declaraties.
   onSelectAllCheckboxes(checked: boolean) {
     this.allCheckboxesSelected = !checked;
 
@@ -42,7 +43,7 @@ export abstract class DeclarationsComponent implements OnInit {
       for (let counter: number = this.getMinimum(); counter < this.getMaximum(); counter++) {
         for (const arrayDeclarations of this.model.declarations) {
           if (counter === arrayDeclarations.ownerID) {
-            this.model.selectedDeclarations.push(arrayDeclarations);
+            //this.model.selectedDeclarations.push(arrayDeclarations);
           }
         }
       }
@@ -55,16 +56,17 @@ export abstract class DeclarationsComponent implements OnInit {
   onCheckboxEvent(declaration: Declaration, checked: boolean, id: number) {
     id = id + this.getMinimum();
     if (!checked) {
-      this.model.selectedDeclarations.push(declaration);
+      this.model.selectedDeclarations.push({id, declaration});
     } else {
       let counter = 0;
-      for (const arrayDeclarations of this.model.selectedDeclarations) {
-        if (arrayDeclarations.ownerID === id) {
-          this.model.selectedDeclarations.splice(counter);
-        }
-        counter++;
-      }
+           for (const selectedDeclaration of this.model.selectedDeclarations) {
+             if (selectedDeclaration.id === id) {
+               this.model.selectedDeclarations.splice(counter,1);
+             }
+             counter++;
+           }
     }
+    console.log(this.model.selectedDeclarations)
   }
 
   getMinimum() {
@@ -73,6 +75,14 @@ export abstract class DeclarationsComponent implements OnInit {
 
   getMaximum() {
       return this.pageNumberMaximum;
+  }
+
+  getRealMaximum(){
+    if(this.model.declarations.length < this.getMaximum()){
+      return this.model.declarations.length
+    }else{
+      return this.getMaximum();
+    }
   }
 
   nextPage() {

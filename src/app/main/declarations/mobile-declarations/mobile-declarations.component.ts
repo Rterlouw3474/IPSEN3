@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {ApplicationStateService} from '../../../application-state.service';
 import {DeclarationsComponent} from '../declarations.component';
+import {HttpHandlerService} from "../../../http-handler.service";
 
 @Component({
   selector: 'app-mobile-declarations',
@@ -10,8 +11,8 @@ import {DeclarationsComponent} from '../declarations.component';
 })
 export class MobileDeclarationsComponent extends DeclarationsComponent {
 
-  constructor(router: Router, applicationStateService: ApplicationStateService) {
-    super(router, applicationStateService);
+  constructor(router: Router, applicationStateService: ApplicationStateService, http:HttpHandlerService) {
+    super(router, applicationStateService, http);
   }
 
 }

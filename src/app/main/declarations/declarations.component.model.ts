@@ -3,7 +3,7 @@ import {HttpHandlerService} from "../../http-handler.service";
 
 export class DeclarationsComponentModel {
   public declarations: Declaration[];
-  public selectedDeclarations: Declaration[];
+  public selectedDeclarations: { id : number; declaration : Declaration; }[];
 
   constructor(private http : HttpHandlerService) {
     this.selectedDeclarations = [];

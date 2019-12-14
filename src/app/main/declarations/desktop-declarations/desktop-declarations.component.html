@@ -30,6 +30,10 @@
     <div class="col-sm-2">
       <button class="page-button" (click)="nextPage()">>></button>
     </div>
+
+    <div class="col-sm-4">
+      <h4 class="page-counter">{{getMinimum()}} - {{getRealMaximum()}} van de {{model.declarations.length}}</h4>
+    </div>
   </div>
 
   <div class="row" style="margin-left: 336px">

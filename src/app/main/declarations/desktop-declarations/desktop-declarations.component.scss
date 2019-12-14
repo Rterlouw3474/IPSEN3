@@ -75,6 +75,15 @@ h1 {
   color: white;
 }
 
+.page-counter{
+  position: fixed;
+  bottom: 120px;
+  right: 90px;
+  font-size: 18px;
+  color: #5D656F;
+  margin-left: 220px;
+}
+
 .dec-edit-button:hover{
   cursor: hand;
 }
