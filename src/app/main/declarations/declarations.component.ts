@@ -17,6 +17,7 @@ export abstract class DeclarationsComponent implements OnInit {
   public pageNumberMaximum = 10;
 
   public allCheckboxesSelected = false;
+  public parentCheckboxSelected = false;
 
   protected constructor(private router: Router, private applicationStateService: ApplicationStateService, private http: HttpHandlerService) {
     this.model = new DeclarationsComponentModel(http);
@@ -34,7 +35,7 @@ export abstract class DeclarationsComponent implements OnInit {
     this.myViewModel = this.model.clone();
   }
 
-  //TODO: de 'selectAll' checkbox heeft 2 clicks nodig per actie (??)
+  //TODO: de 'selectAll' checkbox heeft 2 clicks nodig om geactiveerd / gedeactieerd te worden (??)
   // 5 euro voor de persoon die de bug fixt.
   onSelectAllCheckboxes(checked: boolean) {
     this.allCheckboxesSelected = !checked;
@@ -90,6 +91,7 @@ export abstract class DeclarationsComponent implements OnInit {
   nextPage() {
     if (!(this.pageNumberMinimum + 10 > this.model.declarations.length)) {
       this.allCheckboxesSelected = false;
+      this.parentCheckboxSelected = false;
       this.resetSelectedDeclarations();
       this.pageNumberMinimum += 10;
       this.pageNumberMaximum += 10;
@@ -99,6 +101,7 @@ export abstract class DeclarationsComponent implements OnInit {
   prevPage() {
     if (this.pageNumberMinimum > 0) {
       this.allCheckboxesSelected = false;
+      this.parentCheckboxSelected = false;
       this.resetSelectedDeclarations();
       this.pageNumberMinimum -= 10;
       this.pageNumberMaximum -= 10;

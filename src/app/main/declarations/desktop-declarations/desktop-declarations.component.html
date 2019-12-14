@@ -4,8 +4,8 @@
     <tr>
       <th><mat-checkbox
           #checkbox="matCheckbox"
-          [checked]="allCheckboxesSelected"
           (click)="onSelectAllCheckboxes(checkbox.checked)"
+          [(ngModel)]="parentCheckboxSelected"
           style="margin-left: 40px"></mat-checkbox></th>
       <th class="dec-description-text" style="width: 40%">Omschrijving</th>
       <th class="dec-description-text" style="width: 15%">Auto</th>
