@@ -85,7 +85,8 @@ h1 {
 }
 
 .dec-edit-button:hover{
-  cursor: hand;
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 .material-design-icons{

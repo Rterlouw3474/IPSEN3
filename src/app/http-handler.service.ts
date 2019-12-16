@@ -42,6 +42,10 @@ export class HttpHandlerService {
     return this.http.get(this.databaseUrl + url);
   }
 
+  deleteDeclaration(url:string){
+    return this.http.delete(this.databaseUrl + url)
+  }
+
   getDeclarations(ownerId:number): Observable<Declaration[]>{
     //return this.http.get(this.databaseUrl + "/declaration/getDeclarationsByOwnerID/" + ownerId);
     return this.http

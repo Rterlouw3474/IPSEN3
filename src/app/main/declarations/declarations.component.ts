@@ -35,8 +35,6 @@ export abstract class DeclarationsComponent implements OnInit {
     this.myViewModel = this.model.clone();
   }
 
-  //TODO: de 'selectAll' checkbox heeft 2 clicks nodig om geactiveerd / gedeactieerd te worden (??)
-  // 5 euro voor de persoon die de bug fixt.
   onSelectAllCheckboxes(checked: boolean) {
     this.allCheckboxesSelected = !checked;
 
@@ -54,6 +52,52 @@ export abstract class DeclarationsComponent implements OnInit {
       this.resetSelectedDeclarations();
     }
     console.log(this.model.selectedDeclarations);
+  }
+
+  //TODO: zodra de juiste implementatie van declaratie opvragen in de database/backend is geimplementeerd deze herschrijven.
+  OnDeleteEvent(){
+    this.http
+      .deleteDeclaration("/declaration/delete/30")
+      .subscribe();
+    this.model.getDeclarationArray();
+    this.updateView();
+  }
+
+  OnCopyEvent() {
+    const selectedDeclaration = this.model.selectedDeclarations[0].declaration;
+    const oldDeclaration = this.createDeclarationCopy(selectedDeclaration);
+
+    //const declarationCopy = new Declaration(oldDeclaration.ownerID, oldDeclaration.decDesc, oldDeclaration.decKilometers, oldDeclaration.decDeclaration, oldDeclaration.decBeginPostal, oldDeclaration.decBeginHouseNumber, oldDeclaration.decBeginStreet, oldDeclaration.decBeginCity, oldDeclaration.decBeginCountry, oldDeclaration.decEndPostal, oldDeclaration.decEndHouseNumber, oldDeclaration.decEndStreet, oldDeclaration.decEndCity, oldDeclaration.decEndCountry);
+    const newDeclaration = this.checkDeclarationName(oldDeclaration);
+
+    this.http.postDeclaration(newDeclaration, "/declaration/create");
+
+    this.allCheckboxesSelected = false;
+    this.resetSelectedDeclarations();
+    this.model.getDeclarationArray();
+
+    this.updateView();
+  }
+
+  createDeclarationCopy(declaration: Declaration) : Declaration{
+    if (declaration.decDesc.includes("[")) {
+      let a: number = Number(declaration.decDesc.charAt(declaration.decDesc.indexOf("[") + 1));
+      declaration.decDesc = declaration.decDesc.substring(0, declaration.decDesc.length - 3);
+      declaration.decDesc = declaration.decDesc.concat("[" + Number(a + 1) + "]")
+    } else {
+      declaration.decDesc = declaration.decDesc + "[2]";
+    }
+    return declaration;
+  }
+
+  checkDeclarationName(declaration2: Declaration){
+    for (let declaration of this.model.declarations) {
+      if (declaration2.decDesc === declaration.decDesc) {
+        return this.checkDeclarationName(this.createDeclarationCopy(declaration2));
+      }else{
+        return declaration2
+      }
+    }
   }
 
   onCheckboxEvent(declaration: Declaration, checked: boolean, id: number) {
