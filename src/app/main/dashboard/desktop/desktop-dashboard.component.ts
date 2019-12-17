@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Declaration} from "../../declarations/declaration.object";
 import {HttpHandlerService} from "../../../http-handler.service";
 import {forkJoin, Observable} from "rxjs";
+import {AuthService} from '../../../account/auth.service';
 
 @Component({
   selector: 'app-desktop-dashboard',
@@ -14,13 +15,13 @@ export class DesktopDashboardComponent implements OnInit {
   totalMoney: number;
   totalDeclarations : number;
 
-
   declarations : Declaration[] = [];
 
-  constructor(private http: HttpHandlerService) { }
+  constructor(private http: HttpHandlerService,
+              private auth: AuthService) { }
 
   ngOnInit() {
-    this.getDeclarationArray()
+    this.getDeclarationArray();
   }
 
   getDeclarationArray(){

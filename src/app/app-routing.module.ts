@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import {Routes, RouterModule, Router} from '@angular/router';
 
-import {LoginComponent} from './account/login/login.component';
+import {HomeComponent} from './account/home/home.component';
 import {NotfoundComponent} from './notfound/notfound.component';
-import {CreateAccountComponent} from './account/create-account/create-account.component';
-import {DashboardComponent} from './main/dashboard/dashboard.component';
 import {ProfileComponent} from './main/profile/profile.component';
-import {DeclarationsComponent} from './main/declarations/declarations.component';
 import {CreateDeclarationComponent} from './main/declarations/create-declaration/create-declaration.component';
 import {DesktopDashboardComponent} from './main/dashboard/desktop/desktop-dashboard.component';
 import {MobileDashboardComponent} from './main/dashboard/mobile/mobile-dashboard.component';
@@ -17,21 +14,20 @@ import {ProfileClientsComponent} from './main/profile/profile-clients/profile-cl
 import {ProfileCarsComponent} from './main/profile/profile-cars/profile-cars.component';
 import {MobileDeclarationsComponent} from './main/declarations/mobile-declarations/mobile-declarations.component';
 import {DesktopDeclarationsComponent} from './main/declarations/desktop-declarations/desktop-declarations.component';
+import {AuthGuard} from './account/auth.guard';
 
 const desktopRoutes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'create', component: CreateAccountComponent },
-  { path: 'dashboard', component: DesktopDashboardComponent },
-  { path: 'profile', component: ProfileComponent, children: [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'dashboard', component: DesktopDashboardComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], children: [
       { path: '', redirectTo: 'profile-settings', pathMatch: 'full'},
       { path: 'profile-settings', component: ProfileSettingsComponent},
       { path: 'profile-projects', component: ProfileProjectsComponent},
       { path: 'profile-clients', component: ProfileClientsComponent},
       { path: 'profile-cars', component: ProfileCarsComponent}
     ] },
-  { path: 'test', component: CreateDeclarationComponent },
-  { path: 'declarations', component: DesktopDeclarationsComponent, children: [
+  { path: 'declarations', component: DesktopDeclarationsComponent, canActivate: [AuthGuard], children: [
       { path: 'new', component: CreateDeclarationComponent }
     ]},
   { path: 'not-found', component: NotfoundComponent, data: {message: 'Page not found!'} },
@@ -39,9 +35,8 @@ const desktopRoutes: Routes = [
 ];
 
 const mobileRoutes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'create', component: CreateAccountComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'dashboard', component: MobileDashboardComponent },
   { path: 'profile', component: ProfileComponent, children: [
       { path: '', redirectTo: 'profile-settings', pathMatch: 'full'},
