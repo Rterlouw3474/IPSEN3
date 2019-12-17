@@ -46,10 +46,10 @@ h1 {
   height: 80px;
   width: 80px;
   border:none;
-  margin-top: 20px;
-  margin-left: 1150px;
   z-index: 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
   position: fixed;
+  bottom: 10px;
+  right: 10px;
 }
 
 .dec-edit-button{
@@ -75,8 +75,18 @@ h1 {
   color: white;
 }
 
+.page-counter{
+  position: fixed;
+  bottom: 120px;
+  right: 90px;
+  font-size: 18px;
+  color: #5D656F;
+  margin-left: 220px;
+}
+
 .dec-edit-button:hover{
-  cursor: hand;
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 .material-design-icons{

@@ -2,7 +2,11 @@
 
   <table style="width:90% ; margin-top: 80px; margin-left: 50px">
     <tr>
-      <th><mat-checkbox #checkbox="matCheckbox"  (click)="onSelectAllCheckboxes(checkbox.checked)" style="margin-left: 40px"></mat-checkbox></th>
+      <th><mat-checkbox
+          #checkbox="matCheckbox"
+          (click)="onSelectAllCheckboxes(checkbox.checked)"
+          [(ngModel)]="parentCheckboxSelected"
+          style="margin-left: 40px"></mat-checkbox></th>
       <th class="dec-description-text" style="width: 40%">Omschrijving</th>
       <th class="dec-description-text" style="width: 15%">Auto</th>
       <th class="dec-description-text" style="width: 15%">Datum</th>
@@ -30,6 +34,10 @@
     <div class="col-sm-2">
       <button class="page-button" (click)="nextPage()">>></button>
     </div>
+
+    <div class="col-sm-4">
+      <h4 class="page-counter">{{getMinimum()}} - {{getRealMaximum()}} van de {{model.declarations.length}}</h4>
+    </div>
   </div>
 
   <div class="row" style="margin-left: 336px">
@@ -39,12 +47,12 @@
       </div>
     </div>
     <div class="col-sm-2">
-      <div class="dec-edit-button" *ngIf="model.selectedDeclarations.length>0">
+      <div class="dec-edit-button" *ngIf="model.selectedDeclarations.length>0" (click)="OnDeleteEvent()">
         <svg class="material-design-icons"  xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
       </div>
     </div>
     <div class="col-sm-2">
-      <div class="dec-edit-button" *ngIf="model.selectedDeclarations.length==1">
+      <div class="dec-edit-button" *ngIf="model.selectedDeclarations.length==1" (click)="OnCopyEvent()">
         <svg class="material-design-icons2" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
       </div>
     </div>

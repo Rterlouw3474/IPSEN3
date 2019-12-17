@@ -2,19 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CreateAccountComponent } from './account/create-account/create-account.component';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { LoginComponent } from './account/login/login.component';
+import { HomeComponent } from './account/home/home.component';
 import { DashboardComponent } from './main/dashboard/dashboard.component';
 import { ProfileComponent } from './main/profile/profile.component';
-import { DeclarationsComponent } from './main/declarations/declarations.component';
 import { CreateDeclarationComponent } from './main/declarations/create-declaration/create-declaration.component';
 import { HeaderComponent } from './header/header.component';
 import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
-import {MatCheckboxModule} from '@angular/material/checkbox';
 import {ProfileSettingsComponent} from './main/profile/profile-settings/profile-settings.component';
 import { ProfileProjectsComponent } from './main/profile/profile-projects/profile-projects.component';
 import { ProfileClientsComponent } from './main/profile/profile-clients/profile-clients.component';
@@ -25,12 +22,12 @@ import {HttpHandlerService} from './http-handler.service';
 import {FormsModule} from '@angular/forms';
 import { DesktopDeclarationsComponent } from './main/declarations/desktop-declarations/desktop-declarations.component';
 import { MobileDeclarationsComponent } from './main/declarations/mobile-declarations/mobile-declarations.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    CreateAccountComponent,
+    HomeComponent,
     NotfoundComponent,
     DashboardComponent,
     ProfileComponent,
@@ -45,7 +42,7 @@ import { MobileDeclarationsComponent } from './main/declarations/mobile-declarat
     ProfileClientsComponent,
     ProfileCarsComponent,
     DesktopDeclarationsComponent,
-    MobileDeclarationsComponent
+    MobileDeclarationsComponent,
   ],
   entryComponents: [
     MobileDashboardComponent,

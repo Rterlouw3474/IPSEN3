@@ -1,25 +1,11 @@
 import {Declaration} from './declaration.object';
+import {HttpHandlerService} from "../../http-handler.service";
 
 export class DeclarationsComponentModel {
   public declarations: Declaration[];
-  public selectedDeclarations: Declaration[];
+  public selectedDeclarations: { id : number; declaration : Declaration; }[];
 
-  constructor() {
-    this.declarations = [
-      new Declaration(0, 'Dit is een registratie', 70, 3.80, '2351JT', 87, 'Leithonpark', 'Leiderdorp', 'Nederland', '2352DA', 65, 'Hartelstein', 'Leiderdorp', 'Nederland'),
-      new Declaration(1, 'Dit is een registratie', 70, 3.80, '2351JT', 87, 'Leithonpark', 'Leiderdorp', 'Nederland', '2352DA', 65, 'Hartelstein', 'Leiderdorp', 'Nederland'),
-      new Declaration(2, 'Dit is een registratie', 70, 3.80, '2351JT', 87, 'Leithonpark', 'Leiderdorp', 'Nederland', '2352DA', 65, 'Hartelstein', 'Leiderdorp', 'Nederland'),
-      new Declaration(3, 'Dit is een registratie', 70, 3.80, '2351JT', 87, 'Leithonpark', 'Leiderdorp', 'Nederland', '2352DA', 65, 'Hartelstein', 'Leiderdorp', 'Nederland'),
-      new Declaration(4, 'Dit is een registratie', 70, 3.80, '2351JT', 87, 'Leithonpark', 'Leiderdorp', 'Nederland', '2352DA', 65, 'Hartelstein', 'Leiderdorp', 'Nederland'),
-      new Declaration(5, 'Dit is een registratie', 70, 3.80, '2351JT', 87, 'Leithonpark', 'Leiderdorp', 'Nederland', '2352DA', 65, 'Hartelstein', 'Leiderdorp', 'Nederland'),
-      new Declaration(6, 'Dit is een registratie', 70, 3.80, '2351JT', 87, 'Leithonpark', 'Leiderdorp', 'Nederland', '2352DA', 65, 'Hartelstein', 'Leiderdorp', 'Nederland'),
-      new Declaration(7, 'Dit is een registratie', 70, 3.80, '2351JT', 87, 'Leithonpark', 'Leiderdorp', 'Nederland', '2352DA', 65, 'Hartelstein', 'Leiderdorp', 'Nederland'),
-      new Declaration(8, 'Dit is een registratie', 70, 3.80, '2351JT', 87, 'Leithonpark', 'Leiderdorp', 'Nederland', '2352DA', 65, 'Hartelstein', 'Leiderdorp', 'Nederland'),
-      new Declaration(9, 'Dit is een registratie', 70, 3.80, '2351JT', 87, 'Leithonpark', 'Leiderdorp', 'Nederland', '2352DA', 65, 'Hartelstein', 'Leiderdorp', 'Nederland'),
-      new Declaration(10, 'Dit is een registratie', 70, 3.80, '2351JT', 87, 'Leithonpark', 'Leiderdorp', 'Nederland', '2352DA', 65, 'Hartelstein', 'Leiderdorp', 'Nederland'),
-      new Declaration(11, 'Dit is een registratie', 70, 3.80, '2351JT', 87, 'Leithonpark', 'Leiderdorp', 'Nederland', '2352DA', 65, 'Hartelstein', 'Leiderdorp', 'Nederland'),
-      new Declaration(12, 'Dit is een registratie', 70, 3.80, '2351JT', 87, 'Leithonpark', 'Leiderdorp', 'Nederland', '2352DA', 65, 'Hartelstein', 'Leiderdorp', 'Nederland'),
-    ];
+  constructor(private http : HttpHandlerService) {
     this.selectedDeclarations = [];
   }
 
@@ -28,4 +14,14 @@ export class DeclarationsComponentModel {
     Object.setPrototypeOf(clonedModel, DeclarationsComponentModel);
     return clonedModel;
   }
+
+  getDeclarationArray(){
+    this.http.getDeclarations(1).subscribe(
+      res => {
+        this.declarations = res;
+      }
+    );
+  }
+
+
 }
