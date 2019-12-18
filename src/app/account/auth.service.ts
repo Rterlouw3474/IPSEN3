@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import createAuth0Client from '@auth0/auth0-spa-js';
 import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
-import {from, of, Observable, BehaviorSubject, combineLatest, throwError} from 'rxjs';
-import {tap, catchError, concatMap, shareReplay} from 'rxjs/operators';
+import {BehaviorSubject, combineLatest, from, Observable, of, Subscription, throwError} from 'rxjs';
+import {catchError, concatMap, shareReplay, tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {User} from '../models/user.model';
 
@@ -27,22 +27,21 @@ export class AuthService {
   // For each Auth0 SDK method, first ensure the client instance is ready
   // concatMap: Using the client instance, call SDK method; SDK returns a promise
   // from: Convert that resulting promise into an observable
-
+  handleRedirectCallback$ = this.auth0Client$.pipe(
+    concatMap((client: Auth0Client) => from(client.handleRedirectCallback()))
+  );
+  currentUser = new User('Test@test.com', 'Test', 'test.png', 'google');
+  // Create a local property for home status
+  loggedIn: boolean = null;
   isAuthenticated$ = this.auth0Client$.pipe(
     concatMap((client: Auth0Client) => from(client.isAuthenticated())),
     tap(res => this.loggedIn = res)
   );
-
-  handleRedirectCallback$ = this.auth0Client$.pipe(
-    concatMap((client: Auth0Client) => from(client.handleRedirectCallback()))
-  );
-
   // Create subject and public observable of user profile data
   private userProfileSubject$ = new BehaviorSubject<any>(null);
   userProfile$ = this.userProfileSubject$.asObservable();
-  currentUser = new User('Test@test.com', 'Test', 'test.png', 'google');
-  // Create a local property for home status
-  loggedIn: boolean = null;
+  private user: User;
+  subscription: Subscription;
 
   constructor(private router: Router) {
     // On initial load, check authentication state with authorization server
@@ -61,6 +60,30 @@ export class AuthService {
     );
   }
 
+  login(redirectPath: string = '/') {
+    // A desired redirect path can be passed to home method
+    // (e.g., from a route guard)
+    // Ensure Auth0 client instance exists
+    this.auth0Client$.subscribe((client: Auth0Client) => {
+      // Call method to log in
+      client.loginWithRedirect({
+        redirect_uri: `${window.location.origin}`,
+        appState: {target: redirectPath}
+      });
+    });
+  }
+
+  logout() {
+    // Ensure Auth0 client instance exists
+    this.auth0Client$.subscribe((client: Auth0Client) => {
+      // Call method to log out
+      client.logout({
+        client_id: 'SPmilVvtCV6Nxvp87fvVtNPn4gR6cnRN',
+        returnTo: `${window.location.origin}`
+      });
+    });
+  }
+
   private localAuthSetup() {
     // This should only be called on app initialization
     // Set up local authentication streams
@@ -76,19 +99,6 @@ export class AuthService {
       })
     );
     checkAuth$.subscribe();
-  }
-
-  login(redirectPath: string = '/') {
-    // A desired redirect path can be passed to home method
-    // (e.g., from a route guard)
-    // Ensure Auth0 client instance exists
-    this.auth0Client$.subscribe((client: Auth0Client) => {
-      // Call method to log in
-      client.loginWithRedirect({
-        redirect_uri: `${window.location.origin}`,
-        appState: {target: redirectPath}
-      });
-    });
   }
 
   private handleAuthCallback() {
@@ -119,15 +129,16 @@ export class AuthService {
     }
   }
 
-  logout() {
-    // Ensure Auth0 client instance exists
-    this.auth0Client$.subscribe((client: Auth0Client) => {
-      // Call method to log out
-      client.logout({
-        client_id: 'SPmilVvtCV6Nxvp87fvVtNPn4gR6cnRN',
-        returnTo: `${window.location.origin}`
-      });
+  public getUserData() {
+    this.subscription = this.userProfile$.subscribe(userData => {
+      console.log(userData);
+      this.user = new User(
+        userData.email,
+        userData.nickname,
+        userData.picture,
+        userData.sub
+      )
     });
+    return this.user;
   }
-
 }
