@@ -32,9 +32,9 @@ export class CreateDeclarationComponent implements OnInit {
   }
 
   onCreateDeclaration(){
-    const newDec = new Declaration(1, this.omschrijving, this.kilometers, this.declaratie,
+    const newDec = new Declaration("test@test.test", this.omschrijving, "16-12-2020", this.kilometers, this.declaratie,
       this.beginPostcode, this.beginHuisnummer, this.beginStraatnaam, this.beginPlaatsnaam, this.beginLand,
-      this.eindPostcode, this.eindHuisnummer, this.eindStraatnaam, this.eindPlaatsnaam, this.eindLand,)
+      this.eindPostcode, this.eindHuisnummer, this.eindStraatnaam, this.eindPlaatsnaam, this.eindLand,);
     this.httpHandler.postDeclaration(newDec, "/declaration/create")
   }
 

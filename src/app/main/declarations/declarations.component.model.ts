@@ -16,7 +16,7 @@ export class DeclarationsComponentModel {
   }
 
   getDeclarationArray(){
-    this.http.getDeclarations(1).subscribe(
+    this.http.getDeclarations("test@test.test").subscribe(
       res => {
         this.declarations = res;
       }
