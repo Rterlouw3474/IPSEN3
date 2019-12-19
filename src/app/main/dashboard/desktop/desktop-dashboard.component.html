@@ -1,11 +1,11 @@
 <div class="container dashboard">
   <div class="row" style="height: 150px">
     <div id="welkom">
-      <h1 style="color: #5D656F;">Welkom, persoon</h1>
+      <h1 style="color: #5D656F;">Welkom, </h1>
     </div>
   </div>
 
-  <div class="row iconContainer" >
+  <div class="row iconContainer">
     <div class="col-sm-10 km-column">
       <div class="kmicon"></div>
       <div class="dashboard-text">
@@ -43,18 +43,21 @@
       <th class="dec-description-text" style="width: 17%">Aantal kilometers</th>
       <th class="dec-description-text" style="width: 16%">Bedrag</th>
     </tr>
-    <tr *ngFor="let declaration of declarations.slice(declarations.length-3 , declarations.length); let odd=odd; let id = index" class="dashboard-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
-      <td class="dec-text" >{{declaration.decDesc}}</td>
-      <td class="dec-text" >{{declaration.decBeginPostal}}</td>
-      <td class="dec-text" >{{declaration.decEndPostal}}</td>
-      <td class="dec-text" >{{declaration.decKilometers}}</td>
-      <td class="dec-text" >€{{declaration.decDeclaration}}</td>
+    <tr
+      *ngFor="let declaration of declarations.slice(declarations.length-3 , declarations.length); let odd=odd; let id = index"
+      class="dashboard-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
+      <td class="dec-text">{{declaration.decDesc}}</td>
+      <td class="dec-text">{{declaration.decBeginPostal}}</td>
+      <td class="dec-text">{{declaration.decEndPostal}}</td>
+      <td class="dec-text">{{declaration.decKilometers}}</td>
+      <td class="dec-text">€{{declaration.decDeclaration}}</td>
     </tr>
   </table>
 
-      <div>
-        <a routerLink="/test">
-          <button class="new-declaration"></button></a>
-      </div>
+  <div>
+    <a routerLink="/test">
+      <button class="new-declaration"></button>
+    </a>
+  </div>
 
-    </div>
+</div>
