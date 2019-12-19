@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Declaration} from "../declaration.object";
 import {HttpHandlerService} from "../../../http-handler.service";
 import {User} from "../../profile/user.object";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-create-declaration',

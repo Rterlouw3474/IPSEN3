@@ -43,6 +43,20 @@ export abstract class DeclarationsComponent implements OnInit {
     this.myViewModel = this.model.clone();
   }
 
+
+  public rised = false;
+
+  mayRise(){
+    if(this.model.selectedDeclarations.length==1 && this.rised == false){
+      this.rised = true;
+      console.log(this.rised)
+      return true
+    } else if (this.model.selectedDeclarations.length==1 && this.rised == true){
+      console.log(this.rised)
+      return false
+    }
+  }
+
   onSelectAllCheckboxes(checked: boolean) {
     this.allCheckboxesSelected = !checked;
 
