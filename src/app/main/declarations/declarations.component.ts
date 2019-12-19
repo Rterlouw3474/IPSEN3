@@ -43,20 +43,6 @@ export abstract class DeclarationsComponent implements OnInit {
     this.myViewModel = this.model.clone();
   }
 
-
-  public rised = false;
-
-  mayRise(){
-    if(this.model.selectedDeclarations.length==1 && this.rised == false){
-      this.rised = true;
-      console.log(this.rised)
-      return true
-    } else if (this.model.selectedDeclarations.length==1 && this.rised == true){
-      console.log(this.rised)
-      return false
-    }
-  }
-
   onSelectAllCheckboxes(checked: boolean) {
     this.allCheckboxesSelected = !checked;
 
@@ -93,7 +79,6 @@ export abstract class DeclarationsComponent implements OnInit {
   OnCopyEvent() {
     const selectedDeclaration = this.model.selectedDeclarations[0].declaration;
     const oldDeclaration = this.createDeclarationCopy(selectedDeclaration);
-
     //const newDeclaration = this.checkDeclarationName(oldDeclaration);
 
     this.http.postDeclaration(oldDeclaration, "/declaration/create");
@@ -101,7 +86,9 @@ export abstract class DeclarationsComponent implements OnInit {
     this.allCheckboxesSelected = false;
     this.resetSelectedDeclarations();
 
-    this.model.getDeclarationArray();
+    for(let i=0;i<5;i++){
+      this.model.getDeclarationArray();
+    }
   }
 
   createDeclarationCopy(declaration: Declaration, ) : Declaration{
