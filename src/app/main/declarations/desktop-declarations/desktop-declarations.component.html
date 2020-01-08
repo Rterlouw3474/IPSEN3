@@ -25,6 +25,17 @@
       <td class="dec-text" >{{declaration.decKilometers}}</td>
       <td class="dec-text" >€{{declaration.decDeclaration}}</td>
     </tr>
+    <tr *ngFor="let number of emptyRowsList; let odd=odd;" [ngClass]="emptyRowsList.length %2 === 0 ? odd ? '' :'notOdd':odd? 'notOdd':''" class="dashboard-dec-row">
+      <td><mat-checkbox
+          #checkbox="matCheckbox"
+          disabled="true"
+          style="margin-left: 40px"></mat-checkbox></td>
+      <th class="dec-description-text"></th>
+      <th class="dec-description-text"></th>
+      <th class="dec-description-text"></th>
+      <th class="dec-description-text"></th>
+      <th class="dec-description-text"></th>
+    </tr>
   </table>
 
   <div class="row" style="margin-left: 390px">

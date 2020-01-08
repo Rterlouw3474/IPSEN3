@@ -18,6 +18,9 @@ export abstract class DeclarationsComponent implements OnInit {
   public pageBtnLeft = true;
   public pageBtnRight = true;
 
+  private generateEmptyRows: number;
+  public emptyRowsList;
+
   public showEdit = false;
 
   isEditHidden(){
@@ -159,6 +162,7 @@ export abstract class DeclarationsComponent implements OnInit {
       this.pageNumberMinimum += 10;
       this.pageNumberMaximum += 10;
       this.checkButtons();
+      this.checkEmptyRows();
     }
   }
 
@@ -170,6 +174,7 @@ export abstract class DeclarationsComponent implements OnInit {
       this.pageNumberMinimum -= 10;
       this.pageNumberMaximum -= 10;
       this.checkButtons();
+      this.checkEmptyRows();
     }
   }
 
@@ -184,6 +189,14 @@ export abstract class DeclarationsComponent implements OnInit {
 
   resetSelectedDeclarations(){
     this.model.selectedDeclarations.splice(0, 1000);
+  }
+
+  private checkEmptyRows() {
+    this.generateEmptyRows = this.pageNumberMaximum - this.model.declarations.length;
+    if (this.generateEmptyRows < 1){
+      this.generateEmptyRows = 0;
+    }
+    this.emptyRowsList = Array(this.generateEmptyRows).fill(1);
   }
 
 }
