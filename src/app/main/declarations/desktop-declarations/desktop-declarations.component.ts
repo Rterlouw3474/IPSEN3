@@ -14,6 +14,7 @@ export class DesktopDeclarationsComponent extends DeclarationsComponent {
   show: boolean = false;
 
 
+
   constructor(router: Router, applicationStateService: ApplicationStateService, http: HttpHandlerService) {
     super(router, applicationStateService, http);
   }

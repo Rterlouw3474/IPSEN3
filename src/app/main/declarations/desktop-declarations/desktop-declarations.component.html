@@ -29,10 +29,10 @@
 
   <div class="row" style="margin-left: 390px">
     <div class="col-sm-2">
-      <button class="page-button" (click)="prevPage()"><<</button>
+      <button [ngClass]="pageBtnLeft ? 'page-button' : 'page-button-disabled'" (click)="prevPage()"><<</button>
     </div>
     <div class="col-sm-2">
-      <button class="page-button" (click)="nextPage()">>></button>
+      <button [ngClass]="pageBtnRight ? 'page-button' : 'page-button-disabled'" (click)="nextPage()">>></button>
     </div>
 
     <div class="col-sm-4">

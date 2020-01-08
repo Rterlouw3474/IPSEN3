@@ -13,6 +13,11 @@ export abstract class DeclarationsComponent implements OnInit {
   public pageNumberMinimum = 0;
   public pageNumberMaximum = 10;
 
+  private maxCountPage = 10;
+
+  public pageBtnLeft = true;
+  public pageBtnRight = true;
+
   public showEdit = false;
 
   isEditHidden(){
@@ -153,6 +158,7 @@ export abstract class DeclarationsComponent implements OnInit {
       this.resetSelectedDeclarations();
       this.pageNumberMinimum += 10;
       this.pageNumberMaximum += 10;
+      this.checkButtons();
     }
   }
 
@@ -163,7 +169,17 @@ export abstract class DeclarationsComponent implements OnInit {
       this.resetSelectedDeclarations();
       this.pageNumberMinimum -= 10;
       this.pageNumberMaximum -= 10;
+      this.checkButtons();
     }
+  }
+
+  private checkButtons(){
+    if(this.pageNumberMinimum < 2){
+      this.pageBtnLeft = false;
+    } else {this.pageBtnLeft= true;}
+    if(this.pageNumberMinimum + this.maxCountPage > this.model.declarations.length){
+      this.pageBtnRight = false;
+    } else {this.pageBtnRight = true;}
   }
 
   resetSelectedDeclarations(){
