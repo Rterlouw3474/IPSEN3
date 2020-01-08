@@ -20,4 +20,8 @@ export class ProfileSettingsComponent implements OnInit {
     this.username = this.user.username;
   }
 
+  onChangeUsername(nameInput: HTMLInputElement) {
+    this.username = nameInput.value;
+  }
+
 }

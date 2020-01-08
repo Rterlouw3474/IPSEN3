@@ -7,7 +7,12 @@
       </td>
       <td>
         <mat-form-field class="EditNaam">
-          <input matInput name="naam" value="{{ username }}">
+          <input matInput
+                 name="naam"
+                 value="{{ username }}"
+                 class="form-control"
+                 #newNameInput
+          >
         </mat-form-field>
       </td>
     </tr>
@@ -19,16 +24,18 @@
         {{ userEmail }}
       </td>
     </tr>
-    <tr>
-      <td>
-        <button class="btn">
-          <p>Wijzig profielfoto</p>
-        </button>
-      </td>
-    </tr>
+<!--    <tr>-->
+<!--      <td>-->
+<!--        <button class="btn">-->
+<!--          <p>Wijzig profielfoto</p>-->
+<!--        </button>-->
+<!--      </td>-->
+<!--    </tr>-->
   </table>
   <div class="btn-wrapper">
-    <button class="btn">
+    <button class="btn"
+      (click)="onChangeUsername(newNameInput)"
+    >
       <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
         <path d="M0 0h24v24H0z" fill="none"/>
         <path
