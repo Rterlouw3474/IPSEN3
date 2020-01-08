@@ -46,21 +46,13 @@ h1 {
   height: 80px;
   width: 80px;
   border:none;
-  margin-top: 20px;
-  margin-left: 1150px;
-  z-index: 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
+  z-index: 10;
   position: fixed;
+  bottom: 10px;
+  right: 10px;
 }
 
-.dec-edit-button{
-  box-shadow: 0 2px 3px rgba(39, 39, 39, 0.5);
-  background-color: #9ADECE;
-  border-radius: 100%;
-  width: 72px;
-  height: 72px;
-  position: fixed;
-  bottom: 38px;
-}
+
 
 .page-button{
   box-shadow: 0 2px 3px rgba(39, 39, 39, 0.5);
@@ -75,8 +67,90 @@ h1 {
   color: white;
 }
 
+.page-counter{
+  position: fixed;
+  bottom: 120px;
+  right: 90px;
+  font-size: 18px;
+  color: #5D656F;
+  margin-left: 220px;
+}
+
+.dec-edit-button-animation{
+  -webkit-animation: fadein 0.11s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 0.11s; /* Firefox < 16 */
+  -ms-animation: fadein 0.11s; /* Internet Explorer */
+  -o-animation: fadein 0.11s; /* Opera < 12.1 */
+  animation: fadein 0.11s;
+}
+
+.dec-edit-button-animation2{
+  -webkit-animation: fadeout 0.11s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadeout 0.11s; /* Firefox < 16 */
+  -ms-animation: fadeout 0.11s; /* Internet Explorer */
+  -o-animation: fadeout 0.11s; /* Opera < 12.1 */
+  animation: fadeout 0.11s;
+  bottom: -45px;
+  opacity: 0;
+}
+
 .dec-edit-button:hover{
-  cursor: hand;
+  cursor: pointer;
+  transform: scale(1.088);
+}
+
+.dec-edit-button-animation:active{
+  cursor: pointer;
+  -webkit-animation: scaledown 0.11s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: scaledown 0.11s; /* Firefox < 16 */
+  -ms-animation: scaledown 0.11s; /* Internet Explorer */
+  -o-animation: scaledown 0.11s; /* Opera < 12.1 */
+  animation: scaledown 0.11s;
+  transform: scale(1.0);
+}
+
+.dec-edit-button{
+  box-shadow: 0 2px 3px rgba(39, 39, 39, 0.5);
+  transition: transform 0.095s ease;
+  background-color: #9ADECE;
+  border-radius: 100%;
+  width: 72px;
+  height: 72px;
+  position: fixed;
+  bottom: 38px;
+}
+
+.dec-edit-button2{
+  bottom: -45px;
+}
+
+.dec-edit-button2:hover{
+  opacity: 0;
+  cursor: pointer;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    bottom: 0px;
+  }
+  to   {
+    opacity: 1;
+    bottom: 38px;
+  }
+}
+
+@keyframes fadeout {
+  from {
+
+    opacity: 1;
+    bottom: 38px;
+  }
+  to   {
+    opacity: 0;
+    bottom: 0px;
+    cursor: pointer;
+  }
 }
 
 .material-design-icons{
@@ -90,7 +164,3 @@ h1 {
   margin-left: 15px;
   margin-top: 15px;
 }
-
-
-
-
