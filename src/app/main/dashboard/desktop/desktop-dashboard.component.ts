@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Declaration} from "../../declarations/declaration.object";
 import {HttpHandlerService} from "../../../http-handler.service";
-import {forkJoin, Observable} from "rxjs";
+import {forkJoin, Observable, Subscription} from 'rxjs';
 import {AuthService} from '../../../account/auth.service';
+import {User} from '../../../models/user.model';
 
 @Component({
   selector: 'app-desktop-dashboard',
@@ -13,7 +14,9 @@ export class DesktopDashboardComponent implements OnInit {
 
   totalKilometers: number;
   totalMoney: number;
-  totalDeclarations : number;
+  totalDeclarations: number;
+  username: string;
+  user: User;
 
   declarations : Declaration[] = [];
 
@@ -22,6 +25,8 @@ export class DesktopDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getDeclarationArray();
+    this.user = this.auth.getUserData();
+    this.username = this.user.username;
   }
 
   getDeclarationArray(){
@@ -49,5 +54,4 @@ export class DesktopDashboardComponent implements OnInit {
     console.log(this.totalKilometers);
     console.log(this.declarations);
   }
-
 }
