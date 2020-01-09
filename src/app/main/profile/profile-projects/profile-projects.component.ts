@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Project} from './project.model';
+import {ProfileObjectsService} from '../profile-objects.service';
 
 @Component({
   selector: 'app-profile-projects',
@@ -66,7 +67,7 @@ export class ProfileProjectsComponent implements OnInit {
     if (this.pageNumberMinimum > 0) {
       this.pageNumberMinimum -= this.maxCountPage;
       this.pageNumberMaximum -= this.maxCountPage;
-      this.checkEmptyRows()
+      this.checkEmptyRows();
       this.checkButtons()
     }
   }
@@ -80,12 +81,8 @@ export class ProfileProjectsComponent implements OnInit {
   }
 
   private checkButtons(){
-    if(this.pageNumberMinimum < 2){
-      this.pageBtnLeft = false;
-    } else {this.pageBtnLeft= true;}
-    if(this.pageNumberMinimum + this.maxCountPage > this.projects.length){
-      this.pageBtnRight = false;
-    } else {this.pageBtnRight = true;}
+    this.pageBtnLeft = ProfileObjectsService.checkPrevButton(this.pageNumberMinimum);
+    this.pageBtnRight = ProfileObjectsService.checkNextButton(this.pageNumberMinimum, this.maxCountPage, this.projects.length);
   }
 
 }
