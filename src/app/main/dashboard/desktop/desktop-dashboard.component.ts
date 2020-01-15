@@ -30,7 +30,7 @@ export class DesktopDashboardComponent implements OnInit {
   }
 
   getDeclarationArray(){
-    this.http.getDeclarations("test@test.test")
+    this.http.getDeclarations(this.auth.getUserData().email)
       .subscribe(
       res => {
         this.declarations = res;

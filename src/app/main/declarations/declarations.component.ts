@@ -4,6 +4,7 @@ import {DeclarationsComponentModel} from './declarations.component.model';
 import {Router} from '@angular/router';
 import {ApplicationStateService} from '../../application-state.service';
 import {HttpHandlerService} from "../../http-handler.service";
+import {AuthService} from '../../account/auth.service';
 
 export abstract class DeclarationsComponent implements OnInit {
 
@@ -35,9 +36,9 @@ export abstract class DeclarationsComponent implements OnInit {
   public allCheckboxesSelected = false;
   public parentCheckboxSelected = false;
 
-  protected constructor(private router: Router, private applicationStateService: ApplicationStateService, private http: HttpHandlerService) {
-    this.model = new DeclarationsComponentModel(http);
-    this.myViewModel = new DeclarationsComponentModel(http);
+  protected constructor(private router: Router, private applicationStateService: ApplicationStateService, private http: HttpHandlerService, private auth: AuthService) {
+    this.model = new DeclarationsComponentModel(http, auth);
+    this.myViewModel = new DeclarationsComponentModel(http, auth);
 
     // this.loadData()      //TODO Load the declarations from the backend
     // this.updateView();   //**Activate only when you want ultimate MVC powers**
@@ -74,7 +75,7 @@ export abstract class DeclarationsComponent implements OnInit {
   OnDeleteEvent(){
     const selectedDeclaration = this.model.selectedDeclarations[0].declaration;
     this.http
-      .deleteDeclaration("/declaration/delete/" + "test@test.test" + "/" + selectedDeclaration.decDesc +"/" + selectedDeclaration.decDate)
+      .deleteDeclaration("/declaration/delete/" + this.auth.getUserData().email + "/" + selectedDeclaration.decDesc +"/" + selectedDeclaration.decDate)
       .subscribe(
         responseData => {
           this.model.getDeclarationArray();

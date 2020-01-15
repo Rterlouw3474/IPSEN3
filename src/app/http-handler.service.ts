@@ -7,13 +7,14 @@ import {User} from "./main/profile/user.object";
 import {Observable, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 import {Declaration} from "./main/declarations/declaration.object";
+import {AuthService} from './account/auth.service';
 
 @Injectable()
 export class HttpHandlerService {
   options = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
   databaseUrl: string = "http://h2858995.stratoserver.net:8080";
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private auth: AuthService) {
   }
 
   /**
@@ -49,7 +50,7 @@ export class HttpHandlerService {
   getDeclarations(email:string): Observable<Declaration[]>{
     //return this.http.get(this.databaseUrl + "/declaration/getDeclarationsByOwnerID/" + ownerId);
     return this.http
-      .get(this.databaseUrl + "/declaration/get/" + email)
+      .get(this.databaseUrl + "/declaration/get/" + this.auth.getUserData().email)
       .pipe(map(res => <Declaration[]>res));
   }
 

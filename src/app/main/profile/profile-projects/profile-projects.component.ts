@@ -31,15 +31,15 @@ export class ProfileProjectsComponent implements OnInit {
   constructor(private authservice: AuthService) {
     // hier worden alle projecten in geladen
     this.projects = [
-      new Project(this.authservice.getUserData().email, this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019")
+      new Project(this.authservice.getUserData().email, "Fred", "", "17-12-2019", "18-12-2019"),
+      new Project(this.authservice.getUserData().email,"Älbert", "", "17-12-2019", "18-12-2019"),
+      new Project(this.authservice.getUserData().email,"this.name", "", "17-12-2019", "18-12-2019"),
+      new Project(this.authservice.getUserData().email,"this.name", "", "17-12-2019", "18-12-2019"),
+      new Project(this.authservice.getUserData().email,"this.name", "", "17-12-2019", "18-12-2019"),
+      new Project(this.authservice.getUserData().email,"this.name", "", "17-12-2019", "18-12-2019"),
+      new Project(this.authservice.getUserData().email,"this.name", "", "17-12-2019", "18-12-2019"),
+      new Project(this.authservice.getUserData().email,"this.name", "", "17-12-2019", "18-12-2019"),
+      new Project(this.authservice.getUserData().email,"this.name", "", "17-12-2019", "18-12-2019")
     ];
     this.checkEmptyRows();
     this.checkButtons();
@@ -95,4 +95,7 @@ export class ProfileProjectsComponent implements OnInit {
     } else {this.pageBtnRight = true;}
   }
 
+  get projectList() {
+    return this.projects
+  }
 }
