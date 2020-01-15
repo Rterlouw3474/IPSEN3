@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Declaration} from "../declaration.object";
 import {HttpHandlerService} from "../../../http-handler.service";
 import {User} from "../../profile/user.object";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-create-declaration',
@@ -32,9 +33,9 @@ export class CreateDeclarationComponent implements OnInit {
   }
 
   onCreateDeclaration(){
-    const newDec = new Declaration(1, this.omschrijving, this.kilometers, this.declaratie,
+    const newDec = new Declaration("test@test.test", this.omschrijving, "16-12-2020", this.kilometers, this.declaratie,
       this.beginPostcode, this.beginHuisnummer, this.beginStraatnaam, this.beginPlaatsnaam, this.beginLand,
-      this.eindPostcode, this.eindHuisnummer, this.eindStraatnaam, this.eindPlaatsnaam, this.eindLand,)
+      this.eindPostcode, this.eindHuisnummer, this.eindStraatnaam, this.eindPlaatsnaam, this.eindLand,);
     this.httpHandler.postDeclaration(newDec, "/declaration/create")
   }
 

@@ -1,8 +1,8 @@
 export class Declaration{
 
-  ownerID : number;
+  userEmail : string;
   decDesc : string;
-  // decDate : date;
+  decDate : string;
   decKilometers : number;
   decDeclaration : number;
 
@@ -18,9 +18,10 @@ export class Declaration{
   decEndCity : string;
   decEndCountry : string;
 
-  constructor(ownerID : number, decDesc : string, decKilometers : number, decDeclaration : number, decBeginPostal : string, decBeginHouseNumber : number, decBeginStreet : string, decBeginCity : string, decBeginCountry : string, decEndPostal : string, decEndHouseNumber : number, decEndStreet : string, decEndCity : string, decEndCountry : string){
-    this.ownerID = ownerID;
+  constructor(userEmail : string, decDesc : string, decDate: string,  decKilometers : number, decDeclaration : number, decBeginPostal : string, decBeginHouseNumber : number, decBeginStreet : string, decBeginCity : string, decBeginCountry : string, decEndPostal : string, decEndHouseNumber : number, decEndStreet : string, decEndCity : string, decEndCountry : string){
+    this.userEmail = userEmail;
     this.decDesc = decDesc;
+    this.decDate = decDate;
     this.decKilometers = decKilometers;
     this.decDeclaration = decDeclaration;
     this.decBeginPostal = decBeginPostal;
