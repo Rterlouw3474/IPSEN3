@@ -7,7 +7,7 @@ import {HttpHandlerService} from "../../http-handler.service";
 
 export abstract class DeclarationsComponent implements OnInit {
 
-  private model: DeclarationsComponentModel;
+  public model: DeclarationsComponentModel;
   public myViewModel: DeclarationsComponentModel;
 
   public pageNumberMinimum = 0;

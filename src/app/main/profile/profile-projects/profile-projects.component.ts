@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Project} from './project.model';
+import {AuthService} from '../../../account/auth.service';
 
 @Component({
   selector: 'app-profile-projects',
@@ -7,6 +8,12 @@ import {Project} from './project.model';
   styleUrls: ['./profile-projects.component.scss']
 })
 export class ProfileProjectsComponent implements OnInit {
+
+  name: string;
+  desc: string;
+  startDate: string;
+  endDate: string;
+
   private maxCountPage = 6;
   public projects: Project[];
   public selectedProjects: Project[];
@@ -21,18 +28,18 @@ export class ProfileProjectsComponent implements OnInit {
   public pageBtnLeft = true;
   public pageBtnRight = true;
 
-  constructor() {
+  constructor(private authservice: AuthService) {
     // hier worden alle projecten in geladen
     this.projects = [
-      new Project("","Project 1", "", "17-12-2019", "18-12-2019"),
-      new Project("","Project 2", "", "17-12-2019", "18-12-2019"),
-      new Project("","Project 3", "", "17-12-2019", "18-12-2019"),
-      new Project("","Project 4", "", "17-12-2019", "18-12-2019"),
-      new Project("","Project 5", "", "17-12-2019", "18-12-2019"),
-      new Project("","Project 6", "", "17-12-2019", "18-12-2019"),
-      new Project("","Project 7", "", "17-12-2019", "18-12-2019"),
-      new Project("","Project 8", "", "17-12-2019", "18-12-2019"),
-      new Project("","Project 9", "", "17-12-2019", "18-12-2019")
+      new Project(this.authservice.getUserData().email, this.name, "", "17-12-2019", "18-12-2019"),
+      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
+      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
+      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
+      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
+      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
+      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
+      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
+      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019")
     ];
     this.checkEmptyRows();
     this.checkButtons();

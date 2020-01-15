@@ -18,7 +18,11 @@ export class Declaration{
   decEndCity : string;
   decEndCountry : string;
 
-  constructor(userEmail : string, decDesc : string, decDate: string,  decKilometers : number, decDeclaration : number, decBeginPostal : string, decBeginHouseNumber : number, decBeginStreet : string, decBeginCity : string, decBeginCountry : string, decEndPostal : string, decEndHouseNumber : number, decEndStreet : string, decEndCity : string, decEndCountry : string){
+  clientName : string;
+  projectName : string;
+  licencePlate : string;
+
+  constructor(userEmail : string, decDesc : string, decDate : string, decKilometers : number, decDeclaration : number, decBeginPostal : string, decBeginHouseNumber : number, decBeginStreet : string, decBeginCity : string, decBeginCountry : string, decEndPostal : string, decEndHouseNumber : number, decEndStreet : string, decEndCity : string, decEndCountry : string, clientName : string, projectName : string, licencePlate : string){
     this.userEmail = userEmail;
     this.decDesc = decDesc;
     this.decDate = decDate;
@@ -34,6 +38,9 @@ export class Declaration{
     this.decEndStreet = decEndStreet;
     this.decEndCity = decEndCity;
     this.decEndCountry = decEndCountry;
+    this.clientName = clientName;
+    this.projectName = projectName;
+    this.licencePlate = licencePlate;
 
   }
 }
