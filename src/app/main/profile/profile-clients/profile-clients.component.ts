@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Project} from '../profile-projects/project.model';
 import {Client} from './client.model';
 import {ProfileObjectsService} from '../profile-objects.service';
+import {User} from '../../../models/user.model';
+import {AuthService} from '../../../account/auth.service';
 
 @Component({
   selector: 'app-profile-clients',
@@ -9,6 +11,7 @@ import {ProfileObjectsService} from '../profile-objects.service';
   styleUrls: ['./profile-clients.component.scss']
 })
 export class ProfileClientsComponent implements OnInit {
+  private user: User;
   private maxCountPage = 6;
   public clients: Client[];
   public selectClients: Client[];
@@ -23,22 +26,29 @@ export class ProfileClientsComponent implements OnInit {
   public pageBtnLeft = true;
   public pageBtnRight = true;
 
-  constructor() {
+  // popup
+  public showPopup = false;
+  public popupClient: Client;
+  public popupEditMode = false;
+
+  constructor(private auth: AuthService) {
+    this.user = this.auth.getUserData();
+    const userEmail = this.user.email;
     this.clients = [
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland")
+      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland")
     ];
     this.checkEmptyRows();
     this.checkButtons();
@@ -85,5 +95,11 @@ export class ProfileClientsComponent implements OnInit {
   private checkButtons() {
     this.pageBtnLeft = ProfileObjectsService.checkPrevButton(this.pageNumberMinimum);
     this.pageBtnRight = ProfileObjectsService.checkNextButton(this.pageNumberMinimum, this.maxCountPage, this.clients.length);
+  }
+
+  editClient(client: Client) {
+    this.popupClient = client;
+    this.popupEditMode = true;
+    this.showPopup = true;
   }
 }

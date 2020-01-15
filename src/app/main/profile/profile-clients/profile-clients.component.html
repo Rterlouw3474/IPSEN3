@@ -12,9 +12,9 @@
         #checkbox="matCheckbox"
         (click)="onCheckboxEvent(client, checkbox.checked, id)"
         [checked]="allCheckboxesSelected"></mat-checkbox></td>
-    <td class="table-text object-column" >{{client.name}}</td>
-    <td class="table-text object-column" >{{client.postalCode}}</td>
-    <td class="table-text object-column" >{{client.houseNumber}}</td>
+    <td class="table-text object-column" (click)="editClient(client)">{{client.clientName}}</td>
+    <td class="table-text object-column" (click)="editClient(client)">{{client.clientPostalCode}}</td>
+    <td class="table-text object-column" (click)="editClient(client)">{{client.clientPostalCode}}</td>
   </tr>
 
   <tr *ngFor="let number of emptyRowsList; let odd=odd;" [ngClass]="emptyRowsList.length %2 === 0 ? odd ? '' :'notOdd':odd? 'notOdd':''" class="table-dec-row">
@@ -39,3 +39,5 @@
     </button>
   </div>
 </div>
+
+<app-clients-popup [client]="popupClient" [editMode]="popupEditMode" [(showPopup)]="showPopup" *ngIf="showPopup"></app-clients-popup>

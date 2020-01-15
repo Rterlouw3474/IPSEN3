@@ -22,7 +22,6 @@ export class ProjectsPopupComponent implements OnInit {
 
   popupHeader: string;
   constructor(private datePipe: DatePipe, private httpHandler : HttpHandlerService) {
-
   }
 
   ngOnInit() {
