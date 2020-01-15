@@ -15,6 +15,7 @@ import {ProfileCarsComponent} from './main/profile/profile-cars/profile-cars.com
 import {MobileDeclarationsComponent} from './main/declarations/mobile-declarations/mobile-declarations.component';
 import {DesktopDeclarationsComponent} from './main/declarations/desktop-declarations/desktop-declarations.component';
 import {AuthGuard} from './account/auth.guard';
+import {APP_BASE_HREF} from '@angular/common';
 
 const desktopRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -54,8 +55,9 @@ const mobileRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(desktopRoutes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(desktopRoutes, { useHash: true})],
+  exports: [RouterModule],
+  providers: [{provide: APP_BASE_HREF, useValue: window.location.pathname}]
 })
 export class AppRoutingModule {
   public constructor(private router: Router,

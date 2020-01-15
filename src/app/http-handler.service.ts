@@ -30,11 +30,9 @@ export class HttpHandlerService {
   }
 
   postDeclaration(declaration: Declaration, extraUrl: string) {
-    this.http.post(
+    return this.http.post(
       this.databaseUrl + extraUrl, declaration, this.options
-    ).subscribe(responseData => {
-      console.log(responseData)
-    });
+    )
   }
 
 
@@ -46,10 +44,10 @@ export class HttpHandlerService {
     return this.http.delete(this.databaseUrl + url)
   }
 
-  getDeclarations(ownerId:number): Observable<Declaration[]>{
+  getDeclarations(email:string): Observable<Declaration[]>{
     //return this.http.get(this.databaseUrl + "/declaration/getDeclarationsByOwnerID/" + ownerId);
     return this.http
-      .get(this.databaseUrl + "/declaration/getDeclarationsByOwnerID/" + ownerId)
+      .get(this.databaseUrl + "/declaration/get/" + email)
       .pipe(map(res => <Declaration[]>res));
   }
 

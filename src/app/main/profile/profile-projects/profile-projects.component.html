@@ -1,1 +1,45 @@
 <div class="headerContainer"><h1>Projecten</h1></div>
+<table style="width:90% ; margin-top: 50px; margin-left: 50px">
+  <tr class="table-dec-row">
+    <th class="table-checkbox"><mat-checkbox #checkbox="matCheckbox" style="width: 7%" (click)="onSelectAllCheckboxes(checkbox.checked)"></mat-checkbox></th>
+    <th class="table-description-text" style="width: 45%">Naam</th>
+    <th class="table-description-text" style="width: 24%">Van</th>
+    <th class="table-description-text" style="width: 24%">Tot</th>
+  </tr>
+
+  <tr *ngFor="let project of projects.slice(getMinimum() , getMaximum()); let odd=odd; let id = index" class="table-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
+    <td class="table-checkbox"><mat-checkbox
+        #checkbox="matCheckbox"
+        (click)="onCheckboxEvent(project, checkbox.checked, id)"
+        [checked]="allCheckboxesSelected"
+      ></mat-checkbox></td>
+    <td class="table-text object-column" >{{project.name}}</td>
+    <td class="table-text object-column" >{{project.startDate}}</td>
+    <td class="table-text object-column" >{{project.endDate}}</td>
+  </tr>
+
+  <tr *ngFor="let number of emptyRowsList; let odd=odd;" [ngClass]="emptyRowsList.length %2 === 0 ? odd ? '' :'notOdd':odd? 'notOdd':''" class="table-dec-row">
+    <td class="table-checkbox"><mat-checkbox
+        #checkbox="matCheckbox"
+        disabled="true"
+     ></mat-checkbox></td>
+    <td class="table-text" ></td>
+    <td class="table-text" ></td>
+    <td class="table-text" ></td>
+  </tr>
+
+</table>
+
+<div class="row">
+  <div class="col-sm-6" style="text-align: right; padding-right: 80px;">
+    <button [ngClass]="pageBtnLeft ? 'page-button' : 'page-button-disabled'" (click)="prevPage()">
+      <<
+    </button>
+  </div>
+  <div class="col-sm-6">
+    <button [ngClass]="pageBtnRight ? 'page-button' : 'page-button-disabled'" style="margin-left: 10px" (click)="nextPage()">
+      >>
+    </button>
+  </div>
+</div>
+

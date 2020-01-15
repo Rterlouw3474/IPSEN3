@@ -30,14 +30,15 @@ export class DesktopDashboardComponent implements OnInit {
   }
 
   getDeclarationArray(){
-    // this.http.getDeclarations(1).subscribe(
-    //   res => {
-    //     this.declarations = res;
-    //     this.updateDashboardValues();
-    //
-    //     //console.log(this.declarations);
-    //   }
-    // );
+    this.http.getDeclarations("test@test.test")
+      .subscribe(
+      res => {
+        this.declarations = res;
+        this.updateDashboardValues();
+
+        //console.log(this.declarations);
+      }
+    );
   }
 
   updateDashboardValues(){

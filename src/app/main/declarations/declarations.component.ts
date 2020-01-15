@@ -1,20 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import {Declaration} from './declaration.object';
-import {log} from 'util';
-import {MAT_CHECKBOX_CLICK_ACTION, MatCheckbox} from '@angular/material/checkbox';
 import {DeclarationsComponentModel} from './declarations.component.model';
 import {Router} from '@angular/router';
 import {ApplicationStateService} from '../../application-state.service';
-import {HttpSentEvent} from "@angular/common/http";
 import {HttpHandlerService} from "../../http-handler.service";
 
 export abstract class DeclarationsComponent implements OnInit {
 
-  private model: DeclarationsComponentModel;
+  public model: DeclarationsComponentModel;
   public myViewModel: DeclarationsComponentModel;
 
   public pageNumberMinimum = 0;
   public pageNumberMaximum = 10;
+
+  private maxCountPage = 10;
+
+  public pageBtnLeft = true;
+  public pageBtnRight = true;
+
+  private generateEmptyRows: number;
+  public emptyRowsList;
+
+  public showEdit = false;
+
+  isEditHidden(){
+    if(this.model.selectedDeclarations.length==1){
+      return false
+    } else{
+      return true
+    }
+  }
+
 
   public allCheckboxesSelected = false;
   public parentCheckboxSelected = false;
@@ -22,13 +38,12 @@ export abstract class DeclarationsComponent implements OnInit {
   protected constructor(private router: Router, private applicationStateService: ApplicationStateService, private http: HttpHandlerService) {
     this.model = new DeclarationsComponentModel(http);
     this.myViewModel = new DeclarationsComponentModel(http);
-
-    // this.loadData()      //TODO Load the declarations from the backend
-    // this.updateView();   //**Activate only when you want ultimate MVC powers**
   }
 
   ngOnInit() {
     this.model.getDeclarationArray();
+    this.checkButtons();
+    this.checkEmptyRows();
   }
 
   private updateView(): void {
@@ -47,7 +62,6 @@ export abstract class DeclarationsComponent implements OnInit {
             this.model.selectedDeclarations.push({id, declaration});
             id++;
         }
-
     } else {
       this.resetSelectedDeclarations();
     }
@@ -56,48 +70,50 @@ export abstract class DeclarationsComponent implements OnInit {
 
   //TODO: zodra de juiste implementatie van declaratie opvragen in de database/backend is geimplementeerd deze herschrijven.
   OnDeleteEvent(){
+    const selectedDeclaration = this.model.selectedDeclarations[0].declaration;
     this.http
-      .deleteDeclaration("/declaration/delete/30")
-      .subscribe();
-    this.model.getDeclarationArray();
-    this.updateView();
+      .deleteDeclaration("/declaration/delete/" + "test@test.test" + "/" + selectedDeclaration.decDesc +"/" + selectedDeclaration.decDate)
+      .subscribe(
+        responseData => {
+          this.model.getDeclarationArray();
+        }
+      );
+    this.resetSelectedDeclarations();
   }
 
   OnCopyEvent() {
     const selectedDeclaration = this.model.selectedDeclarations[0].declaration;
     const oldDeclaration = this.createDeclarationCopy(selectedDeclaration);
 
-    //const declarationCopy = new Declaration(oldDeclaration.ownerID, oldDeclaration.decDesc, oldDeclaration.decKilometers, oldDeclaration.decDeclaration, oldDeclaration.decBeginPostal, oldDeclaration.decBeginHouseNumber, oldDeclaration.decBeginStreet, oldDeclaration.decBeginCity, oldDeclaration.decBeginCountry, oldDeclaration.decEndPostal, oldDeclaration.decEndHouseNumber, oldDeclaration.decEndStreet, oldDeclaration.decEndCity, oldDeclaration.decEndCountry);
-    const newDeclaration = this.checkDeclarationName(oldDeclaration);
-
-    this.http.postDeclaration(newDeclaration, "/declaration/create");
-
-    this.allCheckboxesSelected = false;
-    this.resetSelectedDeclarations();
-    this.model.getDeclarationArray();
-
-    this.updateView();
+    this.http.postDeclaration(oldDeclaration, "/declaration/create")
+      .subscribe(res => {
+      this.allCheckboxesSelected = false;
+      this.resetSelectedDeclarations();
+      this.model.getDeclarationArray();
+    });
   }
 
-  createDeclarationCopy(declaration: Declaration) : Declaration{
+  createDeclarationCopy(declaration: Declaration, ) : Declaration{
     if (declaration.decDesc.includes("[")) {
       let a: number = Number(declaration.decDesc.charAt(declaration.decDesc.indexOf("[") + 1));
       declaration.decDesc = declaration.decDesc.substring(0, declaration.decDesc.length - 3);
-      declaration.decDesc = declaration.decDesc.concat("[" + Number(a + 1) + "]")
+      if(!(a+1===10)){
+        declaration.decDesc = declaration.decDesc.concat("[" + Number(a + 1) + "]")
+      }
     } else {
       declaration.decDesc = declaration.decDesc + "[2]";
     }
     return declaration;
   }
 
-  checkDeclarationName(declaration2: Declaration){
+  checkDeclarationName(checkDeclaration: Declaration){
+    let sameName : Declaration[] = [];
     for (let declaration of this.model.declarations) {
-      if (declaration2.decDesc === declaration.decDesc) {
-        return this.checkDeclarationName(this.createDeclarationCopy(declaration2));
-      }else{
-        return declaration2
+      if (checkDeclaration.decDesc.substring(0, declaration.decDesc.length - 3) === declaration.decDesc.substring(0, declaration.decDesc.length - 3)) {
+        sameName.push(declaration)
       }
     }
+    return this.createDeclarationCopy(sameName[sameName.length-1])
   }
 
   onCheckboxEvent(declaration: Declaration, checked: boolean, id: number) {
@@ -133,12 +149,14 @@ export abstract class DeclarationsComponent implements OnInit {
   }
 
   nextPage() {
-    if (!(this.pageNumberMinimum + 10 > this.model.declarations.length)) {
+    if (!(this.pageNumberMinimum + 10 >= this.model.declarations.length)) {
       this.allCheckboxesSelected = false;
       this.parentCheckboxSelected = false;
       this.resetSelectedDeclarations();
       this.pageNumberMinimum += 10;
       this.pageNumberMaximum += 10;
+      this.checkButtons();
+      this.checkEmptyRows();
     }
   }
 
@@ -149,11 +167,30 @@ export abstract class DeclarationsComponent implements OnInit {
       this.resetSelectedDeclarations();
       this.pageNumberMinimum -= 10;
       this.pageNumberMaximum -= 10;
+      this.checkButtons();
+      this.checkEmptyRows();
     }
+  }
+
+  private checkButtons(){
+    if(this.pageNumberMinimum < 2){
+      this.pageBtnLeft = false;
+    } else {this.pageBtnLeft= true;}
+    if(this.pageNumberMinimum + this.maxCountPage > this.model.declarations.length){
+      this.pageBtnRight = false;
+    } else {this.pageBtnRight = true;}
   }
 
   resetSelectedDeclarations(){
     this.model.selectedDeclarations.splice(0, 1000);
+  }
+
+  private checkEmptyRows() {
+    this.generateEmptyRows = this.pageNumberMaximum - this.model.declarations.length;
+    if (this.generateEmptyRows < 1){
+      this.generateEmptyRows = 0;
+    }
+    this.emptyRowsList = Array(this.generateEmptyRows).fill(1);
   }
 
 }
