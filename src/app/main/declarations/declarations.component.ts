@@ -45,6 +45,8 @@ export abstract class DeclarationsComponent implements OnInit {
 
   ngOnInit() {
     this.model.getDeclarationArray();
+    this.checkButtons();
+    this.checkEmptyRows();
   }
 
   private updateView(): void {
