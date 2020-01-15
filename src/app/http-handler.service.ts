@@ -30,11 +30,9 @@ export class HttpHandlerService {
   }
 
   postDeclaration(declaration: Declaration, extraUrl: string) {
-    this.http.post(
+    return this.http.post(
       this.databaseUrl + extraUrl, declaration, this.options
-    ).subscribe(responseData => {
-      console.log(responseData);
-    });
+    )
   }
 
 
