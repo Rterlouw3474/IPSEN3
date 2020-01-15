@@ -42,6 +42,7 @@ export class AuthService {
   userProfile$ = this.userProfileSubject$.asObservable();
   private user: User;
   subscription: Subscription;
+  private username;
 
   constructor(private router: Router) {
     // On initial load, check authentication state with authorization server
@@ -132,9 +133,15 @@ export class AuthService {
   public getUserData() {
     this.subscription = this.userProfile$.subscribe(userData => {
       console.log(userData);
+      if (userData.sub.includes("google")) {
+        this.username = userData.name;
+      } else {
+        this.username = userData.nickname;
+      }
+
       this.user = new User(
         userData.email,
-        userData.nickname,
+        this.username,
         userData.picture,
         userData.sub
       )

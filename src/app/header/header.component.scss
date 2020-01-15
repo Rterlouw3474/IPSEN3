@@ -1,27 +1,29 @@
-.headerContainer{
-  width:1056px;
+.headerContainer {
+  width: 1056px;
   display: flex;
   margin-left: auto;
   margin-right: auto;
 }
 
-.active{
+.active {
   font-weight: bold;
 }
 
-.dfLogo{
+.dfLogo {
   width: 82px;
   height: 82px;
-  img{
+
+  img {
     width: 100%;
     height: 100%;
   }
+
   display: inline-block;
   text-align: left;
 }
 
-.navigatorHeader{
-  position:absolute;
+.navigatorHeader {
+  position: absolute;
   width: 600px;
   left: 0;
   right: 0;
@@ -30,11 +32,13 @@
   display: block;
   text-align: center;
   z-index: 10;
+
   a {
     font-size: 24px;
     transition: opacity 0.2s ease;
-    padding-bottom:5px;
+    padding-bottom: 5px;
   }
+
   p {
     font-weight: bold;
     font-size: 22px;
@@ -42,6 +46,7 @@
     padding-right: 50px;
     vertical-align: top;
   }
+
   a, p {
     display: inline-block;
     text-align: center;
@@ -51,14 +56,15 @@
 }
 
 
-.logUit {
+.loginLogout {
   position: absolute;
   width: 1056px;
   top: 28px;
   display: block;
   text-align: right;
-  a{
-    color: #999B9F;
+
+  a {
+    color: #56C8AD;
     text-align: center;
     text-decoration: none;
     font-size: 18px;
@@ -67,6 +73,6 @@
 }
 
 /* Change the link color to #111 (black) on hover */
-.navigatorHeader a:hover, .logUit a:hover {
+.navigatorHeader a:hover, .loginLogout a:hover {
   opacity: 0.6;
 }
