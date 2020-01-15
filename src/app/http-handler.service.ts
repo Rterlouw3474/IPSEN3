@@ -7,6 +7,7 @@ import {User} from "./main/profile/user.object";
 import {Observable, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 import {Declaration} from "./main/declarations/declaration.object";
+import {Project} from './main/profile/profile-projects/project.model';
 
 @Injectable()
 export class HttpHandlerService {
@@ -32,6 +33,14 @@ export class HttpHandlerService {
   postDeclaration(declaration: Declaration, extraUrl: string) {
     this.http.post(
       this.databaseUrl + extraUrl, declaration, this.options
+    ).subscribe(responseData => {
+      console.log(responseData)
+    });
+  }
+
+  postProject(project: Project, extraUrl: string){
+    this.http.post(
+      this.databaseUrl + extraUrl, project, this.options
     ).subscribe(responseData => {
       console.log(responseData)
     });

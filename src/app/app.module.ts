@@ -16,13 +16,17 @@ import {ProfileSettingsComponent} from './main/profile/profile-settings/profile-
 import { ProfileProjectsComponent } from './main/profile/profile-projects/profile-projects.component';
 import { ProfileClientsComponent } from './main/profile/profile-clients/profile-clients.component';
 import { ProfileCarsComponent } from './main/profile/profile-cars/profile-cars.component';
+import { ProjectsPopupComponent } from './main/profile/profile-projects/projects-popup/projects-popup.component';
 import { DesktopDashboardComponent } from './main/dashboard/desktop/desktop-dashboard.component';
 import { MobileDashboardComponent } from './main/dashboard/mobile/mobile-dashboard.component';
 import {HttpHandlerService} from './http-handler.service';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DesktopDeclarationsComponent } from './main/declarations/desktop-declarations/desktop-declarations.component';
 import { MobileDeclarationsComponent } from './main/declarations/mobile-declarations/mobile-declarations.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+import {MAT_DATE_LOCALE} from '@angular/material';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     ProfileCarsComponent,
     DesktopDeclarationsComponent,
     MobileDeclarationsComponent,
+    ProjectsPopupComponent
   ],
   entryComponents: [
     MobileDashboardComponent,
@@ -60,9 +65,12 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     BrowserAnimationsModule,
     MatInputModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule
   ],
-  providers: [HttpHandlerService],
+  providers: [HttpHandlerService, { provide: MAT_DATE_LOCALE, useValue: 'nl-NL' }, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
