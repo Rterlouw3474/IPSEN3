@@ -14,8 +14,6 @@ import {AuthService} from "../../../account/auth.service";
 export class DesktopDeclarationsComponent extends DeclarationsComponent {
   show: boolean = false;
 
-
-
   constructor(router: Router, applicationStateService: ApplicationStateService, http: HttpHandlerService, auth:AuthService) {
     super(router, applicationStateService, http, auth);
   }

@@ -1,4 +1,4 @@
-<div class="container mobile dashboard" [style.width.vw]="getContainerWidth()">
+<div class="container dashboard" [ngClass]="{'mobile': isMobile()}">
   <table style="width:90% ; margin-top: 80px; margin-left: 50px">
     <tr>
       <th><mat-checkbox
@@ -7,7 +7,7 @@
           [(ngModel)]="parentCheckboxSelected"
           style="margin-left: 40px"></mat-checkbox></th>
       <th class="dec-description-text" style="width: 40%">Omschrijving</th>
-      <ng-container *ngIf="applicationStateService.getIsMobileResolution() == false">
+      <ng-container *ngIf="isMobile() == false">
         <th class="dec-description-text" style="width: 15%">Auto</th>
         <th class="dec-description-text" style="width: 15%">Datum</th>
         <th class="dec-description-text" style="width: 15%">Aantal kilometers</th>
@@ -20,7 +20,7 @@
           [checked]="allCheckboxesSelected"
           style="margin-left: 40px"></mat-checkbox></td>
       <td class="dec-text" >{{declaration.decDesc}}</td>
-    <ng-container *ngIf="applicationStateService.getIsMobileResolution() == false">
+    <ng-container *ngIf="isMobile() == false">
       <td class="dec-text" >{{declaration.decBeginPostal}}</td>
       <td class="dec-text" >{{declaration.decDate}}</td>
       <td class="dec-text" >{{declaration.decKilometers}}</td>
@@ -32,7 +32,7 @@
           #checkbox="matCheckbox"
           style="margin-left: 40px"></mat-checkbox></td>
       <td class="dec-text" >testtest</td>
-      <ng-container *ngIf="applicationStateService.getIsMobileResolution() == false">
+      <ng-container *ngIf="isMobile() == false">
         <td class="dec-text" >2321EZ</td>
         <td class="dec-text" >19-01-2019</td>
         <td class="dec-text" >50</td>

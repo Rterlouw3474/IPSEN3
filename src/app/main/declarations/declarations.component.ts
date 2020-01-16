@@ -51,6 +51,10 @@ export abstract class DeclarationsComponent implements OnInit {
     this.myViewModel = this.model.clone();
   }
 
+  isMobile() {
+    return this.applicationStateService.getIsMobileResolution();
+  }
+
   onSelectAllCheckboxes(checked: boolean) {
     this.allCheckboxesSelected = !checked;
 
