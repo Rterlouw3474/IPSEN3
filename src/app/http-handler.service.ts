@@ -8,6 +8,9 @@ import {Observable, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 import {Declaration} from "./main/declarations/declaration.object";
 import {DatabaseUser} from "./models/databaseuser.model";
+import {Project} from './main/profile/profile-projects/project.model';
+import {Client} from './main/profile/profile-clients/client.model';
+
 
 @Injectable()
 export class HttpHandlerService {
@@ -42,6 +45,22 @@ export class HttpHandlerService {
     )
   }
 
+  postProject(project: Project, extraUrl: string){
+    this.http.post(
+      this.databaseUrl + extraUrl, project, this.options
+    ).subscribe(responseData => {
+      console.log(responseData)
+    });
+  }
+
+  postClient(client: Client, extraUrl: string){
+    this.http.post(
+      this.databaseUrl + extraUrl, client, this.options
+    ).subscribe(responseData => {
+      console.log(responseData)
+    });
+  }
+
 
   getUser(userEmail:string): Observable<DatabaseUser>{
     return this.http.get(this.databaseUrl + "/user/get/" + userEmail).pipe(map(res => <DatabaseUser>res));
@@ -65,4 +84,3 @@ export class HttpHandlerService {
 
 
 }
-

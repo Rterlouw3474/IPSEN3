@@ -1,17 +1,17 @@
 export class Project{
 
   userEmail : string;
-  name: string;
-  desc: string;
-  startDate: string;
-  endDate: string;
+  projectName: string;
+  projectDesc: string;
+  projectStartDate: string;
+  projectEndDate: string;
 
 
   constructor(userEmail: string, projectName: string, projectDesc: string, startDate: string, endDate: string) {
     this.userEmail = userEmail;
-    this.name = projectName;
-    this.desc = projectDesc;
-    this.startDate = startDate;
-    this.endDate = endDate;
+    this.projectName = projectName;
+    this.projectDesc = projectDesc;
+    this.projectStartDate = startDate;
+    this.projectEndDate = endDate;
   }
 }
