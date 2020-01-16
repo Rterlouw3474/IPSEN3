@@ -14,13 +14,13 @@
       <th mat-sort-header="bedrag" class="dec-description-text" style="width: 15%">Bedrag</th>
     </tr>
 
-    <tr *ngFor="let declaration of sortedData">
-      <td>{{declaration.omschrijving}}</td>
-      <td>{{declaration.auto}}</td>
-      <td>{{declaration.datum}}</td>
-      <td>{{declaration.kilometers}}</td>
-      <td>{{declaration.bedrag}}</td>
-    </tr>
+<!--    <tr *ngFor="let declaration of sortedData">-->
+<!--      <td>{{declaration.omschrijving}}</td>-->
+<!--      <td>{{declaration.auto}}</td>-->
+<!--      <td>{{declaration.datum}}</td>-->
+<!--      <td>{{declaration.kilometers}}</td>-->
+<!--      <td>{{declaration.bedrag}}</td>-->
+<!--    </tr>-->
 
     <tr *ngFor="let declaration of getSlicedDeclaration(); let odd=odd; let id = index" class="dashboard-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
       <td><mat-checkbox
