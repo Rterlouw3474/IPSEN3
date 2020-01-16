@@ -24,6 +24,8 @@ import { DesktopDeclarationsComponent } from './main/declarations/desktop-declar
 import { MobileDeclarationsComponent } from './main/declarations/mobile-declarations/mobile-declarations.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {MatTableModule} from "@angular/material/table";
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
     MatInputModule,
     MatCheckboxModule,
     FormsModule,
+    MatTableModule,
+    MatSortModule,
   ],
   providers: [HttpHandlerService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent],
