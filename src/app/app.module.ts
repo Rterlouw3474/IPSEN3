@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { HomeComponent } from './account/home/home.component';
-import { DashboardComponent } from './main/dashboard/dashboard.component';
 import { ProfileComponent } from './main/profile/profile.component';
 import { CreateDeclarationComponent } from './main/declarations/create-declaration/create-declaration.component';
 import { HeaderComponent } from './header/header.component';
@@ -22,7 +21,7 @@ import {HttpHandlerService} from './http-handler.service';
 import {FormsModule} from '@angular/forms';
 import { DesktopDeclarationsComponent } from './main/declarations/desktop-declarations/desktop-declarations.component';
 import { MobileDeclarationsComponent } from './main/declarations/mobile-declarations/mobile-declarations.component';
-import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 @NgModule({
@@ -30,7 +29,6 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
     AppComponent,
     HomeComponent,
     NotfoundComponent,
-    DashboardComponent,
     ProfileComponent,
     DesktopDeclarationsComponent,
     MobileDeclarationsComponent,
