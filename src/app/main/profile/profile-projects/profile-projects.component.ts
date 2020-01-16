@@ -96,7 +96,7 @@ export class ProfileProjectsComponent implements OnInit {
   }
 
   editProject(project: Project) {
-    this.popupProject = project;
+    this.popupProject = new Project(project.userEmail, project.projectName, project.projectDesc, project.projectStartDate, project.projectEndDate);
     this.popupEditMode = true;
     this.showPopup = true;
   }

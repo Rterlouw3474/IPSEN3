@@ -98,7 +98,7 @@ export class ProfileClientsComponent implements OnInit {
   }
 
   editClient(client: Client) {
-    this.popupClient = client;
+    this.popupClient = new Client(client.userEmail, client.clientName, client.clientPostalCode, client.clientHouseNumber, client.clientCity, client.clientCountry);
     this.popupEditMode = true;
     this.showPopup = true;
   }

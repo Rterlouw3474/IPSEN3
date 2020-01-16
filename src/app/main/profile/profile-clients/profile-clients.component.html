@@ -14,7 +14,7 @@
         [checked]="allCheckboxesSelected"></mat-checkbox></td>
     <td class="table-text object-column" (click)="editClient(client)">{{client.clientName}}</td>
     <td class="table-text object-column" (click)="editClient(client)">{{client.clientPostalCode}}</td>
-    <td class="table-text object-column" (click)="editClient(client)">{{client.clientPostalCode}}</td>
+    <td class="table-text object-column" (click)="editClient(client)">{{client.clientHouseNumber}}</td>
   </tr>
 
   <tr *ngFor="let number of emptyRowsList; let odd=odd;" [ngClass]="emptyRowsList.length %2 === 0 ? odd ? '' :'notOdd':odd? 'notOdd':''" class="table-dec-row">
