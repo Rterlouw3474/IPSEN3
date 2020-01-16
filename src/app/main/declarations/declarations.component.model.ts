@@ -3,9 +3,9 @@ import {HttpHandlerService} from "../../http-handler.service";
 
 export class DeclarationsComponentModel {
   public declarations: Declaration[];
-  public selectedDeclarations: { id : number; declaration : Declaration; }[];
+  public selectedDeclarations: { id: number; declaration : Declaration; }[];
 
-  constructor(private http : HttpHandlerService) {
+  constructor(private http: HttpHandlerService) {
     this.selectedDeclarations = [];
   }
 

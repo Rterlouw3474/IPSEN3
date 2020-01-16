@@ -2,10 +2,30 @@ h1 {
   text-align: center;
 }
 
-.dashboard{
-  top:470px;
+.container {
+  width: 80vw;
+  height: 100vh;
+  background-color: white;
+  position: relative;
+  padding-top: 82px;
+  left: 0%;
+  top: 0%;
+  transform: translate(0%, 0%);
+}
+
+.container.mobile {
   width: 100vw;
-  height: 900px;
+}
+
+.container.mobile table {
+  margin-left: 0 !important;
+  width: 100% !important;
+}
+
+.dashboard{
+  //top:470px;
+  width: 80vw;
+  height: 100vh;
   background-color: #EBEFF0;
   box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 }
