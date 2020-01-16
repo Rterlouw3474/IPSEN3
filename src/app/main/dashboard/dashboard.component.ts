@@ -35,6 +35,10 @@ export abstract class DashboardComponent implements OnInit {
     });
   }
 
+  isMobile() {
+    return this.applicationStateService.getIsMobileResolution();
+  }
+
   getDeclarationArray() {
     this.http.getDeclarations(this.auth.getUserData().email)
       .subscribe(
