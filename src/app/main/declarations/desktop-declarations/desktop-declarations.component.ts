@@ -25,9 +25,9 @@ export class DesktopDeclarationsComponent extends DeclarationsComponent {
   show: boolean = false;
 
   declarations: Declaration[] = [
-    {omschrijving: 'Test 4', datum: 159, kilometers: 6, bedrag: 24, auto: 'Fiat'},
+    {omschrijving: 'Test 04', datum: 159, kilometers: 6, bedrag: 24, auto: 'Fiat'},
     {omschrijving: '120', datum: 356, kilometers: 200, bedrag: 49, auto: 'Test'},
-    {omschrijving: 'Test 1', datum: 10022001, kilometers: 80, bedrag: 5, auto: 'Audi'},
+    {omschrijving: 'Test 01', datum: 10022001, kilometers: 80, bedrag: 5, auto: 'Audi'},
     {omschrijving: 'Test 16', datum: 120, kilometers: 99, bedrag: 22, auto: 'Lambo'},
     {omschrijving: 'Test 10', datum: 5, kilometers: 368, bedrag: 102, auto: 'Zetta'},
   ];
