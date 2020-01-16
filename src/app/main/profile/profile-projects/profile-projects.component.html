@@ -12,17 +12,17 @@
         #checkbox="matCheckbox"
         (click)="onCheckboxEvent(project, checkbox.checked, id)"
         [checked]="allCheckboxesSelected"
-      ></mat-checkbox></td>
-      <td class="table-text object-column" (click)="editProject(project)">{{project.projectName}}</td>
-      <td class="table-text object-column" (click)="editProject(project)">{{project.projectStartDate}}</td>
-      <td class="table-text object-column" (click)="editProject(project)">{{project.projectEndDate}}</td>
+    ></mat-checkbox></td>
+    <td class="table-text object-column" (click)="editProject(project)">{{project.projectName}}</td>
+    <td class="table-text object-column" (click)="editProject(project)">{{project.projectStartDate}}</td>
+    <td class="table-text object-column" (click)="editProject(project)">{{project.projectEndDate}}</td>
   </tr>
 
   <tr *ngFor="let number of emptyRowsList; let odd=odd;" [ngClass]="emptyRowsList.length %2 === 0 ? odd ? '' :'notOdd':odd? 'notOdd':''" class="table-dec-row">
     <td class="table-checkbox"><mat-checkbox
         #checkbox="matCheckbox"
         disabled="true"
-     ></mat-checkbox></td>
+    ></mat-checkbox></td>
     <td class="table-text" ></td>
     <td class="table-text" ></td>
     <td class="table-text" ></td>
@@ -43,4 +43,3 @@
 </div>
 
 <app-projects-popup [project]="popupProject" [editMode]="popupEditMode" [(showPopup)]="showPopup" *ngIf="showPopup"></app-projects-popup>
-

@@ -7,8 +7,10 @@ import {User} from "./main/profile/user.object";
 import {Observable, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 import {Declaration} from "./main/declarations/declaration.object";
+import {DatabaseUser} from "./models/databaseuser.model";
 import {Project} from './main/profile/profile-projects/project.model';
 import {Client} from './main/profile/profile-clients/client.model';
+
 
 @Injectable()
 export class HttpHandlerService {
@@ -32,11 +34,15 @@ export class HttpHandlerService {
   }
 
   postDeclaration(declaration: Declaration, extraUrl: string) {
-    this.http.post(
+    return this.http.post(
       this.databaseUrl + extraUrl, declaration, this.options
-    ).subscribe(responseData => {
-      console.log(responseData)
-    });
+    )
+  }
+
+  updateUsername(user_email:string, new_name:string) {
+    return this.http.post(
+      this.databaseUrl + "/user/changename/" + user_email + "/" + new_name, this.options
+    )
   }
 
   postProject(project: Project, extraUrl: string){
@@ -56,18 +62,18 @@ export class HttpHandlerService {
   }
 
 
-  getUser(url: string) {
-    return this.http.get(this.databaseUrl + url);
+  getUser(userEmail:string): Observable<DatabaseUser>{
+    return this.http.get(this.databaseUrl + "/user/get/" + userEmail).pipe(map(res => <DatabaseUser>res));
   }
 
   deleteDeclaration(url:string){
     return this.http.delete(this.databaseUrl + url)
   }
 
-  getDeclarations(ownerId:number): Observable<Declaration[]>{
+  getDeclarations(email:string): Observable<Declaration[]>{
     //return this.http.get(this.databaseUrl + "/declaration/getDeclarationsByOwnerID/" + ownerId);
     return this.http
-      .get(this.databaseUrl + "/declaration/getDeclarationsByOwnerID/" + ownerId)
+      .get(this.databaseUrl + "/declaration/get/" + email)
       .pipe(map(res => <Declaration[]>res));
   }
 
@@ -78,4 +84,3 @@ export class HttpHandlerService {
 
 
 }
-
