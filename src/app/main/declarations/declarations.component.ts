@@ -4,10 +4,11 @@ import {DeclarationsComponentModel} from './declarations.component.model';
 import {Router} from '@angular/router';
 import {ApplicationStateService} from '../../application-state.service';
 import {HttpHandlerService} from "../../http-handler.service";
+import {AuthService} from "../../account/auth.service";
 
 export abstract class DeclarationsComponent implements OnInit {
 
-  private model: DeclarationsComponentModel;
+  public model: DeclarationsComponentModel;
   public myViewModel: DeclarationsComponentModel;
 
   public pageNumberMinimum = 0;
@@ -17,6 +18,9 @@ export abstract class DeclarationsComponent implements OnInit {
 
   public pageBtnLeft = true;
   public pageBtnRight = true;
+
+  private generateEmptyRows: number;
+  public emptyRowsList;
 
   public showEdit = false;
 
@@ -32,16 +36,15 @@ export abstract class DeclarationsComponent implements OnInit {
   public allCheckboxesSelected = false;
   public parentCheckboxSelected = false;
 
-  protected constructor(private router: Router, private applicationStateService: ApplicationStateService, private http: HttpHandlerService) {
-    this.model = new DeclarationsComponentModel(http);
-    this.myViewModel = new DeclarationsComponentModel(http);
-
-    // this.loadData()      //TODO Load the declarations from the backend
-    // this.updateView();   //**Activate only when you want ultimate MVC powers**
+  protected constructor(private router: Router, private applicationStateService: ApplicationStateService, private http: HttpHandlerService, private auth:AuthService) {
+    this.model = new DeclarationsComponentModel(http, auth);
+    this.myViewModel = new DeclarationsComponentModel(http, auth);
   }
 
   ngOnInit() {
     this.model.getDeclarationArray();
+    this.checkButtons();
+    this.checkEmptyRows();
   }
 
   private updateView(): void {
@@ -60,7 +63,6 @@ export abstract class DeclarationsComponent implements OnInit {
             this.model.selectedDeclarations.push({id, declaration});
             id++;
         }
-
     } else {
       this.resetSelectedDeclarations();
     }
@@ -71,30 +73,35 @@ export abstract class DeclarationsComponent implements OnInit {
   OnDeleteEvent(){
     const selectedDeclaration = this.model.selectedDeclarations[0].declaration;
     this.http
-      .deleteDeclaration("/declaration/delete/" + "test@test.test" + "/" + selectedDeclaration.decDesc +"/" + selectedDeclaration.decDate)
+      .deleteDeclaration("/declaration/delete/" + this.auth.getUserData().email + "/" + selectedDeclaration.decDesc +"/" + selectedDeclaration.decDate)
       .subscribe(
         responseData => {
           this.model.getDeclarationArray();
         }
       );
-
     this.resetSelectedDeclarations();
   }
 
   OnCopyEvent() {
     const selectedDeclaration = this.model.selectedDeclarations[0].declaration;
     const oldDeclaration = this.createDeclarationCopy(selectedDeclaration);
-    //const newDeclaration = this.checkDeclarationName(oldDeclaration);
 
-    this.http.postDeclaration(oldDeclaration, "/declaration/create");
-
-    this.allCheckboxesSelected = false;
-    this.resetSelectedDeclarations();
-
-    for(let i=0;i<5;i++){
+    this.http.postDeclaration(oldDeclaration, "/declaration/create")
+      .subscribe(res => {
+      this.allCheckboxesSelected = false;
+      this.resetSelectedDeclarations();
       this.model.getDeclarationArray();
+    });
+  }
+
+  getSlicedDeclaration(){
+    try{
+      return this.model.declarations.slice(this.getMinimum() , this.getMaximum());
+    }catch (e) {
+      console.log("no declarations")
     }
   }
+
 
   createDeclarationCopy(declaration: Declaration, ) : Declaration{
     if (declaration.decDesc.includes("[")) {
@@ -159,6 +166,7 @@ export abstract class DeclarationsComponent implements OnInit {
       this.pageNumberMinimum += 10;
       this.pageNumberMaximum += 10;
       this.checkButtons();
+      this.checkEmptyRows();
     }
   }
 
@@ -170,6 +178,7 @@ export abstract class DeclarationsComponent implements OnInit {
       this.pageNumberMinimum -= 10;
       this.pageNumberMaximum -= 10;
       this.checkButtons();
+      this.checkEmptyRows();
     }
   }
 
@@ -184,6 +193,14 @@ export abstract class DeclarationsComponent implements OnInit {
 
   resetSelectedDeclarations(){
     this.model.selectedDeclarations.splice(0, 1000);
+  }
+
+  private checkEmptyRows() {
+    this.generateEmptyRows = this.pageNumberMaximum - this.model.declarations.length;
+    if (this.generateEmptyRows < 1){
+      this.generateEmptyRows = 0;
+    }
+    this.emptyRowsList = Array(this.generateEmptyRows).fill(1);
   }
 
 }

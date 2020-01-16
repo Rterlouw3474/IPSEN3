@@ -7,6 +7,7 @@ import {User} from "./main/profile/user.object";
 import {Observable, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 import {Declaration} from "./main/declarations/declaration.object";
+import {DatabaseUser} from "./models/databaseuser.model";
 
 @Injectable()
 export class HttpHandlerService {
@@ -30,16 +31,20 @@ export class HttpHandlerService {
   }
 
   postDeclaration(declaration: Declaration, extraUrl: string) {
-    this.http.post(
+    return this.http.post(
       this.databaseUrl + extraUrl, declaration, this.options
-    ).subscribe(responseData => {
-      console.log(responseData);
-    });
+    )
+  }
+
+  updateUsername(user_email:string, new_name:string) {
+    return this.http.post(
+      this.databaseUrl + "/user/changename/" + user_email + "/" + new_name, this.options
+    )
   }
 
 
-  getUser(url: string) {
-    return this.http.get(this.databaseUrl + url);
+  getUser(userEmail:string): Observable<DatabaseUser>{
+    return this.http.get(this.databaseUrl + "/user/get/" + userEmail).pipe(map(res => <DatabaseUser>res));
   }
 
   deleteDeclaration(url:string){

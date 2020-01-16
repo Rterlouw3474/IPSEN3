@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../../account/auth.service';
 import {User} from '../../../models/user.model';
+import {HttpHandlerService} from "../../../http-handler.service";
+import {DatabaseUser} from "../../../models/databaseuser.model";
 
 @Component({
   selector: 'app-profile-settings',
@@ -10,14 +12,35 @@ import {User} from '../../../models/user.model';
 export class ProfileSettingsComponent implements OnInit {
   userEmail: string;
   username: string;
-  user: User;
 
-  constructor(private auth: AuthService) { }
+  AuthUser: User;
+  databaseUser:DatabaseUser;
+
+  constructor(private auth: AuthService, private http:HttpHandlerService) {
+
+
+  }
 
   ngOnInit() {
-    this.user = this.auth.getUserData();
-    this.userEmail = this.user.email;
-    this.username = this.user.username;
+    this.AuthUser = this.auth.getUserData();
+    this.userEmail = this.AuthUser.email;
+
+    this.http.getUser(this.AuthUser.email).subscribe(res=>{
+      this.databaseUser = res;
+      console.log(this.databaseUser);
+      this.username = this.databaseUser.username;
+    });
+  }
+
+  onChangeUsername(nameInput: HTMLInputElement) {
+    this.http.updateUsername(this.AuthUser.email, nameInput.value).subscribe(
+      res =>{
+        this.http.getUser(this.AuthUser.email).subscribe(res=>{
+          this.databaseUser = res;
+          this.username = this.databaseUser.username;
+        })
+      }
+    )
   }
 
 }

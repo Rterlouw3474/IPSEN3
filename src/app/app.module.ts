@@ -23,6 +23,7 @@ import {FormsModule} from '@angular/forms';
 import { DesktopDeclarationsComponent } from './main/declarations/desktop-declarations/desktop-declarations.component';
 import { MobileDeclarationsComponent } from './main/declarations/mobile-declarations/mobile-declarations.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -60,9 +61,11 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     BrowserAnimationsModule,
     MatInputModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [HttpHandlerService],
-  bootstrap: [AppComponent]
+  providers: [HttpHandlerService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
+
+

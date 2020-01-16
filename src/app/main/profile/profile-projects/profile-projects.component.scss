@@ -10,19 +10,35 @@
 .table-dec-row{
   width: 100%;
   height: 60px;
+  &:hover {
+    cursor: pointer;
+    .object-column {
+      opacity: 0.6;
+    }
+  }
 }
 
 .table-description-text{
-  text-align: center;
+  text-align: left;
   color: #858C93;
   font-size: 20px;
 }
 
 .table-text{
-  text-align: center;
+  text-align: left;
   color: #44524F;
   font-size: 19px;
 }
+
+table {
+  tr {
+    .table-checkbox {
+      //width: 55px;
+      text-align: center;
+    }
+  }
+}
+
 
 .notOdd{
   background-color: #C4EAE1;

@@ -1,11 +1,15 @@
 import {Declaration} from './declaration.object';
 import {HttpHandlerService} from "../../http-handler.service";
+import {AuthService} from "../../account/auth.service";
+import {User} from "../profile/user.object";
 
 export class DeclarationsComponentModel {
   public declarations: Declaration[];
   public selectedDeclarations: { id: number; declaration : Declaration; }[];
 
-  constructor(private http: HttpHandlerService) {
+  public authUser : User;
+
+  constructor(private http : HttpHandlerService, private auth:AuthService) {
     this.selectedDeclarations = [];
   }
 
@@ -16,7 +20,7 @@ export class DeclarationsComponentModel {
   }
 
   getDeclarationArray(){
-    this.http.getDeclarations("test@test.test").subscribe(
+    this.http.getDeclarations(this.auth.getUserData().email).subscribe(
       res => {
         this.declarations = res;
       }
