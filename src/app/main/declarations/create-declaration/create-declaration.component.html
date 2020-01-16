@@ -1,11 +1,10 @@
 <div class="container dashboard">
 
-
   <div class="row" style="padding-top: 100px; padding-left: 100px">
     <form class="example-form">
-    <div class="col-sm-3">
-      <h2>Beginlocatie</h2>
-        <mat-form-field class="example-full-width" style="border-width: 0" >
+      <div class="col-sm-3">
+        <h2>Beginlocatie</h2>
+        <mat-form-field class="example-full-width" style="border-width: 0">
           <input matInput placeholder="Postcode" value="" [(ngModel)]="beginPostcode" name="beginPostcode">
         </mat-form-field>
         <mat-form-field class="example-full-width">
@@ -20,10 +19,10 @@
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Land" value="" [(ngModel)]="beginLand" name="beginLand">
         </mat-form-field>
-  </div>
+      </div>
 
-    <div class="col-sm-3">
-      <h2>Eindlocatie</h2>
+      <div class="col-sm-3">
+        <h2>Eindlocatie</h2>
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Postcode" value="" [(ngModel)]="eindPostcode" name="eindPostcode">
         </mat-form-field>
@@ -39,10 +38,10 @@
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Land" value="" [(ngModel)]="eindLand" name="eindLand">
         </mat-form-field>
-    </div>
+      </div>
 
-    <div class="col-sm-3">
-      <h2>Registratie</h2>
+      <div class="col-sm-3">
+        <h2>Registratie</h2>
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Kilometers" value="" [(ngModel)]="kilometers" name="kilometers">
         </mat-form-field>
@@ -53,13 +52,12 @@
         <mat-form-field class="example-full-width">
           <textarea matInput placeholder="Omschrijving" [(ngModel)]="omschrijving" name="omschrijving"></textarea>
         </mat-form-field>
-    </div>
-  </form>
-
+      </div>
+    </form>
 
     <div class="col-xs-1" style="padding-top: 80px">
       <div ngbDropdown class="dropdown">
-        <button style="width: 130px"  ngbDropdownToggle class="btn btn-default dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button style="width: 130px" ngbDropdownToggle class="btn btn-default dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Klant
           <span class="caret"></span>
         </button>
@@ -83,7 +81,7 @@
       </div>
 
       <div ngbDropdown class="dropdown" style="padding-top: 16px">
-        <button style="width: 130px"  ngbDropdownToggle class="btn btn-default dropdown-toggle" type="button" id="about-us3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button style="width: 130px" ngbDropdownToggle class="btn btn-default dropdown-toggle" type="button" id="about-us3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Auto
           <span class="caret"></span>
         </button>
@@ -103,7 +101,7 @@
 
   </div>
   <div>
-    <button class="new-declaration" >
+    <button class="new-declaration">
     </button>
   </div>
 
@@ -112,7 +110,4 @@
   </div>
 </div>
 
-
-
-
-  <router-outlet></router-outlet>
+<router-outlet></router-outlet>

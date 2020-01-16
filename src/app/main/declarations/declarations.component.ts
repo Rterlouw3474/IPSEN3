@@ -36,16 +36,15 @@ export abstract class DeclarationsComponent implements OnInit {
   public allCheckboxesSelected = false;
   public parentCheckboxSelected = false;
 
-  protected constructor(private router: Router, private applicationStateService: ApplicationStateService, private http: HttpHandlerService, private auth: AuthService) {
+  protected constructor(private router: Router, private applicationStateService: ApplicationStateService, private http: HttpHandlerService, private auth:AuthService) {
     this.model = new DeclarationsComponentModel(http, auth);
     this.myViewModel = new DeclarationsComponentModel(http, auth);
-
-    // this.loadData()      //TODO Load the declarations from the backend
-    // this.updateView();   //**Activate only when you want ultimate MVC powers**
   }
 
   ngOnInit() {
     this.model.getDeclarationArray();
+    this.checkButtons();
+    this.checkEmptyRows();
   }
 
   private updateView(): void {
@@ -64,7 +63,6 @@ export abstract class DeclarationsComponent implements OnInit {
             this.model.selectedDeclarations.push({id, declaration});
             id++;
         }
-
     } else {
       this.resetSelectedDeclarations();
     }
@@ -88,17 +86,23 @@ export abstract class DeclarationsComponent implements OnInit {
   OnCopyEvent() {
     const selectedDeclaration = this.model.selectedDeclarations[0].declaration;
     const oldDeclaration = this.createDeclarationCopy(selectedDeclaration);
-    //const newDeclaration = this.checkDeclarationName(oldDeclaration);
 
-    this.http.postDeclaration(oldDeclaration, "/declaration/create");
-
-    this.allCheckboxesSelected = false;
-    this.resetSelectedDeclarations();
-
-    for(let i=0;i<5;i++){
+    this.http.postDeclaration(oldDeclaration, "/declaration/create")
+      .subscribe(res => {
+      this.allCheckboxesSelected = false;
+      this.resetSelectedDeclarations();
       this.model.getDeclarationArray();
+    });
+  }
+
+  getSlicedDeclaration(){
+    try{
+      return this.model.declarations.slice(this.getMinimum() , this.getMaximum());
+    }catch (e) {
+      console.log("no declarations")
     }
   }
+
 
   createDeclarationCopy(declaration: Declaration, ) : Declaration{
     if (declaration.decDesc.includes("[")) {
