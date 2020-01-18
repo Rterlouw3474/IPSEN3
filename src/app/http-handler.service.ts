@@ -10,12 +10,15 @@ import {Declaration} from "./main/declarations/declaration.object";
 import {DatabaseUser} from "./models/databaseuser.model";
 import {Project} from './main/profile/profile-projects/project.model';
 import {Client} from './main/profile/profile-clients/client.model';
+import {RDWCar} from "./models/rdwcar.model";
+import {RDWFuel} from "./models/rdwfuel.model";
+import {Car} from "./models/car.model";
 
 
 @Injectable()
 export class HttpHandlerService {
   options = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
-  databaseUrl: string = "http://h2858995.stratoserver.net:8080";
+  databaseUrl: string = "http://localhost:8080";
 
   constructor(private http: HttpClient) {
   }
@@ -61,9 +64,25 @@ export class HttpHandlerService {
     });
   }
 
+  postCar(car : Car, extraUrl: string){
+    this.http.post(
+      this.databaseUrl + extraUrl, car, this.options
+    ).subscribe(responseData => {
+      console.log(responseData)
+    });
+  }
+
 
   getUser(userEmail:string): Observable<DatabaseUser>{
     return this.http.get(this.databaseUrl + "/user/get/" + userEmail).pipe(map(res => <DatabaseUser>res));
+  }
+
+  getRDWCar(licencePlate:string): Observable<RDWCar[]>{
+    return this.http.get(this.databaseUrl + "/rdw/get/car/" + licencePlate).pipe(map(res => <RDWCar[]>res));
+  }
+
+  getRDWFuel(licencePlate:string): Observable<RDWFuel[]>{
+    return this.http.get(this.databaseUrl + "/rdw/get/fuel/" + licencePlate).pipe(map(res => <RDWFuel[]>res));
   }
 
   deleteDeclaration(url:string){
