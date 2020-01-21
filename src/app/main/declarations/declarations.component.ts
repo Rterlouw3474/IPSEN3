@@ -22,17 +22,6 @@ export abstract class DeclarationsComponent implements OnInit {
   private generateEmptyRows: number;
   public emptyRowsList;
 
-  public showEdit = false;
-
-  isEditHidden(){
-    if(this.model.selectedDeclarations.length==1){
-      return false
-    } else{
-      return true
-    }
-  }
-
-
   public allCheckboxesSelected = false;
   public parentCheckboxSelected = false;
 
@@ -77,6 +66,7 @@ export abstract class DeclarationsComponent implements OnInit {
       .subscribe(
         responseData => {
           this.model.getDeclarationArray();
+
         }
       );
     this.resetSelectedDeclarations();

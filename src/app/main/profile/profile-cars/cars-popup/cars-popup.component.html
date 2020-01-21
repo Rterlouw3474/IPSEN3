@@ -1,0 +1,43 @@
+<div class="full-screen" (click)="closePopupOutsidePopup($event)">
+  <div class="popup-wrapper">
+    <div class="popup-container">
+      <div class="popup-header-display">
+        <h2 class="popup-header">{{popupHeader}}</h2>
+        <div class="close-button">
+          <i class="material-icons" (click)="closePopup()">
+            close
+          </i>
+        </div>
+
+      </div>
+
+      <div class="input-fields">
+        <form>
+          <h5 class="bad-licence-plate" *ngIf="notFound">Vul een geldig kenteken in.</h5>
+          <mat-form-field>
+            <input matInput placeholder="Kenteken" value="" [(ngModel)]="licencePlate" (change)="RDWCheck()" name="licencePlate">
+          </mat-form-field>
+          <h5 class="no-car-name" *ngIf="noCarName">Vul een naam in.</h5>
+          <mat-form-field>
+            <input matInput placeholder="Naam" value="" [(ngModel)]="carName" name="carName">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Merk" value="" [(ngModel)]="carBrand" disabled=true name="carBrand">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Type" value="" [(ngModel)]="carType" disabled=true name="carType">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Kleur" value="" [(ngModel)]="carColor" disabled=true name="carColor">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Brandstoftype" [(ngModel)]="fuelType" value=""  disabled=true name="fuelType">
+          </mat-form-field>
+          <div class="button-wrapper">
+            <button (click)="createCar()" class="btn">Opslaan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

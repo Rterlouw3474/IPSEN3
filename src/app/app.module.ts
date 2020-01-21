@@ -29,6 +29,7 @@ import {MatDatepickerModule, MatNativeDateModule} from '@angular/material';
 import {MAT_DATE_LOCALE} from '@angular/material';
 import {DatePipe} from '@angular/common';
 import { ClientsPopupComponent } from './main/profile/profile-clients/clients-popup/clients-popup.component';
+import {CarsPopupComponent} from "./main/profile/profile-cars/cars-popup/cars-popup.component";
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { ClientsPopupComponent } from './main/profile/profile-clients/clients-po
     DesktopDeclarationsComponent,
     MobileDeclarationsComponent,
     ProjectsPopupComponent,
-    ClientsPopupComponent
+    ClientsPopupComponent,
+    CarsPopupComponent
   ],
   entryComponents: [
     MobileDashboardComponent,

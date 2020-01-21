@@ -13,7 +13,7 @@
         #checkbox="matCheckbox"
         (click)="onCheckboxEvent(car, checkbox.checked, id)"
         [checked]="allCheckboxesSelected"></mat-checkbox></td>
-    <td class="table-text object-column" >{{car.licensePlate}}</td>
+    <td class="table-text object-column" >{{car.licencePlate}}</td>
     <td class="table-text object-column" >{{car.name}}</td>
     <td class="table-text object-column" >{{car.fuelType}}</td>
     <td class="table-text object-column" >{{car.color}}</td>
@@ -40,5 +40,8 @@
     <button [ngClass]="pageBtnRight ? 'page-button' : 'page-button-disabled'" style="margin-left: 10px" (click)="nextPage()">
       >>
     </button>
+    <button (click)="createCar()">add car</button>
   </div>
 </div>
+
+<app-cars-create-popup [editMode]="popupEditMode" [(showPopup)]="showPopup" *ngIf="showPopup"></app-cars-create-popup>
