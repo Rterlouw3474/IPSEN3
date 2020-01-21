@@ -50,16 +50,15 @@ export class DesktopDeclarationsComponent extends DeclarationsComponent {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
         case 'omschrijving': return compare(a.omschrijving, b.omschrijving, isAsc);
+        case 'auto': return compare(a.auto, b.auto, isAsc);
         case 'datum': return compare(a.datum, b.datum, isAsc);
         case 'kilometers': return compare(a.kilometers, b.kilometers, isAsc);
         case 'bedrag': return compare(a.bedrag, b.bedrag, isAsc);
-        case 'auto': return compare(a.auto, b.auto, isAsc);
+
         default: return 0;
       }
     });
   }
-
-
 }
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {

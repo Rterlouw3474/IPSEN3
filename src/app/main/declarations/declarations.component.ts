@@ -103,6 +103,8 @@ export abstract class DeclarationsComponent implements OnInit {
   }
 
 
+
+
   createDeclarationCopy(declaration: Declaration, ) : Declaration{
     if (declaration.decDesc.includes("[")) {
       let a: number = Number(declaration.decDesc.charAt(declaration.decDesc.indexOf("[") + 1));
@@ -202,5 +204,4 @@ export abstract class DeclarationsComponent implements OnInit {
     }
     this.emptyRowsList = Array(this.generateEmptyRows).fill(1);
   }
-
 }
