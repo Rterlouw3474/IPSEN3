@@ -15,7 +15,7 @@
         <form>
           <h5 class="bad-licence-plate" *ngIf="notFound">Vul een geldig kenteken in.</h5>
           <mat-form-field>
-            <input matInput placeholder="Kenteken" value="" [(ngModel)]="licencePlate" (focusout)="RDWCheck()" name="licencePlate">
+            <input matInput placeholder="Kenteken" value="" [(ngModel)]="licencePlate" (change)="RDWCheck()" name="licencePlate">
           </mat-form-field>
           <h5 class="no-car-name" *ngIf="noCarName">Vul een naam in.</h5>
           <mat-form-field>

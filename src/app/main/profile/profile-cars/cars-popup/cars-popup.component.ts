@@ -60,18 +60,22 @@ export class CarsPopupComponent implements OnInit {
       this.httpHandler.getRDWCar(this.licencePlate).subscribe(res => {
         if(res[0] != null){
           this.rdwCar = res;
-          this.carBrand = this.rdwCar[0].merk;
-          this.carType = this.rdwCar[0].handelsbenaming;
-          this.carColor = this.rdwCar[0].eerste_kleur;
-          this.httpHandler.getRDWFuel(this.licencePlate).subscribe(res =>{
-            this.rdwFuel = res;
-            this.fuelType = this.rdwFuel[0].brandstof_omschrijving;
-          });
-          this.notFound = false;
+          this.autoFillForm();
         } else {
           this.notFound = true;
         }
       })
+  }
+
+  autoFillForm(){
+    this.carBrand = this.rdwCar[0].merk;
+    this.carType = this.rdwCar[0].handelsbenaming;
+    this.carColor = this.rdwCar[0].eerste_kleur;
+    this.httpHandler.getRDWFuel(this.licencePlate).subscribe(res =>{
+      this.rdwFuel = res;
+      this.fuelType = this.rdwFuel[0].brandstof_omschrijving;
+    });
+    this.notFound = false;
   }
 
   createCar(){
