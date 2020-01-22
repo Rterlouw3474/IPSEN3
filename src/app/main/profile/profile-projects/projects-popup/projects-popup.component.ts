@@ -4,6 +4,7 @@ import {Form, FormControl} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import {ProfileObjectsService} from '../../profile-objects.service';
 import {HttpHandlerService} from '../../../../http-handler.service';
+import {AuthService} from '../../../../account/auth.service';
 
 @Component({
   selector: 'app-projects-popup',
@@ -21,7 +22,7 @@ export class ProjectsPopupComponent implements OnInit {
   endDate: FormControl;
 
   popupHeader: string;
-  constructor(private datePipe: DatePipe, private httpHandler : HttpHandlerService) {
+  constructor(private auth: AuthService, private datePipe: DatePipe, private httpHandler : HttpHandlerService) {
   }
 
   ngOnInit() {
@@ -50,7 +51,7 @@ export class ProjectsPopupComponent implements OnInit {
     const newBeginDate = this.datePipe.transform(this.beginDate.value, 'dd-MM-yyyy');
     const newEndDate = this.datePipe.transform(this.endDate.value, 'dd-MM-yyyy');
 
-    const projectToPost = new Project(this.project.userEmail, this.project.projectName, this.project.projectDesc, newBeginDate, newEndDate);
+    const projectToPost = new Project(this.auth.getUserData().email, this.project.projectName, this.project.projectDesc, newBeginDate, newEndDate);
     console.log(projectToPost);
     this.httpHandler.postProject(projectToPost, "/project/create");
   }

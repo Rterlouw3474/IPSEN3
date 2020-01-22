@@ -11,7 +11,7 @@ import {AuthService} from '../../../account/auth.service';
   styleUrls: ['./profile-clients.component.scss']
 })
 export class ProfileClientsComponent implements OnInit {
-  private user: User;
+  // private user: User;
   private maxCountPage = 6;
   public clients: Client[];
   public selectClients: Client[];
@@ -32,23 +32,22 @@ export class ProfileClientsComponent implements OnInit {
   public popupEditMode = false;
 
   constructor(private auth: AuthService) {
-    this.user = this.auth.getUserData();
-    const userEmail = this.user.email;
+
     this.clients = [
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland")
+      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland")
     ];
     this.checkEmptyRows();
     this.checkButtons();
@@ -100,6 +99,12 @@ export class ProfileClientsComponent implements OnInit {
   editClient(client: Client) {
     this.popupClient = new Client(client.userEmail, client.clientName, client.clientPostalCode, client.clientHouseNumber, client.clientCity, client.clientCountry);
     this.popupEditMode = true;
+    this.showPopup = true;
+  }
+
+  createClient(){
+    this.popupClient = new Client("","","",null,"","");
+    this.popupEditMode = false;
     this.showPopup = true;
   }
 }

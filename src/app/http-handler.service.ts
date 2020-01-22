@@ -18,7 +18,7 @@ import {Car} from "./models/car.model";
 @Injectable()
 export class HttpHandlerService {
   options = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
-  databaseUrl: string = "http://localhost:8080";
+  databaseUrl: string = "http://h2858995.stratoserver.net:8080";
 
   constructor(private http: HttpClient) {
   }
@@ -52,7 +52,7 @@ export class HttpHandlerService {
     this.http.post(
       this.databaseUrl + extraUrl, project, this.options
     ).subscribe(responseData => {
-      console.log(responseData)
+      console.log(responseData);
     });
   }
 
@@ -94,6 +94,13 @@ export class HttpHandlerService {
     return this.http
       .get(this.databaseUrl + "/declaration/get/" + email)
       .pipe(map(res => <Declaration[]>res));
+  }
+
+  getProjects(email:string): Observable<Project[]> {
+    console.log(this.databaseUrl + "/project/get/" + email);
+    return this.http
+      .get(this.databaseUrl + "/project/get/" + email)
+      .pipe(map(res =><Project[]>res))
   }
 
 

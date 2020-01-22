@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Client} from '../profile-clients/client.model';
 import {Car} from '../../../models/car.model';
 import {ProfileObjectsService} from '../profile-objects.service';
+import {AuthService} from '../../../account/auth.service';
 
 @Component({
   selector: 'app-profile-cars',
@@ -28,7 +29,7 @@ export class ProfileCarsComponent implements OnInit {
   public popupCar: Car;
   public popupEditMode = false;
 
-  constructor() {
+  constructor(private auth: AuthService) {
     this.cars = [
       new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
       new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),

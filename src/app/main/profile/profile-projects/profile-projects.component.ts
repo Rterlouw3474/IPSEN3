@@ -3,6 +3,7 @@ import {Project} from './project.model';
 import {ProfileObjectsService} from '../profile-objects.service';
 import {User} from '../../../models/user.model';
 import {AuthService} from '../../../account/auth.service';
+import {HttpHandlerService} from '../../../http-handler.service';
 
 @Component({
   selector: 'app-profile-projects',
@@ -30,26 +31,22 @@ export class ProfileProjectsComponent implements OnInit {
   public popupProject: Project;
   public popupEditMode = false;
 
-  constructor(private auth: AuthService) {
-    this.user = this.auth.getUserData();
-    const userEmail = this.user.email;
-    // hier worden alle projecten in geladen
-    this.projects = [
-      new Project(userEmail,"Project 1", "Dit is een beschrijving!!!!!", "11-06-2000", "20-12-2019"),
-      new Project(userEmail,"Project 2", "Beschrijving YOLO", "17-12-2019", "18-12-2019"),
-      new Project(userEmail,"Project 3", "lol", "17-12-2019", "18-12-2019"),
-      new Project(userEmail,"Project 4", "Peter r de vries vind dit een beschrijving", "17-12-2019", "18-12-2019"),
-      new Project("baljit@krdf.nl","Project 5", "Beschrijving2", "17-12-2019", "18-12-2019"),
-      new Project("ole@krdf.nl","Project 6", "Beschrijving3", "17-12-2019", "18-12-2019"),
-      new Project("richard@krdf.nl","Project 7", "Beschrijving4", "17-12-2019", "18-12-2019"),
-      new Project("richard@krdf.nl","Project 8", "Beschrijving56", "17-12-2019", "18-12-2019"),
-      new Project("richard@krdf.nl","Project 9", "Beschrijving766", "17-12-2019", "18-12-2019")
-    ];
-    this.checkEmptyRows();
-    this.checkButtons();
+  constructor(private auth: AuthService, private httpHandler : HttpHandlerService) {
   }
 
   ngOnInit() {
+    this.getProjectsArray();
+  }
+
+
+  getProjectsArray(){
+    return this.httpHandler.getProjects(this.auth.getUserData().email).subscribe(
+      res => {
+        this.projects = res;
+        this.checkEmptyRows();
+        this.checkButtons();
+      }
+    );
   }
 
 
@@ -98,6 +95,13 @@ export class ProfileProjectsComponent implements OnInit {
   editProject(project: Project) {
     this.popupProject = new Project(project.userEmail, project.projectName, project.projectDesc, project.projectStartDate, project.projectEndDate);
     this.popupEditMode = true;
+    this.showPopup = true;
+  }
+
+  createProject() {
+    // email wordt toegevoegd onCreate
+    this.popupProject = new Project("","","","","");
+    this.popupEditMode = false;
     this.showPopup = true;
   }
 }
