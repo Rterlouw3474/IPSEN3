@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Project} from './project.model';
 import {ProfileObjectsService} from '../profile-objects.service';
-import {AuthService} from "../../../account/auth.service";
+import {User} from '../../../models/user.model';
+import {AuthService} from '../../../account/auth.service';
+import {HttpHandlerService} from '../../../http-handler.service';
 
 @Component({
   selector: 'app-profile-projects',
@@ -9,12 +11,7 @@ import {AuthService} from "../../../account/auth.service";
   styleUrls: ['./profile-projects.component.scss']
 })
 export class ProfileProjectsComponent implements OnInit {
-
-  name: string;
-  desc: string;
-  startDate: string;
-  endDate: string;
-
+  user: User;
   private maxCountPage = 6;
   public projects: Project[];
   public selectedProjects: Project[];
@@ -29,24 +26,27 @@ export class ProfileProjectsComponent implements OnInit {
   public pageBtnLeft = true;
   public pageBtnRight = true;
 
-  constructor(private authservice: AuthService) {
-    // hier worden alle projecten in geladen
-    this.projects = [
-      new Project(this.authservice.getUserData().email, this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019")
-    ];
-    this.checkEmptyRows();
-    this.checkButtons();
+  // popup
+  public showPopup = false;
+  public popupProject: Project;
+  public popupEditMode = false;
+
+  constructor(private auth: AuthService, private httpHandler : HttpHandlerService) {
   }
 
   ngOnInit() {
+    this.getProjectsArray();
+  }
+
+
+  getProjectsArray(){
+    return this.httpHandler.getProjects(this.auth.getUserData().email).subscribe(
+      res => {
+        this.projects = res;
+        this.checkEmptyRows();
+        this.checkButtons();
+      }
+    );
   }
 
 
@@ -92,4 +92,16 @@ export class ProfileProjectsComponent implements OnInit {
     this.pageBtnRight = ProfileObjectsService.checkNextButton(this.pageNumberMinimum, this.maxCountPage, this.projects.length);
   }
 
+  editProject(project: Project) {
+    this.popupProject = new Project(project.userEmail, project.projectName, project.projectDesc, project.projectStartDate, project.projectEndDate);
+    this.popupEditMode = true;
+    this.showPopup = true;
+  }
+
+  createProject() {
+    // email wordt toegevoegd onCreate
+    this.popupProject = new Project("","","","","");
+    this.popupEditMode = false;
+    this.showPopup = true;
+  }
 }

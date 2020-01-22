@@ -1,18 +1,19 @@
 export class Client {
 
   userEmail : string;
-  name: string;
-  postalCode: string;
-  houseNumber: string;
-  city: string;
-  country: string;
+  clientName: string;
+  clientPostalCode: string;
+  clientHouseNumber: number;
+  clientCity: string;
+  clientCountry: string;
 
-  constructor(userEmail: string, name: string, postalCode: string, houseNumber: string, city: string, country: string) {
+
+  constructor(userEmail: string, clientName: string, clientPostalCode: string, clientHouseNumber: number, clientCity: string, clientCountry: string) {
     this.userEmail = userEmail;
-    this.name = name;
-    this.postalCode = postalCode;
-    this.houseNumber = houseNumber;
-    this.city = city;
-    this.country = country;
+    this.clientName = clientName;
+    this.clientPostalCode = clientPostalCode;
+    this.clientHouseNumber = clientHouseNumber;
+    this.clientCity = clientCity;
+    this.clientCountry = clientCountry;
   }
 }

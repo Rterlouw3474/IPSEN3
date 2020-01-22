@@ -4,6 +4,7 @@ import {HttpHandlerService} from "../../../http-handler.service";
 import {forkJoin, Observable, Subscription} from 'rxjs';
 import {AuthService} from '../../../account/auth.service';
 import {User} from '../../../models/user.model';
+import {DatabaseUser} from "../../../models/databaseuser.model";
 
 @Component({
   selector: 'app-desktop-dashboard',
@@ -16,7 +17,9 @@ export class DesktopDashboardComponent implements OnInit {
   totalMoney: number;
   totalDeclarations: number;
   username: string;
-  user: User;
+
+  authUser: User;
+  databaseUser : DatabaseUser;
 
   declarations : Declaration[] = [];
 
@@ -25,12 +28,17 @@ export class DesktopDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getDeclarationArray();
-    this.user = this.auth.getUserData();
-    this.username = this.user.username;
+    this.authUser = this.auth.getUserData();
+
+    this.http.getUser(this.authUser.email).subscribe(res=>{
+      this.databaseUser = res;
+      console.log(this.databaseUser);
+      this.username = this.databaseUser.username;
+    });
   }
 
   getDeclarationArray(){
-    this.http.getDeclarations("test@test.test")
+    this.http.getDeclarations(this.auth.getUserData().email)
       .subscribe(
       res => {
         this.declarations = res;

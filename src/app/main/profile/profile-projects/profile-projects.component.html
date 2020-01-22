@@ -12,24 +12,23 @@
         #checkbox="matCheckbox"
         (click)="onCheckboxEvent(project, checkbox.checked, id)"
         [checked]="allCheckboxesSelected"
-      ></mat-checkbox></td>
-    <td class="table-text object-column" >{{project.name}}</td>
-    <td class="table-text object-column" >{{project.startDate}}</td>
-    <td class="table-text object-column" >{{project.endDate}}</td>
+    ></mat-checkbox></td>
+    <td class="table-text object-column" (click)="editProject(project)">{{project.projectName}}</td>
+    <td class="table-text object-column" (click)="editProject(project)">{{project.projectStartDate}}</td>
+    <td class="table-text object-column" (click)="editProject(project)">{{project.projectEndDate}}</td>
   </tr>
 
   <tr *ngFor="let number of emptyRowsList; let odd=odd;" [ngClass]="emptyRowsList.length %2 === 0 ? odd ? '' :'notOdd':odd? 'notOdd':''" class="table-dec-row">
     <td class="table-checkbox"><mat-checkbox
         #checkbox="matCheckbox"
         disabled="true"
-     ></mat-checkbox></td>
+    ></mat-checkbox></td>
     <td class="table-text" ></td>
     <td class="table-text" ></td>
     <td class="table-text" ></td>
   </tr>
-
 </table>
-
+<div class="btn-wrapper"><button class="create-object" (click)="createProject()">Project aanmaken</button></div>
 <div class="row">
   <div class="col-sm-6" style="text-align: right; padding-right: 80px;">
     <button [ngClass]="pageBtnLeft ? 'page-button' : 'page-button-disabled'" (click)="prevPage()">
@@ -43,3 +42,4 @@
   </div>
 </div>
 
+<app-projects-popup [project]="popupProject" [editMode]="popupEditMode" [(showPopup)]="showPopup" *ngIf="showPopup"></app-projects-popup>

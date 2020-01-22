@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Project} from '../profile-projects/project.model';
 import {Client} from './client.model';
 import {ProfileObjectsService} from '../profile-objects.service';
+import {User} from '../../../models/user.model';
+import {AuthService} from '../../../account/auth.service';
+import {HttpHandlerService} from '../../../http-handler.service';
 
 @Component({
   selector: 'app-profile-clients',
@@ -9,6 +12,7 @@ import {ProfileObjectsService} from '../profile-objects.service';
   styleUrls: ['./profile-clients.component.scss']
 })
 export class ProfileClientsComponent implements OnInit {
+  // private user: User;
   private maxCountPage = 6;
   public clients: Client[];
   public selectClients: Client[];
@@ -23,28 +27,26 @@ export class ProfileClientsComponent implements OnInit {
   public pageBtnLeft = true;
   public pageBtnRight = true;
 
-  constructor() {
-    this.clients = [
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland")
-    ];
-    this.checkEmptyRows();
-    this.checkButtons();
+  // popup
+  public showPopup = false;
+  public popupClient: Client;
+  public popupEditMode = false;
+
+  constructor(private auth: AuthService, private httpHandler : HttpHandlerService) {
   }
 
   ngOnInit() {
+    this.getClientsArray();
+  }
+
+  getClientsArray(){
+    return this.httpHandler.getClients(this.auth.getUserData().email).subscribe(
+      res => {
+        this.clients = res;
+        this.checkEmptyRows();
+        this.checkButtons();
+      }
+    );
   }
 
   // Wisselen van pagina's
@@ -55,6 +57,7 @@ export class ProfileClientsComponent implements OnInit {
   getMaximum() {
     return this.pageNumberMaximum;
   }
+
 
   nextPage() {
     if (!(this.pageNumberMinimum + this.maxCountPage > this.clients.length)) {
@@ -85,5 +88,17 @@ export class ProfileClientsComponent implements OnInit {
   private checkButtons() {
     this.pageBtnLeft = ProfileObjectsService.checkPrevButton(this.pageNumberMinimum);
     this.pageBtnRight = ProfileObjectsService.checkNextButton(this.pageNumberMinimum, this.maxCountPage, this.clients.length);
+  }
+
+  editClient(client: Client) {
+    this.popupClient = new Client(client.userEmail, client.clientName, client.clientPostalCode, client.clientHouseNumber, client.clientCity, client.clientCountry);
+    this.popupEditMode = true;
+    this.showPopup = true;
+  }
+
+  createClient(){
+    this.popupClient = new Client("","","",null,"","");
+    this.popupEditMode = false;
+    this.showPopup = true;
   }
 }

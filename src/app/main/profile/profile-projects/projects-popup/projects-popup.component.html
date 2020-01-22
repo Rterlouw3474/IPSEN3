@@ -1,0 +1,40 @@
+<div class="full-screen" (click)="closePopupOutsidePopup($event)">
+  <div class="popup-wrapper">
+    <div class="popup-container">
+      <div class="popup-header-display">
+        <h2 class="popup-header">{{popupHeader}}</h2>
+        <div class="close-button">
+          <i class="material-icons" (click)="closePopup()">
+            close
+          </i>
+        </div>
+
+      </div>
+
+      <div class="input-fields">
+        <form>
+          <mat-form-field>
+            <input matInput placeholder="Projectnaam" value="" [(ngModel)]="project.projectName" name="projectNaam">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Projectbeschrijving" [(ngModel)]="project.projectDesc"
+                      name="projectDesc"></textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker1" placeholder="Begindatum" [formControl]="beginDate">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker2" placeholder="Einddatum" [formControl]="endDate">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+          <div class="button-wrapper">
+            <button (click)="createProject()" class="btn">Opslaan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

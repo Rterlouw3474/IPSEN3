@@ -4,6 +4,7 @@ import {DeclarationsComponentModel} from './declarations.component.model';
 import {Router} from '@angular/router';
 import {ApplicationStateService} from '../../application-state.service';
 import {HttpHandlerService} from "../../http-handler.service";
+import {AuthService} from "../../account/auth.service";
 
 export abstract class DeclarationsComponent implements OnInit {
 
@@ -21,23 +22,12 @@ export abstract class DeclarationsComponent implements OnInit {
   private generateEmptyRows: number;
   public emptyRowsList;
 
-  public showEdit = false;
-
-  isEditHidden(){
-    if(this.model.selectedDeclarations.length==1){
-      return false
-    } else{
-      return true
-    }
-  }
-
-
   public allCheckboxesSelected = false;
   public parentCheckboxSelected = false;
 
-  protected constructor(private router: Router, private applicationStateService: ApplicationStateService, private http: HttpHandlerService) {
-    this.model = new DeclarationsComponentModel(http);
-    this.myViewModel = new DeclarationsComponentModel(http);
+  protected constructor(private router: Router, private applicationStateService: ApplicationStateService, private http: HttpHandlerService, private auth:AuthService) {
+    this.model = new DeclarationsComponentModel(http, auth);
+    this.myViewModel = new DeclarationsComponentModel(http, auth);
   }
 
   ngOnInit() {
@@ -72,10 +62,11 @@ export abstract class DeclarationsComponent implements OnInit {
   OnDeleteEvent(){
     const selectedDeclaration = this.model.selectedDeclarations[0].declaration;
     this.http
-      .deleteDeclaration("/declaration/delete/" + "test@test.test" + "/" + selectedDeclaration.decDesc +"/" + selectedDeclaration.decDate)
+      .deleteDeclaration("/declaration/delete/" + this.auth.getUserData().email + "/" + selectedDeclaration.decDesc +"/" + selectedDeclaration.decDate)
       .subscribe(
         responseData => {
           this.model.getDeclarationArray();
+
         }
       );
     this.resetSelectedDeclarations();
@@ -92,6 +83,15 @@ export abstract class DeclarationsComponent implements OnInit {
       this.model.getDeclarationArray();
     });
   }
+
+  getSlicedDeclaration(){
+    try{
+      return this.model.declarations.slice(this.getMinimum() , this.getMaximum());
+    }catch (e) {
+      console.log("no declarations")
+    }
+  }
+
 
   createDeclarationCopy(declaration: Declaration, ) : Declaration{
     if (declaration.decDesc.includes("[")) {
