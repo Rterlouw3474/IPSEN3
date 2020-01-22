@@ -1,7 +1,7 @@
 <div class="container dashboard">
 
   <div class="row" style="padding-top: 100px; padding-left: 100px">
-    <form class="example-form">
+    <form class="example-form" (ngSubmit)="onCreateDeclaration(declaration)" #declaration="ngForm">
       <div class="col-sm-3">
         <h2>Beginlocatie</h2>
         <mat-form-field class="example-full-width" style="border-width: 0">
@@ -102,7 +102,8 @@
   </div>
 
   <div>
-    <button (click)="onCreateDeclaration()">create dec</button>
+    <button type="submit">create dec</button>
+    <button type="button" (click)="automaticallyFillInAddress()">Test</button>
   </div>
 </div>
 

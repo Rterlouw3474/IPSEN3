@@ -1,17 +1,36 @@
 import { Injectable } from "@angular/core";
 import {
-  HttpClient, HttpErrorResponse,
-  HttpHeaders
-} from "@angular/common/http";
+  HttpClient,
+  HttpHeaders, HttpParams
+} from '@angular/common/http';
 import {User} from "./main/profile/user.object";
-import {Observable, throwError} from "rxjs";
-import {catchError, map} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
 import {Declaration} from "./main/declarations/declaration.object";
+
+export interface originDestinationResponse {
+  beginStraatnaam: string
+  beginHuisnummer: number
+  beginPostcode: string
+  beginPlaatsnaam: string
+  beginLand: string
+
+  eindStraatnaam: string
+  eindHuisnummer: number
+  eindPostcode: string
+  eindPlaatsnaam: string
+  eindLand: string
+
+  distance: string
+}
 
 @Injectable()
 export class HttpHandlerService {
   options = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
-  databaseUrl: string = "http://h2858995.stratoserver.net:8080";
+  databaseUrl: string = "http://localhost:8080";
+  googleAPI: string = "/googleapi"
+  response: any;
+    // "http://h2858995.stratoserver.net:8080";
 
   constructor(private http: HttpClient) {
   }
@@ -40,22 +59,27 @@ export class HttpHandlerService {
     return this.http.get(this.databaseUrl + url);
   }
 
-  deleteDeclaration(url:string){
+  deleteDeclaration(url: string) {
     return this.http.delete(this.databaseUrl + url)
   }
 
-  getDeclarations(email:string): Observable<Declaration[]>{
+  getDeclarations(email: string): Observable<Declaration[]> {
     //return this.http.get(this.databaseUrl + "/declaration/getDeclarationsByOwnerID/" + ownerId);
     return this.http
       .get(this.databaseUrl + "/declaration/get/" + email)
-      .pipe(map(res => <Declaration[]>res));
+      .pipe(map(res => <Declaration[]> res));
   }
 
+  getOriginDestinationAddress(origin: string, destination: string, url: string) {
 
+    const parameters = new HttpParams()
+      .set('origin', origin)
+      .set('destination', destination);
 
-
-
-
-
+    return this.http
+      .get(this.databaseUrl + this.googleAPI + url + "/" + origin + "/" + destination)
+      .subscribe(response => {
+        this.response = response;
+      });
+  }
 }
-
