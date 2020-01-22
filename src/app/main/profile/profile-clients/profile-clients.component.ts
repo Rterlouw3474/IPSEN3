@@ -4,6 +4,7 @@ import {Client} from './client.model';
 import {ProfileObjectsService} from '../profile-objects.service';
 import {User} from '../../../models/user.model';
 import {AuthService} from '../../../account/auth.service';
+import {HttpHandlerService} from '../../../http-handler.service';
 
 @Component({
   selector: 'app-profile-clients',
@@ -31,29 +32,21 @@ export class ProfileClientsComponent implements OnInit {
   public popupClient: Client;
   public popupEditMode = false;
 
-  constructor(private auth: AuthService) {
-
-    this.clients = [
-      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client("", "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland")
-    ];
-    this.checkEmptyRows();
-    this.checkButtons();
+  constructor(private auth: AuthService, private httpHandler : HttpHandlerService) {
   }
 
   ngOnInit() {
+    this.getClientsArray();
+  }
+
+  getClientsArray(){
+    return this.httpHandler.getClients(this.auth.getUserData().email).subscribe(
+      res => {
+        this.clients = res;
+        this.checkEmptyRows();
+        this.checkButtons();
+      }
+    );
   }
 
   // Wisselen van pagina's
@@ -64,6 +57,7 @@ export class ProfileClientsComponent implements OnInit {
   getMaximum() {
     return this.pageNumberMaximum;
   }
+
 
   nextPage() {
     if (!(this.pageNumberMinimum + this.maxCountPage > this.clients.length)) {
