@@ -21,7 +21,7 @@ export class DeclarationsComponentModel {
 
 
   getDeclarationArray(){
-    this.http.getDeclarations(this.auth.getUserData().email).subscribe(
+    return this.http.getDeclarations(this.auth.getUserData().email).subscribe(
       res => {
         this.declarations = res;
       }
