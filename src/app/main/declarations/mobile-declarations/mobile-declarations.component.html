@@ -6,8 +6,9 @@
           (click)="onSelectAllCheckboxes(checkbox.checked)"
           [(ngModel)]="parentCheckboxSelected"
           style="margin-left: 40px"></mat-checkbox></th>
-      <th class="dec-description-text" style="width: 40%">Omschrijving</th>
+      <th class="dec-description-text" style="width: 100%" *ngIf="isMobile() == true">Omschrijving</th>
       <ng-container *ngIf="isMobile() == false">
+        <th class="dec-description-text" style="width: 40%">Omschrijving</th>
         <th class="dec-description-text" style="width: 15%">Auto</th>
         <th class="dec-description-text" style="width: 15%">Datum</th>
         <th class="dec-description-text" style="width: 15%">Aantal kilometers</th>
@@ -41,7 +42,7 @@
     </tr>
   </table>
 
-  <div class="row" style="margin-left: 390px">
+  <div class="row" style="margin-left: 390px" *ngIf="isMobile() == false">
     <div class="col-sm-2">
       <button [ngClass]="pageBtnLeft ? 'page-button' : 'page-button-disabled'" (click)="prevPage()"><<</button>
     </div>
@@ -54,7 +55,7 @@
     </div>
   </div>
 
-  <div class="row" style="margin-left: 336px">
+  <div class="row"> <!--TODO waarom werkt [ngClass]="{'desktop': !isMobile()}" hier niet??!-->
     <div class="col-sm-2">
       <div class="dec-edit-button"
            [ngClass]="{'dec-edit-button-animation': model.selectedDeclarations.length==1,

@@ -63,7 +63,7 @@ export class AppRoutingModule {
   public constructor(private router: Router,
                      private applicationStateService: ApplicationStateService) {
 
-    if (applicationStateService.getIsMobileResolution()) {
+    if (true ) { // applicationStateService.getIsMobileResolution()) {
       router.resetConfig(mobileRoutes);
     }
   }
