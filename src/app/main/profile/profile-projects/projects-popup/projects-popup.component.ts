@@ -18,6 +18,8 @@ export class ProjectsPopupComponent implements OnInit {
   @Input() showPopup: boolean;
   @Output() showPopupChange = new EventEmitter<boolean>();
 
+  @Output() returnChange = new EventEmitter<boolean>();
+
   beginDate: FormControl;
   endDate: FormControl;
 
@@ -53,7 +55,12 @@ export class ProjectsPopupComponent implements OnInit {
 
     const projectToPost = new Project(this.auth.getUserData().email, this.project.projectName, this.project.projectDesc, newBeginDate, newEndDate);
     console.log(projectToPost);
-    this.httpHandler.postProject(projectToPost, "/project/create");
+    if (this.editMode) {
+      this.httpHandler.postProject(projectToPost, "/project/update");
+    } else {
+      this.httpHandler.postProject(projectToPost, "/project/create");
+    }
+    this.returnChange.emit(true);
     this.closePopup();
   }
 

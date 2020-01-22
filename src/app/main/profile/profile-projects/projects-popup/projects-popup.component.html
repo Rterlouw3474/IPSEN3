@@ -14,7 +14,7 @@
       <div class="input-fields">
         <form>
           <mat-form-field>
-            <input matInput placeholder="Projectnaam" value="" [(ngModel)]="project.projectName" name="projectNaam">
+            <input matInput placeholder="Projectnaam" disabled="{{editMode}}" value="" [(ngModel)]="project.projectName" name="projectNaam">
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <textarea matInput placeholder="Projectbeschrijving" [(ngModel)]="project.projectDesc"

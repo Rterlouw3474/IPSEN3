@@ -49,6 +49,7 @@ export class HttpHandlerService {
   }
 
   postProject(project: Project, extraUrl: string){
+    console.log(project);
     this.http.post(
       this.databaseUrl + extraUrl, project, this.options
     ).subscribe(responseData => {
@@ -86,7 +87,11 @@ export class HttpHandlerService {
   }
 
   deleteDeclaration(url:string){
-    return this.http.delete(this.databaseUrl + url)
+    return this.http.delete(this.databaseUrl + url);
+  }
+
+  deleteProject(url:string) {
+    return this.http.delete(this.databaseUrl + url);
   }
 
   getDeclarations(email:string): Observable<Declaration[]>{
