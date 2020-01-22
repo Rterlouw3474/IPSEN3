@@ -108,21 +108,26 @@ export class HttpHandlerService {
     return this.http.delete(this.databaseUrl + url)
   }
 
-<<<<<<< HEAD
   getDeclarations(email: string): Observable<Declaration[]> {
-=======
-  getDeclarations(email:string): Observable<Declaration[]>{
     // console.log(this.databaseUrl + "/declaration/get/" + email);
->>>>>>> 39a1896c129b9bf830b866a30cbbc8660838d4f9
     //return this.http.get(this.databaseUrl + "/declaration/getDeclarationsByOwnerID/" + ownerId);
     return this.http
       .get(this.databaseUrl + "/declaration/get/" + email)
       .pipe(map(res => <Declaration[]> res));
   }
 
-<<<<<<< HEAD
   getOriginDestinationAddress(origin: string, destination: string, url: string) {
-=======
+    const parameters = new HttpParams()
+      .set('origin', origin)
+      .set('destination', destination);
+
+    return this.http
+      .get(this.databaseUrl + this.googleAPI + url + "/" + origin + "/" + destination)
+      .subscribe(response => {
+        this.response = response;
+      });
+  }
+
   getProjects(email:string): Observable<Project[]> {
     // console.log(this.databaseUrl + "/project/get/" + email);
     return this.http
@@ -136,24 +141,5 @@ export class HttpHandlerService {
       .get(this.databaseUrl + "/client/get/" + email)
       .pipe(map(res =><Client[]>res))
   }
->>>>>>> 39a1896c129b9bf830b866a30cbbc8660838d4f9
 
-    const parameters = new HttpParams()
-      .set('origin', origin)
-      .set('destination', destination);
-
-<<<<<<< HEAD
-    return this.http
-      .get(this.databaseUrl + this.googleAPI + url + "/" + origin + "/" + destination)
-      .subscribe(response => {
-        this.response = response;
-      });
-  }
-=======
-
-
-
-
-
->>>>>>> 39a1896c129b9bf830b866a30cbbc8660838d4f9
 }
