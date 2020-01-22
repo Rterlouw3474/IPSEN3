@@ -4,15 +4,17 @@
   width: 100%;
   height: 900px;
   background-color: rgba(#000, 0.6);
-  top:0;
-  left:0;
-  z-index:1001;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+
   .popup-wrapper {
     width: 100%;
     max-width: 1056px;
     height: 535px;
-    margin-left:auto;
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
+
     .popup-container {
       width: 45%;
       height: 100%;
@@ -26,35 +28,41 @@
 
       .popup-header {
         text-align: center;
-        width:100%;
+        width: 100%;
         margin-bottom: 45px;
       }
-      .close-button{
-        i{
-          color:#5D656F;
-          cursor:pointer;
+
+      .close-button {
+        i {
+          color: #5D656F;
+          cursor: pointer;
           font-size: 32px;
           //font-weight: bold;
           position: absolute;
           top: 260px;
-          right:320px;
+          right: 320px;
         }
 
       }
+
       .input-fields {
-        width:100%;
+        width: 100%;
+
         mat-form-field {
           display: block;
           width: 100%;
           font-size: 16px;
+
           input:focus {
             border-style: none;
           }
         }
+
         .button-wrapper {
           width: 100%;
           text-align: center;
-          button{
+
+          button {
             margin-top: 8px;
             display: inline-block;
             width: 110px;

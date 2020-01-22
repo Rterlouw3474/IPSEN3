@@ -133,7 +133,7 @@ export class AuthService {
   public getUserData() {
     this.subscription = this.userProfile$.subscribe(userData => {
       console.log(userData);
-      if (userData.sub.includes("google")) {
+      if (userData.sub.includes('google')) {
         this.username = userData.name;
       } else {
         this.username = userData.nickname;
@@ -144,7 +144,7 @@ export class AuthService {
         this.username,
         userData.picture,
         userData.sub
-      )
+      );
     });
     return this.user;
   }

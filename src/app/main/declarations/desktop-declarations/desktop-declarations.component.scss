@@ -2,50 +2,50 @@ h1 {
   text-align: center;
 }
 
-.dashboard{
-  top:470px;
+.dashboard {
+  top: 470px;
   width: 1056px;
   height: 900px;
   background-color: #EBEFF0;
   box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 }
 
-.dashboard-text{
+.dashboard-text {
   text-align: center;
   color: #5D656F;
 }
 
-.dashboard-dec-row{
+.dashboard-dec-row {
   width: 1100px;
   height: 60px;
 }
 
-.declaration-declarations{
+.declaration-declarations {
   width: 1100px;
   height: 750px;
 }
 
-.dec-description-text{
+.dec-description-text {
   text-align: center;
   color: #858C93;
   font-size: 20px;
 }
 
-.dec-text{
+.dec-text {
   text-align: center;
   color: #44524F;
   font-size: 19px;
 }
 
-.notOdd{
+.notOdd {
   background-color: #C4EAE1;
 }
 
-.new-declaration{
+.new-declaration {
   background: url("src/assets/images/newdec80.png") no-repeat;
   height: 80px;
   width: 80px;
-  border:none;
+  border: none;
   z-index: 10;
   position: fixed;
   bottom: 10px;
@@ -53,12 +53,11 @@ h1 {
 }
 
 
-
-.page-button{
+.page-button {
   box-shadow: 0 2px 3px rgba(39, 39, 39, 0.5);
   background-color: #56C8AD;
   border-radius: 8%;
-  width:92px;
+  width: 92px;
   height: 35px;
   position: fixed;
   bottom: 128px;
@@ -67,7 +66,7 @@ h1 {
   color: white;
 }
 
-.page-counter{
+.page-counter {
   position: fixed;
   bottom: 120px;
   right: 90px;
@@ -76,7 +75,7 @@ h1 {
   margin-left: 220px;
 }
 
-.dec-edit-button-animation{
+.dec-edit-button-animation {
   -webkit-animation: fadein 0.11s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: fadein 0.11s; /* Firefox < 16 */
   -ms-animation: fadein 0.11s; /* Internet Explorer */
@@ -84,7 +83,7 @@ h1 {
   animation: fadein 0.11s;
 }
 
-.dec-edit-button-animation2{
+.dec-edit-button-animation2 {
   -webkit-animation: fadeout 0.11s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: fadeout 0.11s; /* Firefox < 16 */
   -ms-animation: fadeout 0.11s; /* Internet Explorer */
@@ -94,12 +93,12 @@ h1 {
   opacity: 0;
 }
 
-.dec-edit-button:hover{
+.dec-edit-button:hover {
   cursor: pointer;
   transform: scale(1.088);
 }
 
-.dec-edit-button-animation:active{
+.dec-edit-button-animation:active {
   cursor: pointer;
   -webkit-animation: scaledown 0.11s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: scaledown 0.11s; /* Firefox < 16 */
@@ -109,7 +108,7 @@ h1 {
   transform: scale(1.0);
 }
 
-.dec-edit-button{
+.dec-edit-button {
   box-shadow: 0 2px 3px rgba(39, 39, 39, 0.5);
   transition: transform 0.095s ease;
   background-color: #9ADECE;
@@ -120,11 +119,11 @@ h1 {
   bottom: 38px;
 }
 
-.dec-edit-button2{
+.dec-edit-button2 {
   bottom: -45px;
 }
 
-.dec-edit-button2:hover{
+.dec-edit-button2:hover {
   opacity: 0;
   cursor: pointer;
 }
@@ -134,7 +133,7 @@ h1 {
     opacity: 0;
     bottom: 0px;
   }
-  to   {
+  to {
     opacity: 1;
     bottom: 38px;
   }
@@ -146,20 +145,20 @@ h1 {
     opacity: 1;
     bottom: 38px;
   }
-  to   {
+  to {
     opacity: 0;
     bottom: 0px;
     cursor: pointer;
   }
 }
 
-.material-design-icons{
+.material-design-icons {
   fill: #5D656F;
   margin-left: 12px;
   margin-top: 12px;
 }
 
-.material-design-icons2{
+.material-design-icons2 {
   fill: #5D656F;
   margin-left: 15px;
   margin-top: 15px;

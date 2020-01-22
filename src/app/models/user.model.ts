@@ -4,5 +4,6 @@ export class User {
     public username: string,
     public profileImage: string,
     private accessProvider: string,
-  ) { }
+  ) {
+  }
 }

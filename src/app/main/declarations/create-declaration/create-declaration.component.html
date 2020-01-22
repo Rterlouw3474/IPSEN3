@@ -1,17 +1,20 @@
 <div class="container dashboard">
 
   <div class="row" style="padding-top: 100px; padding-left: 100px">
-    <form class="example-form" (ngSubmit)="onCreateDeclaration(declaration)" #declaration="ngForm">
+    <form class="example-form" (ngSubmit)="onCreateDeclaration()" #declaration="ngForm">
       <div class="col-sm-3">
         <h2>Beginlocatie</h2>
         <mat-form-field class="example-full-width" style="border-width: 0">
-          <input matInput placeholder="Postcode" value="" [(ngModel)]="beginPostcode" name="beginPostcode">
+          <input matInput placeholder="Postcode" value="" [(ngModel)]="beginPostcode"
+                 (change)="automaticallyFillInAddress()" name="beginPostcode">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Huisnummer" value="" [(ngModel)]="beginHuisnummer" name="beginHuisnummer">
+          <input matInput placeholder="Huisnummer" value="" [(ngModel)]="beginHuisnummer"
+                 (change)="automaticallyFillInAddress()" name="beginHuisnummer">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Straatnaam" value="" [(ngModel)]="beginStraatnaam" name="beginStraatnaam">
+          <input matInput placeholder="Straatnaam" value="" [(ngModel)]="beginStraatnaam"
+                 (change)="automaticallyFillInAddress()" name="beginStraatnaam">
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Plaatsnaam" value="" [(ngModel)]="beginPlaatsnaam" name="beginPlaatsnaam">
@@ -24,13 +27,16 @@
       <div class="col-sm-3">
         <h2>Eindlocatie</h2>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Postcode" value="" [(ngModel)]="eindPostcode" name="eindPostcode">
+          <input matInput placeholder="Postcode" value="" [(ngModel)]="eindPostcode"
+                 (change)="automaticallyFillInAddress()" name="eindPostcode">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Huisnummer" value="" [(ngModel)]="eindHuisnummer" name="eindHuisnummer">
+          <input matInput placeholder="Huisnummer" value="" [(ngModel)]="eindHuisnummer"
+                 (change)="automaticallyFillInAddress()" name="eindHuisnummer">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Straatnaam" value="" [(ngModel)]="eindStraatnaam" name="eindStraatnaam">
+          <input matInput placeholder="Straatnaam" value="" [(ngModel)]="eindStraatnaam"
+                 (change)="automaticallyFillInAddress()" name="eindStraatnaam">
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Plaatsnaam" value="" [(ngModel)]="eindPlaatsnaam" name="eindPlaatsnaam">
@@ -57,7 +63,8 @@
 
     <div class="col-xs-1" style="padding-top: 80px">
       <div ngbDropdown class="dropdown">
-        <button style="width: 130px" ngbDropdownToggle class="btn btn-default dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button style="width: 130px" ngbDropdownToggle class="btn btn-default dropdown-toggle" type="button"
+                id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Klant
           <span class="caret"></span>
         </button>
@@ -69,7 +76,8 @@
       </div>
 
       <div ngbDropdown class="dropdown" style="padding-top: 16px">
-        <button style="width: 130px" ngbDropdownToggle class="btn btn-default dropdown-toggle" type="button" id="about-us2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button style="width: 130px" ngbDropdownToggle class="btn btn-default dropdown-toggle" type="button"
+                id="about-us2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Project
           <span class="caret"></span>
         </button>
@@ -81,7 +89,8 @@
       </div>
 
       <div ngbDropdown class="dropdown" style="padding-top: 16px">
-        <button style="width: 130px" ngbDropdownToggle class="btn btn-default dropdown-toggle" type="button" id="about-us3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button style="width: 130px" ngbDropdownToggle class="btn btn-default dropdown-toggle" type="button"
+                id="about-us3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Auto
           <span class="caret"></span>
         </button>
@@ -94,9 +103,9 @@
     </div>
 
     <div class="col-xs-1" style="padding-top: 80px; padding-left: 60px">
-      <button style="width: 40px" class="btn btn-success dropdown-toggle" type="button"> + </button>
-      <button style="width: 40px; margin-top: 16px" class="btn btn-success dropdown-toggle" type="button"> + </button>
-      <button style="width: 40px; margin-top: 16px" class="btn btn-success dropdown-toggle" type="button"> + </button>
+      <button style="width: 40px" class="btn btn-success dropdown-toggle" type="button"> +</button>
+      <button style="width: 40px; margin-top: 16px" class="btn btn-success dropdown-toggle" type="button"> +</button>
+      <button style="width: 40px; margin-top: 16px" class="btn btn-success dropdown-toggle" type="button"> +</button>
     </div>
 
   </div>

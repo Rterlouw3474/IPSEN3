@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {Project} from '../profile-projects/project.model';
+import {Component, OnInit} from '@angular/core';
 import {Client} from './client.model';
 import {ProfileObjectsService} from '../profile-objects.service';
-import {User} from '../../../models/user.model';
 import {AuthService} from '../../../account/auth.service';
 import {HttpHandlerService} from '../../../http-handler.service';
 
@@ -32,14 +30,14 @@ export class ProfileClientsComponent implements OnInit {
   public popupClient: Client;
   public popupEditMode = false;
 
-  constructor(private auth: AuthService, private httpHandler : HttpHandlerService) {
+  constructor(private auth: AuthService, private httpHandler: HttpHandlerService) {
   }
 
   ngOnInit() {
     this.getClientsArray();
   }
 
-  getClientsArray(){
+  getClientsArray() {
     return this.httpHandler.getClients(this.auth.getUserData().email).subscribe(
       res => {
         this.clients = res;
@@ -79,7 +77,7 @@ export class ProfileClientsComponent implements OnInit {
 
   private checkEmptyRows() {
     this.generateEmptyRows = this.pageNumberMaximum - this.clients.length;
-    if (this.generateEmptyRows < 1){
+    if (this.generateEmptyRows < 1) {
       this.generateEmptyRows = 0;
     }
     this.emptyRowsList = Array(this.generateEmptyRows).fill(1);
@@ -96,8 +94,8 @@ export class ProfileClientsComponent implements OnInit {
     this.showPopup = true;
   }
 
-  createClient(){
-    this.popupClient = new Client("","","",null,"","");
+  createClient() {
+    this.popupClient = new Client('', '', '', null, '', '');
     this.popupEditMode = false;
     this.showPopup = true;
   }

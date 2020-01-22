@@ -1,18 +1,15 @@
-import { Injectable } from "@angular/core";
-import {
-  HttpClient,
-  HttpHeaders, HttpParams
-} from '@angular/common/http';
-import {User} from "./main/profile/user.object";
-import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
-import {Declaration} from "./main/declarations/declaration.object";
-import {DatabaseUser} from "./models/databaseuser.model";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {User} from './main/profile/user.object';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {Declaration} from './main/declarations/declaration.object';
+import {DatabaseUser} from './models/databaseuser.model';
 import {Project} from './main/profile/profile-projects/project.model';
 import {Client} from './main/profile/profile-clients/client.model';
-import {RDWCar} from "./models/rdwcar.model";
-import {RDWFuel} from "./models/rdwfuel.model";
-import {Car} from "./models/car.model";
+import {RDWCar} from './models/rdwcar.model';
+import {RDWFuel} from './models/rdwfuel.model';
+import {Car} from './models/car.model';
 
 
 export interface originDestinationResponse {
@@ -34,10 +31,11 @@ export interface originDestinationResponse {
 @Injectable()
 export class HttpHandlerService {
   options = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
-  databaseUrl: string = "http://localhost:8080";
-  googleAPI: string = "/googleapi"
+  databaseUrl: string = 'http://localhost:8080';
+  googleAPI: string = '/googleapi';
   response: any;
-    // "http://h2858995.stratoserver.net:8080";
+
+  // "http://h2858995.stratoserver.net:8080";
 
   constructor(private http: HttpClient) {
   }
@@ -51,23 +49,23 @@ export class HttpHandlerService {
     this.http.post(
       this.databaseUrl + extraUrl, user, this.options
     ).subscribe(responseData => {
-      console.log(responseData)
+      console.log(responseData);
     });
   }
 
   postDeclaration(declaration: Declaration, extraUrl: string) {
     return this.http.post(
       this.databaseUrl + extraUrl, declaration, this.options
-    )
+    );
   }
 
-  updateUsername(user_email:string, new_name:string) {
+  updateUsername(user_email: string, new_name: string) {
     return this.http.post(
-      this.databaseUrl + "/user/changename/" + user_email + "/" + new_name, this.options
-    )
+      this.databaseUrl + '/user/changename/' + user_email + '/' + new_name, this.options
+    );
   }
 
-  postProject(project: Project, extraUrl: string){
+  postProject(project: Project, extraUrl: string) {
     this.http.post(
       this.databaseUrl + extraUrl, project, this.options
     ).subscribe(responseData => {
@@ -75,44 +73,44 @@ export class HttpHandlerService {
     });
   }
 
-  postClient(client: Client, extraUrl: string){
+  postClient(client: Client, extraUrl: string) {
     this.http.post(
       this.databaseUrl + extraUrl, client, this.options
     ).subscribe(responseData => {
-      console.log(responseData)
+      console.log(responseData);
     });
   }
 
-  postCar(car : Car, extraUrl: string){
+  postCar(car: Car, extraUrl: string) {
     this.http.post(
       this.databaseUrl + extraUrl, car, this.options
     ).subscribe(responseData => {
-      console.log(responseData)
+      console.log(responseData);
     });
   }
 
 
-  getUser(userEmail:string): Observable<DatabaseUser>{
-    return this.http.get(this.databaseUrl + "/user/get/" + userEmail).pipe(map(res => <DatabaseUser>res));
+  getUser(userEmail: string): Observable<DatabaseUser> {
+    return this.http.get(this.databaseUrl + '/user/get/' + userEmail).pipe(map(res => <DatabaseUser> res));
   }
 
-  getRDWCar(licencePlate:string): Observable<RDWCar[]>{
-    return this.http.get(this.databaseUrl + "/rdw/get/car/" + licencePlate).pipe(map(res => <RDWCar[]>res));
+  getRDWCar(licencePlate: string): Observable<RDWCar[]> {
+    return this.http.get(this.databaseUrl + '/rdw/get/car/' + licencePlate).pipe(map(res => <RDWCar[]> res));
   }
 
-  getRDWFuel(licencePlate:string): Observable<RDWFuel[]>{
-    return this.http.get(this.databaseUrl + "/rdw/get/fuel/" + licencePlate).pipe(map(res => <RDWFuel[]>res));
+  getRDWFuel(licencePlate: string): Observable<RDWFuel[]> {
+    return this.http.get(this.databaseUrl + '/rdw/get/fuel/' + licencePlate).pipe(map(res => <RDWFuel[]> res));
   }
 
   deleteDeclaration(url: string) {
-    return this.http.delete(this.databaseUrl + url)
+    return this.http.delete(this.databaseUrl + url);
   }
 
   getDeclarations(email: string): Observable<Declaration[]> {
     // console.log(this.databaseUrl + "/declaration/get/" + email);
     //return this.http.get(this.databaseUrl + "/declaration/getDeclarationsByOwnerID/" + ownerId);
     return this.http
-      .get(this.databaseUrl + "/declaration/get/" + email)
+      .get(this.databaseUrl + '/declaration/get/' + email)
       .pipe(map(res => <Declaration[]> res));
   }
 
@@ -122,24 +120,25 @@ export class HttpHandlerService {
       .set('destination', destination);
 
     return this.http
-      .get(this.databaseUrl + this.googleAPI + url + "/" + origin + "/" + destination)
-      .subscribe(response => {
+      .get(this.databaseUrl + this.googleAPI + url + '/' + origin + '/' + destination)
+      .pipe(map(response => {
         this.response = response;
-      });
+        console.log(response);
+      }));
   }
 
-  getProjects(email:string): Observable<Project[]> {
+  getProjects(email: string): Observable<Project[]> {
     // console.log(this.databaseUrl + "/project/get/" + email);
     return this.http
-      .get(this.databaseUrl + "/project/get/" + email)
-      .pipe(map(res =><Project[]>res))
+      .get(this.databaseUrl + '/project/get/' + email)
+      .pipe(map(res => <Project[]> res));
   }
 
-  getClients(email:string): Observable<Client[]> {
+  getClients(email: string): Observable<Client[]> {
     // console.log(this.databaseUrl + "/client/get/" + email);
     return this.http
-      .get(this.databaseUrl + "/client/get/" + email)
-      .pipe(map(res =><Client[]>res))
+      .get(this.databaseUrl + '/client/get/' + email)
+      .pipe(map(res => <Client[]> res));
   }
 
 }

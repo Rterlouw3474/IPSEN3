@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
@@ -30,9 +29,9 @@ $KilometerRegistratieFrontend-theme: mat-light-theme($KilometerRegistratieFronte
   //background: url("assets/images/traffic-jamm.jpg") no-repeat 0 0 fixed;
   background-color: #9ADECE;
   -webkit-background-size: cover; /* For WebKit*/
-  -moz-background-size: cover;    /* Mozilla*/
-  -o-background-size: cover;      /* Opera*/
-  background-size: cover;         /* Generic*/
+  -moz-background-size: cover; /* Mozilla*/
+  -o-background-size: cover; /* Opera*/
+  background-size: cover; /* Generic*/
 }
 
 button, a {
@@ -44,7 +43,7 @@ input {
 
 input:focus {
   outline: none !important;
-  border:5px solid #56c8ad;
+  border: 5px solid #56c8ad;
   border-radius: 5px;
 }
 
@@ -58,17 +57,18 @@ input:focus {
   transform: translate(-50%, -50%);
 }
 
-.page-button{
+.page-button {
   box-shadow: 0 2px 3px rgba(39, 39, 39, 0.5);
   background-color: #56C8AD;
   border-radius: 8%;
-  width:92px;
+  width: 92px;
   height: 35px;
   position: fixed;
   bottom: 128px;
   border: none;
   font-size: 24px;
   color: white;
+
   &:hover {
     box-shadow: 0 1px 2px rgba(39, 39, 39, 0.5);
     opacity: 0.7;
@@ -88,26 +88,28 @@ input:focus {
   border: none;
   font-size: 18px;
   color: #5D656F;
+
   &:hover {
     box-shadow: 0 1px 2px rgba(39, 39, 39, 0.5);
     opacity: 0.7;
   }
+
   &:focus {
     outline: 0;
   }
 }
 
-.page-button:focus, .page-button-disabled:focus{
+.page-button:focus, .page-button-disabled:focus {
   outline: 0;
 }
 
-.page-button-disabled{
+.page-button-disabled {
   background-color: #9adfcd;
-  color:white;
+  color: white;
   cursor: default;
   box-shadow: 0 2px 3px rgba(39, 39, 39, 0.5);
   border-radius: 8%;
-  width:92px;
+  width: 92px;
   height: 35px;
   position: fixed;
   bottom: 128px;
@@ -115,8 +117,17 @@ input:focus {
   font-size: 24px;
 }
 
-html, body { height: 100%; background-color: #9ADECE;}
-html{
+html, body {
+  height: 100%;
   background-color: #9ADECE;
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;background-color: #9ADECE; }
+
+html {
+  background-color: #9ADECE;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #9ADECE;
+}

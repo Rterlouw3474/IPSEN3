@@ -20,16 +20,14 @@ import {ProjectsPopupComponent} from './main/profile/profile-projects/projects-p
 import {DesktopDashboardComponent} from './main/dashboard/desktop/desktop-dashboard.component';
 import {MobileDashboardComponent} from './main/dashboard/mobile/mobile-dashboard.component';
 import {HttpHandlerService} from './http-handler.service';
-import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {DatePipe, HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DesktopDeclarationsComponent} from './main/declarations/desktop-declarations/desktop-declarations.component';
 import {MobileDeclarationsComponent} from './main/declarations/mobile-declarations/mobile-declarations.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatDatepickerModule, MatNativeDateModule} from '@angular/material';
-import {MAT_DATE_LOCALE} from '@angular/material';
-import {DatePipe} from '@angular/common';
-import { ClientsPopupComponent } from './main/profile/profile-clients/clients-popup/clients-popup.component';
-import {CarsPopupComponent} from "./main/profile/profile-cars/cars-popup/cars-popup.component";
+import {MAT_DATE_LOCALE, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+import {ClientsPopupComponent} from './main/profile/profile-clients/clients-popup/clients-popup.component';
+import {CarsPopupComponent} from './main/profile/profile-cars/cars-popup/cars-popup.component';
 
 
 @NgModule({
@@ -77,7 +75,11 @@ import {CarsPopupComponent} from "./main/profile/profile-cars/cars-popup/cars-po
     ReactiveFormsModule
 
   ],
-  providers: [HttpHandlerService, {provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: MAT_DATE_LOCALE, useValue: 'nl-NL'}, DatePipe],
+  providers: [HttpHandlerService, {provide: LocationStrategy, useClass: HashLocationStrategy}, {
+    provide: MAT_DATE_LOCALE,
+    useValue: 'nl-NL'
+  }, DatePipe],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+}

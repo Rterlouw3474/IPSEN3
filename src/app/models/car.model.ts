@@ -1,7 +1,7 @@
 export class Car {
 
   licencePlate: string;
-  userEmail : string;
+  userEmail: string;
   carName: string;
   carBrand: string;
   carType: string;

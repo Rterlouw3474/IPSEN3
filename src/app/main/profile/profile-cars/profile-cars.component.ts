@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {Client} from '../profile-clients/client.model';
+import {Component, OnInit} from '@angular/core';
 import {Car} from '../../../models/car.model';
 import {ProfileObjectsService} from '../profile-objects.service';
 import {AuthService} from '../../../account/auth.service';
@@ -31,19 +30,19 @@ export class ProfileCarsComponent implements OnInit {
 
   constructor(private auth: AuthService) {
     this.cars = [
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine")
+      new Car('ole@gmail.com', 'AB-123-C', 'Golf', 'VW', 'Hatchback', 'Donkerblauw', 'benzine'),
+      new Car('ole@gmail.com', 'AB-123-C', 'Golf', 'VW', 'Hatchback', 'Donkerblauw', 'benzine'),
+      new Car('ole@gmail.com', 'AB-123-C', 'Golf', 'VW', 'Hatchback', 'Donkerblauw', 'benzine'),
+      new Car('ole@gmail.com', 'AB-123-C', 'Golf', 'VW', 'Hatchback', 'Donkerblauw', 'benzine'),
+      new Car('ole@gmail.com', 'AB-123-C', 'Golf', 'VW', 'Hatchback', 'Donkerblauw', 'benzine'),
+      new Car('ole@gmail.com', 'AB-123-C', 'Golf', 'VW', 'Hatchback', 'Donkerblauw', 'benzine'),
+      new Car('ole@gmail.com', 'AB-123-C', 'Golf', 'VW', 'Hatchback', 'Donkerblauw', 'benzine'),
+      new Car('ole@gmail.com', 'AB-123-C', 'Golf', 'VW', 'Hatchback', 'Donkerblauw', 'benzine'),
+      new Car('ole@gmail.com', 'AB-123-C', 'Golf', 'VW', 'Hatchback', 'Donkerblauw', 'benzine'),
+      new Car('ole@gmail.com', 'AB-123-C', 'Golf', 'VW', 'Hatchback', 'Donkerblauw', 'benzine'),
+      new Car('ole@gmail.com', 'AB-123-C', 'Golf', 'VW', 'Hatchback', 'Donkerblauw', 'benzine'),
+      new Car('ole@gmail.com', 'AB-123-C', 'Golf', 'VW', 'Hatchback', 'Donkerblauw', 'benzine'),
+      new Car('ole@gmail.com', 'AB-123-C', 'Golf', 'VW', 'Hatchback', 'Donkerblauw', 'benzine')
     ];
     this.checkEmptyRows();
     this.checkButtons();
@@ -81,7 +80,7 @@ export class ProfileCarsComponent implements OnInit {
 
   private checkEmptyRows() {
     this.generateEmptyRows = this.pageNumberMaximum - this.cars.length;
-    if (this.generateEmptyRows < 1){
+    if (this.generateEmptyRows < 1) {
       this.generateEmptyRows = 0;
     }
     this.emptyRowsList = Array(this.generateEmptyRows).fill(1);

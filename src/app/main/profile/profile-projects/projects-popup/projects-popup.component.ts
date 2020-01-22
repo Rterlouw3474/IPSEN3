@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Project} from '../project.model';
-import {Form, FormControl} from '@angular/forms';
+import {FormControl} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import {ProfileObjectsService} from '../../profile-objects.service';
 import {HttpHandlerService} from '../../../../http-handler.service';
@@ -22,38 +22,39 @@ export class ProjectsPopupComponent implements OnInit {
   endDate: FormControl;
 
   popupHeader: string;
-  constructor(private auth: AuthService, private datePipe: DatePipe, private httpHandler : HttpHandlerService) {
+
+  constructor(private auth: AuthService, private datePipe: DatePipe, private httpHandler: HttpHandlerService) {
   }
 
   ngOnInit() {
     if (this.editMode) {
-      this.popupHeader = "Project wijzigen";
+      this.popupHeader = 'Project wijzigen';
       this.beginDate = new FormControl(ProfileObjectsService.parseDateObject(this.project.projectStartDate));
       this.endDate = new FormControl(ProfileObjectsService.parseDateObject(this.project.projectEndDate));
     } else {
-      this.popupHeader = "Project aanmaken";
+      this.popupHeader = 'Project aanmaken';
       this.beginDate = new FormControl();
       this.endDate = new FormControl();
     }
   }
 
-  closePopup(){
+  closePopup() {
     this.showPopupChange.emit(false);
   }
 
-  closePopupOutsidePopup(event: any){
-    if(event.target.className === "full-screen" || event.target.className === "popup-wrapper") {
+  closePopupOutsidePopup(event: any) {
+    if (event.target.className === 'full-screen' || event.target.className === 'popup-wrapper') {
       this.closePopup();
     }
   }
 
-  createProject(){
+  createProject() {
     const newBeginDate = this.datePipe.transform(this.beginDate.value, 'dd-MM-yyyy');
     const newEndDate = this.datePipe.transform(this.endDate.value, 'dd-MM-yyyy');
 
     const projectToPost = new Project(this.auth.getUserData().email, this.project.projectName, this.project.projectDesc, newBeginDate, newEndDate);
     console.log(projectToPost);
-    this.httpHandler.postProject(projectToPost, "/project/create");
+    this.httpHandler.postProject(projectToPost, '/project/create');
     this.closePopup();
   }
 

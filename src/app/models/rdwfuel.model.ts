@@ -1,18 +1,18 @@
 export class RDWFuel {
 
-  kenteken : string;
-  brandstof_volgnummer : number;
-  brandstof_omschrijving : string;
-  brandstofverbruik_buiten : number;
-  brandstofverbruik_gecombineerd : number;
-  brandstofverbruik_stad : number;
-  co2_uitstoot_gecombineerd : number;
-  geluidsniveau_rijdend : number;
-  geluidsniveau_stationair : number;
-  emissiecode_omschrijving : number;
-  milieuklasse_eg_goedkeuring_licht : string;
-  nettomaximumvermogen : number;
-  toerental_geluidsniveau : number;
+  kenteken: string;
+  brandstof_volgnummer: number;
+  brandstof_omschrijving: string;
+  brandstofverbruik_buiten: number;
+  brandstofverbruik_gecombineerd: number;
+  brandstofverbruik_stad: number;
+  co2_uitstoot_gecombineerd: number;
+  geluidsniveau_rijdend: number;
+  geluidsniveau_stationair: number;
+  emissiecode_omschrijving: number;
+  milieuklasse_eg_goedkeuring_licht: string;
+  nettomaximumvermogen: number;
+  toerental_geluidsniveau: number;
 
   constructor(kenteken: string, brandstof_volgnummer: number, brandstof_omschrijving: string, brandstofverbruik_buiten: number, brandstofverbruik_gecombineerd: number, brandstofverbruik_stad: number, co2_uitstoot_gecombineerd: number, geluidsniveau_rijdend: number, geluidsniveau_stationair: number, emissiecode_omschrijving: number, milieuklasse_eg_goedkeuring_licht: string, nettomaximumvermogen: number, toerental_geluidsniveau: number) {
     this.kenteken = kenteken;

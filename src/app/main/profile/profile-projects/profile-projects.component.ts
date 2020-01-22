@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Project} from './project.model';
 import {ProfileObjectsService} from '../profile-objects.service';
 import {User} from '../../../models/user.model';
@@ -31,7 +31,7 @@ export class ProfileProjectsComponent implements OnInit {
   public popupProject: Project;
   public popupEditMode = false;
 
-  constructor(private auth: AuthService, private httpHandler : HttpHandlerService) {
+  constructor(private auth: AuthService, private httpHandler: HttpHandlerService) {
   }
 
   ngOnInit() {
@@ -39,7 +39,7 @@ export class ProfileProjectsComponent implements OnInit {
   }
 
 
-  getProjectsArray(){
+  getProjectsArray() {
     return this.httpHandler.getProjects(this.auth.getUserData().email).subscribe(
       res => {
         this.projects = res;
@@ -48,8 +48,6 @@ export class ProfileProjectsComponent implements OnInit {
       }
     );
   }
-
-
 
 
   // Wisselen van pagina's
@@ -66,7 +64,7 @@ export class ProfileProjectsComponent implements OnInit {
       this.pageNumberMinimum += this.maxCountPage;
       this.pageNumberMaximum += this.maxCountPage;
       this.checkEmptyRows();
-      this.checkButtons()
+      this.checkButtons();
     }
   }
 
@@ -75,19 +73,19 @@ export class ProfileProjectsComponent implements OnInit {
       this.pageNumberMinimum -= this.maxCountPage;
       this.pageNumberMaximum -= this.maxCountPage;
       this.checkEmptyRows();
-      this.checkButtons()
+      this.checkButtons();
     }
   }
 
   private checkEmptyRows() {
     this.generateEmptyRows = this.pageNumberMaximum - this.projects.length;
-    if (this.generateEmptyRows < 1){
+    if (this.generateEmptyRows < 1) {
       this.generateEmptyRows = 0;
     }
     this.emptyRowsList = Array(this.generateEmptyRows).fill(1);
   }
 
-  private checkButtons(){
+  private checkButtons() {
     this.pageBtnLeft = ProfileObjectsService.checkPrevButton(this.pageNumberMinimum);
     this.pageBtnRight = ProfileObjectsService.checkNextButton(this.pageNumberMinimum, this.maxCountPage, this.projects.length);
   }
@@ -100,7 +98,7 @@ export class ProfileProjectsComponent implements OnInit {
 
   createProject() {
     // email wordt toegevoegd onCreate
-    this.popupProject = new Project("","","","","");
+    this.popupProject = new Project('', '', '', '', '');
     this.popupEditMode = false;
     this.showPopup = true;
   }

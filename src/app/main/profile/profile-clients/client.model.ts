@@ -1,6 +1,6 @@
 export class Client {
 
-  userEmail : string;
+  userEmail: string;
   clientName: string;
   clientPostalCode: string;
   clientHouseNumber: number;

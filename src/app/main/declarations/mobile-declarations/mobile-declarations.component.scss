@@ -2,57 +2,57 @@ h1 {
   text-align: center;
 }
 
-.dashboard{
-  top:470px;
+.dashboard {
+  top: 470px;
   width: 1056px;
   height: 900px;
   background-color: #EBEFF0;
   box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 }
 
-.dashboard-text{
+.dashboard-text {
   text-align: center;
   color: #5D656F;
 }
 
-.dashboard-dec-row{
+.dashboard-dec-row {
   width: 1100px;
   height: 60px;
 }
 
-.declaration-declarations{
+.declaration-declarations {
   width: 1100px;
   height: 750px;
 }
 
-.dec-description-text{
+.dec-description-text {
   text-align: center;
   color: #858C93;
   font-size: 20px;
 }
 
-.dec-text{
+.dec-text {
   text-align: center;
   color: #44524F;
   font-size: 19px;
 }
 
-.notOdd{
+.notOdd {
   background-color: #C4EAE1;
 }
 
-.new-declaration{
+.new-declaration {
   background: url("src/assets/images/newdec80.png") no-repeat;
   height: 80px;
   width: 80px;
-  border:none;
+  border: none;
   margin-top: 20px;
   margin-left: 1150px;
   z-index: 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
   position: fixed;
 }
 
-.dec-edit-button{
+.dec-edit-button {
   box-shadow: 0 2px 3px rgba(39, 39, 39, 0.5);
   background-color: #9ADECE;
   border-radius: 100%;
@@ -62,11 +62,11 @@ h1 {
   bottom: 38px;
 }
 
-.page-button{
+.page-button {
   box-shadow: 0 2px 3px rgba(39, 39, 39, 0.5);
   background-color: #56C8AD;
   border-radius: 8%;
-  width:92px;
+  width: 92px;
   height: 35px;
   position: fixed;
   bottom: 128px;
@@ -75,17 +75,17 @@ h1 {
   color: white;
 }
 
-.dec-edit-button:hover{
+.dec-edit-button:hover {
   cursor: hand;
 }
 
-.material-design-icons{
+.material-design-icons {
   fill: #5D656F;
   margin-left: 12px;
   margin-top: 12px;
 }
 
-.material-design-icons2{
+.material-design-icons2 {
   fill: #5D656F;
   margin-left: 15px;
   margin-top: 15px;

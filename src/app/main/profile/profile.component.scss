@@ -1,12 +1,13 @@
-a{
+a {
   text-decoration: none;
 }
 
-.active{
+.active {
   font-weight: bold;
 }
-.dashboard{
-  top:470px;
+
+.dashboard {
+  top: 470px;
   width: 1056px;
   height: 900px;
   background-color: #EBEFF0;
@@ -23,22 +24,25 @@ a{
   background-color: #56C8AD; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
-  box-shadow: 3px 0px 5px 0px rgba(57,63,72,0.3);
-  .img-wrapper{
-    margin-top:95px;
-    height:125px;
+  box-shadow: 3px 0px 5px 0px rgba(57, 63, 72, 0.3);
+
+  .img-wrapper {
+    margin-top: 95px;
+    height: 125px;
     width: 100%;
     text-align: center;
-    img{
+
+    img {
       display: inline-block;
-      height:125px;
+      height: 125px;
       width: 125px;
       object-fit: cover;
       border-radius: 100%;
       box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
     }
   }
-  .nameHeading{
+
+  .nameHeading {
     width: 100%;
     height: 70px;
     background-color: #5d656f;
@@ -46,17 +50,21 @@ a{
     text-align: center;
     margin-top: 24px;
     z-index: 2;
-    &:hover{
+
+    &:hover {
       cursor: pointer;
-      a{
+
+      a {
         text-decoration: none;
       }
-      p{
+
+      p {
         opacity: 0.6;
       }
     }
-    p{
-      color:#c4eae1;
+
+    p {
+      color: #c4eae1;
       line-height: 67px;
       font-size: 32px;
       font-family: Lato, sans-serif;
@@ -66,40 +74,46 @@ a{
     }
   }
 
-  .profielMenu{
+  .profielMenu {
     list-style: none;
     margin-top: 24px;
     font-size: 30px;
-    li{
+
+    li {
       margin-top: 20px;
-      color:#5D656F;
-      a{
-        color:#5D656F;
+      color: #5D656F;
+
+      a {
+        color: #5D656F;
         transition: opacity 0.2s ease;
-        &:hover{
+
+        &:hover {
           text-decoration: none;
           cursor: pointer;
           opacity: 0.6;
         }
       }
-      svg{
+
+      svg {
         position: relative;
-        top:4px;
+        top: 4px;
         margin-right: 10px;
         fill: #5D656F;
       }
     }
   }
 }
-.profielView{
+
+.profielView {
   margin-left: 301px;
 }
-.dashboard-text{
+
+.dashboard-text {
   text-align: center;
   color: #5D656F;
 }
 
-.dashboard-dec-row{
+.dashboard-dec-row {
   width: 1100px;
   height: 60px;
 }

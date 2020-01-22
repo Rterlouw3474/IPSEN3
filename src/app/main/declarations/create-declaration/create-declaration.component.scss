@@ -2,50 +2,50 @@ h1 {
   text-align: center;
 }
 
-.dashboard{
-  top:470px;
+.dashboard {
+  top: 470px;
   width: 1056px;
   height: 900px;
   background-color: #EBEFF0;
   box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 }
 
-.dashboard-text{
+.dashboard-text {
   text-align: center;
   color: #5D656F;
 }
 
-.dashboard-dec-row{
+.dashboard-dec-row {
   width: 1100px;
   height: 60px;
 }
 
-.declaration-declarations{
+.declaration-declarations {
   width: 1100px;
   height: 750px;
 }
 
-.dec-description-text{
+.dec-description-text {
   text-align: center;
   color: #858C93;
   font-size: 20px;
 }
 
-.dec-text{
+.dec-text {
   text-align: center;
   color: #44524F;
   font-size: 19px;
 }
 
-.notOdd{
+.notOdd {
   background-color: #C4EAE1;
 }
 
-.new-declaration{
+.new-declaration {
   background: url("src/assets/images/newdec80.png") no-repeat;
   height: 80px;
   width: 80px;
-  border:none;
+  border: none;
   z-index: 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
   position: fixed;
   bottom: 10px;
@@ -54,7 +54,7 @@ h1 {
 
 input:focus {
   outline: none !important;
-  border:0px solid #56c8ad;
+  border: 0px solid #56c8ad;
   border-radius: 5px;
 }
 

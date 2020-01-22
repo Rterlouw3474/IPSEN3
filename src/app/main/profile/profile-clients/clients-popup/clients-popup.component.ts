@@ -1,10 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Project} from '../../profile-projects/project.model';
 import {FormControl} from '@angular/forms';
-import {DatePipe} from '@angular/common';
 import {HttpHandlerService} from '../../../../http-handler.service';
 import {Client} from '../client.model';
-import {ProfileObjectsService} from '../../profile-objects.service';
 import {AuthService} from '../../../../account/auth.service';
 
 @Component({
@@ -23,32 +20,33 @@ export class ClientsPopupComponent implements OnInit {
   endDate: FormControl;
 
   popupHeader: string;
-  constructor(private auth: AuthService, private httpHandler : HttpHandlerService) {
+
+  constructor(private auth: AuthService, private httpHandler: HttpHandlerService) {
   }
 
   ngOnInit() {
     if (this.editMode) {
-      this.popupHeader = "Klant wijzigen";
+      this.popupHeader = 'Klant wijzigen';
     } else {
-      this.popupHeader = "Klant aanmaken";
+      this.popupHeader = 'Klant aanmaken';
     }
   }
 
-  closePopup(){
+  closePopup() {
     this.showPopupChange.emit(false);
   }
 
-  closePopupOutsidePopup(event: any){
-    if(event.target.className === "full-screen" || event.target.className === "popup-wrapper") {
+  closePopupOutsidePopup(event: any) {
+    if (event.target.className === 'full-screen' || event.target.className === 'popup-wrapper') {
       this.closePopup();
     }
   }
 
-  createClient(){
+  createClient() {
 
-    const clientToPost = new Client(this.auth.getUserData().email, this.client.clientName, this.client.clientPostalCode.replace(" ", ""), this.client.clientHouseNumber, this.client.clientCity, this.client.clientCountry);
+    const clientToPost = new Client(this.auth.getUserData().email, this.client.clientName, this.client.clientPostalCode.replace(' ', ''), this.client.clientHouseNumber, this.client.clientCity, this.client.clientCountry);
     console.log(clientToPost);
-    this.httpHandler.postClient(clientToPost, "/client/create");
+    this.httpHandler.postClient(clientToPost, '/client/create');
   }
 
 }

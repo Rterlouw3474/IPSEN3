@@ -1,6 +1,6 @@
-export class Project{
+export class Project {
 
-  userEmail : string;
+  userEmail: string;
   projectName: string;
   projectDesc: string;
   projectStartDate: string;

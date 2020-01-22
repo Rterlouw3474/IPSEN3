@@ -15,7 +15,8 @@
         <form>
           <h5 class="bad-licence-plate" *ngIf="notFound">Vul een geldig kenteken in.</h5>
           <mat-form-field>
-            <input matInput placeholder="Kenteken" value="" [(ngModel)]="licencePlate" (change)="RDWCheck()" name="licencePlate">
+            <input matInput placeholder="Kenteken" value="" [(ngModel)]="licencePlate" (change)="RDWCheck()"
+                   name="licencePlate">
           </mat-form-field>
           <h5 class="no-car-name" *ngIf="noCarName">Vul een naam in.</h5>
           <mat-form-field>
@@ -31,7 +32,7 @@
             <input matInput placeholder="Kleur" value="" [(ngModel)]="carColor" disabled=true name="carColor">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Brandstoftype" [(ngModel)]="fuelType" value=""  disabled=true name="fuelType">
+            <input matInput placeholder="Brandstoftype" [(ngModel)]="fuelType" value="" disabled=true name="fuelType">
           </mat-form-field>
           <div class="button-wrapper">
             <button (click)="createCar()" class="btn">Opslaan</button>
