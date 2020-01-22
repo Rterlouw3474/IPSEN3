@@ -54,6 +54,7 @@ export class ProjectsPopupComponent implements OnInit {
     const projectToPost = new Project(this.auth.getUserData().email, this.project.projectName, this.project.projectDesc, newBeginDate, newEndDate);
     console.log(projectToPost);
     this.httpHandler.postProject(projectToPost, "/project/create");
+    this.closePopup();
   }
 
 }

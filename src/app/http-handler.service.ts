@@ -91,6 +91,7 @@ export class HttpHandlerService {
   }
 
   getDeclarations(email:string): Observable<Declaration[]>{
+    // console.log(this.databaseUrl + "/declaration/get/" + email);
     //return this.http.get(this.databaseUrl + "/declaration/getDeclarationsByOwnerID/" + ownerId);
     return this.http
       .get(this.databaseUrl + "/declaration/get/" + this.auth.getUserData().email)
@@ -98,10 +99,17 @@ export class HttpHandlerService {
   }
 
   getProjects(email:string): Observable<Project[]> {
-    console.log(this.databaseUrl + "/project/get/" + email);
+    // console.log(this.databaseUrl + "/project/get/" + email);
     return this.http
       .get(this.databaseUrl + "/project/get/" + email)
       .pipe(map(res =><Project[]>res))
+  }
+
+  getClients(email:string): Observable<Client[]> {
+    // console.log(this.databaseUrl + "/client/get/" + email);
+    return this.http
+      .get(this.databaseUrl + "/client/get/" + email)
+      .pipe(map(res =><Client[]>res))
   }
 
 
