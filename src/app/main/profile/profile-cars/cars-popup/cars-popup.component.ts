@@ -4,7 +4,7 @@ import {FormControl} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import {HttpHandlerService} from '../../../../http-handler.service';
 import {ProfileObjectsService} from '../../profile-objects.service';
-import {Car} from "../../../../models/car.model";
+import {Car} from "../car.model";
 import {RDWCar} from "../../../../models/rdwcar.model";
 import {RDWFuel} from "../../../../models/rdwfuel.model";
 import {AuthService} from "../../../../account/auth.service";

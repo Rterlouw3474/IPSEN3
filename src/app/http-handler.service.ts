@@ -13,7 +13,7 @@ import {Project} from './main/profile/profile-projects/project.model';
 import {Client} from './main/profile/profile-clients/client.model';
 import {RDWCar} from "./models/rdwcar.model";
 import {RDWFuel} from "./models/rdwfuel.model";
-import {Car} from "./models/car.model";
+import {Car} from "./main/profile/profile-cars/car.model";
 
 
 @Injectable()
@@ -112,10 +112,10 @@ export class HttpHandlerService {
       .pipe(map(res =><Client[]>res))
   }
 
-
-
-
-
-
+  getCars(email:string): Observable<Car[]> {
+    return this.http
+      .get(this.databaseUrl + "/car/get/" + email)
+      .pipe(map(res =><Car[]>res))
+  }
 
 }

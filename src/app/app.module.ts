@@ -25,7 +25,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DesktopDeclarationsComponent} from './main/declarations/desktop-declarations/desktop-declarations.component';
 import {MobileDeclarationsComponent} from './main/declarations/mobile-declarations/mobile-declarations.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+import {MatDatepickerModule, MatNativeDateModule, MatOptionModule, MatSelectModule} from '@angular/material';
 import {MAT_DATE_LOCALE} from '@angular/material';
 import {DatePipe} from '@angular/common';
 import { ClientsPopupComponent } from './main/profile/profile-clients/clients-popup/clients-popup.component';
@@ -74,7 +74,9 @@ import {CarsPopupComponent} from "./main/profile/profile-cars/cars-popup/cars-po
     FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatOptionModule,
+    MatSelectModule
 
   ],
   providers: [HttpHandlerService, {provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: MAT_DATE_LOCALE, useValue: 'nl-NL'}, DatePipe],

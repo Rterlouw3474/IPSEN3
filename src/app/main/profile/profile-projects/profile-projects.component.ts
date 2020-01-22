@@ -51,7 +51,6 @@ export class ProfileProjectsComponent implements OnInit {
 
 
 
-
   // Wisselen van pagina's
   getMinimum() {
     return this.pageNumberMinimum;

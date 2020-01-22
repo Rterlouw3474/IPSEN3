@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Client} from '../profile-clients/client.model';
-import {Car} from '../../../models/car.model';
+import {Car} from './car.model';
 import {ProfileObjectsService} from '../profile-objects.service';
 import {AuthService} from '../../../account/auth.service';
 
