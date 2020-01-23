@@ -17,7 +17,7 @@
 
 
     <strong>Filter</strong>
-    <select [(ngModel)]="gender">
+    <select [(ngModel)]="auto">
       <option></option>
       <option value="Fiat">Fiat</option>
       <option value="Test">Test</option>
@@ -27,19 +27,14 @@
       <option value="Omegalul">Omegalul</option>
     </select>
 
-    <tr *ngFor="let g of gebruikers | tableFilter: gender">
-      <td>{{ g.name }}</td>
-      <td>{{ g.gender }}</td>
+
+    <tr *ngFor="let declaration of sortedData | tableFilter: auto">
+      <td>{{declaration.omschrijving}}</td>
+      <td>{{declaration.auto}}</td>
+      <td>{{declaration.datum}}</td>
+      <td>{{declaration.kilometers}}</td>
+      <td>{{declaration.bedrag}}</td>
     </tr>
-
-
-<!--    <tr *ngFor="let declaration of sortedData">-->
-<!--      <td>{{declaration.omschrijving}}</td>-->
-<!--      <td>{{declaration.auto}}</td>-->
-<!--      <td>{{declaration.datum}}</td>-->
-<!--      <td>{{declaration.kilometers}}</td>-->
-<!--      <td>{{declaration.bedrag}}</td>-->
-<!--    </tr>-->
 
     <tr *ngFor="let declaration of getSlicedDeclaration(); let odd=odd; let id = index" class="dashboard-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
       <td><mat-checkbox

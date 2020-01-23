@@ -8,7 +8,7 @@ export class TableFilterPipe implements PipeTransform {
   transform(list: any[], value: string) {
 
 
-    return value ? list.filter(item => item.gender === value) : list;
+    return value ? list.filter(item => item.auto === value) : list;
   }
 
 }

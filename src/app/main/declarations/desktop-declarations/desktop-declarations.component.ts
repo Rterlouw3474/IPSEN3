@@ -25,17 +25,11 @@ export interface Declaration {
 export class DesktopDeclarationsComponent extends DeclarationsComponent {
   show: boolean = false;
 
-  gender: string;
+  //ngModel auto
+  auto: string
 
-  gebruikers: any[] = [
-    { name: 'Kristy', gender: 'Fiat' },
-    { name: 'Nick', gender: 'Test'  },
-    { name: 'Ariana', gender: 'Audi' },
-    { name: 'Joe', gender: 'Lambo' },
-    { name: 'Albert', gender: 'Zetta' },
-  ];
 
-  declarations: Declaration[] = [
+  declarations: any[] = [
     {omschrijving: 'Test 04', datum: 159, kilometers: 6, bedrag: 24, auto: 'Fiat'},
     {omschrijving: '120', datum: 356, kilometers: 200, bedrag: 49, auto: 'Test'},
     {omschrijving: 'Test 01', datum: 10022001, kilometers: 80, bedrag: 5, auto: 'Audi'},
@@ -43,7 +37,7 @@ export class DesktopDeclarationsComponent extends DeclarationsComponent {
     {omschrijving: 'Test 10', datum: 5, kilometers: 368, bedrag: 102, auto: 'Zetta'},
   ];
 
-  sortedData: Declaration[];
+  sortedData: any[];
 
   constructor(router: Router, applicationStateService: ApplicationStateService, http: HttpHandlerService, auth:AuthService) {
     super(router, applicationStateService, http, auth);
