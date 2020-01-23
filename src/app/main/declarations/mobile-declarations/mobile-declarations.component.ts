@@ -12,8 +12,8 @@ import {AuthService} from "../../../account/auth.service";
 })
 export class MobileDeclarationsComponent extends DeclarationsComponent {
 
-  constructor(applicationStateService: ApplicationStateService, http:HttpHandlerService, auth:AuthService) {
-    super(http, auth);
+  constructor(router: Router, applicationStateService: ApplicationStateService, http:HttpHandlerService, auth:AuthService) {
+    super(router, applicationStateService, http, auth);
   }
 
 }

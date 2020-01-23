@@ -1,14 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import {DeclarationsComponent} from '../declarations.component';
 import {Router} from '@angular/router';
 import {ApplicationStateService} from '../../../application-state.service';
-import {HttpHandlerService} from '../../../http-handler.service';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import {AuthService} from '../../../account/auth.service';
 import {HttpHandlerService} from "../../../http-handler.service";
-import {animate, state, style, transition, trigger} from "@angular/animations";
 import {AuthService} from "../../../account/auth.service";
-import {slideInAnimation} from "../../../models/animations";
 
 @Component({
   selector: 'app-desktop-declarations',

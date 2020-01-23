@@ -14,6 +14,7 @@ export abstract class DeclarationsComponent implements OnInit {
                         private auth: AuthService) {
     this.model = new DeclarationsComponentModel(http, auth);
     this.myViewModel = new DeclarationsComponentModel(http, auth);
+    this.setLoadingFalse();
   }
 
   public model: DeclarationsComponentModel;

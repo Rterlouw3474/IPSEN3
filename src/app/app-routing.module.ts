@@ -25,8 +25,8 @@ const desktopRoutes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], data: {animation: 'ProfPage'} , children: [
       { path: '', redirectTo: 'profile-settings', pathMatch: 'full'},
       { path: 'profile-settings', component: ProfileSettingsComponent},
-      { path: 'profile-projects', component: ProfileProjectsComponent, data: {animation: 'ProfProjectPage'} },
-      { path: 'profile-clients', component: ProfileClientsComponent, data: {animation: 'ProfClientPage'} },
+      { path: 'profile-projects', component: ProfileProjectsComponent, },
+      { path: 'profile-clients', component: ProfileClientsComponent,  },
       { path: 'profile-cars', component: ProfileCarsComponent}
     ] },
   { path: 'declarations', component: DesktopDeclarationsComponent, canActivate: [AuthGuard], data: {animation: 'DecPage'} },

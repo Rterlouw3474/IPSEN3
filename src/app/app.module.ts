@@ -1,22 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { NotfoundComponent } from './notfound/notfound.component';
-import { HomeComponent } from './account/home/home.component';
-import { ProfileComponent } from './main/profile/profile.component';
-import { CreateDeclarationComponent } from './main/declarations/create-declaration/create-declaration.component';
-import { HeaderComponent } from './header/header.component';
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {NotfoundComponent} from './notfound/notfound.component';
-import {HomeComponent} from './account/home/home.component';
-import {DashboardComponent} from './main/dashboard/dashboard.component';
-import {ProfileComponent} from './main/profile/profile.component';
-import {CreateDeclarationComponent} from './main/declarations/create-declaration/create-declaration.component';
-import {HeaderComponent} from './header/header.component';
 import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -29,11 +10,7 @@ import {ProjectsPopupComponent} from './main/profile/profile-projects/projects-p
 import {DesktopDashboardComponent} from './main/dashboard/desktop/desktop-dashboard.component';
 import {MobileDashboardComponent} from './main/dashboard/mobile/mobile-dashboard.component';
 import {HttpHandlerService} from './http-handler.service';
-import {HashLocationStrategy, LocationStrategy} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DesktopDeclarationsComponent} from './main/declarations/desktop-declarations/desktop-declarations.component';
-import {MobileDeclarationsComponent} from './main/declarations/mobile-declarations/mobile-declarations.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import {ReactiveFormsModule} from '@angular/forms';
 import {MatDatepickerModule, MatNativeDateModule} from '@angular/material';
 import {MAT_DATE_LOCALE} from '@angular/material';
 import {DatePipe} from '@angular/common';
@@ -43,19 +20,26 @@ import {DeclarationPopupComponent} from "./main/declarations/desktop-declaration
 import {DeclarationsComponentModel} from "./main/declarations/declarations.component.model";
 import {DeclarationsComponent} from "./main/declarations/declarations.component";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-
 import {FormsModule} from '@angular/forms';
 import { DesktopDeclarationsComponent } from './main/declarations/desktop-declarations/desktop-declarations.component';
 import { MobileDeclarationsComponent } from './main/declarations/mobile-declarations/mobile-declarations.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {BrowserModule} from "@angular/platform-browser";
+import {AppRoutingModule} from "./app-routing.module";
+import {AppComponent} from "./app.component";
+import {HeaderComponent} from "./header/header.component";
+import {HomeComponent} from "./account/home/home.component";
+import {ProfileComponent} from "./main/profile/profile.component";
+import {NotfoundComponent} from "./notfound/notfound.component";
+import {NgModule} from "@angular/core";
+import {CreateDeclarationComponent} from "./main/declarations/create-declaration/create-declaration.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NotfoundComponent,
-    DashboardComponent,
     ProfileComponent,
     DesktopDeclarationsComponent,
     MobileDeclarationsComponent,
