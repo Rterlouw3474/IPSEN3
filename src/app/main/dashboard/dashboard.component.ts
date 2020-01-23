@@ -7,7 +7,13 @@ import {DatabaseUser} from '../../models/databaseuser.model';
 import {Router} from '@angular/router';
 import {ApplicationStateService} from '../../application-state.service';
 
-export abstract class DashboardComponent implements OnInit {
+@Component({
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
+})
+
+export class DashboardComponent implements OnInit {
 
   totalKilometers: number;
   totalMoney: string;
@@ -19,10 +25,9 @@ export abstract class DashboardComponent implements OnInit {
 
   declarations: Declaration[] = [];
 
-  protected constructor(private router: Router,
-                        private applicationStateService: ApplicationStateService,
-                        private http: HttpHandlerService,
-                        private auth: AuthService) {
+  constructor(private applicationStateService: ApplicationStateService,
+              private http: HttpHandlerService,
+              private auth: AuthService) {
   }
 
   ngOnInit() {
@@ -51,11 +56,12 @@ export abstract class DashboardComponent implements OnInit {
       );
   }
 
-  updateDashboardValues(){
+  updateDashboardValues() {
     this.totalKilometers = 0;
-    let totalMoneys = 0
+    let totalMoneys = 0;
     this.totalDeclarations = 0;
-    for(let i = 0; i<this.declarations.length; i++){
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < this.declarations.length; i++) {
       this.totalKilometers += this.declarations[i].decKilometers;
       totalMoneys += this.declarations[i].decDeclaration;
     }
