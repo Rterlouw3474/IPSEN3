@@ -44,7 +44,6 @@ export class ClientsPopupComponent implements OnInit {
   }
 
   createClient(){
-
     const clientToPost = new Client(this.client.userEmail, this.client.clientName, this.client.clientPostalCode.replace(" ",""), this.client.clientHouseNumber, this.client.clientCity, this.client.clientCountry);
     console.log(clientToPost);
     this.httpHandler.postClient(clientToPost, "/client/create");

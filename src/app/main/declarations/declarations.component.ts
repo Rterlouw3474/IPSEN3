@@ -6,6 +6,8 @@ import {ApplicationStateService} from '../../application-state.service';
 import {HttpHandlerService} from "../../http-handler.service";
 import {AuthService} from "../../account/auth.service";
 
+
+
 export abstract class DeclarationsComponent implements OnInit {
 
   public model: DeclarationsComponentModel;
@@ -25,9 +27,21 @@ export abstract class DeclarationsComponent implements OnInit {
   public allCheckboxesSelected = false;
   public parentCheckboxSelected = false;
 
-  protected constructor(private router: Router, private applicationStateService: ApplicationStateService, private http: HttpHandlerService, private auth:AuthService) {
+  // popup
+  public showPopup = false;
+  public popupDeclaration: Declaration;
+  public popupEditMode = false;
+
+  public removeDelete = true;
+  public removeEdit = true;
+
+  public isLoading : boolean = true;
+
+  protected constructor(private http: HttpHandlerService, private auth:AuthService) {
     this.model = new DeclarationsComponentModel(http, auth);
     this.myViewModel = new DeclarationsComponentModel(http, auth);
+    this.isLoading = true;
+    this.setLoadingFalse();
   }
 
   ngOnInit() {
@@ -38,6 +52,13 @@ export abstract class DeclarationsComponent implements OnInit {
 
   private updateView(): void {
     this.myViewModel = this.model.clone();
+  }
+
+  setLoadingFalse(){
+    const that = this;
+    setTimeout(()=>{
+      that.isLoading = false;
+    }, 500)
   }
 
   onSelectAllCheckboxes(checked: boolean) {
@@ -56,6 +77,8 @@ export abstract class DeclarationsComponent implements OnInit {
       this.resetSelectedDeclarations();
     }
     console.log(this.model.selectedDeclarations);
+
+    this.removeButtonsFromScreen()
   }
 
   //TODO: zodra de juiste implementatie van declaratie opvragen in de database/backend is geimplementeerd deze herschrijven.
@@ -69,6 +92,7 @@ export abstract class DeclarationsComponent implements OnInit {
 
         }
       );
+
     this.resetSelectedDeclarations();
   }
 
@@ -106,6 +130,24 @@ export abstract class DeclarationsComponent implements OnInit {
     return declaration;
   }
 
+  removeButtonsFromScreen(){
+    const that = this;
+    if(this.model.selectedDeclarations.length == 0) {
+      setTimeout(function () {
+        that.removeDelete = true;
+        that.removeEdit = true;
+      }, 150)
+    }else if(this.model.selectedDeclarations.length == 1){
+      this.removeDelete = false;
+      this.removeEdit = false;
+    }else if(this.model.selectedDeclarations.length > 1){
+      setTimeout(function () {
+        that.removeDelete = false;
+        that.removeEdit = true;
+      }, 150)
+    }
+  }
+
   checkDeclarationName(checkDeclaration: Declaration){
     let sameName : Declaration[] = [];
     for (let declaration of this.model.declarations) {
@@ -129,7 +171,9 @@ export abstract class DeclarationsComponent implements OnInit {
              counter++;
            }
     }
-    console.log(this.model.selectedDeclarations)
+    console.log(this.model.selectedDeclarations);
+
+    this.removeButtonsFromScreen()
   }
 
   getMinimum() {
@@ -182,7 +226,8 @@ export abstract class DeclarationsComponent implements OnInit {
   }
 
   resetSelectedDeclarations(){
-    this.model.selectedDeclarations.splice(0, 1000);
+    this.model.selectedDeclarations = [];
+    this.removeButtonsFromScreen()
   }
 
   private checkEmptyRows() {
@@ -191,6 +236,12 @@ export abstract class DeclarationsComponent implements OnInit {
       this.generateEmptyRows = 0;
     }
     this.emptyRowsList = Array(this.generateEmptyRows).fill(1);
+  }
+
+  editDeclaration(declaration:Declaration) {
+    this.popupDeclaration = declaration;
+    this.popupEditMode = true;
+    this.showPopup = true;
   }
 
 }

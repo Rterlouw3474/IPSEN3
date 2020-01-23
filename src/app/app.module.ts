@@ -30,6 +30,10 @@ import {MAT_DATE_LOCALE} from '@angular/material';
 import {DatePipe} from '@angular/common';
 import { ClientsPopupComponent } from './main/profile/profile-clients/clients-popup/clients-popup.component';
 import {CarsPopupComponent} from "./main/profile/profile-cars/cars-popup/cars-popup.component";
+import {DeclarationPopupComponent} from "./main/declarations/desktop-declarations/declaration-popup/declaration-popup.component";
+import {DeclarationsComponentModel} from "./main/declarations/declarations.component.model";
+import {DeclarationsComponent} from "./main/declarations/declarations.component";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -53,7 +57,8 @@ import {CarsPopupComponent} from "./main/profile/profile-cars/cars-popup/cars-po
     MobileDeclarationsComponent,
     ProjectsPopupComponent,
     ClientsPopupComponent,
-    CarsPopupComponent
+    CarsPopupComponent,
+    DeclarationPopupComponent
   ],
   entryComponents: [
     MobileDashboardComponent,
@@ -74,8 +79,8 @@ import {CarsPopupComponent} from "./main/profile/profile-cars/cars-popup/cars-po
     FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [HttpHandlerService, {provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: MAT_DATE_LOCALE, useValue: 'nl-NL'}, DatePipe],
   bootstrap: [AppComponent],

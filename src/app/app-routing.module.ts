@@ -16,21 +16,21 @@ import {MobileDeclarationsComponent} from './main/declarations/mobile-declaratio
 import {DesktopDeclarationsComponent} from './main/declarations/desktop-declarations/desktop-declarations.component';
 import {AuthGuard} from './account/auth.guard';
 import {APP_BASE_HREF} from '@angular/common';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 const desktopRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'dashboard', component: DesktopDashboardComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], children: [
+  { path: 'dashboard', component: DesktopDashboardComponent, canActivate: [AuthGuard], data: {animation: 'HomePage'} },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], data: {animation: 'ProfPage'} , children: [
       { path: '', redirectTo: 'profile-settings', pathMatch: 'full'},
       { path: 'profile-settings', component: ProfileSettingsComponent},
-      { path: 'profile-projects', component: ProfileProjectsComponent},
-      { path: 'profile-clients', component: ProfileClientsComponent},
+      { path: 'profile-projects', component: ProfileProjectsComponent, data: {animation: 'ProfProjectPage'} },
+      { path: 'profile-clients', component: ProfileClientsComponent, data: {animation: 'ProfClientPage'} },
       { path: 'profile-cars', component: ProfileCarsComponent}
     ] },
-  { path: 'declarations', component: DesktopDeclarationsComponent, canActivate: [AuthGuard], children: [
-      { path: 'new', component: CreateDeclarationComponent }
-    ]},
+  { path: 'declarations', component: DesktopDeclarationsComponent, canActivate: [AuthGuard], data: {animation: 'DecPage'} },
+  { path: 'declarations/new', component: CreateDeclarationComponent , canActivate: [AuthGuard], data: {animation: 'NewDecPage'}},
   { path: 'not-found', component: NotfoundComponent, data: {message: 'Page not found!'} },
   { path: '**', redirectTo: '/not-found' }
 ];
@@ -55,7 +55,7 @@ const mobileRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(desktopRoutes, { useHash: true})],
+  imports: [RouterModule.forRoot(desktopRoutes, { useHash: true}),  BrowserAnimationsModule],
   exports: [RouterModule],
   providers: [{provide: APP_BASE_HREF, useValue: window.location.pathname}]
 })

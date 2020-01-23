@@ -5,6 +5,7 @@ import {ApplicationStateService} from '../../../application-state.service';
 import {HttpHandlerService} from "../../../http-handler.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {AuthService} from "../../../account/auth.service";
+import {slideInAnimation} from "../../../models/animations";
 
 @Component({
   selector: 'app-desktop-declarations',
@@ -16,8 +17,8 @@ export class DesktopDeclarationsComponent extends DeclarationsComponent {
 
 
 
-  constructor(router: Router, applicationStateService: ApplicationStateService, http: HttpHandlerService, auth:AuthService) {
-    super(router, applicationStateService, http, auth);
+  constructor(http: HttpHandlerService, auth:AuthService) {
+    super(http, auth);
   }
 
 
