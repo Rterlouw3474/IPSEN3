@@ -5,94 +5,92 @@
       <div class="col-sm-3">
         <h2>Beginlocatie</h2>
         <mat-form-field class="example-full-width" style="border-width: 0">
-          <input matInput placeholder="Postcode" value="" [(ngModel)]="beginPostcode" name="beginPostcode">
+          <input required matInput placeholder="Postcode" value="" [(ngModel)]="beginPostcode" name="beginPostcode">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Huisnummer" value="" [(ngModel)]="beginHuisnummer" name="beginHuisnummer">
+          <input required matInput placeholder="Huisnummer" value="" [(ngModel)]="beginHuisnummer" name="beginHuisnummer">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Straatnaam" value="" [(ngModel)]="beginStraatnaam" name="beginStraatnaam">
+          <input  required matInput placeholder="Straatnaam" value="" [(ngModel)]="beginStraatnaam" name="beginStraatnaam">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Plaatsnaam" value="" [(ngModel)]="beginPlaatsnaam" name="beginPlaatsnaam">
+          <input required matInput placeholder="Plaatsnaam" value="" [(ngModel)]="beginPlaatsnaam" name="beginPlaatsnaam">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Land" value="" [(ngModel)]="beginLand" name="beginLand">
+          <input required matInput placeholder="Land" value="" [(ngModel)]="beginLand" name="beginLand">
         </mat-form-field>
       </div>
 
       <div class="col-sm-3">
         <h2>Eindlocatie</h2>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Postcode" value="" [(ngModel)]="eindPostcode" name="eindPostcode">
+          <input required matInput placeholder="Postcode" value="" [(ngModel)]="eindPostcode" name="eindPostcode">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Huisnummer" value="" [(ngModel)]="eindHuisnummer" name="eindHuisnummer">
+          <input required matInput placeholder="Huisnummer" value="" [(ngModel)]="eindHuisnummer" name="eindHuisnummer">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Straatnaam" value="" [(ngModel)]="eindStraatnaam" name="eindStraatnaam">
+          <input required matInput placeholder="Straatnaam" value="" [(ngModel)]="eindStraatnaam" name="eindStraatnaam">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Plaatsnaam" value="" [(ngModel)]="eindPlaatsnaam" name="eindPlaatsnaam">
+          <input required matInput placeholder="Plaatsnaam" value="" [(ngModel)]="eindPlaatsnaam" name="eindPlaatsnaam">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Land" value="" [(ngModel)]="eindLand" name="eindLand">
+          <input required matInput placeholder="Land" value="" [(ngModel)]="eindLand" name="eindLand">
         </mat-form-field>
       </div>
 
       <div class="col-sm-3">
         <h2>Registratie</h2>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Kilometers" value="" [(ngModel)]="kilometers" name="kilometers">
+          <input required matInput placeholder="Kilometers" value="" [(ngModel)]="kilometers" name="kilometers">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="&nbsp;/ Km" value="" [(ngModel)]="declaratie" name="declaratie">
+          <input required matInput placeholder="&nbsp;/ Km" value="" [(ngModel)]="declaratie" name="declaratie">
           <span matPrefix>&euro;</span>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <textarea matInput placeholder="Omschrijving" [(ngModel)]="omschrijving" name="omschrijving"></textarea>
+          <textarea required matInput placeholder="Omschrijving" [(ngModel)]="omschrijving" name="omschrijving"></textarea>
         </mat-form-field>
       </div>
     </form>
 
-
-    <mat-form-field class="clientSelect">
-      <mat-label>Choose Client</mat-label>
-      <mat-select required [formControl]="clientFormControl">
-        <mat-option *ngFor="let client of clients" [value]="client.clientName">{{client.clientName}}</mat-option>
-      </mat-select>
-      <mat-error *ngIf="clientFormControl.hasError('required')">
-        This field is required
-      </mat-error>
-    </mat-form-field>
-
-      <mat-form-field class="projectSelect">
-        <mat-label>Choose Project</mat-label>
-        <mat-select required [formControl]="projectFormControl">
-        <mat-option *ngFor="let project of projects" [value]="project.projectName">{{project.projectName}}</mat-option>
-      </mat-select>
-        <mat-error *ngIf="projectFormControl.hasError('required')">
-          This field is required
+    <div class="col-sm-3">
+      <mat-form-field appearance="standard" class="selectDropdown">
+        <mat-select required placeholder="Choose Client" [formControl]="clientFormControl" disableOptionCentering panelClass="selectClass">
+          <mat-option *ngFor="let client of clients" [value]="client.clientName">{{client.clientName}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="clientFormControl.hasError('required')">
+          Please select a client.
         </mat-error>
       </mat-form-field>
 
-    <mat-form-field class="carSelect">
-      <mat-label>Choose Car</mat-label>
-      <mat-select required [formControl]="carFormControl">
-        <mat-option *ngFor="let car of cars" [value]="car.carName">{{car.carName}}</mat-option>
-      </mat-select>
-      <mat-error *ngIf="carFormControl.hasError('required')">
-        This field is required
-      </mat-error>
-    </mat-form-field>
+        <mat-form-field appearance="standard" class="selectDropdown">
+          <mat-select required placeholder="Choose Project" [formControl]="projectFormControl" disableOptionCentering panelClass="selectClass">
+          <mat-option *ngFor="let project of projects" [value]="project.projectName">{{project.projectName}}</mat-option>
+        </mat-select>
+          <mat-error *ngIf="projectFormControl.hasError('required')">
+            Please select a project.
+          </mat-error>
+        </mat-form-field>
 
-    <div class="col-xs-1" style="padding-top: 80px; padding-left: 60px">
-      <button style="width: 40px" class="btn btn-success dropdown-toggle" type="button"> + </button>
-      <button style="width: 40px; margin-top: 16px" class="btn btn-success dropdown-toggle" type="button"> + </button>
-      <button style="width: 40px; margin-top: 16px" class="btn btn-success dropdown-toggle" type="button"> + </button>
+      <mat-form-field appearance="standard" class="selectDropdown">
+        <mat-select required placeholder="Choose Car" [formControl]="carFormControl" disableOptionCentering panelClass="selectClass">
+          <mat-option *ngFor="let car of cars" [value]="car.carName">{{car.carName}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="carFormControl.hasError('required')">
+          Please select a car.
+        </mat-error>
+      </mat-form-field>
+
+      <div class="col-xs-1" style="padding-top: 80px; padding-left: 60px">
+        <button style="width: 40px" class="btn btn-success dropdown-toggle" type="button"> + </button>
+        <button style="width: 40px; margin-top: 16px" class="btn btn-success dropdown-toggle" type="button"> + </button>
+        <button style="width: 40px; margin-top: 16px" class="btn btn-success dropdown-toggle" type="button"> + </button>
+      </div>
     </div>
-
   </div>
+
   <div>
     <button class="new-declaration">
     </button>
