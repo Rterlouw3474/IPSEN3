@@ -6,12 +6,17 @@ import {ApplicationStateService} from '../../application-state.service';
 import {HttpHandlerService} from '../../http-handler.service';
 import {AuthService} from '../../account/auth.service';
 
-export abstract class DeclarationsComponent implements OnInit {
+@Component({
+  selector: 'app-declarations',
+  templateUrl: './declarations.component.html',
+  styleUrls: ['./declarations.component.scss']
+})
 
-  protected constructor(private router: Router,
-                        private applicationStateService: ApplicationStateService,
-                        private http: HttpHandlerService,
-                        private auth: AuthService) {
+export class DeclarationsComponent implements OnInit {
+
+  constructor(private applicationStateService: ApplicationStateService,
+              private http: HttpHandlerService,
+              private auth: AuthService) {
     this.model = new DeclarationsComponentModel(http, auth);
     this.myViewModel = new DeclarationsComponentModel(http, auth);
     this.setLoadingFalse();
@@ -42,7 +47,7 @@ export abstract class DeclarationsComponent implements OnInit {
   public removeDelete = true;
   public removeEdit = true;
 
-  public isLoading : boolean = true;
+  public isLoading = true;
 
 
 
@@ -60,11 +65,11 @@ export abstract class DeclarationsComponent implements OnInit {
     return this.applicationStateService.getIsMobileResolution();
   }
 
-  setLoadingFalse(){
+  setLoadingFalse() {
     const that = this;
-    setTimeout(()=>{
+    setTimeout(() => {
       that.isLoading = false;
-    }, 500)
+    }, 500);
   }
 
   onSelectAllCheckboxes(checked: boolean) {
@@ -84,7 +89,7 @@ export abstract class DeclarationsComponent implements OnInit {
     }
     console.log(this.model.selectedDeclarations);
 
-    this.removeButtonsFromScreen()
+    this.removeButtonsFromScreen();
   }
 
   // TODO: zodra de juiste implementatie van declaratie opvragen in de database/backend is geimplementeerd deze herschrijven.
@@ -138,27 +143,27 @@ export abstract class DeclarationsComponent implements OnInit {
     return declaration;
   }
 
-  removeButtonsFromScreen(){
+  removeButtonsFromScreen() {
     const that = this;
-    if(this.model.selectedDeclarations.length == 0) {
-      setTimeout(function () {
+    if (this.model.selectedDeclarations.length == 0) {
+      setTimeout(function() {
         that.removeDelete = true;
         that.removeEdit = true;
-      }, 150)
-    }else if(this.model.selectedDeclarations.length == 1){
+      }, 150);
+    } else if (this.model.selectedDeclarations.length == 1) {
       this.removeDelete = false;
       this.removeEdit = false;
-    }else if(this.model.selectedDeclarations.length > 1){
-      setTimeout(function () {
+    } else if (this.model.selectedDeclarations.length > 1) {
+      setTimeout(function() {
         that.removeDelete = false;
         that.removeEdit = true;
-      }, 150)
+      }, 150);
     }
   }
 
-  checkDeclarationName(checkDeclaration: Declaration){
-    let sameName : Declaration[] = [];
-    for (let declaration of this.model.declarations) {
+  checkDeclarationName(checkDeclaration: Declaration) {
+    const sameName: Declaration[] = [];
+    for (const declaration of this.model.declarations) {
       if (checkDeclaration.decDesc.substring(0, declaration.decDesc.length - 3) === declaration.decDesc.substring(0, declaration.decDesc.length - 3)) {
         sameName.push(declaration);
       }
@@ -181,7 +186,7 @@ export abstract class DeclarationsComponent implements OnInit {
     }
     console.log(this.model.selectedDeclarations);
 
-    this.removeButtonsFromScreen()
+    this.removeButtonsFromScreen();
   }
 
   getMinimum() {
@@ -233,9 +238,9 @@ export abstract class DeclarationsComponent implements OnInit {
     } else {this.pageBtnRight = true; }
   }
 
-  resetSelectedDeclarations(){
+  resetSelectedDeclarations() {
     this.model.selectedDeclarations = [];
-    this.removeButtonsFromScreen()
+    this.removeButtonsFromScreen();
   }
 
   private checkEmptyRows() {
@@ -246,19 +251,19 @@ export abstract class DeclarationsComponent implements OnInit {
     this.emptyRowsList = Array(this.generateEmptyRows).fill(1);
   }
 
-  editDeclaration(declaration:Declaration) {
+  editDeclaration(declaration: Declaration) {
     this.popupDeclaration = new Declaration(declaration.userEmail, declaration.decDesc, declaration.decDate, declaration.decKilometers, declaration.decDeclaration, declaration.decBeginPostal, declaration.decBeginHouseNumber, declaration.decBeginStreet, declaration.decBeginCity, declaration.decBeginCountry, declaration.decEndPostal, declaration.decEndHouseNumber, declaration.decEndStreet, declaration.decEndCity, declaration.decEndCountry, declaration.clientName, declaration.projectName, declaration.licencePlate);
     this.popupEditMode = true;
     this.showPopup = true;
   }
 
-  convertToNormalNotation(declaration:Declaration){
+  convertToNormalNotation(declaration: Declaration) {
     let money = 0;
-    let returnMoney:string;
+    let returnMoney: string;
     money += declaration.decDeclaration;
     returnMoney = (Math.round(money * 1000) / 1000).toFixed(2);
     returnMoney = returnMoney.replace('.', ',');
-    return returnMoney
+    return returnMoney;
   }
 
 }

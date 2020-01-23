@@ -14,13 +14,11 @@ import {MAT_DATE_LOCALE} from '@angular/material';
 import {DatePipe} from '@angular/common';
 import { ClientsPopupComponent } from './main/profile/profile-clients/clients-popup/clients-popup.component';
 import {CarsPopupComponent} from './main/profile/profile-cars/cars-popup/cars-popup.component';
-import {DeclarationPopupComponent} from './main/declarations/desktop-declarations/declaration-popup/declaration-popup.component';
+import {DeclarationPopupComponent} from './main/declarations/declaration-popup/declaration-popup.component';
 import {DeclarationsComponentModel} from './main/declarations/declarations.component.model';
 import {DeclarationsComponent} from './main/declarations/declarations.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {FormsModule} from '@angular/forms';
-import { DesktopDeclarationsComponent } from './main/declarations/desktop-declarations/desktop-declarations.component';
-import { MobileDeclarationsComponent } from './main/declarations/mobile-declarations/mobile-declarations.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
@@ -40,8 +38,7 @@ import {DashboardComponent} from './main/dashboard/dashboard.component';
     HomeComponent,
     NotfoundComponent,
     ProfileComponent,
-    DesktopDeclarationsComponent,
-    MobileDeclarationsComponent,
+    DeclarationsComponent,
     CreateDeclarationComponent,
     HeaderComponent,
     DashboardComponent,
@@ -49,15 +46,12 @@ import {DashboardComponent} from './main/dashboard/dashboard.component';
     ProfileProjectsComponent,
     ProfileClientsComponent,
     ProfileCarsComponent,
-    DesktopDeclarationsComponent,
-    MobileDeclarationsComponent,
     ProjectsPopupComponent,
     ClientsPopupComponent,
     CarsPopupComponent,
     DeclarationPopupComponent
   ],
   entryComponents: [
-    MobileDeclarationsComponent,
     ProfileSettingsComponent,
     ProfileProjectsComponent,
     ProfileClientsComponent,

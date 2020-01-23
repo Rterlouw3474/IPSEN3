@@ -10,12 +10,11 @@ import {ProfileSettingsComponent} from './main/profile/profile-settings/profile-
 import {ProfileProjectsComponent} from './main/profile/profile-projects/profile-projects.component';
 import {ProfileClientsComponent} from './main/profile/profile-clients/profile-clients.component';
 import {ProfileCarsComponent} from './main/profile/profile-cars/profile-cars.component';
-import {MobileDeclarationsComponent} from './main/declarations/mobile-declarations/mobile-declarations.component';
-import {DesktopDeclarationsComponent} from './main/declarations/desktop-declarations/desktop-declarations.component';
 import {AuthGuard} from './account/auth.guard';
 import {APP_BASE_HREF} from '@angular/common';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DashboardComponent} from './main/dashboard/dashboard.component';
+import {DeclarationsComponent} from './main/declarations/declarations.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -28,7 +27,7 @@ const routes: Routes = [
       { path: 'profile-clients', component: ProfileClientsComponent,  },
       { path: 'profile-cars', component: ProfileCarsComponent}
     ] },
-  { path: 'declarations', component: DesktopDeclarationsComponent, canActivate: [AuthGuard], data: {animation: 'DecPage'} },
+  { path: 'declarations', component: DeclarationsComponent, canActivate: [AuthGuard], data: {animation: 'DecPage'} },
   { path: 'declarations/new', component: CreateDeclarationComponent , canActivate: [AuthGuard], data: {animation: 'NewDecPage'}},
   { path: 'not-found', component: NotfoundComponent, data: {message: 'Page not found!'} },
   { path: '**', redirectTo: '/not-found' }

@@ -12,12 +12,13 @@
             (click)="onSelectAllCheckboxes(checkbox.checked)"
             [(ngModel)]="parentCheckboxSelected"
             style="margin-left: 40px"></mat-checkbox></th>
+        <th class="dec-description-text" style="width: 100%" *ngIf="isMobile() == true">Omschrijving</th>
         <ng-container *ngIf="isMobile() == false">
-        <th class="dec-description-text" style="width: 40%">Omschrijving</th>
-        <th class="dec-description-text" style="width: 15%">Auto</th>
-        <th class="dec-description-text" style="width: 15%">Datum</th>
-        <th class="dec-description-text" style="width: 15%">Aantal kilometers</th>
-        <th class="dec-description-text" style="width: 15%">Bedrag</th>
+          <th class="dec-description-text" style="width: 40%">Omschrijving</th>
+          <th class="dec-description-text" style="width: 15%">Auto</th>
+          <th class="dec-description-text" style="width: 15%">Datum</th>
+          <th class="dec-description-text" style="width: 15%">Aantal kilometers</th>
+          <th class="dec-description-text" style="width: 15%">Bedrag</th>
         </ng-container>
       </tr>
       <tr *ngFor="let declaration of getSlicedDeclaration(); let odd=odd; let id = index" class="table-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">

@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {HttpHandlerService} from '../../../../http-handler.service';
-import {AuthService} from "../../../../account/auth.service";
-import {Declaration} from "../../declaration.object";
-import {slideInAnimation} from "../../../../models/animations";
+import {HttpHandlerService} from '../../../http-handler.service';
+import {AuthService} from "../../../account/auth.service";
+import {Declaration} from "../declaration.object";
+import {slideInAnimation} from "../../../models/animations";
 import {FormControl} from "@angular/forms";
-import {ProfileObjectsService} from "../../../profile/profile-objects.service";
+import {ProfileObjectsService} from "../../profile/profile-objects.service";
 
 @Component({
   selector: 'app-declaration-popup',
