@@ -29,10 +29,6 @@ h1 {
   box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 }
 
-.row.desktop {
-  margin-left: 336px;
-}
-
 .dashboard-text{
   text-align: center;
   color: #5D656F;
@@ -139,8 +135,6 @@ h1 {
   border-radius: 100%;
   width: 72px;
   height: 72px;
-  position: fixed;
-  bottom: 38px;
 }
 
 .dec-edit-button2{
@@ -186,4 +180,12 @@ h1 {
   fill: #5D656F;
   margin-left: 15px;
   margin-top: 15px;
+}
+
+.edit-buttons-container {
+  position: fixed;
+  bottom: 50px;
+  justify-content: space-evenly;
+  width: calc(100% - 50px);
+  display: flex;
 }
