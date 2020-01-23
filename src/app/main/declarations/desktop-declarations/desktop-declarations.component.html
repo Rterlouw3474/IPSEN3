@@ -19,8 +19,12 @@
     <strong>Filter</strong>
     <select [(ngModel)]="gender">
       <option></option>
-      <option value="male">Male</option>
-      <option value="female">Female</option>
+      <option value="Fiat">Fiat</option>
+      <option value="Test">Test</option>
+      <option value="Audi">Audi</option>
+      <option value="Lambo">Lambo</option>
+      <option value="Zetta">Zetta</option>
+      <option value="Omegalul">Omegalul</option>
     </select>
 
     <tr *ngFor="let g of gebruikers | tableFilter: gender">

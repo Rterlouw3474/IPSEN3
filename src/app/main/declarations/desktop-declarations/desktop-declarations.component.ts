@@ -28,11 +28,11 @@ export class DesktopDeclarationsComponent extends DeclarationsComponent {
   gender: string;
 
   gebruikers: any[] = [
-    { name: 'Kristy', gender: 'female' },
-    { name: 'Nick', gender: 'male'  },
-    { name: 'Ariana', gender: 'female' },
-    { name: 'Joe', gender: 'male' },
-    { name: 'Albert', gender: 'male' },
+    { name: 'Kristy', gender: 'Fiat' },
+    { name: 'Nick', gender: 'Test'  },
+    { name: 'Ariana', gender: 'Audi' },
+    { name: 'Joe', gender: 'Lambo' },
+    { name: 'Albert', gender: 'Zetta' },
   ];
 
   declarations: Declaration[] = [
