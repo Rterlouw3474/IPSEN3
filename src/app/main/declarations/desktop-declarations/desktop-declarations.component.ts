@@ -6,6 +6,7 @@ import {HttpHandlerService} from "../../../http-handler.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {AuthService} from "../../../account/auth.service";
 import {Sort} from '@angular/material';
+import {MatSort} from "@angular/material/sort";
 
 
 
@@ -27,6 +28,10 @@ export class DesktopDeclarationsComponent extends DeclarationsComponent {
 
   //ngModel auto
   auto: string
+
+  // Real Data?
+  // @ViewChild(MatSort) sort: MatSort;
+  // this.listData.sort = this.sort;
 
 
   declarations: any[] = [
