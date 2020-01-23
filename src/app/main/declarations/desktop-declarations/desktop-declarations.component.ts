@@ -8,6 +8,7 @@ import {AuthService} from "../../../account/auth.service";
 import {Sort} from '@angular/material';
 
 
+
 export interface Declaration {
   datum: number;
   kilometers: number;
@@ -23,6 +24,16 @@ export interface Declaration {
 })
 export class DesktopDeclarationsComponent extends DeclarationsComponent {
   show: boolean = false;
+
+  gender: string;
+
+  gebruikers: any[] = [
+    { name: 'Kristy', gender: 'female' },
+    { name: 'Nick', gender: 'male'  },
+    { name: 'Ariana', gender: 'female' },
+    { name: 'Joe', gender: 'male' },
+    { name: 'Albert', gender: 'male' },
+  ];
 
   declarations: Declaration[] = [
     {omschrijving: 'Test 04', datum: 159, kilometers: 6, bedrag: 24, auto: 'Fiat'},

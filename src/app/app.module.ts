@@ -25,6 +25,7 @@ import { MobileDeclarationsComponent } from './main/declarations/mobile-declarat
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {MatSortModule} from "@angular/material/sort";
+import { TableFilterPipe } from './table-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {MatSortModule} from "@angular/material/sort";
     ProfileCarsComponent,
     DesktopDeclarationsComponent,
     MobileDeclarationsComponent,
+    TableFilterPipe
   ],
   entryComponents: [
     MobileDashboardComponent,

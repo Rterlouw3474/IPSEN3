@@ -1,5 +1,6 @@
 <div class="container dashboard">
 
+
   <table matSort (matSortChange)="sortData($event)" style="width:90% ; margin-top: 80px; margin-left: 50px">
     <tr>
       <th><mat-checkbox
@@ -13,6 +14,21 @@
       <th mat-sort-header="kilometers" class="dec-description-text" style="width: 15%">Aantal kilometers</th>
       <th mat-sort-header="bedrag" class="dec-description-text" style="width: 15%">Bedrag</th>
     </tr>
+
+
+    <strong>Filter</strong>
+    <select class="form-control"
+            [(ngModel)]="gender">
+      <option></option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+
+    <tr *ngFor="let g of gebruikers | tableFilter: gender">
+      <td>{{ g.name }}</td>
+      <td>{{ g.gender }}</td>
+    </tr>
+
 
 <!--    <tr *ngFor="let declaration of sortedData">-->
 <!--      <td>{{declaration.omschrijving}}</td>-->
