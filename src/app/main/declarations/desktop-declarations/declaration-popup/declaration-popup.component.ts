@@ -61,8 +61,9 @@ export class DeclarationPopupComponent implements OnInit {
   }
 
 
-  createCar(){
-
+  updateDeclaration(){
+    let updatedDeclaration = new Declaration(this.declaration.userEmail, this.declaration.decDesc, this.declaration.decDate, this.declaration.decKilometers, this.declaration.decDeclaration, this.declaration.decBeginPostal, this.declaration.decBeginHouseNumber, this.declaration.decBeginStreet, this.declaration.decBeginCity, this.declaration.decBeginCountry, this.declaration.decEndPostal, this.declaration.decEndHouseNumber, this.declaration.decEndStreet, this.declaration.decEndCity, this.declaration.decEndCountry, this.declaration.clientName, this.declaration.projectName, this.declaration.licencePlate);
+    this.httpHandler.postDeclaration(updatedDeclaration, "/declaration/update/").subscribe()
   }
 
 }

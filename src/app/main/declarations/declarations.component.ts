@@ -239,9 +239,18 @@ export abstract class DeclarationsComponent implements OnInit {
   }
 
   editDeclaration(declaration:Declaration) {
-    this.popupDeclaration = declaration;
+    this.popupDeclaration = new Declaration(declaration.userEmail, declaration.decDesc, declaration.decDate, declaration.decKilometers, declaration.decDeclaration, declaration.decBeginPostal, declaration.decBeginHouseNumber, declaration.decBeginStreet, declaration.decBeginCity, declaration.decBeginCountry, declaration.decEndPostal, declaration.decEndHouseNumber, declaration.decEndStreet, declaration.decEndCity, declaration.decEndCountry, declaration.clientName, declaration.projectName, declaration.licencePlate);
     this.popupEditMode = true;
     this.showPopup = true;
+  }
+
+  convertToNormalNotation(declaration:Declaration){
+    let money = 0;
+    let returnMoney:string;
+    money += declaration.decDeclaration;
+    returnMoney = (Math.round(money * 1000) / 1000).toFixed(2);
+    returnMoney = returnMoney.replace('.', ',');
+    return returnMoney
   }
 
 }
