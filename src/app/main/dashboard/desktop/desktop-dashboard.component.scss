@@ -44,21 +44,26 @@ h1 {
   height: 230px;
   width: 100%;
   margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 100px;
   .col-sm-10{
     height: 100%;
   }
   .money-column{
     width: 250px;
-    margin-left: 7%;
-    margin-right: 7%;
+    margin-left: auto;
+    margin-right: auto;
   }
   .km-column{
     width: 250px;
-    margin-left: 8%;
+    margin-left: auto;
+    margin-right: auto;
   }
   .dec-column{
     width: 250px;
-    margin-right: 1%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -118,5 +123,16 @@ h1 {
   height: 100%;
 }
 
+.dashboard.mobile {
+  top: 0px;
+  width: 100vw;
+}
 
+.container.mobile {
+  left: 0%;
+  transform: translate(0%, 0%);
+}
 
+.iconContainer.mobile {
+  padding-left: 0px;
+}

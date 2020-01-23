@@ -10,127 +10,57 @@
       <div class="kmicon"></div>
       <div class="dashboard-text">
         <h4>Totaal aantal kilometers</h4>
-<!--        <h3>{{totalKilometers}}</h3>-->
+        <h3>{{totalKilometers}} km</h3>
       </div>
     </div>
     <div class="col-sm-10 money-column">
       <div class="moneyicon"></div>
       <div class="dashboard-text">
         <h4>Vergoedingen ontvangen</h4>
-        <h3>€12,34</h3>
+        <h3>&euro;{{totalMoney}}</h3>
       </div>
     </div>
     <div class="col-sm-10 dec-column">
       <div class="decicon"></div>
       <div class="dashboard-text">
         <h4>Declaraties gemaakt</h4>
-        <h3>123</h3>
+        <h3>{{totalDeclarations}}</h3>
       </div>
     </div>
   </div>
 
 
   <ng-container *ngIf="isMobile() == false">
-
     <div class="row">
       <div class="dashboard-text" style="padding-top: 95px">
         <h2>Laatst gemaakte Declaraties</h2>
       </div>
     </div>
-    <div class="container dashboard-declarations" style="margin-top: 270px">
-      <div class="row" >
-        <div class="col-lg-10" style="padding-left: 0" >
-          <div class="dashboard-dec-row" style="background-color: #EBEFF0;">
-            <div class="row" style="padding-top: 15px">
-              <div class="col-sm-4">
-                <h4 class="dec-description-text">Omschrijving</h4>
-              </div>
-              <div class="col-sm-2">
-                <h4 class="dec-description-text">Begin postcode</h4>
-              </div>
-              <div class="col-sm-2">
-                <h4 class="dec-description-text">Eind postcode</h4>
-              </div>
-              <div class="col-sm-2">
-                <h4 class="dec-description-text">Aantal kilometers</h4>
-              </div>
-              <div class="col-sm-2">
-                <h4 class="dec-description-text">Bedrag</h4>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="col-lg-10" style="padding-left: 0">
-          <div class="dashboard-dec-row" style="background-color: #C4EAE1;">
-            <div class="col-sm-4">
-              <h4 class="dec-text">Rit afgelopen woensdag naar vergadering</h4>
-            </div>
-            <div class="col-sm-2">
-              <h4 class="dec-text">2215 NK</h4>
-            </div>
-            <div class="col-sm-2">
-              <h4 class="dec-text">3123 AC</h4>
-            </div>
-            <div class="col-sm-2">
-              <h4 class="dec-text">75</h4>
-            </div>
-            <div class="col-sm-2">
-              <h4 class="dec-text">€26</h4>
-            </div>
-          </div>
-        </div>
+    <table style="width:90% ; margin-top: 40px; margin-left: 50px; height: 100px">
+      <tr>
+        <th class="dec-description-text" style="width: 35%">Omschrijving</th>
+        <th class="dec-description-text" style="width: 16%">Auto</th>
+        <th class="dec-description-text" style="width: 16%">Datum</th>
+        <th class="dec-description-text" style="width: 17%">Aantal kilometers</th>
+        <th class="dec-description-text" style="width: 16%">Bedrag</th>
+      </tr>
+      <tr
+        *ngFor="let declaration of declarations.slice(declarations.length-3 , declarations.length); let odd=odd; let id = index"
+        class="dashboard-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
+        <td class="dec-text">{{declaration.decDesc}}</td>
+        <td class="dec-text">{{declaration.decBeginPostal}}</td>
+        <td class="dec-text">{{declaration.decEndPostal}}</td>
+        <td class="dec-text">{{declaration.decKilometers}}</td>
+        <td class="dec-text">€{{declaration.decDeclaration}}</td>
+      </tr>
 
-        <div class="col-lg-10" style="padding-left: 0">
-          <div class="dashboard-dec-row" style="background-color: #EBEFF0;">
-            <div class="col-sm-4">
-              <h4 class="dec-text">Kinderen naar huis rijden vanuit school</h4>
-            </div>
-            <div class="col-sm-2">
-              <h4 class="dec-text">4411 JC</h4>
-            </div>
-            <div class="col-sm-2">
-              <h4 class="dec-text">4522 CR</h4>
-            </div>
-            <div class="col-sm-2">
-              <h4 class="dec-text">20</h4>
-            </div>
-            <div class="col-sm-2">
-              <h4 class="dec-text">€12</h4>
-            </div>
-          </div>
-        </div>
+    </table>
 
-        <div class="col-lg-10" style="padding-left: 0">
-          <div class="dashboard-dec-row" style="background-color: #C4EAE1;">
-            <div class="col-sm-4">
-              <h4 class="dec-text">Kinderen weer naar huis rijden vanuit school</h4>
-            </div>
-            <div class="col-sm-2">
-              <h4 class="dec-text">4411 JC</h4>
-            </div>
-            <div class="col-sm-2">
-              <h4 class="dec-text">4522 CR</h4>
-            </div>
-            <div class="col-sm-2">
-              <h4 class="dec-text">20</h4>
-            </div>
-            <div class="col-sm-2">
-              <h4 class="dec-text">€12</h4>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-10" style="padding-left: 0">
-          <div class="dashboard-dec-row" style="background-color: #EBEFF0;"></div>
-        </div>
-
-        <div>
-  <!--        <a routerLink="/test">-->
-  <!--          <button (click)="onClick()" class="new-declaration"></button></a>-->
-        </div>
-
-      </div>
+    <div>
+      <a routerLink="/declarations/new">
+        <button class="new-declaration"></button>
+      </a>
     </div>
   </ng-container>
 </div>
