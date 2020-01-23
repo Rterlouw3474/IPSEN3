@@ -5,7 +5,7 @@ import {User} from "../profile/user.object";
 
 export class DeclarationsComponentModel {
   public declarations: Declaration[];
-  public selectedDeclarations: { id : number; declaration : Declaration; }[];
+  public selectedDeclarations: { id: number; declaration : Declaration; }[];
 
   public authUser : User;
 
@@ -18,7 +18,6 @@ export class DeclarationsComponentModel {
     Object.setPrototypeOf(clonedModel, DeclarationsComponentModel);
     return clonedModel;
   }
-
 
   getDeclarationArray(){
     return this.http.getDeclarations(this.auth.getUserData().email).subscribe(

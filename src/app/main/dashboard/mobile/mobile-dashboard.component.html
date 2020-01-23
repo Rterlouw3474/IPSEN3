@@ -1,11 +1,11 @@
-<div class="container dashboard">
+<div class="container dashboard" [ngClass]="{'mobile': isMobile()}">
   <div class="row" style="height: 150px">
     <div id="welkom">
       <h1 style="color: #5D656F;">Welkom, persoon</h1>
     </div>
   </div>
 
-  <div class="row iconContainer" >
+  <div class="row iconContainer" [ngClass]="{'mobile': isMobile()}">
     <div class="col-sm-10 km-column">
       <div class="kmicon"></div>
       <div class="dashboard-text">
@@ -30,106 +30,107 @@
   </div>
 
 
+  <ng-container *ngIf="isMobile() == false">
 
-  <div class="row">
-    <div class="dashboard-text" style="padding-top: 95px">
-      <h2>Laatst gemaakte Declaraties</h2>
+    <div class="row">
+      <div class="dashboard-text" style="padding-top: 95px">
+        <h2>Laatst gemaakte Declaraties</h2>
+      </div>
     </div>
-  </div>
+    <div class="container dashboard-declarations" style="margin-top: 270px">
+      <div class="row" >
+        <div class="col-lg-10" style="padding-left: 0" >
+          <div class="dashboard-dec-row" style="background-color: #EBEFF0;">
+            <div class="row" style="padding-top: 15px">
+              <div class="col-sm-4">
+                <h4 class="dec-description-text">Omschrijving</h4>
+              </div>
+              <div class="col-sm-2">
+                <h4 class="dec-description-text">Begin postcode</h4>
+              </div>
+              <div class="col-sm-2">
+                <h4 class="dec-description-text">Eind postcode</h4>
+              </div>
+              <div class="col-sm-2">
+                <h4 class="dec-description-text">Aantal kilometers</h4>
+              </div>
+              <div class="col-sm-2">
+                <h4 class="dec-description-text">Bedrag</h4>
+              </div>
+            </div>
+          </div>
+        </div>
 
-  <div class="container dashboard-declarations" style="margin-top: 270px">
-    <div class="row" >
-      <div class="col-lg-10" style="padding-left: 0" >
-        <div class="dashboard-dec-row" style="background-color: #EBEFF0;">
-          <div class="row" style="padding-top: 15px">
+        <div class="col-lg-10" style="padding-left: 0">
+          <div class="dashboard-dec-row" style="background-color: #C4EAE1;">
             <div class="col-sm-4">
-              <h4 class="dec-description-text">Omschrijving</h4>
+              <h4 class="dec-text">Rit afgelopen woensdag naar vergadering</h4>
             </div>
             <div class="col-sm-2">
-              <h4 class="dec-description-text">Begin postcode</h4>
+              <h4 class="dec-text">2215 NK</h4>
             </div>
             <div class="col-sm-2">
-              <h4 class="dec-description-text">Eind postcode</h4>
+              <h4 class="dec-text">3123 AC</h4>
             </div>
             <div class="col-sm-2">
-              <h4 class="dec-description-text">Aantal kilometers</h4>
+              <h4 class="dec-text">75</h4>
             </div>
             <div class="col-sm-2">
-              <h4 class="dec-description-text">Bedrag</h4>
+              <h4 class="dec-text">€26</h4>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-lg-10" style="padding-left: 0">
-        <div class="dashboard-dec-row" style="background-color: #C4EAE1;">
-          <div class="col-sm-4">
-            <h4 class="dec-text">Rit afgelopen woensdag naar vergadering</h4>
-          </div>
-          <div class="col-sm-2">
-            <h4 class="dec-text">2215 NK</h4>
-          </div>
-          <div class="col-sm-2">
-            <h4 class="dec-text">3123 AC</h4>
-          </div>
-          <div class="col-sm-2">
-            <h4 class="dec-text">75</h4>
-          </div>
-          <div class="col-sm-2">
-            <h4 class="dec-text">€26</h4>
+        <div class="col-lg-10" style="padding-left: 0">
+          <div class="dashboard-dec-row" style="background-color: #EBEFF0;">
+            <div class="col-sm-4">
+              <h4 class="dec-text">Kinderen naar huis rijden vanuit school</h4>
+            </div>
+            <div class="col-sm-2">
+              <h4 class="dec-text">4411 JC</h4>
+            </div>
+            <div class="col-sm-2">
+              <h4 class="dec-text">4522 CR</h4>
+            </div>
+            <div class="col-sm-2">
+              <h4 class="dec-text">20</h4>
+            </div>
+            <div class="col-sm-2">
+              <h4 class="dec-text">€12</h4>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-lg-10" style="padding-left: 0">
-        <div class="dashboard-dec-row" style="background-color: #EBEFF0;">
-          <div class="col-sm-4">
-            <h4 class="dec-text">Kinderen naar huis rijden vanuit school</h4>
-          </div>
-          <div class="col-sm-2">
-            <h4 class="dec-text">4411 JC</h4>
-          </div>
-          <div class="col-sm-2">
-            <h4 class="dec-text">4522 CR</h4>
-          </div>
-          <div class="col-sm-2">
-            <h4 class="dec-text">20</h4>
-          </div>
-          <div class="col-sm-2">
-            <h4 class="dec-text">€12</h4>
+        <div class="col-lg-10" style="padding-left: 0">
+          <div class="dashboard-dec-row" style="background-color: #C4EAE1;">
+            <div class="col-sm-4">
+              <h4 class="dec-text">Kinderen weer naar huis rijden vanuit school</h4>
+            </div>
+            <div class="col-sm-2">
+              <h4 class="dec-text">4411 JC</h4>
+            </div>
+            <div class="col-sm-2">
+              <h4 class="dec-text">4522 CR</h4>
+            </div>
+            <div class="col-sm-2">
+              <h4 class="dec-text">20</h4>
+            </div>
+            <div class="col-sm-2">
+              <h4 class="dec-text">€12</h4>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-lg-10" style="padding-left: 0">
-        <div class="dashboard-dec-row" style="background-color: #C4EAE1;">
-          <div class="col-sm-4">
-            <h4 class="dec-text">Kinderen weer naar huis rijden vanuit school</h4>
-          </div>
-          <div class="col-sm-2">
-            <h4 class="dec-text">4411 JC</h4>
-          </div>
-          <div class="col-sm-2">
-            <h4 class="dec-text">4522 CR</h4>
-          </div>
-          <div class="col-sm-2">
-            <h4 class="dec-text">20</h4>
-          </div>
-          <div class="col-sm-2">
-            <h4 class="dec-text">€12</h4>
-          </div>
+        <div class="col-lg-10" style="padding-left: 0">
+          <div class="dashboard-dec-row" style="background-color: #EBEFF0;"></div>
         </div>
-      </div>
 
-      <div class="col-lg-10" style="padding-left: 0">
-        <div class="dashboard-dec-row" style="background-color: #EBEFF0;"></div>
-      </div>
+        <div>
+  <!--        <a routerLink="/test">-->
+  <!--          <button (click)="onClick()" class="new-declaration"></button></a>-->
+        </div>
 
-      <div>
-<!--        <a routerLink="/test">-->
-<!--          <button (click)="onClick()" class="new-declaration"></button></a>-->
       </div>
-
     </div>
-  </div>
+  </ng-container>
 </div>

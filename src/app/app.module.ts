@@ -1,3 +1,12 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { NotfoundComponent } from './notfound/notfound.component';
+import { HomeComponent } from './account/home/home.component';
+import { ProfileComponent } from './main/profile/profile.component';
+import { CreateDeclarationComponent } from './main/declarations/create-declaration/create-declaration.component';
+import { HeaderComponent } from './header/header.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
@@ -35,6 +44,11 @@ import {DeclarationsComponentModel} from "./main/declarations/declarations.compo
 import {DeclarationsComponent} from "./main/declarations/declarations.component";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
+import {FormsModule} from '@angular/forms';
+import { DesktopDeclarationsComponent } from './main/declarations/desktop-declarations/desktop-declarations.component';
+import { MobileDeclarationsComponent } from './main/declarations/mobile-declarations/mobile-declarations.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 @NgModule({
   declarations: [

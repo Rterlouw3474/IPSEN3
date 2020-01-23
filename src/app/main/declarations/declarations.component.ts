@@ -3,12 +3,18 @@ import {Declaration} from './declaration.object';
 import {DeclarationsComponentModel} from './declarations.component.model';
 import {Router} from '@angular/router';
 import {ApplicationStateService} from '../../application-state.service';
-import {HttpHandlerService} from "../../http-handler.service";
-import {AuthService} from "../../account/auth.service";
-
-
+import {HttpHandlerService} from '../../http-handler.service';
+import {AuthService} from '../../account/auth.service';
 
 export abstract class DeclarationsComponent implements OnInit {
+
+  protected constructor(private router: Router,
+                        private applicationStateService: ApplicationStateService,
+                        private http: HttpHandlerService,
+                        private auth: AuthService) {
+    this.model = new DeclarationsComponentModel(http, auth);
+    this.myViewModel = new DeclarationsComponentModel(http, auth);
+  }
 
   public model: DeclarationsComponentModel;
   public myViewModel: DeclarationsComponentModel;
@@ -37,12 +43,7 @@ export abstract class DeclarationsComponent implements OnInit {
 
   public isLoading : boolean = true;
 
-  protected constructor(private http: HttpHandlerService, private auth:AuthService) {
-    this.model = new DeclarationsComponentModel(http, auth);
-    this.myViewModel = new DeclarationsComponentModel(http, auth);
-    this.isLoading = true;
-    this.setLoadingFalse();
-  }
+
 
   ngOnInit() {
     this.model.getDeclarationArray();
@@ -52,6 +53,10 @@ export abstract class DeclarationsComponent implements OnInit {
 
   private updateView(): void {
     this.myViewModel = this.model.clone();
+  }
+
+  isMobile() {
+    return this.applicationStateService.getIsMobileResolution();
   }
 
   setLoadingFalse(){
@@ -66,7 +71,7 @@ export abstract class DeclarationsComponent implements OnInit {
 
     if (this.allCheckboxesSelected) {
       this.resetSelectedDeclarations();
-      const tempArray : Declaration[] = this.model.declarations.slice(this.getMinimum() , this.getMaximum());
+      const tempArray: Declaration[] = this.model.declarations.slice(this.getMinimum() , this.getMaximum());
       let id = this.getMinimum();
 
       for (const declaration of tempArray) {
@@ -81,18 +86,20 @@ export abstract class DeclarationsComponent implements OnInit {
     this.removeButtonsFromScreen()
   }
 
-  //TODO: zodra de juiste implementatie van declaratie opvragen in de database/backend is geimplementeerd deze herschrijven.
-  OnDeleteEvent(){
+  // TODO: zodra de juiste implementatie van declaratie opvragen in de database/backend is geimplementeerd deze herschrijven.
+  OnDeleteEvent() {
     const selectedDeclaration = this.model.selectedDeclarations[0].declaration;
     this.http
-      .deleteDeclaration("/declaration/delete/" + this.auth.getUserData().email + "/" + selectedDeclaration.decDesc +"/" + selectedDeclaration.decDate)
+      .deleteDeclaration('/declaration/delete/'
+                          + this.auth.getUserData().email
+                          + '/'
+                          + selectedDeclaration.decDesc
+                          + '/' + selectedDeclaration.decDate)
       .subscribe(
         responseData => {
           this.model.getDeclarationArray();
-
         }
       );
-
     this.resetSelectedDeclarations();
   }
 
@@ -100,7 +107,7 @@ export abstract class DeclarationsComponent implements OnInit {
     const selectedDeclaration = this.model.selectedDeclarations[0].declaration;
     const oldDeclaration = this.createDeclarationCopy(selectedDeclaration);
 
-    this.http.postDeclaration(oldDeclaration, "/declaration/create")
+    this.http.postDeclaration(oldDeclaration, '/declaration/create')
       .subscribe(res => {
       this.allCheckboxesSelected = false;
       this.resetSelectedDeclarations();
@@ -108,24 +115,24 @@ export abstract class DeclarationsComponent implements OnInit {
     });
   }
 
-  getSlicedDeclaration(){
-    try{
+  getSlicedDeclaration() {
+    try {
       return this.model.declarations.slice(this.getMinimum() , this.getMaximum());
-    }catch (e) {
-      console.log("no declarations")
+    } catch (e) {
+      console.log('no declarations');
     }
   }
 
 
-  createDeclarationCopy(declaration: Declaration, ) : Declaration{
-    if (declaration.decDesc.includes("[")) {
-      let a: number = Number(declaration.decDesc.charAt(declaration.decDesc.indexOf("[") + 1));
+  createDeclarationCopy(declaration: Declaration, ): Declaration {
+    if (declaration.decDesc.includes('[')) {
+      const a: number = Number(declaration.decDesc.charAt(declaration.decDesc.indexOf('[') + 1));
       declaration.decDesc = declaration.decDesc.substring(0, declaration.decDesc.length - 3);
-      if(!(a+1===10)){
-        declaration.decDesc = declaration.decDesc.concat("[" + Number(a + 1) + "]")
+      if (!(a + 1 === 10)) {
+        declaration.decDesc = declaration.decDesc.concat('[' + Number(a + 1) + ']');
       }
     } else {
-      declaration.decDesc = declaration.decDesc + "[2]";
+      declaration.decDesc = declaration.decDesc + '[2]';
     }
     return declaration;
   }
@@ -152,10 +159,10 @@ export abstract class DeclarationsComponent implements OnInit {
     let sameName : Declaration[] = [];
     for (let declaration of this.model.declarations) {
       if (checkDeclaration.decDesc.substring(0, declaration.decDesc.length - 3) === declaration.decDesc.substring(0, declaration.decDesc.length - 3)) {
-        sameName.push(declaration)
+        sameName.push(declaration);
       }
     }
-    return this.createDeclarationCopy(sameName[sameName.length-1])
+    return this.createDeclarationCopy(sameName[sameName.length - 1]);
   }
 
   onCheckboxEvent(declaration: Declaration, checked: boolean, id: number) {
@@ -164,9 +171,9 @@ export abstract class DeclarationsComponent implements OnInit {
       this.model.selectedDeclarations.push({id, declaration});
     } else {
       let counter = 0;
-           for (const selectedDeclaration of this.model.selectedDeclarations) {
+      for (const selectedDeclaration of this.model.selectedDeclarations) {
              if (selectedDeclaration.id === id) {
-               this.model.selectedDeclarations.splice(counter,1);
+               this.model.selectedDeclarations.splice(counter, 1);
              }
              counter++;
            }
@@ -184,10 +191,10 @@ export abstract class DeclarationsComponent implements OnInit {
       return this.pageNumberMaximum;
   }
 
-  getRealMaximum(){
-    if(this.model.declarations.length < this.getMaximum()){
-      return this.model.declarations.length
-    }else{
+  getRealMaximum() {
+    if (this.model.declarations.length < this.getMaximum()) {
+      return this.model.declarations.length;
+    } else {
       return this.getMaximum();
     }
   }
@@ -216,13 +223,13 @@ export abstract class DeclarationsComponent implements OnInit {
     }
   }
 
-  private checkButtons(){
-    if(this.pageNumberMinimum < 2){
+  private checkButtons() {
+    if (this.pageNumberMinimum < 2) {
       this.pageBtnLeft = false;
-    } else {this.pageBtnLeft= true;}
-    if(this.pageNumberMinimum + this.maxCountPage > this.model.declarations.length){
+    } else {this.pageBtnLeft = true; }
+    if (this.pageNumberMinimum + this.maxCountPage > this.model.declarations.length) {
       this.pageBtnRight = false;
-    } else {this.pageBtnRight = true;}
+    } else {this.pageBtnRight = true; }
   }
 
   resetSelectedDeclarations(){
@@ -232,7 +239,7 @@ export abstract class DeclarationsComponent implements OnInit {
 
   private checkEmptyRows() {
     this.generateEmptyRows = this.pageNumberMaximum - this.model.declarations.length;
-    if (this.generateEmptyRows < 1){
+    if (this.generateEmptyRows < 1) {
       this.generateEmptyRows = 0;
     }
     this.emptyRowsList = Array(this.generateEmptyRows).fill(1);
