@@ -90,12 +90,12 @@ export const slideInAnimation =
       group([
         query(':enter', [
           style({ transform: 'translateY(-900px)' }),
-          animate('0.3s ease-in-out',
+          animate('0.32s ease-in-out',
             style({ transform: 'translateY(0%)' }))
         ], { optional: true }),
         query(':leave', [
           style({ transform: 'translateY(0%)' }),
-          animate('0.3s ease-in-out',
+          animate('0.32s ease-in-out',
             style({ transform: 'translateY(900px)' }))
         ], { optional: true }),
       ])
@@ -107,12 +107,12 @@ export const slideInAnimation =
       group([
         query(':enter', [
           style({ transform: 'translateY(900px)' }),
-          animate('0.35s ease-in-out',
+          animate('0.32s ease-in-out',
             style({ transform: 'translateY(0%)' }))
         ], { optional: true }),
         query(':leave', [
           style({ transform: 'translateY(0%)' }),
-          animate('0.35s ease-in-out',
+          animate('0.32s ease-in-out',
             style({ transform: 'translateY(-900px)' }))
         ], { optional: true }),
       ])
@@ -127,52 +127,52 @@ export const slideInAnimation =
       group([
         query(':enter', [
           style({ transform: 'translateX(100%)' }),
-          animate('0.35s ease-in-out',
+          animate('0.28s ease-in-out',
             style({ transform: 'translateX(0%)' }))
         ], { optional: true }),
         query(':leave', [
           style({ transform: 'translateX(0%)' }),
-          animate('0.35s ease-in-out',
+          animate('0.28s ease-in-out',
             style({ transform: 'translateX(-100%)' }))
         ], { optional: true }),
       ])
     ]),
-    // transition('NewDecPage => DecPage', [
-    //   query(':enter, :leave',
-    //     style({ position: 'relative', width: '100%' }),
-    //     { optional: true }),
-    //   group([
-    //     query(':enter', [
-    //       style({ transform: 'translateX(-100%)' }),
-    //       animate('0.35s ease-in-out',
-    //         style({ transform: 'translateX(0%)' }))
-    //     ], { optional: true }),
-    //     query(':leave', [
-    //       style({ transform: 'translateX(0%)' }),
-    //       animate('0.35s ease-in-out',
-    //         style({ transform: 'translateX(100%)' }))
-    //     ], { optional: true }),
-    //   ])
-    // ]),
+    transition('NewDecPage => DecPage', [
+      query(':enter, :leave',
+        style({ position: 'fixed', width: '100%' }),
+        { optional: true }),
+      group([
+        query(':enter', [
+          style({ transform: 'translateX(-100%)' }),
+          animate('0.28s ease-in-out',
+            style({ transform: 'translateX(0%)' }))
+        ], { optional: true }),
+        query(':leave', [
+          style({ transform: 'translateX(0%)' }),
+          animate('0.28s ease-in-out',
+            style({ transform: 'translateX(100%)' }))
+        ], { optional: true }),
+      ])
+    ]),
 
 
-    // transition('ProfPage => DecPage', [
-    //   query(':enter, :leave',
-    //     style({ position: 'relative', width: '100%' }),
-    //     { optional: true }),
-    //   group([
-    //     query(':enter', [
-    //       style({ transform: 'translateX(-200%)' }),
-    //       animate('0.3s ease-in-out',
-    //         style({ transform: 'translateX(0%)' }))
-    //     ], { optional: true }),
-    //     query(':leave', [
-    //       style({ transform: 'translateX(0%)' }),
-    //       animate('0.3s ease-in-out',
-    //         style({ transform: 'translateX(200%)' }))
-    //     ], { optional: true }),
-    //   ])
-    // ]),
+    transition('ProfPage => DecPage', [
+      query(':enter, :leave',
+        style({ position: 'fixed', width: '100%' }),
+        { optional: true }),
+      group([
+        query(':enter', [
+          style({ transform: 'translateX(-200%)' }),
+          animate('0.28s ease-in-out',
+            style({ transform: 'translateX(0%)' }))
+        ], { optional: true }),
+        query(':leave', [
+          style({ transform: 'translateX(0%)' }),
+          animate('0.28s ease-in-out',
+            style({ transform: 'translateX(200%)' }))
+        ], { optional: true }),
+      ])
+    ]),
     transition('DecPage => ProfPage', [
       query(':enter, :leave',
         style({ position: 'fixed', width: '100%' }),
@@ -180,14 +180,33 @@ export const slideInAnimation =
       group([
         query(':enter', [
           style({ transform: 'translateX(100%)' }),
-          animate('0.35s ease-in-out',
+          animate('0.28s ease-in-out',
             style({ transform: 'translateX(0%)' }))
         ], { optional: true }),
         query(':leave', [
           style({ transform: 'translateX(0%)' }),
-          animate('0.35s ease-in-out',
+          animate('0.28s ease-in-out',
             style({ transform: 'translateX(-100%)' }))
         ], { optional: true }),
       ])
-    ])
+    ]),
+
+
+    transition('DecPage => NewDecPage', [
+      query(':enter, :leave',
+        style({ position: 'fixed', width: '100%' }),
+        { optional: true }),
+      group([
+        query(':enter', [
+          style({ transform: 'translateY(900px)' }),
+          animate('0.32s ease-in-out',
+            style({ transform: 'translateY(0%)' }))
+        ], { optional: true }),
+        query(':leave', [
+          style({ transform: 'translateY(0%)' }),
+          animate('0.32s ease-in-out',
+            style({ transform: 'translateY(-900px)' }))
+        ], { optional: true }),
+      ])
+    ]),
   ]);
