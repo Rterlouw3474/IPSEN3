@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   username: string;
   databaseUser : DatabaseUser;
 
-  constructor(private auth: AuthService, private http:HttpHandlerService) { }
+  constructor(private auth: AuthService, private http: HttpHandlerService) { }
 
   ngOnInit() {
     this.user = this.auth.getUserData();

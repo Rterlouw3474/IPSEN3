@@ -45,6 +45,7 @@ export const slideInAnimation =
       ])
     ]),
 
+
     transition('DecPage => HomePage', [
       query(':enter, :leave',
         style({ position: 'fixed', width: '100%' }),
@@ -62,6 +63,25 @@ export const slideInAnimation =
         ], { optional: true }),
       ])
     ]),
+    transition('HomePage => DecPage', [
+      query(':enter, :leave',
+        style({ position: 'fixed', width: '100%' }),
+        { optional: true }),
+      group([
+        query(':enter',[
+          style({ transform: 'translateX(-100%)' }),
+          animate('0.28s ease-in-out',
+            style({ transform: 'translateX(0%)' }))
+        ], { optional: true }),
+        query(':leave', [
+          style({ transform:   'translateX(0%)'}),
+          animate('0.28s ease-in-out',
+            style({ transform: 'translateX(100%)' }))
+        ], { optional: true }),
+      ])
+    ]),
+
+
 
     transition('NewDecPage => HomePage', [
       query(':enter, :leave',
