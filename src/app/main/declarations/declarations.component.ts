@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ApplicationStateService} from "../../application-state.service";
 import {HttpHandlerService} from "../../http-handler.service";
 import {AuthService} from "../../account/auth.service";
-import {Declaration} from "./declaration.object";
+import {Declaration} from "../../models/declaration.object";
 import {User} from "../../models/user.model";
 
 

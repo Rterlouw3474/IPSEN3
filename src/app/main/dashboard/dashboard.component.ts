@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {User} from "../../models/user.model";
 import {DatabaseUser} from "../../models/databaseuser.model";
-import {Declaration} from "../declarations/declaration.object";
+import {Declaration} from "../../models/declaration.object";
 import {HttpHandlerService} from "../../http-handler.service";
 import {AuthService} from "../../account/auth.service";
 import {ApplicationStateService} from "../../application-state.service";

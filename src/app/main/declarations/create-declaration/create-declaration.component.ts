@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Declaration} from "../declaration.object";
+import {Declaration} from "../../../models/declaration.object";
 import {HttpHandlerService} from "../../../http-handler.service";
-import {User} from "../../profile/user.object";
 import {AuthService} from '../../../account/auth.service';
 import {animate, query, state, style, transition, trigger} from "@angular/animations";
 import {slideInAnimation} from "../../../models/animations";
