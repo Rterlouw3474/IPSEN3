@@ -28,6 +28,9 @@ import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {HttpHandlerService} from "./http-handler.service";
 import {DatePipe, HashLocationStrategy, LocationStrategy} from "@angular/common";
+import {DeclarationService} from "./services/declaration.service";
+import {UserService} from "./services/user.service";
+import {LoadService} from "./services/load.service";
 
 
 @NgModule({
@@ -69,7 +72,7 @@ import {DatePipe, HashLocationStrategy, LocationStrategy} from "@angular/common"
     ReactiveFormsModule,
     MatProgressSpinnerModule
   ],
-  providers: [HttpHandlerService, {provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: MAT_DATE_LOCALE, useValue: 'nl-NL'}, DatePipe],
+  providers: [HttpHandlerService, DeclarationService, UserService, LoadService, {provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: MAT_DATE_LOCALE, useValue: 'nl-NL'}, DatePipe],
   bootstrap: [AppComponent],
 })
 

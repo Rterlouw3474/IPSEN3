@@ -4,6 +4,8 @@ import {HttpHandlerService} from "../../http-handler.service";
 import {AuthService} from "../../account/auth.service";
 import {Declaration} from "../../models/declaration.object";
 import {User} from "../../models/user.model";
+import {DeclarationService} from "../../services/declaration.service";
+import {LoadService} from "../../services/load.service";
 
 
 @Component({
@@ -38,40 +40,24 @@ export class DeclarationsComponent implements OnInit {
   public removeDelete = true;
   public removeEdit = true;
 
-  //load icon variable
-  public isLoading = true;
-
-  public declarations: Declaration[];
   public selectedDeclarations: { id: number; declaration : Declaration; }[];
 
   public authUser : User;
 
-  constructor(private applicationStateService: ApplicationStateService, private http: HttpHandlerService, private auth: AuthService) {
-    this.setLoadingFalse();
+  constructor(private applicationStateService: ApplicationStateService, private http: HttpHandlerService,
+              private auth: AuthService, private decService:DeclarationService,
+              private load:LoadService) {
     this.selectedDeclarations = [];
   }
 
   ngOnInit() {
-    this.getDeclarationArray();
-  }
+    this.checkButtons();
+    this.checkEmptyRows();
 
-  //gets declarations from the user
-  getDeclarationArray(){
-    return this.http.getDeclarations(this.auth.getUserData().email).subscribe(res => {
-        this.declarations = res;
-        this.checkButtons();
-        this.checkEmptyRows();
-      });
   }
 
   isMobile() {
     return this.applicationStateService.getIsMobileResolution();
-  }
-
-  //disables loading icon after half a second of loading.
-  setLoadingFalse() {
-    const that = this;
-    setTimeout(() => { that.isLoading = false; }, 500);
   }
 
   //function for checking all boxes when the parent checkbox is checked.
@@ -80,7 +66,7 @@ export class DeclarationsComponent implements OnInit {
 
     if (this.allCheckboxesSelected) {
       this.resetSelectedDeclarations();
-      const tempArray: Declaration[] = this.declarations.slice(this.pageNumberMinimum , this.pageNumberMaximum);
+      const tempArray: Declaration[] = this.decService.declarations.slice(this.pageNumberMinimum , this.pageNumberMaximum);
       let id = this.pageNumberMinimum;
 
       for (const declaration of tempArray) {
@@ -102,7 +88,9 @@ export class DeclarationsComponent implements OnInit {
                           + selectedDeclaration.decDate)
       .subscribe(
         responseData => {
-          this.getDeclarationArray();
+          this.decService.getDeclarationArray();
+          this.checkButtons();
+          this.checkEmptyRows();
         });
     this.resetSelectedDeclarations();
   }
@@ -110,7 +98,7 @@ export class DeclarationsComponent implements OnInit {
   //gets declarations based on page count
   getSlicedDeclaration() {
     try {
-      return this.declarations.slice(this.pageNumberMinimum , this.pageNumberMaximum);
+      return this.decService.declarations.slice(this.pageNumberMinimum , this.pageNumberMaximum);
     } catch (e) { } //no declarations
   }
 
@@ -135,10 +123,20 @@ export class DeclarationsComponent implements OnInit {
 
     this.http.postDeclaration(oldDeclaration, '/declaration/create')
       .subscribe(res => {
-        this.allCheckboxesSelected = false;
-        this.resetSelectedDeclarations();
-        this.getDeclarationArray();
-      });
+          this.allCheckboxesSelected = false;
+          this.resetSelectedDeclarations();
+          this.decService.getDeclarationArray();
+          this.checkButtons();
+          this.checkEmptyRows();
+      },
+        error =>{
+          this.allCheckboxesSelected = false;
+          this.resetSelectedDeclarations();
+          this.decService.getDeclarationArray();
+          this.checkButtons();
+          this.checkEmptyRows();
+    });
+
   }
 
   //removes edit buttons from DOM after animation
@@ -178,15 +176,15 @@ export class DeclarationsComponent implements OnInit {
   }
 
   getRealMaximum() {
-    if (this.declarations.length < this.pageNumberMaximum) {
-      return this.declarations.length;
+    if (this.decService.declarations.length < this.pageNumberMaximum) {
+      return this.decService.declarations.length;
     } else {
       return this.pageNumberMaximum;
     }
   }
 
   nextPage() {
-    if (!(this.pageNumberMinimum + 10 >= this.declarations.length)) {
+    if (!(this.pageNumberMinimum + 10 >= this.decService.declarations.length)) {
       this.pageNumberMinimum += 10;
       this.pageNumberMaximum += 10;
       this.pageReset();
@@ -211,7 +209,7 @@ export class DeclarationsComponent implements OnInit {
 
   private checkButtons() {
     this.pageBtnLeft = this.pageNumberMinimum >= 2;
-    this.pageBtnRight = this.pageNumberMinimum + this.maxCountPage <= this.declarations.length;
+    this.pageBtnRight = this.pageNumberMinimum + this.maxCountPage <= this.decService.declarations.length;
   }
 
   resetSelectedDeclarations() {
@@ -220,7 +218,7 @@ export class DeclarationsComponent implements OnInit {
   }
 
   private checkEmptyRows() {
-    this.generateEmptyRows = this.pageNumberMaximum - this.declarations.length;
+    this.generateEmptyRows = this.pageNumberMaximum - this.decService.declarations.length;
     if (this.generateEmptyRows < 1) {
       this.generateEmptyRows = 0;
     }

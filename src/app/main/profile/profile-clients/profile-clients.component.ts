@@ -4,6 +4,7 @@ import {Client} from './client.model';
 import {ProfileObjectsService} from '../profile-objects.service';
 import {User} from '../../../models/user.model';
 import {AuthService} from '../../../account/auth.service';
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-profile-clients',
@@ -11,7 +12,6 @@ import {AuthService} from '../../../account/auth.service';
   styleUrls: ['./profile-clients.component.scss']
 })
 export class ProfileClientsComponent implements OnInit {
-  private user: User;
   private maxCountPage = 6;
   public clients: Client[];
   public selectClients: Client[];
@@ -31,24 +31,22 @@ export class ProfileClientsComponent implements OnInit {
   public popupClient: Client;
   public popupEditMode = false;
 
-  constructor(private auth: AuthService) {
-    this.user = this.auth.getUserData();
-    const userEmail = this.user.email;
+  constructor(private auth: AuthService, private userService:UserService) {
     this.clients = [
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userEmail, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland")
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland")
     ];
     this.checkEmptyRows();
     this.checkButtons();

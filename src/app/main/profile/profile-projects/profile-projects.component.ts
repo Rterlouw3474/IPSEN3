@@ -3,6 +3,7 @@ import {Project} from './project.model';
 import {ProfileObjectsService} from '../profile-objects.service';
 import {User} from '../../../models/user.model';
 import {AuthService} from '../../../account/auth.service';
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-profile-projects',
@@ -10,7 +11,6 @@ import {AuthService} from '../../../account/auth.service';
   styleUrls: ['./profile-projects.component.scss']
 })
 export class ProfileProjectsComponent implements OnInit {
-  user: User;
   private maxCountPage = 6;
   public projects: Project[];
   public selectedProjects: Project[];
@@ -30,15 +30,13 @@ export class ProfileProjectsComponent implements OnInit {
   public popupProject: Project;
   public popupEditMode = false;
 
-  constructor(private auth: AuthService) {
-    this.user = this.auth.getUserData();
-    const userEmail = this.user.email;
+  constructor(private auth: AuthService, private userService:UserService) {
     // hier worden alle projecten in geladen
     this.projects = [
-      new Project(userEmail,"Project 1", "Dit is een beschrijving!!!!!", "11-06-2000", "20-12-2019"),
-      new Project(userEmail,"Project 2", "Beschrijving YOLO", "17-12-2019", "18-12-2019"),
-      new Project(userEmail,"Project 3", "lol", "17-12-2019", "18-12-2019"),
-      new Project(userEmail,"Project 4", "Peter r de vries vind dit een beschrijving", "17-12-2019", "18-12-2019"),
+      new Project(userService.authUser.email,"Project 1", "Dit is een beschrijving!!!!!", "11-06-2000", "20-12-2019"),
+      new Project(userService.authUser.email,"Project 2", "Beschrijving YOLO", "17-12-2019", "18-12-2019"),
+      new Project(userService.authUser.email,"Project 3", "lol", "17-12-2019", "18-12-2019"),
+      new Project(userService.authUser.email,"Project 4", "Peter r de vries vind dit een beschrijving", "17-12-2019", "18-12-2019"),
       new Project("baljit@krdf.nl","Project 5", "Beschrijving2", "17-12-2019", "18-12-2019"),
       new Project("ole@krdf.nl","Project 6", "Beschrijving3", "17-12-2019", "18-12-2019"),
       new Project("richard@krdf.nl","Project 7", "Beschrijving4", "17-12-2019", "18-12-2019"),

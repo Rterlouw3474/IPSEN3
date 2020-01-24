@@ -90,12 +90,12 @@ export const slideInAnimation =
       group([
         query(':enter', [
           style({ transform: 'translateY(-900px)' }),
-          animate('0.32s ease-in-out',
+          animate('0.30s ease-in-out',
             style({ transform: 'translateY(0%)' }))
         ], { optional: true }),
         query(':leave', [
           style({ transform: 'translateY(0%)' }),
-          animate('0.32s ease-in-out',
+          animate('0.30s ease-in-out',
             style({ transform: 'translateY(900px)' }))
         ], { optional: true }),
       ])
@@ -107,12 +107,12 @@ export const slideInAnimation =
       group([
         query(':enter', [
           style({ transform: 'translateY(900px)' }),
-          animate('0.32s ease-in-out',
+          animate('0.30s ease-in-out',
             style({ transform: 'translateY(0%)' }))
         ], { optional: true }),
         query(':leave', [
           style({ transform: 'translateY(0%)' }),
-          animate('0.32s ease-in-out',
+          animate('0.30s ease-in-out',
             style({ transform: 'translateY(-900px)' }))
         ], { optional: true }),
       ])
@@ -199,12 +199,12 @@ export const slideInAnimation =
       group([
         query(':enter', [
           style({ transform: 'translateY(900px)' }),
-          animate('0.32s ease-in-out',
+          animate('0.30s ease-in-out',
             style({ transform: 'translateY(0%)' }))
         ], { optional: true }),
         query(':leave', [
           style({ transform: 'translateY(0%)' }),
-          animate('0.32s ease-in-out',
+          animate('0.30s ease-in-out',
             style({ transform: 'translateY(-900px)' }))
         ], { optional: true }),
       ])

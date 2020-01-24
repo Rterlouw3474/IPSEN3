@@ -1,9 +1,5 @@
-<div class="container dashboard">
-
-  <mat-spinner *ngIf="isLoading" class="load-spinner"></mat-spinner>
-
-
-  <div *ngIf="!isLoading">
+<mat-spinner *ngIf="load.isLoading" class="load-spinner"></mat-spinner>
+<div class="container dashboard" *ngIf="!load.isLoading">
 
     <table style="width:90% ; margin-top: 80px; margin-left: 50px">
       <tr>
@@ -59,7 +55,7 @@
       </div>
 
       <div class="col-sm-4">
-        <h4 class="page-counter">{{pageNumberMinimum+1}} - {{getRealMaximum()}} van de {{declarations.length}}</h4>
+        <h4 class="page-counter">{{pageNumberMinimum+1}} - {{getRealMaximum()}} van de {{decService.declarations.length}}</h4>
       </div>
     </div>
 
@@ -91,7 +87,7 @@
 
     <app-declaration-popup [declaration]="popupDeclaration" [editMode]="popupEditMode" [(showPopup)]="showPopup" *ngIf="showPopup"></app-declaration-popup>
 
-  </div>
+
 
   <div>
     <a routerLink="/declarations/new">
