@@ -1,11 +1,11 @@
 import {AfterViewInit, Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {HttpHandlerService} from '../../http-handler.service';
-import {User} from '../profile/user.object';
 import {Declaration} from '../declarations/declaration.object';
 import {AuthService} from '../../account/auth.service';
 import {DatabaseUser} from '../../models/databaseuser.model';
 import {Router} from '@angular/router';
 import {ApplicationStateService} from '../../application-state.service';
+import {User} from "../../models/user.model";
 
 export abstract class DashboardComponent implements OnInit {
 
@@ -14,7 +14,7 @@ export abstract class DashboardComponent implements OnInit {
   totalDeclarations: number;
   username: string;
 
-  authUser: User;
+  user: User;
   databaseUser: DatabaseUser;
 
   declarations: Declaration[] = [];
@@ -22,15 +22,17 @@ export abstract class DashboardComponent implements OnInit {
   protected constructor(private router: Router,
                         private applicationStateService: ApplicationStateService,
                         private http: HttpHandlerService,
-                        private auth: AuthService) {
-  }
+                        private auth: AuthService) { }
 
   ngOnInit() {
     this.getDeclarationArray();
+    this.retrieveUserData();
+  }
 
-    this.http.getUser(this.authUser.email).subscribe(res => {
+  retrieveUserData(){
+    this.user = this.auth.getUserData();
+    this.http.getUser(this.user.email).subscribe(res=>{
       this.databaseUser = res;
-      console.log(this.databaseUser);
       this.username = this.databaseUser.username;
     });
   }
