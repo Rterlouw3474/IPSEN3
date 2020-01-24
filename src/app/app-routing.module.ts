@@ -1,6 +1,3 @@
-import { NgModule } from '@angular/core';
-import {Routes, RouterModule, Router} from '@angular/router';
-
 import {HomeComponent} from './account/home/home.component';
 import {NotfoundComponent} from './notfound/notfound.component';
 import {ProfileComponent} from './main/profile/profile.component';
@@ -11,10 +8,12 @@ import {ProfileProjectsComponent} from './main/profile/profile-projects/profile-
 import {ProfileClientsComponent} from './main/profile/profile-clients/profile-clients.component';
 import {ProfileCarsComponent} from './main/profile/profile-cars/profile-cars.component';
 import {AuthGuard} from './account/auth.guard';
-import {APP_BASE_HREF} from '@angular/common';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DashboardComponent} from './main/dashboard/dashboard.component';
 import {DeclarationsComponent} from './main/declarations/declarations.component';
+import {Router, RouterModule, Routes} from "@angular/router";
+import {NgModule} from "@angular/core";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {APP_BASE_HREF} from "@angular/common";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -33,6 +32,7 @@ const routes: Routes = [
   { path: '**', redirectTo: '/not-found' }
 ];
 
+// @ts-ignore
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true}),  BrowserAnimationsModule],
   exports: [RouterModule],

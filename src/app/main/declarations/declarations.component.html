@@ -59,30 +59,30 @@
       </div>
 
       <div class="col-sm-4">
-        <h4 class="page-counter">{{getMinimum()+1}} - {{getRealMaximum()}} van de {{model.declarations.length}}</h4>
+        <h4 class="page-counter">{{pageNumberMinimum+1}} - {{getRealMaximum()}} van de {{declarations.length}}</h4>
       </div>
     </div>
 
     <div class="edit-buttons-container"> <!--TODO waarom werkt [ngClass]="{'desktop': !isMobile()}" hier niet??!-->
       <div class="col-sm-2">
         <div class="dec-edit-button" *ngIf="!removeEdit"
-             [ngClass]="{'dec-edit-button-animation': model.selectedDeclarations.length==1,
-           'dec-edit-button-animation2' : !(model.selectedDeclarations.length==1)}">
+             [ngClass]="{'dec-edit-button-animation': selectedDeclarations.length==1,
+           'dec-edit-button-animation2' : !(selectedDeclarations.length==1)}">
           <svg class="material-design-icons" xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
         </div>
       </div>
       <div class="col-sm-2">
         <div class="dec-edit-button" *ngIf="!removeDelete"
-             [ngClass]="{'dec-edit-button-animation': model.selectedDeclarations.length>0,
-           'dec-edit-button-animation2' : !(model.selectedDeclarations.length>0)}"
+             [ngClass]="{'dec-edit-button-animation': selectedDeclarations.length>0,
+           'dec-edit-button-animation2' : !(selectedDeclarations.length>0)}"
              (click)="OnDeleteEvent()">
           <svg class="material-design-icons"  xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
         </div>
       </div>
       <div class="col-sm-2">
         <div class="dec-edit-button" *ngIf="!removeEdit"
-             [ngClass]="{'dec-edit-button-animation': model.selectedDeclarations.length==1,
-           'dec-edit-button-animation2' : !(model.selectedDeclarations.length==1)}"
+             [ngClass]="{'dec-edit-button-animation': selectedDeclarations.length==1,
+           'dec-edit-button-animation2' : !(selectedDeclarations.length==1)}"
              (click)="OnCopyEvent()">
           <svg class="material-design-icons2" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
         </div>

@@ -1,18 +1,17 @@
-import {AfterViewInit, Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {HttpHandlerService} from '../../http-handler.service';
-import {User} from '../profile/user.object';
-import {Declaration} from '../declarations/declaration.object';
-import {AuthService} from '../../account/auth.service';
-import {DatabaseUser} from '../../models/databaseuser.model';
-import {Router} from '@angular/router';
-import {ApplicationStateService} from '../../application-state.service';
+import {Component, OnInit} from "@angular/core";
+import {User} from "../../models/user.model";
+import {DatabaseUser} from "../../models/databaseuser.model";
+import {Declaration} from "../declarations/declaration.object";
+import {HttpHandlerService} from "../../http-handler.service";
+import {AuthService} from "../../account/auth.service";
+import {ApplicationStateService} from "../../application-state.service";
+
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-desktop-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-
 export class DashboardComponent implements OnInit {
 
   totalKilometers: number;
@@ -21,19 +20,18 @@ export class DashboardComponent implements OnInit {
   username: string;
 
   authUser: User;
-  databaseUser: DatabaseUser;
+  databaseUser : DatabaseUser;
 
-  declarations: Declaration[] = [];
+  declarations : Declaration[] = [];
 
-  constructor(private applicationStateService: ApplicationStateService,
-              private http: HttpHandlerService,
-              private auth: AuthService) {
-  }
+  constructor(private applicationStateService: ApplicationStateService, private http: HttpHandlerService,
+              private auth: AuthService) { }
 
   ngOnInit() {
     this.getDeclarationArray();
+    this.authUser = this.auth.getUserData();
 
-    this.http.getUser(this.authUser.email).subscribe(res => {
+    this.http.getUser(this.authUser.email).subscribe(res=>{
       this.databaseUser = res;
       console.log(this.databaseUser);
       this.username = this.databaseUser.username;
@@ -44,14 +42,15 @@ export class DashboardComponent implements OnInit {
     return this.applicationStateService.getIsMobileResolution();
   }
 
-  getDeclarationArray() {
+
+  getDeclarationArray(){
     this.http.getDeclarations(this.auth.getUserData().email)
       .subscribe(
         res => {
           this.declarations = res;
           this.updateDashboardValues();
 
-          // console.log(this.declarations);
+          //console.log(this.declarations);
         }
       );
   }
