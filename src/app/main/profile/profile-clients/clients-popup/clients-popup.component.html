@@ -1,0 +1,39 @@
+<div class="full-screen" (click)="closePopupOutsidePopup($event)">
+  <div class="popup-wrapper">
+    <div class="popup-container">
+      <div class="popup-header-display">
+        <h2 class="popup-header">{{popupHeader}}</h2>
+        <div class="close-button">
+          <i class="material-icons" (click)="closePopup()">
+            close
+          </i>
+        </div>
+
+      </div>
+
+      <div class="input-fields">
+        <form>
+          <mat-form-field>
+            <input matInput placeholder="Naam" value="" [(ngModel)]="client.clientName" name="clientName">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Postcode" value="" [(ngModel)]="client.clientPostalCode" name="clientPostalCode">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Huisnummer" value="" [(ngModel)]="client.clientHouseNumber" name="clientHouseNumber">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Stad" value="" [(ngModel)]="client.clientCity" name="clientCity">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Land" value="" [(ngModel)]="client.clientCountry" name="clientCountry">
+          </mat-form-field>
+
+          <div class="button-wrapper">
+            <button (click)="createClient()" class="btn">Opslaan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

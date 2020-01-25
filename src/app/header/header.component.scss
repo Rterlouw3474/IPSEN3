@@ -22,7 +22,7 @@
 
 .navigatorHeader{
   position:absolute;
-  width: 600px;
+  width: 100%;
   left: 0;
   right: 0;
   margin: auto;
@@ -64,6 +64,11 @@
     font-size: 18px;
     transition: opacity 0.2s ease;
   }
+}
+
+/* Change the link color to #111 (black) on hover */
+.navigatorHeader a:hover, .logUit a:hover {
+  opacity: 0.6;
 }
 
 /* Change the link color to #111 (black) on hover */

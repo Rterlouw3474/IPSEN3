@@ -18,11 +18,27 @@ h1 {
 .dashboard-text{
   text-align: center;
   color: #5D656F;
+  font-size: 1.4em;
 }
 
 .dashboard-dec-row{
   width: 1100px;
   height: 60px;
+}
+
+.table-dec-row{
+  width: 100%;
+  height: 60px;
+  &:hover {
+    cursor: pointer;
+    .object-column {
+      opacity: 0.6;
+    }
+  }
+}
+
+.removed{
+  display: none;
 }
 
 .declaration-declarations{
@@ -47,7 +63,7 @@ h1 {
 }
 
 .new-declaration{
-  background: url("src/assets/images/newdec80.png") no-repeat;
+  background: url("../../../assets/images/newdec80.png") no-repeat;
   height: 80px;
   width: 80px;
   border:none;
@@ -170,6 +186,61 @@ h1 {
   margin-top: 15px;
 }
 
+.edit-buttons-container {
+  position: fixed;
+  bottom: 50px;
+  justify-content: center;
+  width: 100%;
+  display: flex;
+}
+
+@media screen and (max-width:1280px){
+
+  .container {
+    width: 80vw;
+    height: 100vh;
+    background-color: white;
+    position: relative;
+    padding-top: 82px;
+    left: 0%;
+    top: 0%;
+    transform: translate(0%, 0%);
+  }
+
+  .container.mobile {
+    width: 100vw;
+  }
+
+  .container.mobile table {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  .dashboard{
+    width: 80vw;
+    height: 100vh;
+    background-color: #EBEFF0;
+    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+  }
+
+  .dec-edit-button{
+    box-shadow: 0 2px 3px rgba(39, 39, 39, 0.5);
+    transition: transform 0.095s ease;
+    background-color: #9ADECE;
+    border-radius: 100%;
+    width: 72px;
+    height: 72px;
+  }
+
+  .edit-buttons-container {
+    position: fixed;
+    bottom: 50px;
+    justify-content: space-evenly;
+    width: calc(100% - 50px);
+    display: flex;
+  }
+
+}
 
 
 

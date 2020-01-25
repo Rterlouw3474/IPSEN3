@@ -2,14 +2,14 @@
 <form action="submit">
   <table>
     <tr>
-      <td>
+      <td style="width: 25%">
         Naam:
       </td>
-      <td>
+      <td style="width: 75%">
         <mat-form-field class="EditNaam">
           <input matInput
                  name="naam"
-                 value="{{ username }}"
+                 value="{{ userService.databaseUser.username }}"
                  class="form-control"
                  #newNameInput
           >
@@ -17,11 +17,11 @@
       </td>
     </tr>
     <tr>
-      <td>
+      <td style="width: 25%">
         Email-adres:
       </td>
-      <td>
-        {{ userEmail }}
+      <td style="width: 75%">
+        {{ userService.authUser.email }}
       </td>
     </tr>
 <!--    <tr>-->
@@ -34,7 +34,7 @@
   </table>
   <div class="btn-wrapper">
     <button class="btn"
-      (click)="onChangeUsername(newNameInput)"
+      (click)="userService.onChangeUsername(newNameInput)"
     >
       <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
         <path d="M0 0h24v24H0z" fill="none"/>

@@ -58,6 +58,13 @@ input:focus {
   transform: translate(-50%, -50%);
 }
 
+.load-spinner{
+  position: fixed;
+  top:400px;
+  left: calc(50% - 80px);
+  z-index: 200;
+}
+
 .page-button{
   box-shadow: 0 2px 3px rgba(39, 39, 39, 0.5);
   background-color: #56C8AD;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Client} from '../profile-clients/client.model';
-import {Car} from './car.model';
+import {Car} from '../../../models/car.model';
 import {ProfileObjectsService} from '../profile-objects.service';
 
 @Component({
@@ -22,6 +22,11 @@ export class ProfileCarsComponent implements OnInit {
 
   public pageBtnLeft = true;
   public pageBtnRight = true;
+
+  // popup
+  public showPopup = false;
+  public popupCar: Car;
+  public popupEditMode = false;
 
   constructor() {
     this.cars = [
@@ -84,6 +89,17 @@ export class ProfileCarsComponent implements OnInit {
   private checkButtons() {
     this.pageBtnLeft = ProfileObjectsService.checkPrevButton(this.pageNumberMinimum);
     this.pageBtnRight = ProfileObjectsService.checkNextButton(this.pageNumberMinimum, this.maxCountPage, this.cars.length);
+  }
+
+  createCar() {
+    this.popupEditMode = false;
+    this.showPopup = true;
+  }
+
+  editCar(car: Car) {
+    this.popupCar = car;
+    this.popupEditMode = true;
+    this.showPopup = true;
   }
 
 }

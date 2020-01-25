@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Project} from './project.model';
 import {ProfileObjectsService} from '../profile-objects.service';
-import {AuthService} from "../../../account/auth.service";
+import {User} from '../../../models/user.model';
+import {AuthService} from '../../../account/auth.service';
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-profile-projects',
@@ -9,12 +11,6 @@ import {AuthService} from "../../../account/auth.service";
   styleUrls: ['./profile-projects.component.scss']
 })
 export class ProfileProjectsComponent implements OnInit {
-
-  name: string;
-  desc: string;
-  startDate: string;
-  endDate: string;
-
   private maxCountPage = 6;
   public projects: Project[];
   public selectedProjects: Project[];
@@ -29,18 +25,23 @@ export class ProfileProjectsComponent implements OnInit {
   public pageBtnLeft = true;
   public pageBtnRight = true;
 
-  constructor(private authservice: AuthService) {
+  // popup
+  public showPopup = false;
+  public popupProject: Project;
+  public popupEditMode = false;
+
+  constructor(private auth: AuthService, private userService:UserService) {
     // hier worden alle projecten in geladen
     this.projects = [
-      new Project(this.authservice.getUserData().email, this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019"),
-      new Project(this.authservice.getUserData().email,this.name, "", "17-12-2019", "18-12-2019")
+      new Project(userService.authUser.email,"Project 1", "Dit is een beschrijving!!!!!", "11-06-2000", "20-12-2019"),
+      new Project(userService.authUser.email,"Project 2", "Beschrijving YOLO", "17-12-2019", "18-12-2019"),
+      new Project(userService.authUser.email,"Project 3", "lol", "17-12-2019", "18-12-2019"),
+      new Project(userService.authUser.email,"Project 4", "Peter r de vries vind dit een beschrijving", "17-12-2019", "18-12-2019"),
+      new Project("baljit@krdf.nl","Project 5", "Beschrijving2", "17-12-2019", "18-12-2019"),
+      new Project("ole@krdf.nl","Project 6", "Beschrijving3", "17-12-2019", "18-12-2019"),
+      new Project("richard@krdf.nl","Project 7", "Beschrijving4", "17-12-2019", "18-12-2019"),
+      new Project("richard@krdf.nl","Project 8", "Beschrijving56", "17-12-2019", "18-12-2019"),
+      new Project("richard@krdf.nl","Project 9", "Beschrijving766", "17-12-2019", "18-12-2019")
     ];
     this.checkEmptyRows();
     this.checkButtons();
@@ -92,4 +93,9 @@ export class ProfileProjectsComponent implements OnInit {
     this.pageBtnRight = ProfileObjectsService.checkNextButton(this.pageNumberMinimum, this.maxCountPage, this.projects.length);
   }
 
+  editProject(project: Project) {
+    this.popupProject = project;
+    this.popupEditMode = true;
+    this.showPopup = true;
+  }
 }

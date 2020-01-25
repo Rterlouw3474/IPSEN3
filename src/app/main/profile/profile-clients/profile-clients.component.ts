@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Project} from '../profile-projects/project.model';
 import {Client} from './client.model';
 import {ProfileObjectsService} from '../profile-objects.service';
+import {User} from '../../../models/user.model';
+import {AuthService} from '../../../account/auth.service';
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-profile-clients',
@@ -23,22 +26,27 @@ export class ProfileClientsComponent implements OnInit {
   public pageBtnLeft = true;
   public pageBtnRight = true;
 
-  constructor() {
+  // popup
+  public showPopup = false;
+  public popupClient: Client;
+  public popupEditMode = false;
+
+  constructor(private auth: AuthService, private userService:UserService) {
     this.clients = [
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland"),
-      new Client("ole@gmail.com", "Ole Timmers", "2215 AB", "11", "Amsterdam", "Nederland")
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
+      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland")
     ];
     this.checkEmptyRows();
     this.checkButtons();
@@ -85,5 +93,11 @@ export class ProfileClientsComponent implements OnInit {
   private checkButtons() {
     this.pageBtnLeft = ProfileObjectsService.checkPrevButton(this.pageNumberMinimum);
     this.pageBtnRight = ProfileObjectsService.checkNextButton(this.pageNumberMinimum, this.maxCountPage, this.clients.length);
+  }
+
+  editClient(client: Client) {
+    this.popupClient = client;
+    this.popupEditMode = true;
+    this.showPopup = true;
   }
 }

@@ -3,31 +3,23 @@ import {
   HttpClient, HttpErrorResponse,
   HttpHeaders
 } from "@angular/common/http";
-import {User} from "./main/profile/user.object";
 import {Observable, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
-import {Declaration} from "./main/declarations/declaration.object";
+import {Declaration} from "./models/declaration.object";
 import {DatabaseUser} from "./models/databaseuser.model";
+import {Project} from './main/profile/profile-projects/project.model';
+import {Client} from './main/profile/profile-clients/client.model';
+import {RDWCar} from "./models/rdwcar.model";
+import {RDWFuel} from "./models/rdwfuel.model";
+import {Car} from "./models/car.model";
+
 
 @Injectable()
 export class HttpHandlerService {
   options = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
-  databaseUrl: string = "http://h2858995.stratoserver.net:8080";
+  databaseUrl: string = "http://localhost:8080";
 
   constructor(private http: HttpClient) {
-  }
-
-  /**
-   * @author Edward Deen
-   * @param user
-   * @param extraUrl
-   */
-  postUser(user: User, extraUrl: string) {
-    this.http.post(
-      this.databaseUrl + extraUrl, user, this.options
-    ).subscribe(responseData => {
-      console.log(responseData)
-    });
   }
 
   postDeclaration(declaration: Declaration, extraUrl: string) {
@@ -42,9 +34,41 @@ export class HttpHandlerService {
     )
   }
 
+  postProject(project: Project, extraUrl: string){
+    this.http.post(
+      this.databaseUrl + extraUrl, project, this.options
+    ).subscribe(responseData => {
+      console.log(responseData)
+    });
+  }
+
+  postClient(client: Client, extraUrl: string){
+    this.http.post(
+      this.databaseUrl + extraUrl, client, this.options
+    ).subscribe(responseData => {
+      console.log(responseData)
+    });
+  }
+
+  postCar(car : Car, extraUrl: string){
+    this.http.post(
+      this.databaseUrl + extraUrl, car, this.options
+    ).subscribe(responseData => {
+      console.log(responseData)
+    });
+  }
+
 
   getUser(userEmail:string): Observable<DatabaseUser>{
     return this.http.get(this.databaseUrl + "/user/get/" + userEmail).pipe(map(res => <DatabaseUser>res));
+  }
+
+  getRDWCar(licencePlate:string): Observable<RDWCar[]>{
+    return this.http.get(this.databaseUrl + "/rdw/get/car/" + licencePlate).pipe(map(res => <RDWCar[]>res));
+  }
+
+  getRDWFuel(licencePlate:string): Observable<RDWFuel[]>{
+    return this.http.get(this.databaseUrl + "/rdw/get/fuel/" + licencePlate).pipe(map(res => <RDWFuel[]>res));
   }
 
   deleteDeclaration(url:string){
@@ -65,4 +89,3 @@ export class HttpHandlerService {
 
 
 }
-
