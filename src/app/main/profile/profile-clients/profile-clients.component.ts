@@ -32,14 +32,14 @@ export class ProfileClientsComponent implements OnInit {
   public popupClient: Client;
   public popupEditMode = false;
 
-  constructor(private auth: AuthService, private httpHandler : HttpHandlerService) {
+  constructor(private auth: AuthService, private httpHandler : HttpHandlerService, private userService:UserService) {
   }
 
   ngOnInit() {
     this.getClientsArray();
   }
 
-  getClientsArray(){
+  getClientsArray() {
     return this.httpHandler.getClients(this.auth.getUserData().email).subscribe(
       res => {
         this.clients = res;
@@ -47,30 +47,7 @@ export class ProfileClientsComponent implements OnInit {
         this.checkButtons();
       }
     );
-  constructor(private auth: AuthService, private userService:UserService) {
-    this.clients = [
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland")
-    ];
-    this.checkEmptyRows();
-    this.checkButtons();
   }
-
-  ngOnInit() {
-  }
-
   // Wisselen van pagina's
   getMinimum() {
     return this.pageNumberMinimum;
