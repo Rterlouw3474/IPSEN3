@@ -6,6 +6,7 @@ import {AuthService} from '../../../account/auth.service';
 import {HttpHandlerService} from '../../../http-handler.service';
 import {Declaration} from '../../declarations/declaration.object';
 import {timeout} from 'rxjs/operators';
+import {DeletePopupModel} from '../../shared/delete-popup/delete-popup.model';
 
 @Component({
   selector: 'app-profile-projects',
@@ -31,7 +32,9 @@ export class ProfileProjectsComponent implements OnInit {
 
   public deleteButtonDisabled = true;
 
-  // popup
+  // popups
+  public showDeletePopup = false;
+  public deletePopup: DeletePopupModel;
   public showPopup = false;
   public popupProject: Project;
   public popupEditMode = false;
@@ -121,7 +124,7 @@ export class ProfileProjectsComponent implements OnInit {
       const that = this;
       setTimeout(function() {
         that.getProjectsArray();
-      }), 20000;
+      }, 200);
       console.log("getprojects");
     }
 
@@ -169,20 +172,43 @@ export class ProfileProjectsComponent implements OnInit {
     this.deleteButtonDisabled = !(this.selectedProjects.length > 0);
   }
 
-  deleteProjectsSelected() {
-    for (const selectedProject of this.selectedProjects) {
-      this.httpHandler
-        .deleteProject("/project/deleteProject/" + this.auth.getUserData().email + "/" + selectedProject.projectName)
-        .subscribe(
-          responseData => {
-            console.log(responseData);
-          }
-        );
+  deleteProjectsSelected(result: any) {
+    if (result) {
+      for (const selectedProject of this.selectedProjects) {
+        this.httpHandler
+          .deleteProject("/project/deleteProject/" + this.auth.getUserData().email + "/" + selectedProject.projectName)
+          .subscribe(
+            responseData => {
+              console.log(responseData);
+            }
+          );
+      }
+      this.resetSelectedProjects();
+      this.projects = [];
+      this.onChange(true);
+      this.showDeletePopup = false;
+    } else {
+      this.showDeletePopup = false;
     }
-    this.resetSelectedProjects();
-    this.projects = [];
-    this.onChange(true);
 
+  }
+
+  verWijderPopup() {
+    if (this.selectedProjects.length < 1) {
+      this.showDeletePopup = false;
+    } else if(this.selectedProjects.length === 1) {
+      this.deletePopup = new DeletePopupModel("Project verwijderen",
+        "Weet u zeker dat u het geselecteerde project wil verwijderen?",
+        "Ja, verwijder project",
+        "Nee, annuleer");
+      this.showDeletePopup = true;
+    } else if( this.selectedProjects.length > 1) {
+      this.deletePopup = new DeletePopupModel("Project verwijderen",
+        "Weet u zeker dat u de geselecteerde projecten wil verwijderen?",
+        "Ja, verwijder projecten",
+        "Nee, annuleer");
+      this.showDeletePopup = true;
+    }
   }
 
 

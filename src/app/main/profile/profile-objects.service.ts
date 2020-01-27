@@ -1,3 +1,5 @@
+
+
 export class ProfileObjectsService {
   public static checkPrevButton(pageNumberMinimum: number) {
     return !(pageNumberMinimum < 2);
@@ -10,7 +12,9 @@ export class ProfileObjectsService {
   public static parseDateObject(date: string){
     try {
       let startDateList = date.split('-');
+      startDateList[1] = (Number(startDateList[1]) - 1).toString();
       let startDateFinal = new Date();
+      console.log(startDateList);
       startDateFinal.setFullYear(
         Number(startDateList[2]),
         Number(startDateList[1]),

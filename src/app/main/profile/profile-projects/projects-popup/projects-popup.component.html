@@ -14,21 +14,22 @@
       <div class="input-fields">
         <form>
           <mat-form-field>
-            <input matInput placeholder="Projectnaam" disabled="{{editMode}}" value="" [(ngModel)]="project.projectName" name="projectNaam">
+            <input matInput placeholder="Projectnaam" disabled="{{editMode}}" value="" [(ngModel)]="project.projectName" maxlength="50" name="projectNaam">
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <textarea matInput placeholder="Projectbeschrijving" [(ngModel)]="project.projectDesc"
+                      maxlength="255"
                       name="projectDesc"></textarea>
           </mat-form-field>
           <mat-form-field>
-            <input matInput [matDatepicker]="picker1" placeholder="Begindatum" [formControl]="beginDate">
-            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-            <mat-datepicker #picker1></mat-datepicker>
+            <input matInput [matDatepicker]="picker2" placeholder="Begindatum" disabled [formControl]="beginDate">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker disabled="false" #picker2></mat-datepicker>
           </mat-form-field>
           <mat-form-field>
-            <input matInput [matDatepicker]="picker2" placeholder="Einddatum" [formControl]="endDate">
-            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
+            <input matInput [matDatepicker]="picker1" placeholder="Einddatum" disabled [formControl]="endDate">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1 disabled="false"></mat-datepicker>
           </mat-form-field>
           <div class="button-wrapper">
             <button (click)="createProject()" class="btn">Opslaan</button>

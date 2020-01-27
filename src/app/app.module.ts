@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {NotfoundComponent} from './notfound/notfound.component';
@@ -30,6 +30,7 @@ import {MAT_DATE_LOCALE} from '@angular/material';
 import {DatePipe} from '@angular/common';
 import { ClientsPopupComponent } from './main/profile/profile-clients/clients-popup/clients-popup.component';
 import {CarsPopupComponent} from "./main/profile/profile-cars/cars-popup/cars-popup.component";
+import { DeletePopupComponent } from './main/shared/delete-popup/delete-popup.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import {CarsPopupComponent} from "./main/profile/profile-cars/cars-popup/cars-po
     MobileDeclarationsComponent,
     ProjectsPopupComponent,
     ClientsPopupComponent,
-    CarsPopupComponent
+    CarsPopupComponent,
+    DeletePopupComponent
   ],
   entryComponents: [
     MobileDashboardComponent,
@@ -77,7 +79,7 @@ import {CarsPopupComponent} from "./main/profile/profile-cars/cars-popup/cars-po
     ReactiveFormsModule
 
   ],
-  providers: [HttpHandlerService, {provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: MAT_DATE_LOCALE, useValue: 'nl-NL'}, DatePipe],
+  providers: [HttpHandlerService, {provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}, { provide: LOCALE_ID, useValue: "en-GB" } , DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
