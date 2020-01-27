@@ -3,10 +3,9 @@ import {
   HttpClient, HttpErrorResponse,
   HttpHeaders
 } from "@angular/common/http";
-import {User} from "./main/profile/user.object";
 import {Observable, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
-import {Declaration} from "./main/declarations/declaration.object";
+import {Declaration} from "./models/declaration.object";
 import {DatabaseUser} from "./models/databaseuser.model";
 import {Project} from './main/profile/profile-projects/project.model';
 import {Client} from './main/profile/profile-clients/client.model';
@@ -21,19 +20,6 @@ export class HttpHandlerService {
   databaseUrl: string = "http://h2858995.stratoserver.net:8080";
 
   constructor(private http: HttpClient) {
-  }
-
-  /**
-   * @author Edward Deen
-   * @param user
-   * @param extraUrl
-   */
-  postUser(user: User, extraUrl: string) {
-    this.http.post(
-      this.databaseUrl + extraUrl, user, this.options
-    ).subscribe(responseData => {
-      console.log(responseData)
-    });
   }
 
   postDeclaration(declaration: Declaration, extraUrl: string) {

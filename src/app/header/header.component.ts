@@ -13,4 +13,17 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  isMobile() {
+    if (window.innerWidth < 768) {
+      return true;
+    } else { return false; }
+  }
+
+  routerUrlEquals(route) {
+    if (this.isMobile()) {
+      const hash = window.location.hash;
+      const pattern = new RegExp(`${route}`);
+      return pattern.test(hash);
+    } else { return true; }
+  }
 }

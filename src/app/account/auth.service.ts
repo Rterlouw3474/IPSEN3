@@ -137,7 +137,8 @@ export class AuthService {
         userData.nickname,
         userData.picture,
         userData.sub
-      )
+      );
+      return this.user;
     });
     return this.user;
   }

@@ -7,6 +7,7 @@ import {HttpHandlerService} from '../../../http-handler.service';
 import {Declaration} from '../../declarations/declaration.object';
 import {timeout} from 'rxjs/operators';
 import {DeletePopupModel} from '../../shared/delete-popup/delete-popup.model';
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-profile-projects',
@@ -14,7 +15,6 @@ import {DeletePopupModel} from '../../shared/delete-popup/delete-popup.model';
   styleUrls: ['./profile-projects.component.scss']
 })
 export class ProfileProjectsComponent implements OnInit {
-  user: User;
   private maxCountPage = 6;
   public projects: Project[];
   public selectedProjects: Project[];
@@ -39,7 +39,7 @@ export class ProfileProjectsComponent implements OnInit {
   public popupProject: Project;
   public popupEditMode = false;
 
-  constructor(private auth: AuthService, private httpHandler : HttpHandlerService) {
+  constructor(private auth: AuthService, private httpHandler : HttpHandlerService, private userService:UserService) {
     this.selectedProjects = [];
   }
 
