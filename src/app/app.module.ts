@@ -51,7 +51,7 @@ import { DeletePopupComponent } from './main/shared/delete-popup/delete-popup.co
     ProjectsPopupComponent,
     ClientsPopupComponent,
     CarsPopupComponent,
-    DeletePopupComponent
+    DeletePopupComponent,
     CarsPopupComponent,
     DeclarationPopupComponent
   ],

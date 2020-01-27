@@ -13,6 +13,8 @@ export class UserService {
   databaseUser : DatabaseUser;
   subscription:Subscription;
 
+
+
   constructor(private auth:AuthService, private http:HttpHandlerService){ }
 
   public getUserData() {

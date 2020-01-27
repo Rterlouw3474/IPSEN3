@@ -4,7 +4,6 @@ import {ProfileObjectsService} from '../profile-objects.service';
 import {User} from '../../../models/user.model';
 import {AuthService} from '../../../account/auth.service';
 import {HttpHandlerService} from '../../../http-handler.service';
-import {Declaration} from '../../declarations/declaration.object';
 import {timeout} from 'rxjs/operators';
 import {DeletePopupModel} from '../../shared/delete-popup/delete-popup.model';
 import {UserService} from "../../../services/user.service";

@@ -12,11 +12,13 @@
 
       <div class="main-content">
         <p>{{popup.mainContent}}</p>
-        <div class="button-wrapper">
-          <button (click)="delete()" class="btn confirm">{{popup.confirmButtonText}}</button>
-        </div>
-        <div class="button-wrapper">
-          <button (click)="close()" class="btn confirm">{{popup.cancelButtonText}}</button>
+        <div class="buttons">
+          <div class="button-wrapper">
+            <button (click)="delete()" class="btn confirm">{{popup.confirmButtonText}}</button>
+          </div>
+          <div class="button-wrapper">
+            <button (click)="close()" class="btn confirm">{{popup.cancelButtonText}}</button>
+          </div>
         </div>
       </div>
     </div>
