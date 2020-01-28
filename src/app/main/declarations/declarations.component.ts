@@ -6,7 +6,15 @@ import {Declaration} from "../../models/declaration.object";
 import {User} from "../../models/user.model";
 import {DeclarationService} from "../../services/declaration.service";
 import {LoadService} from "../../services/load.service";
+import {Sort} from "@angular/material/sort";
 
+export interface Declaration {
+  datum: number;
+  kilometers: number;
+  bedrag: number;
+  omschrijving: string;
+  auto: string;
+}
 
 @Component({
   selector: 'app-declarations',
@@ -59,6 +67,50 @@ export class DeclarationsComponent implements OnInit {
   isMobile() {
     return this.applicationStateService.getIsMobileResolution();
   }
+
+  //ngModel auto
+  auto: string
+
+  // Real Data?
+  // @ViewChild(MatSort) sort: MatSort;
+  // this.listData.sort = this.sort;
+
+
+  declarations: any[] = [
+    {omschrijving: 'Test 04', datum: 159, kilometers: 6, bedrag: 24, auto: 'Fiat'},
+    {omschrijving: '120', datum: 356, kilometers: 200, bedrag: 49, auto: 'Test'},
+    {omschrijving: 'Test 01', datum: 10022001, kilometers: 80, bedrag: 5, auto: 'Audi'},
+    {omschrijving: 'Test 16', datum: 120, kilometers: 99, bedrag: 22, auto: 'Lambo'},
+    {omschrijving: 'Test 10', datum: 5, kilometers: 368, bedrag: 102, auto: 'Zetta'},
+  ];
+
+  sortedData: any[];
+
+  sortData(sort: Sort) {
+    const data = this.declarations.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'omschrijving': return this.compare(a.omschrijving, b.omschrijving, isAsc);
+        case 'auto': return this.compare(a.auto, b.auto, isAsc);
+        case 'datum': return this.compare(a.datum, b.datum, isAsc);
+        case 'kilometers': return this.compare(a.kilometers, b.kilometers, isAsc);
+        case 'bedrag': return this.compare(a.bedrag, b.bedrag, isAsc);
+
+        default: return 0;
+      }
+    });
+  }
+
+
+ compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
 
   //function for checking all boxes when the parent checkbox is checked.
   onSelectAllCheckboxes(checked: boolean) {

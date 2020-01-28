@@ -22,7 +22,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatInputModule} from "@angular/material/input";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {DatePipe, HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {MatSortModule} from "@angular/material/sort";
 import { TableFilterPipe } from './table-filter.pipe';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -30,10 +30,10 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {HttpHandlerService} from "./http-handler.service";
-import {DatePipe, HashLocationStrategy, LocationStrategy} from "@angular/common";
 import {DeclarationService} from "./services/declaration.service";
 import {UserService} from "./services/user.service";
 import {LoadService} from "./services/load.service";
+import {DesktopDeclarationsComponent} from "./main/declarations/desktop-declarations/desktop-declarations.component";
 
 
 @NgModule({
@@ -50,9 +50,7 @@ import {LoadService} from "./services/load.service";
     ProfileProjectsComponent,
     ProfileClientsComponent,
     ProfileCarsComponent,
-    DesktopDeclarationsComponent,
-    MobileDeclarationsComponent,
-    TableFilterPipe
+    TableFilterPipe,
     ProjectsPopupComponent,
     ClientsPopupComponent,
     CarsPopupComponent,
