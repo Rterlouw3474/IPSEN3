@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+
 import {Project} from '../profile-projects/project.model';
 import {Client} from './client.model';
 import {ProfileObjectsService} from '../profile-objects.service';
 import {User} from '../../../models/user.model';
 import {AuthService} from '../../../account/auth.service';
+import {HttpHandlerService} from '../../../http-handler.service';
 import {UserService} from "../../../services/user.service";
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-profile-clients',
@@ -12,6 +14,9 @@ import {UserService} from "../../../services/user.service";
   styleUrls: ['./profile-clients.component.scss']
 })
 export class ProfileClientsComponent implements OnInit {
+
+  @Output() showPopupChange = new EventEmitter<boolean>();
+
   private maxCountPage = 6;
   public clients: Client[];
   public selectClients: Client[];
@@ -31,30 +36,22 @@ export class ProfileClientsComponent implements OnInit {
   public popupClient: Client;
   public popupEditMode = false;
 
-  constructor(private auth: AuthService, private userService:UserService) {
-    this.clients = [
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland"),
-      new Client(userService.authUser.email, "Ole Timmers", "2215 AB", 11, "Amsterdam", "Nederland")
-    ];
-    this.checkEmptyRows();
-    this.checkButtons();
+  constructor(private auth: AuthService, private httpHandler : HttpHandlerService, private userService:UserService) {
   }
 
   ngOnInit() {
+    this.getClientsArray();
   }
 
+  getClientsArray() {
+    return this.httpHandler.getClients(this.auth.getUserData().email).subscribe(
+      res => {
+        this.clients = res;
+        this.checkEmptyRows();
+        this.checkButtons();
+      }
+    );
+  }
   // Wisselen van pagina's
   getMinimum() {
     return this.pageNumberMinimum;
@@ -96,8 +93,14 @@ export class ProfileClientsComponent implements OnInit {
   }
 
   editClient(client: Client) {
-    this.popupClient = client;
+    this.popupClient = new Client(client.userEmail, client.clientName, client.clientPostalCode, client.clientHouseNumber, client.clientCity, client.clientCountry);
     this.popupEditMode = true;
+    this.showPopup = true;
+  }
+
+  createClient(){
+    this.popupClient = new Client("","","",null,"","");
+    this.popupEditMode = false;
     this.showPopup = true;
   }
 }

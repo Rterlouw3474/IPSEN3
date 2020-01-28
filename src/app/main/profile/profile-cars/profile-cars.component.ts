@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+
 import {Client} from '../profile-clients/client.model';
-import {Car} from '../../../models/car.model';
+import {Car} from './car.model';
 import {ProfileObjectsService} from '../profile-objects.service';
+import {AuthService} from '../../../account/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {HttpHandlerService} from '../../../http-handler.service';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-profile-cars',
@@ -11,7 +15,7 @@ import {ProfileObjectsService} from '../profile-objects.service';
 export class ProfileCarsComponent implements OnInit {
   private maxCountPage = 6;
   public cars: Car[];
-  public selectedCars: Car[];
+  public selectCars: Car[];
   public pageNumberMinimum = 0;
   public pageNumberMaximum = this.maxCountPage;
 
@@ -28,29 +32,22 @@ export class ProfileCarsComponent implements OnInit {
   public popupCar: Car;
   public popupEditMode = false;
 
-  constructor() {
-    this.cars = [
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine")
-    ];
-    this.checkEmptyRows();
-    this.checkButtons();
+  constructor(private auth: AuthService, private httpHandler : HttpHandlerService, private userService:UserService) {
   }
 
   ngOnInit() {
+    this.getCarsArray()
   }
 
+  getCarsArray() {
+    return this.httpHandler.getCars(this.auth.getUserData().email).subscribe(
+      res => {
+        this.cars = res;
+        this.checkEmptyRows();
+        this.checkButtons();
+      }
+    );
+  }
   // Wisselen van pagina's
   getMinimum() {
     return this.pageNumberMinimum;
@@ -91,15 +88,15 @@ export class ProfileCarsComponent implements OnInit {
     this.pageBtnRight = ProfileObjectsService.checkNextButton(this.pageNumberMinimum, this.maxCountPage, this.cars.length);
   }
 
-  createCar() {
-    this.popupEditMode = false;
-    this.showPopup = true;
-  }
-
   editCar(car: Car) {
-    this.popupCar = car;
+    this.popupCar = new Car(car.licencePlate, car.userEmail, car.carName, car.carBrand, car.carColor, car.carType, car.fuelType);
     this.popupEditMode = true;
     this.showPopup = true;
   }
 
+  createCar() {
+    this.popupCar = new Car("", "", "", "", "", "", "");
+    this.popupEditMode = false;
+    this.showPopup = true;
+  }
 }

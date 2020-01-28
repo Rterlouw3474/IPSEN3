@@ -14,9 +14,9 @@
         (click)="onCheckboxEvent(car, checkbox.checked, id)"
         [checked]="allCheckboxesSelected"></mat-checkbox></td>
     <td class="table-text object-column" >{{car.licencePlate}}</td>
-    <td class="table-text object-column" >{{car.name}}</td>
+    <td class="table-text object-column" >{{car.carName}}</td>
     <td class="table-text object-column" >{{car.fuelType}}</td>
-    <td class="table-text object-column" >{{car.color}}</td>
+    <td class="table-text object-column" >{{car.carColor}}</td>
   </tr>
 
   <tr *ngFor="let number of emptyRowsList; let odd=odd;" [ngClass]="emptyRowsList.length %2 === 0 ? odd ? '' :'notOdd':odd? 'notOdd':''" class="table-dec-row">
@@ -29,7 +29,7 @@
     <td class="table-text" ></td>
   </tr>
 </table>
-
+<div class="btn-wrapper"><button class="create-object" (click)="createCar()">Auto aanmaken</button></div>
 <div class="row">
   <div class="col-sm-6" style="text-align: right; padding-right: 80px;">
     <button [ngClass]="pageBtnLeft ? 'page-button' : 'page-button-disabled'" (click)="prevPage()">
@@ -40,7 +40,6 @@
     <button [ngClass]="pageBtnRight ? 'page-button' : 'page-button-disabled'" style="margin-left: 10px" (click)="nextPage()">
       >>
     </button>
-    <button (click)="createCar()">add car</button>
   </div>
 </div>
 

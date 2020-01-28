@@ -3,6 +3,9 @@ import {Project} from './project.model';
 import {ProfileObjectsService} from '../profile-objects.service';
 import {User} from '../../../models/user.model';
 import {AuthService} from '../../../account/auth.service';
+import {HttpHandlerService} from '../../../http-handler.service';
+import {timeout} from 'rxjs/operators';
+import {DeletePopupModel} from '../../shared/delete-popup/delete-popup.model';
 import {UserService} from "../../../services/user.service";
 
 @Component({
@@ -11,6 +14,7 @@ import {UserService} from "../../../services/user.service";
   styleUrls: ['./profile-projects.component.scss']
 })
 export class ProfileProjectsComponent implements OnInit {
+  user: User;
   private maxCountPage = 6;
   public projects: Project[];
   public selectedProjects: Project[];
@@ -20,36 +24,40 @@ export class ProfileProjectsComponent implements OnInit {
   private generateEmptyRows: number;
   public emptyRowsList;
 
+  public parentCheckboxSelected = false;
   public allCheckboxesSelected = false;
 
   public pageBtnLeft = true;
   public pageBtnRight = true;
 
-  // popup
+  public deleteButtonDisabled = true;
+
+  // popups
+  public showDeletePopup = false;
+  public deletePopup: DeletePopupModel;
   public showPopup = false;
   public popupProject: Project;
   public popupEditMode = false;
 
-  constructor(private auth: AuthService, private userService:UserService) {
-    // hier worden alle projecten in geladen
-    this.projects = [
-      new Project(userService.authUser.email,"Project 1", "Dit is een beschrijving!!!!!", "11-06-2000", "20-12-2019"),
-      new Project(userService.authUser.email,"Project 2", "Beschrijving YOLO", "17-12-2019", "18-12-2019"),
-      new Project(userService.authUser.email,"Project 3", "lol", "17-12-2019", "18-12-2019"),
-      new Project(userService.authUser.email,"Project 4", "Peter r de vries vind dit een beschrijving", "17-12-2019", "18-12-2019"),
-      new Project("baljit@krdf.nl","Project 5", "Beschrijving2", "17-12-2019", "18-12-2019"),
-      new Project("ole@krdf.nl","Project 6", "Beschrijving3", "17-12-2019", "18-12-2019"),
-      new Project("richard@krdf.nl","Project 7", "Beschrijving4", "17-12-2019", "18-12-2019"),
-      new Project("richard@krdf.nl","Project 8", "Beschrijving56", "17-12-2019", "18-12-2019"),
-      new Project("richard@krdf.nl","Project 9", "Beschrijving766", "17-12-2019", "18-12-2019")
-    ];
-    this.checkEmptyRows();
-    this.checkButtons();
+  constructor(private auth: AuthService, private httpHandler : HttpHandlerService, private userService:UserService) {
+    this.selectedProjects = [];
   }
 
   ngOnInit() {
+    this.getProjectsArray();
   }
 
+
+  getProjectsArray(){
+    return this.httpHandler.getProjects(this.auth.getUserData().email).subscribe(
+      res => {
+        this.projects = res;
+        this.selectedProjects = [];
+        this.checkEmptyRows();
+        this.checkButtons();
+      }
+    );
+  }
 
 
 
@@ -66,6 +74,9 @@ export class ProfileProjectsComponent implements OnInit {
     if (!(this.pageNumberMinimum + this.maxCountPage > this.projects.length)) {
       this.pageNumberMinimum += this.maxCountPage;
       this.pageNumberMaximum += this.maxCountPage;
+      this.resetSelectedProjects();
+      this.allCheckboxesSelected = false;
+      this.parentCheckboxSelected = false;
       this.checkEmptyRows();
       this.checkButtons()
     }
@@ -75,6 +86,9 @@ export class ProfileProjectsComponent implements OnInit {
     if (this.pageNumberMinimum > 0) {
       this.pageNumberMinimum -= this.maxCountPage;
       this.pageNumberMaximum -= this.maxCountPage;
+      this.resetSelectedProjects();
+      this.allCheckboxesSelected = false;
+      this.parentCheckboxSelected = false;
       this.checkEmptyRows();
       this.checkButtons()
     }
@@ -94,8 +108,110 @@ export class ProfileProjectsComponent implements OnInit {
   }
 
   editProject(project: Project) {
-    this.popupProject = project;
+    this.popupProject = new Project(project.userEmail, project.projectName, project.projectDesc, project.projectStartDate, project.projectEndDate);
     this.popupEditMode = true;
     this.showPopup = true;
   }
+
+  createProject() {
+    // email wordt toegevoegd onCreate
+    this.popupProject = new Project("","","","","");
+    this.popupEditMode = false;
+    this.showPopup = true;
+  }
+
+  onChange(result: any) {
+    console.log("EMIT EVENT: " + result);
+    if(result){
+      const that = this;
+      setTimeout(function() {
+        that.getProjectsArray();
+      }, 200);
+      console.log("getprojects");
+    }
+
+  }
+
+  onCheckboxEvent(project: Project, checked: boolean) {
+    if (!checked) {
+      this.selectedProjects.push(project);
+    } else {
+      let counter = 0;
+      for (const selectedProject of this.selectedProjects) {
+        if (selectedProject.projectName === project.projectName) {
+          this.selectedProjects.splice(counter,1);
+        }
+        counter++;
+      }
+    }
+    this.checkDeleteButton();
+    console.log(this.selectedProjects);
+  }
+
+  onSelectAllCheckboxes(checked: boolean) {
+    this.allCheckboxesSelected = !checked;
+
+    if (this.allCheckboxesSelected) {
+      this.resetSelectedProjects();
+      const tempArray: Project[] = this.projects.slice(this.getMinimum() , this.getMaximum());
+      for (const project of tempArray) {
+        this.selectedProjects.push(project);
+      }
+    } else {
+      this.resetSelectedProjects();
+    }
+    this.checkDeleteButton();
+
+    console.log(this.selectedProjects);
+  }
+
+  private resetSelectedProjects(){
+    this.selectedProjects = [];
+    this.deleteButtonDisabled = true;
+  }
+
+  private checkDeleteButton() {
+    this.deleteButtonDisabled = !(this.selectedProjects.length > 0);
+  }
+
+  deleteProjectsSelected(result: any) {
+    if (result) {
+      for (const selectedProject of this.selectedProjects) {
+        this.httpHandler
+          .deleteProject("/project/deleteProject/" + this.auth.getUserData().email + "/" + selectedProject.projectName)
+          .subscribe(
+            responseData => {
+              console.log(responseData);
+            }
+          );
+      }
+      this.resetSelectedProjects();
+      this.projects = [];
+      this.onChange(true);
+      this.showDeletePopup = false;
+    } else {
+      this.showDeletePopup = false;
+    }
+
+  }
+
+  verWijderPopup() {
+    if (this.selectedProjects.length < 1) {
+      this.showDeletePopup = false;
+    } else if(this.selectedProjects.length === 1) {
+      this.deletePopup = new DeletePopupModel("Project verwijderen",
+        "Weet u zeker dat u het geselecteerde project wil verwijderen?",
+        "Ja, verwijder project",
+        "Nee, annuleer");
+      this.showDeletePopup = true;
+    } else if( this.selectedProjects.length > 1) {
+      this.deletePopup = new DeletePopupModel("Project verwijderen",
+        "Weet u zeker dat u de geselecteerde projecten wil verwijderen?",
+        "Ja, verwijder projecten",
+        "Nee, annuleer");
+      this.showDeletePopup = true;
+    }
+  }
+
+
 }

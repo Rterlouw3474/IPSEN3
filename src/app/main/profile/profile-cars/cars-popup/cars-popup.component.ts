@@ -4,10 +4,11 @@ import {FormControl} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import {HttpHandlerService} from '../../../../http-handler.service';
 import {ProfileObjectsService} from '../../profile-objects.service';
-import {Car} from "../../../../models/car.model";
+import {Car} from "../car.model";
 import {RDWCar} from "../../../../models/rdwcar.model";
 import {RDWFuel} from "../../../../models/rdwfuel.model";
 import {AuthService} from "../../../../account/auth.service";
+import {CarService} from '../../../../services/car.service';
 
 @Component({
   selector: 'app-cars-create-popup',
@@ -33,8 +34,9 @@ export class CarsPopupComponent implements OnInit {
   notFound : boolean = false;
   noCarName : boolean = false;
 
+
   popupHeader: string;
-  constructor(private httpHandler : HttpHandlerService, private auth: AuthService) {
+  constructor(private httpHandler : HttpHandlerService, private auth: AuthService, private carService:CarService) {
   }
 
   ngOnInit() {
@@ -81,14 +83,18 @@ export class CarsPopupComponent implements OnInit {
   createCar(){
     if(this.licencePlate != null && this.carName != " " && this.carBrand != " " && this.carType != " " && this.carColor != " " && this.fuelType != " "){
       let car = new Car(this.licencePlate, this.auth.getUserData().email, this.carName, this.carBrand, this.carType, this.carColor, this.fuelType);
-      this.httpHandler.postCar(car, "/car/create");
+      this.httpHandler.postCar(car, "/car/create").subscribe(responseData => {
+        console.log(responseData);
+        this.carService.getCarsArray();
+      }, err=>{
+        console.log(err);
+        this.carService.getCarsArray();
+      });
       this.closePopup();
     } else if(this.carName === " " && this.licencePlate != null){
       this.noCarName = true;
     } else {
       this.notFound = true;
     }
-
   }
-
 }
