@@ -5,10 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TableFilterPipe implements PipeTransform {
 
-  transform(list: any[], value: string) {
+  transform(list: any[], value: any) {
 
-
-    return value ? list.filter(item => item.auto === value) : list;
+    return value ? list.filter(item => item.decBeginPostal === value) : list;
   }
 
 }

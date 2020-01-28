@@ -69,39 +69,41 @@ export class DeclarationsComponent implements OnInit {
   }
 
   //ngModel auto
-  auto: string
+  auto: string;
+  prijs: number;
+  postalCode: string;
+
 
   // Real Data?
   // @ViewChild(MatSort) sort: MatSort;
   // this.listData.sort = this.sort;
 
 
-  declarations: any[] = [
-    {omschrijving: 'Test 04', datum: 159, kilometers: 6, bedrag: 24, auto: 'Fiat'},
-    {omschrijving: '120', datum: 356, kilometers: 200, bedrag: 49, auto: 'Test'},
-    {omschrijving: 'Test 01', datum: 10022001, kilometers: 80, bedrag: 5, auto: 'Audi'},
-    {omschrijving: 'Test 16', datum: 120, kilometers: 99, bedrag: 22, auto: 'Lambo'},
-    {omschrijving: 'Test 10', datum: 5, kilometers: 368, bedrag: 102, auto: 'Zetta'},
-  ];
+  // declarations: any[] = [
+  //   {omschrijving: 'Test 04', datum: 159, kilometers: 6, bedrag: 24, auto: 'Fiat'},
+  //   {omschrijving: '120', datum: 356, kilometers: 200, bedrag: 49, auto: 'Test'},
+  //   {omschrijving: 'Test 01', datum: 10022001, kilometers: 80, bedrag: 5, auto: 'Audi'},
+  //   {omschrijving: 'Test 16', datum: 120, kilometers: 99, bedrag: 22, auto: 'Lambo'},
+  //   {omschrijving: 'Test 10', datum: 5, kilometers: 368, bedrag: 102, auto: 'Zetta'},
+  // ];
 
-  sortedData: any[];
+  //sortedData: any[];
 
   sortData(sort: Sort) {
-    const data = this.declarations.slice();
+    const data = this.decService.declarations.slice();
     if (!sort.active || sort.direction === '') {
-      this.sortedData = data;
+      this.decService.declarations = data;
       return;
     }
 
-    this.sortedData = data.sort((a, b) => {
+    this.decService.declarations = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'omschrijving': return this.compare(a.omschrijving, b.omschrijving, isAsc);
-        case 'auto': return this.compare(a.auto, b.auto, isAsc);
-        case 'datum': return this.compare(a.datum, b.datum, isAsc);
-        case 'kilometers': return this.compare(a.kilometers, b.kilometers, isAsc);
-        case 'bedrag': return this.compare(a.bedrag, b.bedrag, isAsc);
-
+        case 'omschrijving': return this.compare(a.decDesc, b.decDesc, isAsc);
+        //case 'auto': return this.compare(a.dec, b.auto, isAsc);
+        case 'datum': return this.compare(a.decDate, b.decDate, isAsc);
+        case 'kilometers': return this.compare(a.decKilometers, b.decKilometers, isAsc);
+        case 'bedrag': return this.compare(a.decDeclaration, b.decDeclaration, isAsc);
         default: return 0;
       }
     });
