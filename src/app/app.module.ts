@@ -33,7 +33,6 @@ import {HttpHandlerService} from "./http-handler.service";
 import {DeclarationService} from "./services/declaration.service";
 import {UserService} from "./services/user.service";
 import {LoadService} from "./services/load.service";
-import {DesktopDeclarationsComponent} from "./main/declarations/desktop-declarations/desktop-declarations.component";
 
 
 @NgModule({
