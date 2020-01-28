@@ -1,7 +1,8 @@
 <mat-spinner *ngIf="load.isLoading" class="load-spinner"></mat-spinner>
 <div class="container dashboard" *ngIf="!load.isLoading">
 
-
+  <form novalidate
+        #form="ngForm">
       <table matSort (matSortChange)="sortData($event)" style="width:90% ; margin-top: 80px; margin-left: 50px">
         <tr>
           <th><mat-checkbox
@@ -16,38 +17,16 @@
           <th mat-sort-header="bedrag" class="dec-description-text" style="width: 15%">Bedrag</th>
         </tr>
 
-        <strong>Filter Auto</strong>
-        <select [(ngModel)]="auto">
-          <option></option>
-          <option value="Fiat">Fiat</option>
-          <option value="Test">Test</option>
-          <option value="Audi">Audi</option>
-          <option value="Lambo">Lambo</option>
-          <option value="Zetta">Zetta</option>
-          <option value="Omegalul">Omegalul</option>
-        </select>
-
-        <strong>Filter Prijs</strong>
-        <select [(ngModel)]="prijs">
-          <option></option>
-          <option value="13.55">€13,55</option>
-        </select>
-
         <strong>Filter Postcode</strong>
-        <select [(ngModel)]="postalCode">
+        <select
+          [(ngModel)]="decBeginPostal"
+          name="decBeginPostal">
           <option></option>
           <option value="1">1</option>
         </select>
 
-        <tr *ngFor="let declaration of decService.declarations | tableFilter: auto">
-          <td>{{declaration.omschrijving}}</td>
-          <td>{{declaration.auto}}</td>
-          <td>{{declaration.datum}}</td>
-          <td>{{declaration.kilometers}}</td>
-          <td>{{declaration.bedrag}}</td>
-        </tr>
 
-      <tr *ngFor="let declaration of getSlicedDeclaration() | tableFilter: prijs | tableFilter: postalCode; let odd=odd; let id = index " class="table-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
+      <tr *ngFor="let declaration of getSlicedDeclaration() | tableFilter: form.value; let odd=odd; let id = index " class="table-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
         <td><mat-checkbox
             #checkbox="matCheckbox"
             (click)="onCheckboxEvent(declaration, checkbox.checked, id)"
@@ -75,6 +54,8 @@
         </ng-container>
       </tr>
     </table>
+  </form>
+
 
     <div class="row" style="margin-left: 390px" *ngIf="isMobile() == false">
       <div class="col-sm-2">

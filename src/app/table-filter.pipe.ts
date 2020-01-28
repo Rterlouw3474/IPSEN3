@@ -5,9 +5,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TableFilterPipe implements PipeTransform {
 
-  transform(list: any[], value: any) {
+  transform(list: any[], filters: Object) {
+    const keys       = Object.keys(filters).filter(key => filters[key]);
+    const filterDeclaration = declaration => keys.every(key => declaration[key] === filters[key]);
 
-    return value ? list.filter(item => item.decBeginPostal === value) : list;
+    return keys.length ? list.filter(filterDeclaration) : list;
   }
 
 }
