@@ -1,0 +1,117 @@
+<div class="full-screen" (click)="closePopupOutsidePopup($event)">
+  <div class="popup-wrapper">
+    <div class="popup-container">
+      <div class="popup-header-display">
+        <h2 class="popup-header">{{popupHeader}}</h2>
+        <div class="close-button">
+          <i class="material-icons" (click)="closePopup()">
+            close
+          </i>
+        </div>
+      </div>
+
+      <div class="input-fields">
+        <form class="example-form">
+          <div class="col-sm-3">
+            <h3>Beginlocatie</h3>
+            <mat-form-field class="example-full-width" style="border-width: 0">
+              <input matInput placeholder="Postcode" value=""  [(ngModel)]="declaration.decBeginPostal" name="beginPostcode">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Huisnummer" value=""  [(ngModel)]="declaration.decBeginHouseNumber" name="beginHuisnummer">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Straatnaam" value="" [(ngModel)]="declaration.decBeginStreet" name="beginStraatnaam">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Plaatsnaam" value="" [(ngModel)]="declaration.decBeginCity" name="beginPlaatsnaam">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Land" value="" [(ngModel)]="declaration.decBeginCountry" name="beginLand">
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-3">
+            <h3>Eindlocatie</h3>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Postcode" value="" [(ngModel)]="declaration.decEndPostal" name="eindPostcode">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Huisnummer" value="" [(ngModel)]="declaration.decEndHouseNumber" name="eindHuisnummer">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Straatnaam" value="" [(ngModel)]="declaration.decEndStreet" name="eindStraatnaam">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Plaatsnaam" value="" [(ngModel)]="declaration.decEndCity" name="eindPlaatsnaam">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Land" value="" [(ngModel)]="declaration.decEndCountry" name="eindLand">
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-3">
+            <h3>Registratie</h3>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Kilometers" value="" [(ngModel)]="declaration.decKilometers" name="kilometers">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="&nbsp;/ Km" value="" [(ngModel)]="declaration.decDeclaration" name="declaratie">
+              <span matPrefix>&euro;</span>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="Omschrijving" [(ngModel)]="declaration.decDesc" disabled=true name="omschrijving"></textarea>
+            </mat-form-field>
+          </div>
+        </form>
+
+        <div class="col-xs-1" style="padding-top: 80px">
+          <div ngbDropdown class="dropdown">
+            <button style="width: 130px" ngbDropdownToggle class="btn btn-default dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Klant
+              <span class="caret"></span>
+            </button>
+            <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="about-us">
+              <li><a href="#">Klant 1</a></li>
+              <li><a href="#">Klant 2</a></li>
+              <li><a href="#">Klant 3</a></li>
+            </ul>
+          </div>
+
+          <div ngbDropdown class="dropdown" style="padding-top: 16px">
+            <button style="width: 130px" ngbDropdownToggle class="btn btn-default dropdown-toggle" type="button" id="about-us2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Project
+              <span class="caret"></span>
+            </button>
+            <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="about-us">
+              <li><a href="#">Project 1</a></li>
+              <li><a href="#">Project 2</a></li>
+              <li><a href="#">Project 3</a></li>
+            </ul>
+          </div>
+
+          <div ngbDropdown class="dropdown" style="padding-top: 16px">
+            <button style="width: 130px" ngbDropdownToggle class="btn btn-default dropdown-toggle" type="button" id="about-us3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Auto
+              <span class="caret"></span>
+            </button>
+            <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="about-us">
+              <li><a href="#">Auto 1</a></li>
+              <li><a href="#">Auto 2</a></li>
+              <li><a href="#">Auto 3</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-10">
+            <div class="button-wrapper">
+              <button (click)="updateDeclaration()" class="btn">Wijzig declaratie</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

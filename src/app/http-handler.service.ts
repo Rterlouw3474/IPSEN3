@@ -6,7 +6,7 @@ import {
 import {User} from "./main/profile/user.object";
 import {Observable, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
-import {Declaration} from "./main/declarations/declaration.object";
+import {Declaration} from "./models/declaration.object";
 import {AuthService} from './account/auth.service';
 import {DatabaseUser} from "./models/databaseuser.model";
 import {Project} from './main/profile/profile-projects/project.model';
@@ -50,6 +50,7 @@ export class HttpHandlerService {
   }
 
   postProject(project: Project, extraUrl: string){
+    console.log(project);
     this.http.post(
       this.databaseUrl + extraUrl, project, this.options
     ).subscribe(responseData => {
@@ -87,7 +88,11 @@ export class HttpHandlerService {
   }
 
   deleteDeclaration(url:string){
-    return this.http.delete(this.databaseUrl + url)
+    return this.http.delete(this.databaseUrl + url);
+  }
+
+  deleteProject(url:string) {
+    return this.http.delete(this.databaseUrl + url);
   }
 
   getDeclarations(email:string): Observable<Declaration[]>{

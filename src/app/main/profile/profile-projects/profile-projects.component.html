@@ -1,7 +1,7 @@
 <div class="headerContainer"><h1>Projecten</h1></div>
 <table style="width:90% ; margin-top: 50px; margin-left: 50px">
   <tr class="table-dec-row">
-    <th class="table-checkbox"><mat-checkbox #checkbox="matCheckbox" style="width: 7%" (click)="onSelectAllCheckboxes(checkbox.checked)"></mat-checkbox></th>
+    <th class="table-checkbox"><mat-checkbox #checkbox="matCheckbox" style="width: 7%" [(ngModel)]="parentCheckboxSelected" (click)="onSelectAllCheckboxes(checkbox.checked)"></mat-checkbox></th>
     <th class="table-description-text" style="width: 45%">Naam</th>
     <th class="table-description-text" style="width: 24%">Van</th>
     <th class="table-description-text" style="width: 24%">Tot</th>
@@ -10,7 +10,7 @@
   <tr *ngFor="let project of projects.slice(getMinimum() , getMaximum()); let odd=odd; let id = index" class="table-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
     <td class="table-checkbox"><mat-checkbox
         #checkbox="matCheckbox"
-        (click)="onCheckboxEvent(project, checkbox.checked, id)"
+        (click)="onCheckboxEvent(project, checkbox.checked)"
         [checked]="allCheckboxesSelected"
     ></mat-checkbox></td>
     <td class="table-text object-column" (click)="editProject(project)">{{project.projectName}}</td>
@@ -28,7 +28,15 @@
     <td class="table-text" ></td>
   </tr>
 </table>
-<div class="btn-wrapper"><button class="create-object" (click)="createProject()">Project aanmaken</button></div>
+<div class="actions">
+  <div class="btn-wrapper create">
+    <button class="create-object" (click)="createProject()">Project aanmaken</button>
+  </div>
+  <div class="btn-wrapper delete">
+    <button class="delete-object" [disabled]="deleteButtonDisabled" [ngClass]="deleteButtonDisabled ? 'disabled' : ''" (click)="verWijderPopup()"><i
+      class="material-icons">delete</i></button>
+  </div>
+</div>
 <div class="row">
   <div class="col-sm-6" style="text-align: right; padding-right: 80px;">
     <button [ngClass]="pageBtnLeft ? 'page-button' : 'page-button-disabled'" (click)="prevPage()">
@@ -42,4 +50,5 @@
   </div>
 </div>
 
-<app-projects-popup [project]="popupProject" [editMode]="popupEditMode" [(showPopup)]="showPopup" *ngIf="showPopup"></app-projects-popup>
+<app-projects-popup [project]="popupProject" [editMode]="popupEditMode" [(showPopup)]="showPopup" *ngIf="showPopup" (returnChange)="onChange($event)"></app-projects-popup>
+<app-delete-popup [popup]="deletePopup" (boolReturn)="deleteProjectsSelected($event)" *ngIf="showDeletePopup"></app-delete-popup>

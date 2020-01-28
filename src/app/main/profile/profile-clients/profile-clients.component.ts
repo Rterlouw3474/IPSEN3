@@ -5,6 +5,7 @@ import {ProfileObjectsService} from '../profile-objects.service';
 import {User} from '../../../models/user.model';
 import {AuthService} from '../../../account/auth.service';
 import {HttpHandlerService} from '../../../http-handler.service';
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-profile-clients',
@@ -12,7 +13,6 @@ import {HttpHandlerService} from '../../../http-handler.service';
   styleUrls: ['./profile-clients.component.scss']
 })
 export class ProfileClientsComponent implements OnInit {
-  // private user: User;
   private maxCountPage = 6;
   public clients: Client[];
   public selectClients: Client[];
@@ -32,14 +32,14 @@ export class ProfileClientsComponent implements OnInit {
   public popupClient: Client;
   public popupEditMode = false;
 
-  constructor(private auth: AuthService, private httpHandler : HttpHandlerService) {
+  constructor(private auth: AuthService, private httpHandler : HttpHandlerService, private userService:UserService) {
   }
 
   ngOnInit() {
     this.getClientsArray();
   }
 
-  getClientsArray(){
+  getClientsArray() {
     return this.httpHandler.getClients(this.auth.getUserData().email).subscribe(
       res => {
         this.clients = res;
@@ -48,7 +48,6 @@ export class ProfileClientsComponent implements OnInit {
       }
     );
   }
-
   // Wisselen van pagina's
   getMinimum() {
     return this.pageNumberMinimum;

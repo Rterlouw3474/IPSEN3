@@ -1,8 +1,10 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {Declaration} from '../declaration.object';
-import {HttpHandlerService} from '../../../http-handler.service';
-import {User} from '../../profile/user.object';
+import { Component, OnInit } from '@angular/core';
+import {Declaration} from "../declaration.object";
+import {HttpHandlerService} from "../../../http-handler.service";
+import {User} from "../../profile/user.object";
 import {AuthService} from '../../../account/auth.service';
+import {animate, query, state, style, transition, trigger} from "@angular/animations";
+import {slideInAnimation} from "../../../models/animations";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {Project} from '../../profile/profile-projects/project.model';
 import {Car} from '../../profile/profile-cars/car.model';
@@ -84,4 +86,5 @@ export class CreateDeclarationComponent implements OnInit {
       console.log(res);
     })
   }
+
 }
