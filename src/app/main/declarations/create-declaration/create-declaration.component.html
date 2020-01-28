@@ -58,7 +58,7 @@
     <div class="col-sm-3 column selectlist" style="padding: 70px 0 0">
       <mat-form-field appearance="outline" class="selectDropdown" style="padding-bottom: 33px">
         <mat-select required placeholder="Choose Client" [formControl]="clientFormControl" [(ngModel)]="klantNaam" disableOptionCentering panelClass="selectClass" style="padding: 0.25em 0">
-          <mat-option *ngFor="let client of clients" [value]="client.clientName">{{client.clientName}}</mat-option>
+          <mat-option *ngFor="let client of clientService.clients" [value]="client.clientName">{{client.clientName}}</mat-option>
         </mat-select>
         <mat-error *ngIf="clientFormControl.hasError('required')">
           Please select a client.
@@ -67,7 +67,7 @@
 
         <mat-form-field appearance="outline" class="selectDropdown" style="padding-bottom: 33px">
           <mat-select required placeholder="Choose Project" [formControl]="projectFormControl" [(ngModel)]="projectNaam" disableOptionCentering panelClass="selectClass" style="padding: 0.25em 0">
-          <mat-option *ngFor="let project of projects" [value]="project.projectName">{{project.projectName}}</mat-option>
+          <mat-option *ngFor="let project of projectService.projects" [value]="project.projectName">{{project.projectName}}</mat-option>
         </mat-select>
           <mat-error *ngIf="projectFormControl.hasError('required')">
             Please select a project.
@@ -76,7 +76,7 @@
 
       <mat-form-field appearance="outline" class="selectDropdown" style="padding-bottom: 33px;">
         <mat-select required placeholder="Choose Car" [formControl]="carFormControl" [(ngModel)]="kentekenPlaat" disableOptionCentering panelClass="selectClass" style="padding: 0.25em 0">
-          <mat-option *ngFor="let car of cars" [value]="car.carName">{{car.carName}}</mat-option>
+          <mat-option *ngFor="let car of carService.cars" [value]="car.carName">{{car.carName}}</mat-option>
         </mat-select>
         <mat-error *ngIf="carFormControl.hasError('required')">
           Please select a car.
@@ -84,9 +84,9 @@
       </mat-form-field>
     </div>
     <div class="col-xs-4 buttonlist" style="padding: 58px 0 0">
-      <button style="width: 40px; margin: 16px 0 45px" class="btn btn-success dropdown-toggle" type="button"> + </button>
-      <button style="width: 40px; margin: 16px 0 45px" class="btn btn-success dropdown-toggle" type="button"> + </button>
-      <button style="width: 40px; margin: 16px 0 45px" class="btn btn-success dropdown-toggle" type="button"> + </button>
+      <button style="width: 40px; margin: 16px 0 45px" class="btn btn-success dropdown-toggle" type="button" (click)="createClient()"> + </button>
+      <button style="width: 40px; margin: 16px 0 45px" class="btn btn-success dropdown-toggle" type="button" (click)="createProject()"> + </button>
+      <button style="width: 40px; margin: 16px 0 45px" class="btn btn-success dropdown-toggle" type="button" (click)="createCar()"> + </button>
     </div>
   </div>
 
@@ -98,6 +98,11 @@
   <div>
     <button (click)="onCreateDeclaration()">create dec</button>
   </div>
+
+  <app-clients-popup [client]="popupClient"[(showPopup)]="showPopupClient" *ngIf="showPopupClient"></app-clients-popup>
+  <app-projects-popup [project]="popupProject"[(showPopup)]="showPopupProject" *ngIf="showPopupProject"></app-projects-popup>
+  <app-cars-create-popup [car]="popupCar" [(showPopup)]="showPopupCar" *ngIf="showPopupCar"></app-cars-create-popup>
+
 </div>
 
 <router-outlet></router-outlet>

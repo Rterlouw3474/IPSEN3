@@ -6,6 +6,7 @@ import {ProfileObjectsService} from '../../profile-objects.service';
 import {HttpHandlerService} from '../../../../http-handler.service';
 import {AuthService} from '../../../../account/auth.service';
 import set = Reflect.set;
+import {ProjectService} from '../../../../services/project.service';
 
 @Component({
   selector: 'app-projects-popup',
@@ -25,7 +26,7 @@ export class ProjectsPopupComponent implements OnInit {
   endDate: FormControl;
 
   popupHeader: string;
-  constructor(private auth: AuthService, private datePipe: DatePipe, private httpHandler : HttpHandlerService) {
+  constructor(private auth: AuthService, private datePipe: DatePipe, private httpHandler : HttpHandlerService, private projectService:ProjectService) {
   }
 
   ngOnInit() {
@@ -69,9 +70,21 @@ export class ProjectsPopupComponent implements OnInit {
       const projectToPost = new Project(this.auth.getUserData().email, this.project.projectName, this.project.projectDesc, newBeginDate, newEndDate);
       console.log(projectToPost);
       if (this.editMode) {
-        this.httpHandler.postProject(projectToPost, "/project/update");
+        this.httpHandler.postProject(projectToPost, "/project/update").subscribe(responseData => {
+          this.projectService.getProjectsArray();
+          console.log(responseData);
+        }, err=>{
+          this.projectService.getProjectsArray();
+          console.log(err)
+        });;
       } else {
-        this.httpHandler.postProject(projectToPost, "/project/create");
+        this.httpHandler.postProject(projectToPost, "/project/create").subscribe(responseData => {
+          this.projectService.getProjectsArray()
+          console.log(responseData);
+        }, err=>{
+          this.projectService.getProjectsArray();
+          console.log(err)
+        });;
       }
       const that = this;
       setTimeout(function() {

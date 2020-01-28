@@ -6,6 +6,9 @@ import {Car} from '../../profile/profile-cars/car.model';
 import {Client} from '../../profile/profile-clients/client.model';
 import {FormControl, Validators} from '@angular/forms';
 import {Declaration} from '../../../models/declaration.object';
+import {CarService} from '../../../services/car.service';
+import {ClientService} from '../../../services/client.service';
+import {ProjectService} from '../../../services/project.service';
 
 @Component({
   selector: 'app-create-declaration',
@@ -39,39 +42,22 @@ export class CreateDeclarationComponent implements OnInit {
   projectNaam : string;
   kentekenPlaat : string;
 
-  clients: Client[];
   projects: Project[];
-  cars: Car[];
+
+  // popup
+  public showPopupClient = false;
+  public showPopupProject = false;
+  public showPopupCar = false;
+  public popupClient: Client;
+  public popupProject: Project;
+  public popupCar: Car;
+  public popupEditMode = false;
 
 
 
-  constructor(private httpHandler : HttpHandlerService, private auth: AuthService) { }
+  constructor(private httpHandler : HttpHandlerService, private auth: AuthService, private carService : CarService, private clientService:ClientService, private projectService:ProjectService) { }
 
   ngOnInit() {
-    this.getProjectsArray()
-    this.getClientsArray()
-    this.getCarsArray()
-  }
-
-  getProjectsArray() {
-    return this.httpHandler.getProjects(this.auth.getUserData().email).subscribe(
-      res => {
-        this.projects = res;
-      });
-  }
-
-  getClientsArray() {
-    return this.httpHandler.getClients(this.auth.getUserData().email).subscribe(
-      res => {
-        this.clients = res;
-      });
-  }
-
-  getCarsArray() {
-    return this.httpHandler.getCars(this.auth.getUserData().email).subscribe(
-      res => {
-        this.cars = res;
-      });
   }
 
   onCreateDeclaration() {
@@ -82,6 +68,25 @@ export class CreateDeclarationComponent implements OnInit {
     this.httpHandler.postDeclaration(newDec, '/declaration/create').subscribe(res => {
       console.log(res);
     })
+  }
+
+
+  createClient() {
+    this.popupClient = new Client("", "", "", null, "", "");
+    this.popupEditMode = false;
+    this.showPopupClient = true;
+  }
+
+  createProject () {
+      this.popupProject = new Project("", "", "", "", "");
+      this.popupEditMode = false;
+      this.showPopupProject = true;
+  }
+
+  createCar() {
+    this.popupCar = new Car("", "", "", "", "", "", "");
+    this.popupEditMode = false;
+    this.showPopupCar = true;
   }
 
 }

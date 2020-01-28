@@ -49,29 +49,22 @@ export class HttpHandlerService {
     )
   }
 
-  postProject(project: Project, extraUrl: string){
-    console.log(project);
-    this.http.post(
-      this.databaseUrl + extraUrl, project, this.options
-    ).subscribe(responseData => {
-      console.log(responseData);
-    });
+  postClient(client: Client, extraUrl: string){
+    return this.http.post(
+      this.databaseUrl + extraUrl, client, this.options
+    )
   }
 
-  postClient(client: Client, extraUrl: string){
-    this.http.post(
-      this.databaseUrl + extraUrl, client, this.options
-    ).subscribe(responseData => {
-      console.log(responseData)
-    });
+  postProject(project: Project, extraUrl: string){
+    return this.http.post(
+      this.databaseUrl + extraUrl, project, this.options
+    )
   }
 
   postCar(car : Car, extraUrl: string){
-    this.http.post(
+    return this.http.post(
       this.databaseUrl + extraUrl, car, this.options
-    ).subscribe(responseData => {
-      console.log(responseData)
-    });
+    )
   }
 
 

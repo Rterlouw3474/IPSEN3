@@ -6,7 +6,7 @@ import {User} from '../../../models/user.model';
 import {AuthService} from '../../../account/auth.service';
 import {HttpHandlerService} from '../../../http-handler.service';
 import {UserService} from "../../../services/user.service";
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-profile-clients',
@@ -14,6 +14,9 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./profile-clients.component.scss']
 })
 export class ProfileClientsComponent implements OnInit {
+
+  @Output() showPopupChange = new EventEmitter<boolean>();
+
   private maxCountPage = 6;
   public clients: Client[];
   public selectClients: Client[];
