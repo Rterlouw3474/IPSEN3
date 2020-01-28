@@ -10,14 +10,6 @@ import {MatSort} from "@angular/material/sort";
 
 
 
-export interface Declaration {
-  datum: number;
-  kilometers: number;
-  bedrag: number;
-  omschrijving: string;
-  auto: string;
-}
-
 @Component({
   selector: 'app-desktop-declarations',
   templateUrl: './desktop-declarations.component.html',
