@@ -1,27 +1,27 @@
 <div class="container dashboard">
 
-  <div class="row" style="padding-top: 100px; padding-left: 100px">
+  <div class="row" style="padding-top: 100px; padding-left: 30px;">
     <form class="example-form">
       <div class="col-sm-3">
         <h2>Beginlocatie</h2>
-        <mat-form-field class="example-full-width" style="border-width: 0">
+        <mat-form-field class="inputfield">
           <input required matInput placeholder="Postcode" value="" [(ngModel)]="beginPostcode" name="beginPostcode">
         </mat-form-field>
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="example-full-width inputfield">
           <input required matInput placeholder="Huisnummer" value="" [(ngModel)]="beginHuisnummer" name="beginHuisnummer">
         </mat-form-field>
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="example-full-width inputfield">
           <input  required matInput placeholder="Straatnaam" value="" [(ngModel)]="beginStraatnaam" name="beginStraatnaam">
         </mat-form-field>
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="example-full-width inputfield">
           <input required matInput placeholder="Plaatsnaam" value="" [(ngModel)]="beginPlaatsnaam" name="beginPlaatsnaam">
         </mat-form-field>
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="example-full-width inputfield">
           <input required matInput placeholder="Land" value="" [(ngModel)]="beginLand" name="beginLand">
         </mat-form-field>
       </div>
 
-      <div class="col-sm-3">
+      <div class="col-sm-3 column">
         <h2>Eindlocatie</h2>
         <mat-form-field class="example-full-width">
           <input required matInput placeholder="Postcode" value="" [(ngModel)]="eindPostcode" name="eindPostcode">
@@ -40,7 +40,7 @@
         </mat-form-field>
       </div>
 
-      <div class="col-sm-3">
+      <div class="col-sm-3 column">
         <h2>Registratie</h2>
         <mat-form-field class="example-full-width">
           <input required matInput placeholder="Kilometers" value="" [(ngModel)]="kilometers" name="kilometers">
@@ -49,45 +49,44 @@
           <input required matInput placeholder="&nbsp;/ Km" value="" [(ngModel)]="declaratie" name="declaratie">
           <span matPrefix>&euro;</span>
         </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <textarea required matInput placeholder="Omschrijving" [(ngModel)]="omschrijving" name="omschrijving"></textarea>
+        <mat-form-field appearance="outline" class="example-full-width">
+          <textarea required matInput placeholder="Omschrijving" [(ngModel)]="omschrijving" name="omschrijving" style="resize: none; padding-bottom: 6.4em;"></textarea>
         </mat-form-field>
       </div>
     </form>
 
-    <div class="col-sm-3">
-      <mat-form-field appearance="standard" class="selectDropdown">
-        <mat-select required placeholder="Choose Client" [formControl]="clientFormControl" disableOptionCentering panelClass="selectClass">
-          <mat-option *ngFor="let client of clients" [value]="client.clientName">{{client.clientName}}</mat-option>
+    <div class="col-sm-3 column selectlist" style="padding: 70px 0 0">
+      <mat-form-field appearance="outline" class="selectDropdown" style="padding-bottom: 33px">
+        <mat-select required placeholder="Choose Client" [formControl]="clientFormControl" disableOptionCentering panelClass="selectClass" style="padding: 0.25em 0">
+          <mat-option *ngFor="let client of clients" [value]="client.clientName" [(ngModel)]="klantNaam">{{client.clientName}}</mat-option>
         </mat-select>
         <mat-error *ngIf="clientFormControl.hasError('required')">
           Please select a client.
         </mat-error>
       </mat-form-field>
 
-        <mat-form-field appearance="standard" class="selectDropdown">
-          <mat-select required placeholder="Choose Project" [formControl]="projectFormControl" disableOptionCentering panelClass="selectClass">
-          <mat-option *ngFor="let project of projects" [value]="project.projectName">{{project.projectName}}</mat-option>
+        <mat-form-field appearance="outline" class="selectDropdown" style="padding-bottom: 33px">
+          <mat-select required placeholder="Choose Project" [formControl]="projectFormControl" disableOptionCentering panelClass="selectClass" style="padding: 0.25em 0">
+          <mat-option *ngFor="let project of projects" [value]="project.projectName" [(ngModel)]="projectNaam">{{project.projectName}}</mat-option>
         </mat-select>
           <mat-error *ngIf="projectFormControl.hasError('required')">
             Please select a project.
           </mat-error>
         </mat-form-field>
 
-      <mat-form-field appearance="standard" class="selectDropdown">
-        <mat-select required placeholder="Choose Car" [formControl]="carFormControl" disableOptionCentering panelClass="selectClass">
-          <mat-option *ngFor="let car of cars" [value]="car.carName">{{car.carName}}</mat-option>
+      <mat-form-field appearance="outline" class="selectDropdown" style="padding-bottom: 33px;">
+        <mat-select required placeholder="Choose Car" [formControl]="carFormControl" disableOptionCentering panelClass="selectClass" style="padding: 0.25em 0">
+          <mat-option *ngFor="let car of cars" [value]="car.carName" [(ngModel)]="kentekenPlaat">{{car.carName}}</mat-option>
         </mat-select>
         <mat-error *ngIf="carFormControl.hasError('required')">
           Please select a car.
         </mat-error>
       </mat-form-field>
-
-      <div class="col-xs-1" style="padding-top: 80px; padding-left: 60px">
-        <button style="width: 40px" class="btn btn-success dropdown-toggle" type="button"> + </button>
-        <button style="width: 40px; margin-top: 16px" class="btn btn-success dropdown-toggle" type="button"> + </button>
-        <button style="width: 40px; margin-top: 16px" class="btn btn-success dropdown-toggle" type="button"> + </button>
-      </div>
+    </div>
+    <div class="col-xs-4 buttonlist" style="padding: 58px 0 0">
+      <button style="width: 40px; margin: 16px 0 45px" class="btn btn-success dropdown-toggle" type="button"> + </button>
+      <button style="width: 40px; margin: 16px 0 45px" class="btn btn-success dropdown-toggle" type="button"> + </button>
+      <button style="width: 40px; margin: 16px 0 45px" class="btn btn-success dropdown-toggle" type="button"> + </button>
     </div>
   </div>
 

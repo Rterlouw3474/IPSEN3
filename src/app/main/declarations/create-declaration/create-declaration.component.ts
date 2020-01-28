@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Declaration} from '../declaration.object';
 import {HttpHandlerService} from '../../../http-handler.service';
 import {User} from '../../profile/user.object';
@@ -12,7 +12,8 @@ import {FormControl, Validators} from '@angular/forms';
 @Component({
   selector: 'app-create-declaration',
   templateUrl: './create-declaration.component.html',
-  styleUrls: ['./create-declaration.component.scss']
+  styleUrls: ['./create-declaration.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 
 export class CreateDeclarationComponent implements OnInit {
@@ -20,6 +21,7 @@ export class CreateDeclarationComponent implements OnInit {
   clientFormControl = new FormControl('', Validators.required);
   projectFormControl = new FormControl('', Validators.required);
   carFormControl = new FormControl('', Validators.required);
+
 
   omschrijving : string;
   datum : string;
@@ -77,7 +79,7 @@ export class CreateDeclarationComponent implements OnInit {
   onCreateDeclaration() {
     const newDec = new Declaration(this.auth.getUserData().email, this.omschrijving, '12-12-2020', this.kilometers, this.declaratie,
       this.beginPostcode, this.beginHuisnummer, this.beginStraatnaam, this.beginPlaatsnaam, this.beginLand,
-      this.eindPostcode, this.eindHuisnummer, this.eindStraatnaam, this.eindPlaatsnaam, this.eindLand, 'Albert', 'Duitsland', '1A-B23-C');
+      this.eindPostcode, this.eindHuisnummer, this.eindStraatnaam, this.eindPlaatsnaam, this.eindLand, this.klantNaam, this.projectNaam, this.kentekenPlaat);
     this.httpHandler.postDeclaration(newDec, '/declaration/create').subscribe(res => {
       console.log(res);
     })

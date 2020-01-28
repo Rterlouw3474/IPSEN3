@@ -52,12 +52,27 @@ h1 {
   right: 10px;
 }
 
+.mat-form-field-flex > .mat-form-field-infix { padding: 0.2em 0px !important;}
+.mat-form-field-label-wrapper { top: -1.5em; }
+.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+  transform: translateY(2em) scale(1.25);
+  width: 100%;
+}
+
+.selectDropdown{
+  width:150px;
+}
+
+.selectlist {
+  width: 150px;
+}
+
+.buttonlist {
+  width: 50px;
+}
+
 input:focus {
   outline: none !important;
   border:0px solid #56c8ad;
   border-radius: 5px;
 }
-
-
-
-
