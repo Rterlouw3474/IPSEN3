@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+
 import {Project} from '../profile-projects/project.model';
 import {Client} from './client.model';
 import {ProfileObjectsService} from '../profile-objects.service';
@@ -6,6 +6,7 @@ import {User} from '../../../models/user.model';
 import {AuthService} from '../../../account/auth.service';
 import {HttpHandlerService} from '../../../http-handler.service';
 import {UserService} from "../../../services/user.service";
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-profile-clients',
@@ -56,7 +57,6 @@ export class ProfileClientsComponent implements OnInit {
   getMaximum() {
     return this.pageNumberMaximum;
   }
-
 
   nextPage() {
     if (!(this.pageNumberMinimum + this.maxCountPage > this.clients.length)) {

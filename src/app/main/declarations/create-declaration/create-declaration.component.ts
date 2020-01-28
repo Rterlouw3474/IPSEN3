@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {Declaration} from "../declaration.object";
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {HttpHandlerService} from "../../../http-handler.service";
-import {User} from "../../profile/user.object";
 import {AuthService} from '../../../account/auth.service';
-import {animate, query, state, style, transition, trigger} from "@angular/animations";
-import {slideInAnimation} from "../../../models/animations";
-import {animate, state, style, transition, trigger} from "@angular/animations";
 import {Project} from '../../profile/profile-projects/project.model';
 import {Car} from '../../profile/profile-cars/car.model';
 import {Client} from '../../profile/profile-clients/client.model';
 import {FormControl, Validators} from '@angular/forms';
+import {Declaration} from '../../../models/declaration.object';
 
 @Component({
   selector: 'app-create-declaration',
@@ -79,6 +75,7 @@ export class CreateDeclarationComponent implements OnInit {
   }
 
   onCreateDeclaration() {
+    console.log(this.klantNaam)
     const newDec = new Declaration(this.auth.getUserData().email, this.omschrijving, '12-12-2020', this.kilometers, this.declaratie,
       this.beginPostcode, this.beginHuisnummer, this.beginStraatnaam, this.beginPlaatsnaam, this.beginLand,
       this.eindPostcode, this.eindHuisnummer, this.eindStraatnaam, this.eindPlaatsnaam, this.eindLand, this.klantNaam, this.projectNaam, this.kentekenPlaat);

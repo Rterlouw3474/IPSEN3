@@ -25,7 +25,7 @@
             style="margin-left: 40px"></mat-checkbox></td>
         <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >{{declaration.decDesc}}</td>
         <ng-container *ngIf="isMobile() == false">
-        <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >{{declaration.decBeginPostal}}</td>
+        <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >{{declaration.licencePlate}}</td>
         <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >{{declaration.decDate}}</td>
         <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >{{declaration.decKilometers}}</td>
         <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >€{{convertToNormalNotation(declaration)}}</td>

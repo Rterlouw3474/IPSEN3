@@ -3,7 +3,7 @@ import {
   HttpClient, HttpErrorResponse,
   HttpHeaders
 } from "@angular/common/http";
-import {User} from "./main/profile/user.object";
+import {User} from "./models/user.model";
 import {Observable, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 import {Declaration} from "./models/declaration.object";
@@ -118,6 +118,7 @@ export class HttpHandlerService {
   }
 
   getCars(email:string): Observable<Car[]> {
+    console.log(this.databaseUrl + "/car/get/" + email);
     return this.http
       .get(this.databaseUrl + "/car/get/" + email)
       .pipe(map(res =><Car[]>res))

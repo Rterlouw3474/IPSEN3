@@ -14,9 +14,9 @@
         (click)="onCheckboxEvent(car, checkbox.checked, id)"
         [checked]="allCheckboxesSelected"></mat-checkbox></td>
     <td class="table-text object-column" >{{car.licencePlate}}</td>
-    <td class="table-text object-column" >{{car.name}}</td>
+    <td class="table-text object-column" >{{car.carName}}</td>
     <td class="table-text object-column" >{{car.fuelType}}</td>
-    <td class="table-text object-column" >{{car.color}}</td>
+    <td class="table-text object-column" >{{car.carColor}}</td>
   </tr>
 
   <tr *ngFor="let number of emptyRowsList; let odd=odd;" [ngClass]="emptyRowsList.length %2 === 0 ? odd ? '' :'notOdd':odd? 'notOdd':''" class="table-dec-row">
