@@ -3,6 +3,10 @@ import {HttpHandlerService} from '../../../http-handler.service';
 import {AuthService} from "../../../account/auth.service";
 import {Declaration} from "../../../models/declaration.object";
 import {DeclarationService} from "../../../services/declaration.service";
+import {ClientService} from "../../../services/client.service";
+import {CarService} from "../../../services/car.service";
+import {ProjectService} from "../../../services/project.service";
+import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-declaration-popup',
@@ -16,8 +20,12 @@ export class DeclarationPopupComponent implements OnInit {
   @Input() showPopup: boolean;
   @Output() showPopupChange = new EventEmitter<boolean>();
 
+  clientFormControl = new FormControl('', Validators.required);
+  projectFormControl = new FormControl('', Validators.required);
+  carFormControl = new FormControl('', Validators.required);
+
   popupHeader: string;
-  constructor(private httpHandler : HttpHandlerService, private auth: AuthService, private decService:DeclarationService) {
+  constructor(private httpHandler : HttpHandlerService, private auth: AuthService, private decService:DeclarationService, private clientService:ClientService, private carService:CarService, private  projectService:ProjectService) {
 
   }
 

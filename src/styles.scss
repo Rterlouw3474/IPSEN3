@@ -167,6 +167,15 @@ input:focus {
   margin-top: 20px;
 }
 
+.new-declaration:hover{
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.new-declaration:focus{
+  outline: 0;
+}
+
 html, body { height: 100%; background-color: #9ADECE;}
 html{
   background-color: #9ADECE;

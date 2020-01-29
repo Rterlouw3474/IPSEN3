@@ -98,7 +98,7 @@ export class DeclarationsComponent implements OnInit {
   //function for checking all boxes when the parent checkbox is checked.
   onSelectAllCheckboxes(checked: boolean) {
     this.allCheckboxesSelected = !checked;
-
+    
     if (this.allCheckboxesSelected) {
       this.resetSelectedDeclarations();
       const tempArray: Declaration[] = this.decService.declarations.slice(this.pageNumberMinimum , this.pageNumberMaximum);
@@ -269,16 +269,6 @@ export class DeclarationsComponent implements OnInit {
     returnMoney = (Math.round(price * 1000) / 1000).toFixed(2);
     returnMoney = returnMoney.replace('.', ',');
     return returnMoney;
-  }
-
-  onChange(result: any) {
-    console.log("EMIT EVENT: " + result);
-    if (result) {
-      this.projectService.getProjectsArray().subscribe(res => {
-        this.checkEmptyRows();
-        this.checkButtons()
-      });
-    }
   }
 
 
