@@ -8,11 +8,11 @@ import {Observable, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 import {Declaration} from "./models/declaration.object";
 import {AuthService} from './account/auth.service';
-import {Project} from './main/profile/profile-projects/project.model';
-import {Client} from './main/profile/profile-clients/client.model';
+import {Project} from './models/project.model';
+import {Client} from './models/client.model';
 import {RDWCar} from "./models/rdwcar.model";
 import {RDWFuel} from "./models/rdwfuel.model";
-import {Car} from "./main/profile/profile-cars/car.model";
+import {Car} from "./models/car.model";
 
 
 @Injectable()
@@ -23,6 +23,7 @@ export class HttpHandlerService {
 
   constructor(private http: HttpClient, private auth: AuthService) {
   }
+
 
   postDeclaration(declaration: Declaration, extraUrl: string) {
     return this.http.post(
@@ -45,14 +46,12 @@ export class HttpHandlerService {
   postProject(project: Project, extraUrl: string){
     return this.http.post(
       this.databaseUrl + extraUrl, project, this.options
-    )
-  }
+    )}
 
   postCar(car : Car, extraUrl: string){
     return this.http.post(
       this.databaseUrl + extraUrl, car, this.options
-    )
-  }
+    )}
 
   postUser(user: User, extraUrl: String) {
     this.http.post(
@@ -97,7 +96,7 @@ export class HttpHandlerService {
   getProjects(email:string): Observable<Project[]> {
     // console.log(this.databaseUrl + "/project/get/" + email);
     return this.http
-      .get(this.databaseUrl + "/project/get/" + email)
+      .get(this.databaseUrl + "/project/get/" + email, {responseType: 'json'})
       .pipe(map(res =><Project[]>res))
   }
 

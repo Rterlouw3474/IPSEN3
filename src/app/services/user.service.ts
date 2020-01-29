@@ -24,8 +24,13 @@ export class UserService {
     });
 
     this.http.getUser(this.user.email).subscribe(
-      response => this.user = response,
-      error => this.http.postUser(this.user, '/user/create'));
+      response => {
+        if(response != null){
+          this.user = response;
+        }else{
+          this.http.postUser(this.user, '/user/create');
+        }
+      })
   }
 
   onChangeUsername(nameInput: HTMLInputElement) {

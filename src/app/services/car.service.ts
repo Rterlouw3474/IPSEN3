@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpHandlerService} from "../http-handler.service";
 import {AuthService} from "../account/auth.service";
-import {Car} from '../main/profile/profile-cars/car.model';
+import {Car} from '../models/car.model';
 
 @Injectable()
 export class CarService {

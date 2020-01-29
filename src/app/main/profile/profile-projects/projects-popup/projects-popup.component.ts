@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Project} from '../project.model';
+import {Project} from '../../../../models/project.model';
 import {Form, FormControl} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import {ProfileObjectsService} from '../../profile-objects.service';
