@@ -45,7 +45,7 @@ export class AuthService {
   subscription: Subscription;
   private username: string;
 
-  constructor(private router: Router, private httpHandler : HttpHandlerService) {
+  constructor(private router: Router) {
     // On initial load, check authentication state with authorization server
     // Set up local auth streams if user is already authenticated
     this.localAuthSetup();

@@ -8,7 +8,6 @@ import {Observable, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 import {Declaration} from "./models/declaration.object";
 import {AuthService} from './account/auth.service';
-import {DatabaseUser} from "./models/databaseuser.model";
 import {Project} from './main/profile/profile-projects/project.model';
 import {Client} from './main/profile/profile-clients/client.model';
 import {RDWCar} from "./models/rdwcar.model";
