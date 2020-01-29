@@ -32,25 +32,26 @@
       </tr>
 
       <tr>
-        <th><mat-checkbox
+        <th class="checkbox-dec"><mat-checkbox
             #checkbox="matCheckbox"
             (click)="onSelectAllCheckboxes(checkbox.checked)"
             [(ngModel)]="parentCheckboxSelected"
             name = "parentCheckboxSelected"
-            style="margin-left: 40px"></mat-checkbox></th>
-        <th mat-sort-header="omschrijving" class="dec-description-text" style="width: 32%">Omschrijving</th>
-        <th mat-sort-header="auto" class="dec-description-text" style="width: 17%">Kenteken</th>
-        <th mat-sort-header="project" class="dec-description-text" style="width: 17%">Project</th>
-        <th mat-sort-header="datum" class="dec-description-text" style="width: 17%">Datum</th>
-        <th mat-sort-header="bedrag" class="dec-description-text" style="width: 17%">Bedrag</th>
+            style="width: 5%"></mat-checkbox></th>
+        <th mat-sort-header="omschrijving" class="dec-description-text" style="width: 31%">Omschrijving</th>
+        <th mat-sort-header="auto" class="dec-description-text" style="width: 16%">Kenteken</th>
+        <th mat-sort-header="project" class="dec-description-text" style="width: 16%">Project</th>
+        <th mat-sort-header="datum" class="dec-description-text" style="width: 16%">Datum</th>
+        <th mat-sort-header="bedrag" class="dec-description-text" style="width: 16%">Bedrag</th>
       </tr>
 
       <tr *ngFor="let declaration of getSlicedDeclaration() | tableFilter: form.value; let odd=odd; let id = index " class="table-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}" >
-        <td><mat-checkbox
+        <td class="checkbox-dec"><mat-checkbox
             #checkbox="matCheckbox"
             (click)="onCheckboxEvent(declaration, checkbox.checked, id)"
             [checked]="allCheckboxesSelected"
-            style="margin-left: 40px"></mat-checkbox></td>
+            class="checkbox-dec"
+            style="width: 5%"></mat-checkbox></td>
         <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >{{declaration.decDesc}}</td>
         <ng-container *ngIf="isMobile() == false">
           <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >{{declaration.licencePlate}}</td>
@@ -60,10 +61,10 @@
         </ng-container>
       </tr>
       <tr *ngFor="let number of emptyRowsList; let odd=odd;" [ngClass]="emptyRowsList.length %2 === 0 ? odd ? '' :'notOdd':odd? 'notOdd':''" class="dashboard-dec-row">
-        <td><mat-checkbox
+        <td class="checkbox-dec"><mat-checkbox
             #checkbox="matCheckbox"
             disabled="true"
-            style="margin-left: 40px"></mat-checkbox></td>
+            style="width: 5%"></mat-checkbox></td>
         <th class="dec-description-text"></th>
         <ng-container *ngIf="isMobile() == false">
           <th class="dec-description-text"></th>
