@@ -19,16 +19,17 @@ import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatInputModule} from '@angular/material/input';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {MatCheckboxModule} from '@angular/material/checkbox';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpHandlerService} from './http-handler.service';
+import {DatePipe, LocationStrategy, PathLocationStrategy} from '@angular/common';
+// Angular material imports
+import {MatInputModule} from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {HttpHandlerService} from './http-handler.service';
-import {DatePipe, LocationStrategy, PathLocationStrategy} from '@angular/common';
-
+import {MatSidenavModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import {DatePipe, LocationStrategy, PathLocationStrategy} from '@angular/common'
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSidenavModule
   ],
   providers: [
     HttpHandlerService,
