@@ -14,7 +14,7 @@
       <div class="input-fields">
         <form>
           <mat-form-field>
-            <input matInput placeholder="Naam" value="" [(ngModel)]="client.clientName" name="clientName">
+            <input matInput placeholder="Naam" disabled="{{editMode}}" value="" [(ngModel)]="client.clientName" name="clientName">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Postcode" value="" [(ngModel)]="client.clientPostalCode" name="clientPostalCode">

@@ -8,6 +8,7 @@ import {HttpHandlerService} from '../../../http-handler.service';
 import {UserService} from "../../../services/user.service";
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ClientService} from "../../../services/client.service";
+import {DeletePopupModel} from '../../shared/delete-popup/delete-popup.model';
 
 @Component({
   selector: 'app-profile-clients',
@@ -26,20 +27,27 @@ export class ProfileClientsComponent implements OnInit {
   private generateEmptyRows: number;
   public emptyRowsList;
 
+  public parentCheckboxSelected = false;
   public allCheckboxesSelected = false;
 
   public pageBtnLeft = true;
   public pageBtnRight = true;
 
+  public deleteButtonDisabled = true;
+
   // popup
+  public showDeletePopup = false;
+  public deletePopup: DeletePopupModel;
   public showPopup = false;
   public popupClient: Client;
   public popupEditMode = false;
 
   constructor(private auth: AuthService, private httpHandler : HttpHandlerService, private userService:UserService, private clientService:ClientService) {
+    this.selectClients = [];
   }
 
   ngOnInit() {
+    // this.selectClients = [];
     this.checkButtons();
     this.checkEmptyRows();
   }
@@ -57,6 +65,9 @@ export class ProfileClientsComponent implements OnInit {
     if (!(this.pageNumberMinimum + this.maxCountPage > this.clientService.clients.length)) {
       this.pageNumberMinimum += this.maxCountPage;
       this.pageNumberMaximum += this.maxCountPage;
+      this.resetSelectedProjects();
+      this.allCheckboxesSelected = false;
+      this.parentCheckboxSelected = false;
       this.checkEmptyRows();
       this.checkButtons();
     }
@@ -66,6 +77,8 @@ export class ProfileClientsComponent implements OnInit {
     if (this.pageNumberMinimum > 0) {
       this.pageNumberMinimum -= this.maxCountPage;
       this.pageNumberMaximum -= this.maxCountPage;
+      this.allCheckboxesSelected = false;
+      this.parentCheckboxSelected = false;
       this.checkEmptyRows();
       this.checkButtons();
     }
@@ -94,5 +107,94 @@ export class ProfileClientsComponent implements OnInit {
     this.popupClient = new Client("","","",null,"","");
     this.popupEditMode = false;
     this.showPopup = true;
+  }
+
+  onChange(result: any) {
+    // console.log("EMIT EVENT: " + result);
+    if(result){
+      this.clientService.getClientsArray().subscribe(res => {
+        this.checkEmptyRows();
+        this.checkButtons()
+      });
+    }
+  }
+
+  onCheckboxEvent(client: Client, checked: boolean) {
+    if (!checked) {
+      this.selectClients.push(client);
+    } else {
+      let counter = 0;
+      for (const selectedClient of this.selectClients) {
+        if (selectedClient.clientName === client.clientName) {
+          this.selectClients.splice(counter,1);
+        }
+        counter++;
+      }
+    }
+    this.checkDeleteButton();
+    // console.log(this.selectClients);
+  }
+
+  onSelectAllCheckboxes(checked: boolean) {
+    this.allCheckboxesSelected = !checked;
+    if (this.allCheckboxesSelected) {
+      this.resetSelectedProjects();
+      const tempArray: Client[] = this.clientService.clients.slice(this.getMinimum() , this.getMaximum());
+      for (const client of tempArray) {
+        this.selectClients.push(client);
+      }
+    } else {
+      this.resetSelectedProjects();
+    }
+    this.checkDeleteButton();
+  }
+
+  private resetSelectedProjects(){
+    this.selectClients = [];
+    this.deleteButtonDisabled = true;
+  }
+
+  private checkDeleteButton() {
+    this.deleteButtonDisabled = !(this.selectClients.length > 0);
+  }
+
+  deleteClientsSelected(result: any) {
+    if (result) {
+      for (const selectedClient of this.selectClients) {
+        this.httpHandler
+          .deleteProject("/client/delete/" + this.auth.getUserData().email + "/" + selectedClient.clientName)
+          .subscribe(
+            res => {
+              this.clientService.getClientsArray().subscribe(res => {
+                this.checkEmptyRows();
+                this.checkButtons()
+              })
+            })
+      }
+      this.resetSelectedProjects();
+      this.clientService.clients = [];
+      //this.onChange(true);
+      this.showDeletePopup = false;
+    } else {
+      this.showDeletePopup = false;
+    }
+  }
+
+  verwijderPopup() {
+    if (this.selectClients.length < 1) {
+      this.showDeletePopup = false;
+    } else if(this.selectClients.length === 1) {
+      this.deletePopup = new DeletePopupModel("Klant verwijderen",
+        "Weet u zeker dat u de geselecteerde klant wil verwijderen?",
+        "Ja, verwijder klant",
+        "Nee, annuleer");
+      this.showDeletePopup = true;
+    } else if( this.selectClients.length > 1) {
+      this.deletePopup = new DeletePopupModel("Klant verwijderen",
+        "Weet u zeker dat u de geselecteerde klanten wil verwijderen?",
+        "Ja, verwijder klanten",
+        "Nee, annuleer");
+      this.showDeletePopup = true;
+    }
   }
 }
