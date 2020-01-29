@@ -58,6 +58,16 @@ input:focus {
   border-radius: 5px;
 }
 
+.googleMap {
+  width: 1000px;
+  height: 300px;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 
 
 

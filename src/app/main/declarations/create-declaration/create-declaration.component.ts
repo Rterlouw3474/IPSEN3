@@ -9,7 +9,6 @@ import {NgForm} from '@angular/forms';
   templateUrl: './create-declaration.component.html',
   styleUrls: ['./create-declaration.component.scss']
 })
-
 export class CreateDeclarationComponent implements OnInit {
 
   @ViewChild('declaration', {static: true}) declaration: NgForm;
@@ -34,6 +33,8 @@ export class CreateDeclarationComponent implements OnInit {
   origin: string;
   destination: string;
 
+  interactiveRouteMap: string = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyCG2jL_rZO0BnhsjSFxvKq39Okq2GZNf98&q=The+Netherlands';
+
   constructor(private httpHandler: HttpHandlerService, private authService: AuthService) {
   }
 
@@ -50,20 +51,23 @@ export class CreateDeclarationComponent implements OnInit {
   }
 
   automaticallyFillInAddress() {
-    if (!(this.beginHuisnummer && this.beginPostcode && this.beginStraatnaam && this.eindHuisnummer && this.eindPostcode && this.eindPlaatsnaam)) {
-      console.log('Test');
-      this.origin = this.formatInput(this.beginHuisnummer, this.beginStraatnaam, this.beginPostcode);
-      this.destination = this.formatInput(this.eindHuisnummer, this.eindPlaatsnaam, this.eindPostcode);
-      this.httpHandler.getOriginDestinationAddress(this.origin, this.destination, '/calculateddistance');
-    }
 
-    // this.httpHandler.getStaticRouteMap(this.origin, this.destination, "/staticroutemap")
+    this.origin = this.formatInput(this.beginHuisnummer, this.beginStraatnaam, this.beginPostcode);
+    this.destination = this.formatInput(this.eindHuisnummer, this.eindPlaatsnaam, this.eindPostcode);
+
+    console.log(this.origin);
+    console.log(this.destination);
+
+    this.httpHandler.getOriginDestinationAddress(this.origin, this.destination, '/calculateddistance');
+    this.httpHandler.getInteractiveRouteMap(this.origin, this.destination, '/interactiveroutemap')
+      .subscribe(response => this.interactiveRouteMap = response);
+    console.log(this.interactiveRouteMap);
   }
 
   formatInput(huisnummer: number, straatnaam: string, postcode: string) {
     return (
       huisnummer + '+' +
-      straatnaam.trim().replace(' ', '') + ',' +
+      this.beginStraatnaam.replace(' ', '+') + ',' +
       postcode.trim()
     );
   }

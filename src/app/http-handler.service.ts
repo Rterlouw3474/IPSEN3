@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {User} from './main/profile/user.object';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {map, repeat} from 'rxjs/operators';
 import {Declaration} from './main/declarations/declaration.object';
 import {DatabaseUser} from './models/databaseuser.model';
 import {Project} from './main/profile/profile-projects/project.model';
@@ -10,6 +10,7 @@ import {Client} from './main/profile/profile-clients/client.model';
 import {RDWCar} from './models/rdwcar.model';
 import {RDWFuel} from './models/rdwfuel.model';
 import {Car} from './models/car.model';
+import {error} from 'util';
 
 
 export interface originDestinationResponse {
@@ -115,9 +116,9 @@ export class HttpHandlerService {
   }
 
   getOriginDestinationAddress(origin: string, destination: string, url: string) {
-    const parameters = new HttpParams()
-      .set('origin', origin)
-      .set('destination', destination);
+    // const parameters = new HttpParams()
+    //   .set('origin', origin)
+    //   .set('destination', destination);
 
     return this.http
       .get(this.databaseUrl + this.googleAPI + url + '/' + origin + '/' + destination)
@@ -125,6 +126,14 @@ export class HttpHandlerService {
         this.response = response;
         console.log(response);
       }));
+
+  }
+
+  getInteractiveRouteMap(origin: string, destination: string, url: string) {
+    console.log(this.databaseUrl + this.googleAPI + url + "/" + origin + "/" + destination);
+    return this.http
+      .get(this.databaseUrl + this.googleAPI + url + "/" + origin + "/" + destination, {responseType: 'text'})
+      .pipe(map(response => response));
   }
 
   getProjects(email: string): Observable<Project[]> {

@@ -28,6 +28,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MAT_DATE_LOCALE, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
 import {ClientsPopupComponent} from './main/profile/profile-clients/clients-popup/clients-popup.component';
 import {CarsPopupComponent} from './main/profile/profile-cars/cars-popup/cars-popup.component';
+import {SafePipe} from './main/declarations/create-declaration/safe.pipe';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import {CarsPopupComponent} from './main/profile/profile-cars/cars-popup/cars-po
     MobileDeclarationsComponent,
     ProjectsPopupComponent,
     ClientsPopupComponent,
-    CarsPopupComponent
+    CarsPopupComponent,
+    SafePipe
   ],
   entryComponents: [
     MobileDashboardComponent,

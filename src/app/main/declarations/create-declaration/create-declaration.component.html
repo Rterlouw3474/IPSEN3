@@ -114,6 +114,10 @@
     <button type="submit">create dec</button>
     <button type="button" (click)="automaticallyFillInAddress()">Test</button>
   </div>
+
+  <div class="googleMap">
+    <iframe [src]="interactiveRouteMap | safe"></iframe>
+  </div>
 </div>
 
 <router-outlet></router-outlet>
