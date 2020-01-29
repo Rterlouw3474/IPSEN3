@@ -13,6 +13,17 @@ a{
   box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 }
 
+.dashboard.mobile {
+  width: 100vw;
+}
+
+.sidenav.is-open {
+  transform: translateX(-301px);
+}
+.sidenav:not(.is-open) {
+  transform: translateX(0px);
+}
+
 .sidenav {
   height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 301px; /* Set the width of the sidebar */
@@ -24,6 +35,9 @@ a{
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
   box-shadow: 3px 0px 5px 0px rgba(57,63,72,0.3);
+
+  transition: .2s cubic-bezier(0.71, -0.06, 0.35, 1) transform;
+
   .img-wrapper{
     margin-top:95px;
     height:125px;
@@ -46,6 +60,7 @@ a{
     text-align: center;
     margin-top: 24px;
     z-index: 2;
+
     &:hover{
       cursor: pointer;
       a{
@@ -94,6 +109,11 @@ a{
 .profielView{
   margin-left: 301px;
 }
+
+.profielView.mobile {
+  margin-left: 0px;
+}
+
 .dashboard-text{
   text-align: center;
   color: #5D656F;

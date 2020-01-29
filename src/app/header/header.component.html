@@ -15,7 +15,7 @@
     <button (click)="auth.logout()" *ngIf="auth.loggedIn">Log Out</button>
   </div>
 </div>
-<app-mobile-side-nav [ngStyle]="(this.opened) ? {'visibility': 'visible'} : {'visibility' : 'hidden'}" *ngIf="isMobile()" (clickOutside)="toggleSideNav()"></app-mobile-side-nav>
+<app-mobile-side-nav [ngStyle]="(this.opened) ? {'display': 'flex'} : {'display' : 'none'}" *ngIf="isMobile()" (clickOutside)="toggleSideNav()"></app-mobile-side-nav>
 
 
 
