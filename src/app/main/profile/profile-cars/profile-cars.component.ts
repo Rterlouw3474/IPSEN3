@@ -101,10 +101,91 @@ export class ProfileCarsComponent implements OnInit {
 
 
   onChange(result: any) {
-    console.log("EMIT EVENT: " + result);
+    // console.log("EMIT EVENT: " + result);
     if(result){
-      this.checkEmptyRows();
-      this.checkButtons();
+      this.carService.getCarsArray().subscribe(res => {
+        this.checkEmptyRows();
+        this.checkButtons()
+      });
+    }
+  }
+
+  onCheckboxEvent(car: Car, checked: boolean) {
+    if (!checked) {
+      this.selectedCars.push(car);
+    } else {
+      let counter = 0;
+      for (const selectedCar of this.selectedCars) {
+        if (selectedCar.licencePlate === car.licencePlate) {
+          this.selectedCars.splice(counter,1);
+        }
+        counter++;
+      }
+    }
+    this.checkDeleteButton();
+    // console.log(this.selectClients);
+  }
+
+  onSelectAllCheckboxes(checked: boolean) {
+    this.allCheckboxesSelected = !checked;
+    if (this.allCheckboxesSelected) {
+      this.resetSelectedCars();
+      const tempArray: Car[] = this.carService.cars.slice(this.getMinimum() , this.getMaximum());
+      for (const car of tempArray) {
+        this.selectedCars.push(car);
+      }
+    } else {
+      this.resetSelectedCars();
+    }
+    this.checkDeleteButton();
+  }
+
+  private resetSelectedCars(){
+    this.selectedCars = [];
+    this.deleteButtonDisabled = true;
+  }
+
+  private checkDeleteButton() {
+    this.deleteButtonDisabled = !(this.selectedCars.length > 0);
+  }
+
+  deleteCarsSelected(result: any) {
+    if (result) {
+      for (const selectedCar of this.selectedCars) {
+        this.httpHandler
+          .deleteProject("/car/delete/" + this.auth.getUserData().email + "/" + selectedCar.licencePlate)
+          .subscribe(
+            res => {
+              this.carService.getCarsArray().subscribe(res => {
+                this.checkEmptyRows();
+                this.checkButtons()
+              })
+            })
+      }
+      this.resetSelectedCars();
+      this.carService.cars = [];
+      //this.onChange(true);
+      this.showDeletePopup = false;
+    } else {
+      this.showDeletePopup = false;
+    }
+  }
+
+  verwijderPopup() {
+    if (this.selectedCars.length < 1) {
+      this.showDeletePopup = false;
+    } else if(this.selectedCars.length === 1) {
+      this.deletePopup = new DeletePopupModel("Auto verwijderen",
+        "Weet u zeker dat u de geselecteerde auto wil verwijderen?",
+        "Ja, verwijder auto",
+        "Nee, annuleer");
+      this.showDeletePopup = true;
+    } else if( this.selectedCars.length > 1) {
+      this.deletePopup = new DeletePopupModel("Auto verwijderen",
+        "Weet u zeker dat u de geselecteerde auto's wilt verwijderen?",
+        "Ja, verwijder auto's",
+        "Nee, annuleer");
+      this.showDeletePopup = true;
     }
   }
 

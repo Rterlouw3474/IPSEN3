@@ -13,10 +13,10 @@
         #checkbox="matCheckbox"
         (click)="onCheckboxEvent(car, checkbox.checked)"
         [checked]="allCheckboxesSelected"></mat-checkbox></td>
-    <td class="table-text object-column" >{{car.licencePlate}}</td>
-    <td class="table-text object-column" >{{car.carName}}</td>
-    <td class="table-text object-column" >{{car.fuelType}}</td>
-    <td class="table-text object-column" >{{car.carColor}}</td>
+    <td class="table-text object-column" (click)="editCar(car)">{{car.licencePlate}}</td>
+    <td class="table-text object-column" (click)="editCar(car)">{{car.carName}}</td>
+    <td class="table-text object-column" (click)="editCar(car)">{{car.fuelType}}</td>
+    <td class="table-text object-column" (click)="editCar(car)">{{car.carColor}}</td>
   </tr>
 
   <tr *ngFor="let number of emptyRowsList; let odd=odd;" [ngClass]="emptyRowsList.length %2 === 0 ? odd ? '' :'notOdd':odd? 'notOdd':''" class="table-dec-row">
@@ -31,7 +31,7 @@
 </table>
 <div class="actions">
   <div class="btn-wrapper create">
-    <button class="create-object" (click)="createClient()">Klant aanmaken</button>
+    <button class="create-object" (click)="createCar()">Auto aanmaken</button>
   </div>
   <div class="btn-wrapper delete">
     <button class="delete-object" [disabled]="deleteButtonDisabled" [ngClass]="deleteButtonDisabled ? 'disabled' : ''" (click)="verwijderPopup()"><i
@@ -51,5 +51,5 @@
   </div>
 </div>
 
-<app-cars-create-popup [editMode]="popupEditMode" [(showPopup)]="showPopup" *ngIf="showPopup" (returnChange)="onChange($event)" ></app-cars-create-popup>
+<app-cars-create-popup [car]="popupCar" [editMode]="popupEditMode" [(showPopup)]="showPopup" *ngIf="showPopup" (returnChange)="onChange($event)" ></app-cars-create-popup>
 <app-delete-popup [popup]="deletePopup" (boolReturn)="deleteCarsSelected($event)" *ngIf="showDeletePopup"></app-delete-popup>

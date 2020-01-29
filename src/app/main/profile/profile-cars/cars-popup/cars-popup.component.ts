@@ -9,6 +9,7 @@ import {RDWCar} from "../../../../models/rdwcar.model";
 import {RDWFuel} from "../../../../models/rdwfuel.model";
 import {AuthService} from "../../../../account/auth.service";
 import {CarService} from '../../../../services/car.service';
+import {Client} from '../../../../models/client.model';
 
 @Component({
   selector: 'app-cars-create-popup',
@@ -24,14 +25,14 @@ export class CarsPopupComponent implements OnInit {
 
   @Output() returnChange = new EventEmitter<boolean>();
 
-  licencePlate : string;
+  // licencePlate : string;
   rdwCar : RDWCar[] = [];
   rdwFuel : RDWFuel[] = [];
-  carName : string = " ";
-  carBrand : string = " ";
-  carType : string = " ";
-  carColor : string = " ";
-  fuelType : string = " ";
+  // carName : string = " ";
+  // carBrand : string = " ";
+  // carType : string = " ";
+  // carColor : string = " ";
+  // fuelType : string = " ";
 
   notFound : boolean = false;
   noCarName : boolean = false;
@@ -39,6 +40,7 @@ export class CarsPopupComponent implements OnInit {
 
   popupHeader: string;
   constructor(private httpHandler : HttpHandlerService, private auth: AuthService, private carService:CarService) {
+
   }
 
   ngOnInit() {
@@ -60,8 +62,10 @@ export class CarsPopupComponent implements OnInit {
   }
 
   RDWCheck(){
-    this.licencePlate = this.licencePlate.toUpperCase();
-      this.httpHandler.getRDWCar(this.licencePlate).subscribe(res => {
+    const tijdelijkeLijst = this.car.licencePlate.split('-');
+
+    this.car.licencePlate = this.car.licencePlate.toUpperCase();
+      this.httpHandler.getRDWCar(tijdelijkeLijst.join('').toUpperCase()).subscribe(res => {
         if(res[0] != null){
           this.rdwCar = res;
           this.autoFillForm();
@@ -72,30 +76,42 @@ export class CarsPopupComponent implements OnInit {
   }
 
   autoFillForm(){
-    this.carBrand = this.rdwCar[0].merk;
-    this.carType = this.rdwCar[0].handelsbenaming;
-    this.carColor = this.rdwCar[0].eerste_kleur;
-    this.httpHandler.getRDWFuel(this.licencePlate).subscribe(res =>{
+    this.car.carBrand = this.rdwCar[0].merk;
+    this.car.carType = this.rdwCar[0].handelsbenaming;
+    this.car.carColor = this.rdwCar[0].eerste_kleur;
+    this.httpHandler.getRDWFuel(this.car.licencePlate).subscribe(res =>{
       this.rdwFuel = res;
-      this.fuelType = this.rdwFuel[0].brandstof_omschrijving;
+      this.car.fuelType = this.rdwFuel[0].brandstof_omschrijving;
     });
-    this.notFound = false;
   }
 
   createCar(){
-    if(this.licencePlate != null && this.carName != " " && this.carBrand != " " && this.carType != " " && this.carColor != " " && this.fuelType != " "){
-      let car = new Car(this.licencePlate, this.auth.getUserData().email, this.carName, this.carBrand, this.carType, this.carColor, this.fuelType);
-      this.httpHandler.postCar(car, "/car/create").subscribe(responseData => {
-        console.log(responseData);
-        this.carService.getCarsArray();
-        this.returnChange.emit(true);
-      });
-
-      this.closePopup();
-    } else if(this.carName === " " && this.licencePlate != null){
-      this.noCarName = true;
-    } else {
-      this.notFound = true;
+    let ok = true;
+    ok = this.checkValues();
+    if (!ok) {
+      if(this.editMode) {
+        alert("Auto niet gewijzigd, niet alle velden zijn ingevuld.")
+      } else {
+        alert("Auto niet aangemaakt, niet alle velden zijn ingevuld.")
+      }
     }
+    if(ok){
+      let carToPost = new Car(this.car.licencePlate, this.auth.getUserData().email, this.car.carName, this.car.carBrand, this.car.carType, this.car.carColor, this.car.fuelType);
+      if (this.editMode) {
+        this.httpHandler.postCar(carToPost, "/car/update").subscribe();
+      } else {
+        this.httpHandler.postCar(carToPost, "/car/create").subscribe();
+      }
+
+      const that = this;
+      setTimeout(function() {
+        that.returnChange.emit(true);
+        that.closePopup();
+      },200);
+    }
+  }
+
+  private checkValues(){
+    return this.car.licencePlate != null && this.car.carName != " ";
   }
 }

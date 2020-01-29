@@ -1,6 +1,6 @@
 import {slideInAnimation} from "./models/animations";
 import {Component} from "@angular/core";
-import {Router, RouterLink, RouterOutlet} from '@angular/router';
+import {RouterOutlet} from "@angular/router";
 import {DeclarationService} from "./services/declaration.service";
 import {UserService} from "./services/user.service";
 import {LoadService} from "./services/load.service";
@@ -35,7 +35,7 @@ export class AppComponent {
       if (auth.loggedIn) {
         userService.getUserData();
         decService.getDeclarationArray().subscribe();
-        carService.getCarsArray();
+        carService.getCarsArray().subscribe();
         clientService.getClientsArray().subscribe();
         projectService.getProjectsArray().subscribe();
         this.router.navigate(['/dashboard']);
