@@ -23,7 +23,7 @@ import { DeletePopupComponent } from './main/shared/delete-popup/delete-popup.co
 import {
   MAT_DATE_LOCALE,
   MatCheckboxModule,
-  MatDatepickerModule,
+  MatDatepickerModule, MatIconModule,
   MatInputModule,
   MatNativeDateModule, MatOptionModule,
   MatProgressSpinnerModule,
@@ -40,8 +40,8 @@ import {CarService} from './services/car.service';
 import {ClientService} from './services/client.service';
 import {ProjectService} from './services/project.service';
 import {TableFilterPipe} from "./table-filter.pipe";
-import {MatSortModule} from "@angular/material/sort";
 import {SafePipe} from './main/declarations/create-declaration/safe.pipe';
+import {MobileSideNavComponent} from './header/mobile-side-nav/mobile-side-nav.component';
 
 
 @NgModule({
@@ -65,7 +65,9 @@ import {SafePipe} from './main/declarations/create-declaration/safe.pipe';
     DeletePopupComponent,
     CarsPopupComponent,
     DeclarationPopupComponent,
-    TableFilterPipe
+    TableFilterPipe,
+    SafePipe,
+    MobileSideNavComponent
   ],
   entryComponents: [
     ProfileSettingsComponent,

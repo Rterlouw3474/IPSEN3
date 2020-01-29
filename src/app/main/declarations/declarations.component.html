@@ -57,7 +57,7 @@
           <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >{{declaration.licencePlate}}</td>
           <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >{{declaration.projectName}}</td>
           <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >{{declaration.decDate}}</td>
-          <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >€{{convertToNormalNotation(declaration.decDeclaration*declaration.decKilometers)}}</td>
+          <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >€{{convertToNormalNotation(declaration)}}</td>
         </ng-container>
       </tr>
       <tr *ngFor="let number of emptyRowsList; let odd=odd;" [ngClass]="emptyRowsList.length %2 === 0 ? odd ? '' :'notOdd':odd? 'notOdd':''" class="dashboard-dec-row">

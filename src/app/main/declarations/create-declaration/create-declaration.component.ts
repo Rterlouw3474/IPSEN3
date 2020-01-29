@@ -72,7 +72,7 @@ export class CreateDeclarationComponent implements OnInit {
   onCreateDeclaration() {
     const newDec = new Declaration(this.auth.getUserData().email, this.omschrijving, '12-12-2020', this.kilometers, this.declaratie,
       this.beginPostcode, this.beginHuisnummer, this.beginStraatnaam, this.beginPlaatsnaam, this.beginLand,
-      this.eindPostcode, this.eindHuisnummer, this.eindStraatnaam, this.eindPlaatsnaam, this.eindLand, this.klantNaam, this.projectNaam, this.kentekenPlaat);
+      this.eindPostcode, this.eindHuisnummer, this.eindStraatnaam, this.eindPlaatsnaam, this.eindLand, this.klantNaam, this.projectNaam, this.autoNaam);
     this.httpHandler.postDeclaration(newDec, '/declaration/create').subscribe(res => {
       this.declarationService.getDeclarationArray().subscribe();
     })

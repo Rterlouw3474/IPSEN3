@@ -272,17 +272,4 @@ export class DeclarationsComponent implements OnInit {
     returnMoney = returnMoney.replace('.', ',');
     return returnMoney;
   }
-
-  private checkButtons() {
-    this.pageBtnLeft = this.pageNumberMinimum >= 2;
-    this.pageBtnRight = this.pageNumberMinimum + this.maxCountPage <= this.decService.declarations.length;
-  }
-
-  private checkEmptyRows() {
-    this.generateEmptyRows = this.pageNumberMaximum - this.decService.declarations.length;
-    if (this.generateEmptyRows < 1) {
-      this.generateEmptyRows = 0;
-    }
-    this.emptyRowsList = Array(this.generateEmptyRows).fill(1)
-  }
 }

@@ -20,8 +20,7 @@ import {error, log} from 'util';
 @Injectable()
 export class HttpHandlerService {
   options = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
-  databaseUrl: string = "http://localhost:8080"
-    "http://h2858995.stratoserver.net:8080";
+  databaseUrl: string = "http://h2858995.stratoserver.net:8080";
   googleAPI: string = "/googleapi"
   private response: any;
 
