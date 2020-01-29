@@ -1,6 +1,6 @@
 import {slideInAnimation} from "./models/animations";
 import {Component} from "@angular/core";
-import {RouterOutlet} from "@angular/router";
+import {Router, RouterOutlet} from '@angular/router';
 import {DeclarationService} from "./services/declaration.service";
 import {UserService} from "./services/user.service";
 import {LoadService} from "./services/load.service";
