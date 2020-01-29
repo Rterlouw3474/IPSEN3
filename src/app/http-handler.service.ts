@@ -1,23 +1,25 @@
 import { Injectable } from "@angular/core";
 import {
-  HttpClient, HttpErrorResponse,
+  HttpClient,
   HttpHeaders
 } from "@angular/common/http";
-import {Observable, throwError} from "rxjs";
-import {catchError, map} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
 import {Declaration} from "./models/declaration.object";
-import {DatabaseUser} from "./models/databaseuser.model";
 import {Project} from './main/profile/profile-projects/project.model';
 import {Client} from './main/profile/profile-clients/client.model';
 import {RDWCar} from "./models/rdwcar.model";
 import {RDWFuel} from "./models/rdwfuel.model";
 import {Car} from "./models/car.model";
+import {User} from './models/user.model';
 
 
 @Injectable()
 export class HttpHandlerService {
   options = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
-  databaseUrl: string = "http://h2858995.stratoserver.net:8080";
+  databaseUrl: string = "http://localhost:8080"
+    //"http://h2858995.stratoserver.net:8080";
+  private response: any;
 
   constructor(private http: HttpClient) {
   }
@@ -59,9 +61,20 @@ export class HttpHandlerService {
     });
   }
 
+  postUser(user: User, extraUrl: String) {
+    this.http.post(
+      this.databaseUrl + extraUrl, user, this.options
+    ).subscribe(responseData => {
+      console.log(responseData)
+    })
+  }
 
-  getUser(userEmail:string): Observable<DatabaseUser>{
-    return this.http.get(this.databaseUrl + "/user/get/" + userEmail).pipe(map(res => <DatabaseUser>res));
+  getUser(userEmail:string): Observable<User>{
+    return this.http.get<User>(this.databaseUrl + "/user/get/" + userEmail)
+      .pipe(map(
+        res => <User>res,
+                userDoesntExist => this.response = userDoesntExist
+      ));
   }
 
   getRDWCar(licencePlate:string): Observable<RDWCar[]>{

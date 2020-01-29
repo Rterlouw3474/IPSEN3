@@ -22,7 +22,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatInputModule} from "@angular/material/input";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import {DatePipe, HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {DatePipe, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {MatSortModule} from "@angular/material/sort";
 import { TableFilterPipe } from './table-filter.pipe';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -80,7 +80,7 @@ import { DeletePopupComponent } from './main/shared/delete-popup/delete-popup.co
     ReactiveFormsModule,
     MatProgressSpinnerModule
   ],
-  providers: [HttpHandlerService, DeclarationService, UserService, LoadService, {provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}, DatePipe],
+  providers: [HttpHandlerService, DeclarationService, UserService, LoadService, {provide: LocationStrategy, useClass: PathLocationStrategy}, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
