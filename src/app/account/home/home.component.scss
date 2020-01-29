@@ -1,20 +1,54 @@
 h1 {
   text-align: center;
+  color: #EBEFF0;
+  font-weight: bold;
+  padding-top: 91px !important;
+  padding-bottom: 25px;
+}
+
+h2 {
+  text-align: center;
+  color: #EBEFF0;
+  margin-top: 0;
+}
+
+h3 {
+  text-align: center;
+  color: #c4ccce;
+  margin-top: 0;
+}
+
+.container {
+  padding: 0;
 }
 
 .home{
-  top:470px;
   width: 1056px;
   height: 900px;
-  background-color: #EBEFF0;
   box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-  #welkom {
-    height: 100%;
-    background-color: #56C8AD;
-    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-    border:none;
-    h1{
-      padding-top: 75px;
+}
+
+.image {
+  background: url("src/assets/images/background.png") no-repeat;
+  height: 446px;
+  width: 1056px;
+  margin-top: 50px;
+}
+
+.actions {
+  margin-left: 440px;
+  .btn-wrapper {
+    .create-object {
+      background-color: #29b99a;
+      color: #ebeff0;
+      font-weight: normal;
+      margin-top: 30px;
     }
   }
+}
+
+.icons {
+  background: url("src/assets/images/icons.png") no-repeat;
+  height: 404px;
+  width: 1056px;
 }
