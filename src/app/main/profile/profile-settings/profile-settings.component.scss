@@ -59,6 +59,9 @@ form{
         }
         box-shadow: none;
       }
+      &:focus {
+        outline: 0;
+      }
       svg{
         position: relative;
         top:3px;
