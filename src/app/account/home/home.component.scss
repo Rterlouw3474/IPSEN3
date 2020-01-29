@@ -1,38 +1,20 @@
-* {
-  margin: 10px;
-}
-
-.login-form {
-  width: 500px;
-  background: #f1f1f1;
-  height: 300px;
-  padding: 80px 40px;
-  border-radius: 10px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.login {
+h1 {
   text-align: center;
 }
 
-button {
-  font-size: 15px;
-  width: 100px;
-  height: 40px;
-  align-content: center;
-  transition: 0.2s ease-in-out;
-}
-
-button:hover {
-  transform: scale(1.05);
-}
-
-input {
-  width: 50%;
-  height: 30px;
-  font-size: medium;
-  alignment: center;
+.home{
+  top:470px;
+  width: 1056px;
+  height: 900px;
+  background-color: #EBEFF0;
+  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+  #welkom {
+    height: 100%;
+    background-color: #56C8AD;
+    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    border:none;
+    h1{
+      padding-top: 75px;
+    }
+  }
 }

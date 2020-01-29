@@ -35,7 +35,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DatePipe, HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {DatePipe, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {CarService} from './services/car.service';
 import {ClientService} from './services/client.service';
 import {ProjectService} from './services/project.service';
@@ -85,7 +85,7 @@ import {ProjectService} from './services/project.service';
     MatSelectModule
 
   ],
-  providers: [HttpHandlerService, DeclarationService, CarService, ClientService, ProjectService, UserService, LoadService, {provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}, DatePipe],
+  providers: [HttpHandlerService, DeclarationService, CarService, ClientService, ProjectService, UserService, LoadService, {provide: LocationStrategy, useClass: PathLocationStrategy}, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
