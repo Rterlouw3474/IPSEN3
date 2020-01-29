@@ -24,7 +24,6 @@ export class AppComponent {
     load.setLoadingFalse();
 
     let checkLogin = setInterval(() => {
-      console.log("Test");
       if (auth.loggedIn) {
         userService.getUserData();
         decService.getDeclarationArray();
