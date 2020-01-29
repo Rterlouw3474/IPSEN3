@@ -8,7 +8,6 @@ import {Observable, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 import {Declaration} from "./models/declaration.object";
 import {AuthService} from './account/auth.service';
-import {DatabaseUser} from "./models/databaseuser.model";
 import {Project} from './models/project.model';
 import {Client} from './models/client.model';
 import {RDWCar} from "./models/rdwcar.model";
@@ -20,26 +19,15 @@ import {Car} from "./models/car.model";
 export class HttpHandlerService {
   options = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
   databaseUrl: string = "http://h2858995.stratoserver.net:8080";
+  private response: any;
 
   constructor(private http: HttpClient, private auth: AuthService) {
   }
 
-  /**
-   * @author Edward Deen
-   * @param user
-   * @param extraUrl
-   */
-  postUser(user: User, extraUrl: string) {
-    this.http.post(
-      this.databaseUrl + extraUrl, user, this.options
-    ).subscribe(responseData => {
-      console.log(responseData)
-    });
-  }
 
   postDeclaration(declaration: Declaration, extraUrl: string) {
     return this.http.post(
-      this.databaseUrl + extraUrl, declaration, this.options
+      this.databaseUrl + extraUrl, declaration, {responseType: 'text'}
     )
   }
 
@@ -51,69 +39,77 @@ export class HttpHandlerService {
 
   postClient(client: Client, extraUrl: string){
     return this.http.post(
-      this.databaseUrl + extraUrl, client, this.options
+      this.databaseUrl + extraUrl, client, {responseType: 'text'}
     )
   }
 
   postProject(project: Project, extraUrl: string){
     return this.http.post(
-      this.databaseUrl + extraUrl, project, this.options
-    )
-  }
+      this.databaseUrl + extraUrl, project, {responseType: 'text'}
+    )}
 
   postCar(car : Car, extraUrl: string){
     return this.http.post(
-      this.databaseUrl + extraUrl, car, this.options
-    )
+      this.databaseUrl + extraUrl, car, {responseType: 'text'}
+    )}
+
+  postUser(user: User, extraUrl: String) {
+    this.http.post(
+      this.databaseUrl + extraUrl, user, {responseType: 'text'}
+    ).subscribe(responseData => {
+      console.log(responseData)
+    })
   }
 
-
-  getUser(userEmail:string): Observable<DatabaseUser>{
-    return this.http.get(this.databaseUrl + "/user/get/" + userEmail).pipe(map(res => <DatabaseUser>res));
+  getUser(userEmail:string): Observable<User>{
+    return this.http.get<User>(this.databaseUrl + "/user/get/" + userEmail, {responseType: 'json'})
+      .pipe(map(
+        res => <User>res,
+                userDoesntExist => this.response = userDoesntExist
+      ));
   }
 
   getRDWCar(licencePlate:string): Observable<RDWCar[]>{
-    return this.http.get(this.databaseUrl + "/rdw/get/car/" + licencePlate).pipe(map(res => <RDWCar[]>res));
+    return this.http.get(this.databaseUrl + "/rdw/get/car/" + licencePlate, {responseType: 'json'}).pipe(map(res => <RDWCar[]>res));
   }
 
   getRDWFuel(licencePlate:string): Observable<RDWFuel[]>{
-    return this.http.get(this.databaseUrl + "/rdw/get/fuel/" + licencePlate).pipe(map(res => <RDWFuel[]>res));
+    return this.http.get(this.databaseUrl + "/rdw/get/fuel/" + licencePlate, {responseType: 'json'}).pipe(map(res => <RDWFuel[]>res));
   }
 
   deleteDeclaration(url:string){
-    return this.http.delete(this.databaseUrl + url);
+    return this.http.delete(this.databaseUrl + url, {responseType: 'text'});
   }
 
   deleteProject(url:string) {
-    return this.http.delete(this.databaseUrl + url);
+    return this.http.delete(this.databaseUrl + url, {responseType: 'text'});
   }
 
   getDeclarations(email:string): Observable<Declaration[]>{
     // console.log(this.databaseUrl + "/declaration/get/" + email);
     //return this.http.get(this.databaseUrl + "/declaration/getDeclarationsByOwnerID/" + ownerId);
     return this.http
-      .get(this.databaseUrl + "/declaration/get/" + this.auth.getUserData().email)
+      .get(this.databaseUrl + "/declaration/get/" + this.auth.getUserData().email, {responseType: 'json'})
       .pipe(map(res => <Declaration[]>res));
   }
 
   getProjects(email:string): Observable<Project[]> {
     // console.log(this.databaseUrl + "/project/get/" + email);
     return this.http
-      .get(this.databaseUrl + "/project/get/" + email)
+      .get(this.databaseUrl + "/project/get/" + email, {responseType: 'json'})
       .pipe(map(res =><Project[]>res))
   }
 
   getClients(email:string): Observable<Client[]> {
     // console.log(this.databaseUrl + "/client/get/" + email);
     return this.http
-      .get(this.databaseUrl + "/client/get/" + email)
+      .get(this.databaseUrl + "/client/get/" + email, {responseType: 'json'})
       .pipe(map(res =><Client[]>res))
   }
 
   getCars(email:string): Observable<Car[]> {
-    console.log(this.databaseUrl + "/car/get/" + email);
     return this.http
-      .get(this.databaseUrl + "/car/get/" + email)
+      .get(this.databaseUrl + "/car/get/" + email, {responseType: 'json'})
       .pipe(map(res =><Car[]>res))
   }
 

@@ -57,6 +57,7 @@ import {MatSortModule} from "@angular/material/sort";
     ProfileProjectsComponent,
     ProfileClientsComponent,
     ProfileCarsComponent,
+    TableFilterPipe,
     ProjectsPopupComponent,
     ClientsPopupComponent,
     CarsPopupComponent,
@@ -69,8 +70,7 @@ import {MatSortModule} from "@angular/material/sort";
     ProfileSettingsComponent,
     ProfileProjectsComponent,
     ProfileClientsComponent,
-    ProfileCarsComponent,
-
+    ProfileCarsComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +81,7 @@ import {MatSortModule} from "@angular/material/sort";
     MatInputModule,
     MatCheckboxModule,
     FormsModule,
+    MatSortModule,
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,

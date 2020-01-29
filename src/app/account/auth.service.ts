@@ -5,6 +5,7 @@ import {BehaviorSubject, combineLatest, from, Observable, of, Subscription, thro
 import {catchError, concatMap, shareReplay, tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {User} from '../models/user.model';
+import {HttpHandlerService} from '../http-handler.service';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,7 @@ export class AuthService {
   userProfile$ = this.userProfileSubject$.asObservable();
   private user: User;
   subscription: Subscription;
+  private username: string;
 
   constructor(private router: Router) {
     // On initial load, check authentication state with authorization server
@@ -131,10 +133,17 @@ export class AuthService {
 
   public getUserData() {
     this.subscription = this.userProfile$.subscribe(userData => {
+
+      if (userData.sub.includes('google')) {
+        this.username = userData.name;
+      } else {
+        this.username = userData.nickname;
+      }
+
       console.log(userData);
       this.user = new User(
         userData.email,
-        userData.nickname,
+        this.username,
         userData.picture,
         userData.sub
       );

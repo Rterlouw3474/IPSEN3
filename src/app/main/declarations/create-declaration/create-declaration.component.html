@@ -76,7 +76,7 @@
 
       <mat-form-field appearance="outline" class="selectDropdown" style="padding-bottom: 33px;">
         <mat-select required placeholder="Choose Car" [formControl]="carFormControl" [(ngModel)]="kentekenPlaat" disableOptionCentering panelClass="selectClass" style="padding: 0.25em 0">
-          <mat-option *ngFor="let car of carService.cars" [value]="car.carName">{{car.carName}}</mat-option>
+          <mat-option *ngFor="let car of carService.cars" [value]="car.licencePlate">{{car.carName}}</mat-option>
         </mat-select>
         <mat-error *ngIf="carFormControl.hasError('required')">
           Please select a car.

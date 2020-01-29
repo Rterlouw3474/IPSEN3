@@ -9,7 +9,7 @@
         <mat-form-field class="EditNaam">
           <input matInput
                  name="naam"
-                 value="{{ userService.databaseUser.username }}"
+                 value="{{ userService.user.username }}"
                  class="form-control"
                  #newNameInput
           >
@@ -21,7 +21,7 @@
         Email-adres:
       </td>
       <td style="width: 75%">
-        {{ userService.authUser.email }}
+        {{ userService.user.email }}
       </td>
     </tr>
 <!--    <tr>-->

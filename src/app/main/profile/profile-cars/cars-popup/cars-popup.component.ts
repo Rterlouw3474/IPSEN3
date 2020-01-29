@@ -89,10 +89,6 @@ export class CarsPopupComponent implements OnInit {
         console.log(responseData);
         this.carService.getCarsArray();
         this.returnChange.emit(true);
-      }, err=>{
-        console.log(err);
-        this.carService.getCarsArray();
-        this.returnChange.emit(true);
       });
 
       this.closePopup();

@@ -165,14 +165,7 @@ export class DeclarationsComponent implements OnInit {
           this.decService.getDeclarationArray();
           this.checkButtons();
           this.checkEmptyRows();
-      },
-        error =>{
-          this.allCheckboxesSelected = false;
-          this.resetSelectedDeclarations();
-          this.decService.getDeclarationArray();
-          this.checkButtons();
-          this.checkEmptyRows();
-    });
+      });
 
   }
 
