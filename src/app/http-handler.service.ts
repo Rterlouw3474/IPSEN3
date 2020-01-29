@@ -20,21 +20,9 @@ import {Car} from "./main/profile/profile-cars/car.model";
 export class HttpHandlerService {
   options = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
   databaseUrl: string = "http://h2858995.stratoserver.net:8080";
+  private response: any;
 
   constructor(private http: HttpClient, private auth: AuthService) {
-  }
-
-  /**
-   * @author Edward Deen
-   * @param user
-   * @param extraUrl
-   */
-  postUser(user: User, extraUrl: string) {
-    this.http.post(
-      this.databaseUrl + extraUrl, user, this.options
-    ).subscribe(responseData => {
-      console.log(responseData)
-    });
   }
 
   postDeclaration(declaration: Declaration, extraUrl: string) {
@@ -67,9 +55,20 @@ export class HttpHandlerService {
     )
   }
 
+  postUser(user: User, extraUrl: String) {
+    this.http.post(
+      this.databaseUrl + extraUrl, user, this.options
+    ).subscribe(responseData => {
+      console.log(responseData)
+    })
+  }
 
-  getUser(userEmail:string): Observable<DatabaseUser>{
-    return this.http.get(this.databaseUrl + "/user/get/" + userEmail).pipe(map(res => <DatabaseUser>res));
+  getUser(userEmail:string): Observable<User>{
+    return this.http.get<User>(this.databaseUrl + "/user/get/" + userEmail)
+      .pipe(map(
+        res => <User>res,
+                userDoesntExist => this.response = userDoesntExist
+      ));
   }
 
   getRDWCar(licencePlate:string): Observable<RDWCar[]>{

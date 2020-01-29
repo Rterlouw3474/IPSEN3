@@ -1,23 +1,33 @@
 <mat-spinner *ngIf="load.isLoading" class="load-spinner"></mat-spinner>
 <div class="container dashboard" *ngIf="!load.isLoading">
 
-    <table style="width:90% ; margin-top: 80px; margin-left: 50px">
-      <tr>
-        <th><mat-checkbox
-            #checkbox="matCheckbox"
-            (click)="onSelectAllCheckboxes(checkbox.checked)"
-            [(ngModel)]="parentCheckboxSelected"
-            style="margin-left: 40px"></mat-checkbox></th>
-        <th class="dec-description-text" style="width: 100%" *ngIf="isMobile() == true">Omschrijving</th>
-        <ng-container *ngIf="isMobile() == false">
-          <th class="dec-description-text" style="width: 40%">Omschrijving</th>
-          <th class="dec-description-text" style="width: 15%">Auto</th>
-          <th class="dec-description-text" style="width: 15%">Datum</th>
-          <th class="dec-description-text" style="width: 15%">Aantal kilometers</th>
-          <th class="dec-description-text" style="width: 15%">Bedrag</th>
-        </ng-container>
-      </tr>
-      <tr *ngFor="let declaration of getSlicedDeclaration(); let odd=odd; let id = index" class="table-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
+  <form novalidate
+        #form="ngForm">
+      <table matSort (matSortChange)="sortData($event)" style="width:90% ; margin-top: 80px; margin-left: 50px">
+        <tr>
+          <th><mat-checkbox
+              #checkbox="matCheckbox"
+              (click)="onSelectAllCheckboxes(checkbox.checked)"
+              [(ngModel)]="parentCheckboxSelected"
+              name = "parentCheckbox"
+              style="margin-left: 40px"></mat-checkbox></th>
+          <th mat-sort-header="omschrijving" class="dec-description-text" style="width: 40%">Omschrijving</th>
+          <th mat-sort-header="auto" class="dec-description-text" style="width: 15%">Auto</th>
+          <th mat-sort-header="datum" class="dec-description-text" style="width: 15%">Datum</th>
+          <th mat-sort-header="kilometers" class="dec-description-text" style="width: 15%">Aantal kilometers</th>
+          <th mat-sort-header="bedrag" class="dec-description-text" style="width: 15%">Bedrag</th>
+        </tr>
+
+        <strong>Filter Postcode</strong>
+        <select
+          [(ngModel)]="decBeginPostal"
+          name="decBeginPostal">
+          <option></option>
+          <option value="1">1</option>
+        </select>
+
+
+      <tr *ngFor="let declaration of getSlicedDeclaration() | tableFilter: form.value; let odd=odd; let id = index " class="table-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
         <td><mat-checkbox
             #checkbox="matCheckbox"
             (click)="onCheckboxEvent(declaration, checkbox.checked, id)"
@@ -45,7 +55,8 @@
         </ng-container>
       </tr>
     </table>
-
+  </form>
+  
     <div class="row" style="margin-left: 390px" *ngIf="isMobile() == false">
       <div class="col-sm-2">
         <button [ngClass]="pageBtnLeft ? 'page-button' : 'page-button-disabled'" (click)="prevPage()"><<</button>

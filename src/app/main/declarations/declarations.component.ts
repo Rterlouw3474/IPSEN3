@@ -6,7 +6,7 @@ import {Declaration} from "../../models/declaration.object";
 import {User} from "../../models/user.model";
 import {DeclarationService} from "../../services/declaration.service";
 import {LoadService} from "../../services/load.service";
-
+import {Sort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-declarations',
@@ -60,6 +60,36 @@ export class DeclarationsComponent implements OnInit {
     return this.applicationStateService.getIsMobileResolution();
   }
 
+  //ngModel auto
+  auto: string;
+  decDeclaration : number;
+  decBeginPostal: string;
+
+  sortData(sort: Sort) {
+    const data = this.decService.declarations.slice();
+    if (!sort.active || sort.direction === '') {
+      this.decService.declarations = data;
+      return;
+    }
+
+    this.decService.declarations = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'omschrijving': return this.compare(a.decDesc, b.decDesc, isAsc);
+        //case 'auto': return this.compare(a.dec, b.auto, isAsc);
+        case 'datum': return this.compare(a.decDate, b.decDate, isAsc);
+        case 'kilometers': return this.compare(a.decKilometers, b.decKilometers, isAsc);
+        case 'bedrag': return this.compare(a.decDeclaration, b.decDeclaration, isAsc);
+        default: return 0;
+      }
+    });
+  }
+
+
+ compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
+
   //function for checking all boxes when the parent checkbox is checked.
   onSelectAllCheckboxes(checked: boolean) {
     this.allCheckboxesSelected = !checked;
@@ -106,6 +136,7 @@ export class DeclarationsComponent implements OnInit {
   createDeclarationCopy(declaration: Declaration, ): Declaration {
     if (declaration.decDesc.includes('[')) {
       const a: number = Number(declaration.decDesc.charAt(declaration.decDesc.indexOf('[') + 1));
+
       declaration.decDesc = declaration.decDesc.substring(0, declaration.decDesc.length - 3);
       if (!(a + 1 === 10)) {
         declaration.decDesc = declaration.decDesc.concat('[' + Number(a + 1) + ']');
@@ -225,6 +256,7 @@ export class DeclarationsComponent implements OnInit {
     this.emptyRowsList = Array(this.generateEmptyRows).fill(1);
   }
 
+
   editDeclaration(declaration: Declaration) {
     this.popupDeclaration = new Declaration(declaration.userEmail, declaration.decDesc, declaration.decDate, declaration.decKilometers, declaration.decDeclaration, declaration.decBeginPostal, declaration.decBeginHouseNumber, declaration.decBeginStreet, declaration.decBeginCity, declaration.decBeginCountry, declaration.decEndPostal, declaration.decEndHouseNumber, declaration.decEndStreet, declaration.decEndCity, declaration.decEndCountry, declaration.clientName, declaration.projectName, declaration.licencePlate);
     this.popupEditMode = true;
@@ -240,5 +272,6 @@ export class DeclarationsComponent implements OnInit {
     returnMoney = returnMoney.replace('.', ',');
     return returnMoney;
   }
+
 
 }
