@@ -98,7 +98,7 @@ export class DeclarationsComponent implements OnInit {
   //function for checking all boxes when the parent checkbox is checked.
   onSelectAllCheckboxes(checked: boolean) {
     this.allCheckboxesSelected = !checked;
-    
+
     if (this.allCheckboxesSelected) {
       this.resetSelectedDeclarations();
       const tempArray: Declaration[] = this.decService.declarations.slice(this.pageNumberMinimum , this.pageNumberMaximum);
@@ -197,11 +197,11 @@ export class DeclarationsComponent implements OnInit {
     } else {
       let counter = 0;
       for (const selectedDeclaration of this.selectedDeclarations) {
-             if (selectedDeclaration.id === id) {
-               this.selectedDeclarations.splice(counter, 1);
-             }
-             counter++;
-           }
+        if (selectedDeclaration.id === id) {
+          this.selectedDeclarations.splice(counter, 1);
+        }
+        counter++;
+      }
     }
     this.removeButtonsFromScreen();
   }
@@ -264,12 +264,25 @@ export class DeclarationsComponent implements OnInit {
   }
 
   //converts €0.0 to normal €0,00 notation
-  convertToNormalNotation(price:number) {
+  convertToNormalNotation(declaration: Declaration) {
+    let money = 0;
     let returnMoney: string;
-    returnMoney = (Math.round(price * 1000) / 1000).toFixed(2);
+    money += declaration.decDeclaration;
+    returnMoney = (Math.round(money * 1000) / 1000).toFixed(2);
     returnMoney = returnMoney.replace('.', ',');
     return returnMoney;
   }
 
+  private checkButtons() {
+    this.pageBtnLeft = this.pageNumberMinimum >= 2;
+    this.pageBtnRight = this.pageNumberMinimum + this.maxCountPage <= this.decService.declarations.length;
+  }
 
+  private checkEmptyRows() {
+    this.generateEmptyRows = this.pageNumberMaximum - this.decService.declarations.length;
+    if (this.generateEmptyRows < 1) {
+      this.generateEmptyRows = 0;
+    }
+    this.emptyRowsList = Array(this.generateEmptyRows).fill(1)
+  }
 }

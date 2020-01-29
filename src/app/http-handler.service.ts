@@ -5,7 +5,7 @@ import {
 } from "@angular/common/http";
 import {User} from "./models/user.model";
 import {Observable, throwError} from "rxjs";
-import {catchError, map} from "rxjs/operators";
+import {catchError, map, repeat} from 'rxjs/operators';
 import {Declaration} from "./models/declaration.object";
 import {AuthService} from './account/auth.service';
 import {Project} from './models/project.model';
@@ -13,12 +13,16 @@ import {Client} from './models/client.model';
 import {RDWCar} from "./models/rdwcar.model";
 import {RDWFuel} from "./models/rdwfuel.model";
 import {Car} from "./models/car.model";
+import {GoogleresponseModel} from './models/googleresponse.model';
+import {error, log} from 'util';
 
 
 @Injectable()
 export class HttpHandlerService {
   options = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
-  databaseUrl: string = "http://h2858995.stratoserver.net:8080";
+  databaseUrl: string = "http://localhost:8080"
+    "http://h2858995.stratoserver.net:8080";
+  googleAPI: string = "/googleapi"
   private response: any;
 
   constructor(private http: HttpClient, private auth: AuthService) {
@@ -97,20 +101,32 @@ export class HttpHandlerService {
     // console.log(this.databaseUrl + "/project/get/" + email);
     return this.http
       .get(this.databaseUrl + "/project/get/" + email, {responseType: 'json'})
-      .pipe(map(res =><Project[]>res))
+      .pipe(map(res => <Project[]>res))
   }
 
   getClients(email:string): Observable<Client[]> {
     // console.log(this.databaseUrl + "/client/get/" + email);
     return this.http
       .get(this.databaseUrl + "/client/get/" + email, {responseType: 'json'})
-      .pipe(map(res =><Client[]>res))
+      .pipe(map(res => <Client[]>res))
   }
 
   getCars(email:string): Observable<Car[]> {
     return this.http
       .get(this.databaseUrl + "/car/get/" + email, {responseType: 'json'})
-      .pipe(map(res =><Car[]>res))
+      .pipe(map(res => <Car[]>res))
+  }
+
+  getInteractiveRouteMap(url: string, origin: string, destination: string): Observable<string> {
+    return this.http
+      .get(this.databaseUrl + this.googleAPI + url + "/" + origin + "/" + destination, {responseType: 'text'})
+      .pipe(map(response => <string>response))
+  }
+
+  getOriginDestinationAndDistance(url: string, origin: string, destination: string): Observable<GoogleresponseModel> {
+    return this.http
+      .get(this.databaseUrl + this.googleAPI + url + "/" + origin + "/" + destination, {responseType: 'json'})
+      .pipe(map(response => <GoogleresponseModel>response));
   }
 
 }

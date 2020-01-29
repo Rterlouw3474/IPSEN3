@@ -1,6 +1,6 @@
 import {slideInAnimation} from "./models/animations";
 import {Component} from "@angular/core";
-import {RouterOutlet} from "@angular/router";
+import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {DeclarationService} from "./services/declaration.service";
 import {UserService} from "./services/user.service";
 import {LoadService} from "./services/load.service";
@@ -20,7 +20,15 @@ export class AppComponent {
   title = 'DigitaleFactuur – Kilometer Registratie';
   //loggedIn = false;
 
-  constructor(private decService:DeclarationService, private userService: UserService, private load:LoadService, private auth:AuthService, private carService: CarService, private clientService:ClientService, private projectService:ProjectService) {
+  constructor(
+    private decService:DeclarationService,
+    private userService: UserService,
+    private load:LoadService,
+    private auth:AuthService,
+    private carService: CarService,
+    private clientService:ClientService,
+    private projectService:ProjectService,
+    private router: Router) {
     load.setLoadingFalse();
 
     let checkLogin = setInterval(() => {
@@ -30,6 +38,7 @@ export class AppComponent {
         carService.getCarsArray();
         clientService.getClientsArray().subscribe();
         projectService.getProjectsArray().subscribe();
+        this.router.navigate(['/dashboard']);
         clearInterval(checkLogin);
       }
     }, 200);

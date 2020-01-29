@@ -35,13 +35,13 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DatePipe, PathLocationStrategy, LocationStrategy} from '@angular/common';
+import {DatePipe, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {CarService} from './services/car.service';
 import {ClientService} from './services/client.service';
 import {ProjectService} from './services/project.service';
-import {TableFilterPipe} from './table-filter.pipe';
-import {MobileSideNavComponent} from "./header/mobile-side-nav/mobile-side-nav.component";
-import {MatIconModule} from "@angular/material/icon";
+import {TableFilterPipe} from "./table-filter.pipe";
+import {MatSortModule} from "@angular/material/sort";
+import {SafePipe} from './main/declarations/create-declaration/safe.pipe';
 
 
 @NgModule({
@@ -65,8 +65,7 @@ import {MatIconModule} from "@angular/material/icon";
     DeletePopupComponent,
     CarsPopupComponent,
     DeclarationPopupComponent,
-    TableFilterPipe,
-    MobileSideNavComponent
+    TableFilterPipe
   ],
   entryComponents: [
     ProfileSettingsComponent,
