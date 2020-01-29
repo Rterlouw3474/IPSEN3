@@ -15,23 +15,23 @@
         <form>
           <h5 class="bad-licence-plate" *ngIf="notFound">Vul een geldig kenteken in.</h5>
           <mat-form-field>
-            <input matInput placeholder="Kenteken" value="" [(ngModel)]="licencePlate" (change)="RDWCheck()" name="licencePlate">
+            <input matInput placeholder="Kenteken" disabled="{{editMode}}" value="" [(ngModel)]="car.licencePlate" (change)="RDWCheck()" name="licencePlate">
           </mat-form-field>
           <h5 class="no-car-name" *ngIf="noCarName">Vul een naam in.</h5>
           <mat-form-field>
-            <input matInput placeholder="Naam" value="" [(ngModel)]="carName" name="carName">
+            <input matInput placeholder="Naam" value="" [(ngModel)]="car.carName" name="carName">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Merk" value="" [(ngModel)]="carBrand" disabled=true name="carBrand">
+            <input matInput placeholder="Merk" value="" [(ngModel)]="car.carBrand" disabled=true name="carBrand">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Type" value="" [(ngModel)]="carType" disabled=true name="carType">
+            <input matInput placeholder="Type" value="" [(ngModel)]="car.carType" disabled=true name="carType">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Kleur" value="" [(ngModel)]="carColor" disabled=true name="carColor">
+            <input matInput placeholder="Kleur" value="" [(ngModel)]="car.carColor" disabled=true name="carColor">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Brandstoftype" [(ngModel)]="fuelType" value=""  disabled=true name="fuelType">
+            <input matInput placeholder="Brandstoftype" [(ngModel)]="car.fuelType" value=""  disabled=true name="fuelType">
           </mat-form-field>
           <div class="button-wrapper">
             <button (click)="createCar()" class="btn">Opslaan</button>

@@ -191,7 +191,7 @@ export class ProfileClientsComponent implements OnInit {
       this.showDeletePopup = true;
     } else if( this.selectClients.length > 1) {
       this.deletePopup = new DeletePopupModel("Klant verwijderen",
-        "Weet u zeker dat u de geselecteerde klanten wil verwijderen?",
+        "Weet u zeker dat u de geselecteerde klanten wilt verwijderen?",
         "Ja, verwijder klanten",
         "Nee, annuleer");
       this.showDeletePopup = true;

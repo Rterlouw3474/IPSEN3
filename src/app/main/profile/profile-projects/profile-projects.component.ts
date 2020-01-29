@@ -200,7 +200,7 @@ export class ProfileProjectsComponent implements OnInit {
       this.showDeletePopup = true;
     } else if (this.selectedProjects.length > 1) {
       this.deletePopup = new DeletePopupModel("Project verwijderen",
-        "Weet u zeker dat u de geselecteerde projecten wil verwijderen?",
+        "Weet u zeker dat u de geselecteerde projecten wilt verwijderen?",
         "Ja, verwijder projecten",
         "Nee, annuleer");
       this.showDeletePopup = true;

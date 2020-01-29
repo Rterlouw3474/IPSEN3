@@ -27,7 +27,7 @@ export class AppComponent {
       if (auth.loggedIn) {
         userService.getUserData();
         decService.getDeclarationArray();
-        carService.getCarsArray();
+        carService.getCarsArray().subscribe();
         clientService.getClientsArray().subscribe();
         projectService.getProjectsArray().subscribe();
         clearInterval(checkLogin);

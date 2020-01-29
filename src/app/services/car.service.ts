@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpHandlerService} from "../http-handler.service";
 import {AuthService} from "../account/auth.service";
 import {Car} from '../models/car.model';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class CarService {
@@ -11,10 +12,8 @@ export class CarService {
   public cars : Car[];
 
   getCarsArray() {
-    return this.http.getCars(this.auth.getUserData().email).subscribe(
-      res => {
-        this.cars = res;
-      });
+    return this.http.getCars(this.auth.getUserData().email).pipe(map(res => {
+      console.log(res); this.cars = res;}))
   }
 
 }
