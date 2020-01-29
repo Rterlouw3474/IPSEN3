@@ -40,6 +40,8 @@ import {CarService} from './services/car.service';
 import {ClientService} from './services/client.service';
 import {ProjectService} from './services/project.service';
 import {TableFilterPipe} from './table-filter.pipe';
+import {MobileSideNavComponent} from "./header/mobile-side-nav/mobile-side-nav.component";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -63,7 +65,8 @@ import {TableFilterPipe} from './table-filter.pipe';
     DeletePopupComponent,
     CarsPopupComponent,
     DeclarationPopupComponent,
-    TableFilterPipe
+    TableFilterPipe,
+    MobileSideNavComponent
   ],
   entryComponents: [
     ProfileSettingsComponent,
@@ -88,6 +91,7 @@ import {TableFilterPipe} from './table-filter.pipe';
     MatOptionModule,
     MatSelectModule,
     MatSortModule,
+    MatIconModule
   ],
   providers: [HttpHandlerService, DeclarationService, CarService, ClientService, ProjectService, UserService, LoadService, {provide: LocationStrategy, useClass: PathLocationStrategy}, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}, DatePipe],
   bootstrap: [AppComponent],

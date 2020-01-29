@@ -1,11 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Project} from '../../../../models/project.model';
 import {Form, FormControl} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import {ProfileObjectsService} from '../../profile-objects.service';
 import {HttpHandlerService} from '../../../../http-handler.service';
 import {AuthService} from '../../../../account/auth.service';
 import set = Reflect.set;
-import {Project} from '../../../../models/project.model';
+import {ProjectService} from '../../../../services/project.service';
 
 @Component({
   selector: 'app-projects-popup',
@@ -25,7 +26,7 @@ export class ProjectsPopupComponent implements OnInit {
   endDate: FormControl;
 
   popupHeader: string;
-  constructor(private auth: AuthService, private datePipe: DatePipe, private httpHandler : HttpHandlerService) {
+  constructor(private auth: AuthService, private datePipe: DatePipe, private httpHandler : HttpHandlerService, private projectService:ProjectService) {
   }
 
   ngOnInit() {

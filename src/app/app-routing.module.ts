@@ -10,10 +10,9 @@ import {ProfileCarsComponent} from './main/profile/profile-cars/profile-cars.com
 import {AuthGuard} from './account/auth.guard';
 import {DashboardComponent} from './main/dashboard/dashboard.component';
 import {DeclarationsComponent} from './main/declarations/declarations.component';
-import {Router, RouterModule, Routes} from "@angular/router";
-import {NgModule} from "@angular/core";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {APP_BASE_HREF} from "@angular/common";
+import {Router, RouterModule, Routes} from '@angular/router';
+import {NgModule} from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },

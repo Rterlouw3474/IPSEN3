@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {Declaration} from "../models/declaration.object";
 import {HttpHandlerService} from "../http-handler.service";
 import {AuthService} from "../account/auth.service";
+import {map} from "rxjs/operators";
 
 @Injectable()
 export class DeclarationService {
@@ -15,10 +16,10 @@ export class DeclarationService {
 
   //gets declarations from the user
   getDeclarationArray(){
-    return this.http.getDeclarations(this.auth.getUserData().email).subscribe(res => {
+    return this.http.getDeclarations(this.auth.getUserData().email).pipe(map(res => {
       this.declarations = res;
       this.updateDashboardValues();
-    });
+    }));
   }
 
   //calculates declaration statistics

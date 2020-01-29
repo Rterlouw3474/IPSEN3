@@ -115,12 +115,7 @@ export class ProfileProjectsComponent implements OnInit {
       this.projectService.getProjectsArray().subscribe(res => {
           this.checkEmptyRows();
           this.checkButtons()
-        },
-        error => {
-          this.checkEmptyRows();
-          this.checkButtons()
         });
-      console.log("getprojects");
     }
   }
 
@@ -175,13 +170,9 @@ export class ProfileProjectsComponent implements OnInit {
           .subscribe(
             res => {
               this.projectService.getProjectsArray().subscribe(res => {
-                  this.checkEmptyRows();
-                  this.checkButtons()
-            }, error => {
-              this.projectService.getProjectsArray().subscribe(res => {
                 this.checkEmptyRows();
                 this.checkButtons()
-              })})
+              })
             })
       }
 

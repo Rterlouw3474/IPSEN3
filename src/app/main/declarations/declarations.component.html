@@ -4,36 +4,31 @@
   <form novalidate
         #form="ngForm">
     <table matSort (matSortChange)="sortData($event)" style="width:90% ; margin-top: 80px; margin-left: 50px">
-      <tr style="max-height: 80px;">
+      <tr style="height: 60px;">
+
         <td><strong>Auto</strong></td>
-        <td>
-          <select
+        <td><select
             [(ngModel)]="licencePlate"
             name="licencePlate">
             <option></option>
             <option *ngFor="let car of carService.cars" [value]="car.licencePlate">{{car.licencePlate}}</option>
-          </select>
-        </td>
+          </select></td>
 
         <td><strong>Project</strong></td>
-        <td>
-          <select
+        <td><select
             [(ngModel)]="projectName"
             name="projectName">
             <option></option>
             <option *ngFor="let project of projectService.projects" [value]="project.projectName">{{project.projectName}}</option>
-          </select>
-        </td>
+          </select></td>
 
         <td><strong>Client</strong></td>
-        <td>
-          <select
+        <td><select
             [(ngModel)]="clientName"
             name="clientName">
             <option></option>
             <option *ngFor="let client of clientService.clients" [value]="client.clientName">{{client.clientName}}</option>
-          </select>
-        </td>
+          </select></td>
       </tr>
 
       <tr>
@@ -50,7 +45,7 @@
         <th mat-sort-header="bedrag" class="dec-description-text" style="width: 17%">Bedrag</th>
       </tr>
 
-      <tr *ngFor="let declaration of getSlicedDeclaration() | tableFilter: form.value; let odd=odd; let id = index " class="table-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
+      <tr *ngFor="let declaration of getSlicedDeclaration() | tableFilter: form.value; let odd=odd; let id = index " class="table-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}" >
         <td><mat-checkbox
             #checkbox="matCheckbox"
             (click)="onCheckboxEvent(declaration, checkbox.checked, id)"
@@ -61,7 +56,7 @@
           <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >{{declaration.licencePlate}}</td>
           <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >{{declaration.projectName}}</td>
           <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >{{declaration.decDate}}</td>
-          <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >€{{convertToNormalNotation(declaration)}}</td>
+          <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >€{{convertToNormalNotation(declaration.decDeclaration*declaration.decKilometers)}}</td>
         </ng-container>
       </tr>
       <tr *ngFor="let number of emptyRowsList; let odd=odd;" [ngClass]="emptyRowsList.length %2 === 0 ? odd ? '' :'notOdd':odd? 'notOdd':''" class="dashboard-dec-row">

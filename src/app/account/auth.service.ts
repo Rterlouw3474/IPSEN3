@@ -139,8 +139,6 @@ export class AuthService {
       } else {
         this.username = userData.nickname;
       }
-
-      console.log(userData);
       this.user = new User(
         userData.email,
         this.username,

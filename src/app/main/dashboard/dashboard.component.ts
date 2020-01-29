@@ -5,6 +5,7 @@ import {ApplicationStateService} from "../../application-state.service";
 import {DeclarationService} from "../../services/declaration.service";
 import {UserService} from "../../services/user.service";
 import {LoadService} from "../../services/load.service";
+import {Declaration} from "../../models/declaration.object";
 
 
 @Component({
@@ -13,6 +14,11 @@ import {LoadService} from "../../services/load.service";
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+
+  // popup
+  public showPopup = false;
+  public popupDeclaration: Declaration;
+  public popupEditMode = false;
 
   constructor(private applicationStateService: ApplicationStateService, private http: HttpHandlerService,
               private auth: AuthService, private decService: DeclarationService, private userService: UserService,
@@ -23,6 +29,12 @@ export class DashboardComponent implements OnInit {
 
   isMobile() {
     return this.applicationStateService.getIsMobileResolution();
+  }
+
+  editDeclaration(declaration: Declaration) {
+    this.popupDeclaration = new Declaration(declaration.userEmail, declaration.decDesc, declaration.decDate, declaration.decKilometers, declaration.decDeclaration, declaration.decBeginPostal, declaration.decBeginHouseNumber, declaration.decBeginStreet, declaration.decBeginCity, declaration.decBeginCountry, declaration.decEndPostal, declaration.decEndHouseNumber, declaration.decEndStreet, declaration.decEndCity, declaration.decEndCountry, declaration.clientName, declaration.projectName, declaration.licencePlate);
+    this.popupEditMode = true;
+    this.showPopup = true;
   }
 
 

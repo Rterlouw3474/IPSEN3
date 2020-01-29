@@ -16,9 +16,9 @@
           <mat-form-field>
             <input matInput placeholder="Projectnaam" disabled="{{editMode}}" value="" [(ngModel)]="project.projectName" maxlength="50" name="projectNaam">
           </mat-form-field>
-          <mat-form-field appearance="outline" class="example-full-width">
+          <mat-form-field class="example-full-width">
             <textarea matInput placeholder="Projectbeschrijving" [(ngModel)]="project.projectDesc"
-                      style="resize: none; padding-bottom: 1.5em;"
+                      maxlength="255"
                       name="projectDesc"></textarea>
           </mat-form-field>
           <mat-form-field>
