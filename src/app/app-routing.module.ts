@@ -20,23 +20,22 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: {animation: 'HomePage'} },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], data: {animation: 'ProfPage'} , children: [
-      { path: '', redirectTo: 'profile-settings', pathMatch: 'full'},
-      { path: 'profile-settings', component: ProfileSettingsComponent},
-      { path: 'profile-projects', component: ProfileProjectsComponent, },
-      { path: 'profile-clients', component: ProfileClientsComponent,  },
-      { path: 'profile-cars', component: ProfileCarsComponent}
+      { path: '', redirectTo: 'settings', pathMatch: 'full'},
+      { path: 'settings', component: ProfileSettingsComponent},
+      { path: 'projects', component: ProfileProjectsComponent, },
+      { path: 'clients', component: ProfileClientsComponent,  },
+      { path: 'cars', component: ProfileCarsComponent}
     ] },
   { path: 'declarations', component: DeclarationsComponent, canActivate: [AuthGuard], data: {animation: 'DecPage'} },
   { path: 'declarations/new', component: CreateDeclarationComponent , canActivate: [AuthGuard], data: {animation: 'NewDecPage'}},
-  { path: 'not-found', component: NotfoundComponent, data: {message: 'Page not found!'} },
-  { path: '**', redirectTo: '/not-found' }
+  { path: '**', redirectTo: '/home' }
 ];
 
 // @ts-ignore
 @NgModule({
   imports: [RouterModule.forRoot(routes),  BrowserAnimationsModule],
   exports: [RouterModule],
-  providers: [{provide: APP_BASE_HREF, useValue: window.location.pathname}]
+  providers: []
 })
 export class AppRoutingModule {
   public constructor(private router: Router,

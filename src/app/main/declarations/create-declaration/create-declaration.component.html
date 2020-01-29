@@ -4,53 +4,57 @@
     <form class="example-form">
       <div class="col-sm-3">
         <h2>Beginlocatie</h2>
-        <mat-form-field class="inputfield">
-          <input required matInput placeholder="Postcode" value="" [(ngModel)]="beginPostcode" name="beginPostcode">
+        <mat-form-field class="inputfield" hideRequiredMarker="true">
+          <input required matInput placeholder="Postcode" value="" [(ngModel)]="beginPostcode" (focusout)="checkInputValues()" autocapitalize="characters" spellcheck="false" name="beginPostcode">
         </mat-form-field>
-        <mat-form-field class="example-full-width inputfield">
-          <input required matInput placeholder="Huisnummer" value="" [(ngModel)]="beginHuisnummer" name="beginHuisnummer">
+        <mat-form-field class="example-full-width inputfield" hideRequiredMarker="true">
+          <input required matInput placeholder="Huisnummer" value="" [(ngModel)]="beginHuisnummer" (focusout)="checkInputValues()" spellcheck="false" name="beginHuisnummer">
         </mat-form-field>
-        <mat-form-field class="example-full-width inputfield">
-          <input  required matInput placeholder="Straatnaam" value="" [(ngModel)]="beginStraatnaam" name="beginStraatnaam">
+        <mat-form-field class="example-full-width inputfield" hideRequiredMarker="true">
+          <input  required matInput placeholder="Straatnaam" value="" [(ngModel)]="beginStraatnaam" (focusout)="checkInputValues()" spellcheck="false" name="beginStraatnaam">
         </mat-form-field>
-        <mat-form-field class="example-full-width inputfield">
-          <input required matInput placeholder="Plaatsnaam" value="" [(ngModel)]="beginPlaatsnaam" name="beginPlaatsnaam">
+        <mat-form-field class="example-full-width inputfield" hideRequiredMarker="true">
+          <input required matInput placeholder="Plaatsnaam" value="" [(ngModel)]="beginPlaatsnaam" disabled spellcheck="false" name="beginPlaatsnaam">
         </mat-form-field>
-        <mat-form-field class="example-full-width inputfield">
-          <input required matInput placeholder="Land" value="" [(ngModel)]="beginLand" name="beginLand">
+        <mat-form-field class="example-full-width inputfield" hideRequiredMarker="true">
+          <input required matInput placeholder="Land" value="" [(ngModel)]="beginLand" disabled spellcheck="false" name="beginLand">
         </mat-form-field>
       </div>
 
       <div class="col-sm-3 column">
         <h2>Eindlocatie</h2>
-        <mat-form-field class="example-full-width">
-          <input required matInput placeholder="Postcode" value="" [(ngModel)]="eindPostcode" name="eindPostcode">
+        <mat-form-field class="example-full-width" hideRequiredMarker="true">
+          <input required matInput placeholder="Postcode" value="" [(ngModel)]="eindPostcode" (focusout)="checkInputValues()" autocapitalize="characters" spellcheck="false" name="eindPostcode">
         </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <input required matInput placeholder="Huisnummer" value="" [(ngModel)]="eindHuisnummer" name="eindHuisnummer">
+        <mat-form-field class="example-full-width" hideRequiredMarker="true">
+          <input required matInput placeholder="Huisnummer" value="" [(ngModel)]="eindHuisnummer" (focusout)="checkInputValues()" spellcheck="false" name="eindHuisnummer">
         </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <input required matInput placeholder="Straatnaam" value="" [(ngModel)]="eindStraatnaam" name="eindStraatnaam">
+        <mat-form-field class="example-full-width" hideRequiredMarker="true">
+          <input required matInput placeholder="Straatnaam" value="" [(ngModel)]="eindStraatnaam" (focusout)="checkInputValues()" spellcheck="false" name="eindStraatnaam">
         </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <input required matInput placeholder="Plaatsnaam" value="" [(ngModel)]="eindPlaatsnaam" name="eindPlaatsnaam">
+        <mat-form-field class="example-full-width" hideRequiredMarker="true">
+          <input required matInput placeholder="Plaatsnaam" value="" [(ngModel)]="eindPlaatsnaam" disabled spellcheck="false" name="eindPlaatsnaam">
         </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <input required matInput placeholder="Land" value="" [(ngModel)]="eindLand" name="eindLand">
+        <mat-form-field class="example-full-width" hideRequiredMarker="true">
+          <input required matInput placeholder="Land" value="" [(ngModel)]="eindLand" disabled spellcheck="false" name="eindLand">
         </mat-form-field>
       </div>
 
       <div class="col-sm-3 column">
         <h2>Registratie</h2>
-        <mat-form-field class="example-full-width">
-          <input required matInput placeholder="Kilometers" value="" [(ngModel)]="kilometers" name="kilometers">
+        <mat-form-field class="example-full-width" hideRequiredMarker="true">
+          <input required matInput placeholder="Kilometers" value="" [(ngModel)]="kilometers" tabindex="-1" (ngModelChange)="calculate()" name="kilometers">
         </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <input required matInput placeholder="&nbsp;/ Km" value="" [(ngModel)]="declaratie" name="declaratie">
+        <mat-form-field class="example-full-width" hideRequiredMarker="true">
+          <input required matInput placeholder="&nbsp;/ Km" value="" [(ngModel)]="declaratie" tabindex="-1" (ngModelChange)="calculate()" name="declaratie">
           <span matPrefix>&euro;</span>
         </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput readonly value="" [(ngModel)]="totalCompensation" tabindex="-1" name="totalCompensation">
+          <span matPrefix>Totaal: €</span>
+        </mat-form-field>
         <mat-form-field appearance="outline" class="example-full-width">
-          <textarea required matInput placeholder="Omschrijving" [(ngModel)]="omschrijving" name="omschrijving" style="resize: none; padding-bottom: 6.4em;"></textarea>
+          <textarea required matInput placeholder="Omschrijving" [(ngModel)]="omschrijving" name="omschrijving" style="resize: none; padding-bottom: 3em;"></textarea>
         </mat-form-field>
       </div>
     </form>
@@ -75,7 +79,7 @@
         </mat-form-field>
 
       <mat-form-field appearance="outline" class="selectDropdown" style="padding-bottom: 33px;">
-        <mat-select required placeholder="Choose Car" [formControl]="carFormControl" [(ngModel)]="kentekenPlaat" disableOptionCentering panelClass="selectClass" style="padding: 0.25em 0">
+        <mat-select required placeholder="Choose Car" [formControl]="carFormControl" [(ngModel)]="autoNaam" disableOptionCentering panelClass="selectClass" style="padding: 0.25em 0">
           <mat-option *ngFor="let car of carService.cars" [value]="car.licencePlate">{{car.carName}}</mat-option>
         </mat-select>
         <mat-error *ngIf="carFormControl.hasError('required')">
@@ -103,6 +107,9 @@
   <app-projects-popup [project]="popupProject"[(showPopup)]="showPopupProject" *ngIf="showPopupProject"></app-projects-popup>
   <app-cars-create-popup [car]="popupCar" [(showPopup)]="showPopupCar" *ngIf="showPopupCar"></app-cars-create-popup>
 
+  <div class="googleMap">
+    <iframe width="900px" height="400px" [src]="interactiveRouteMap | safe" frameborder="0"></iframe>
+  </div>
 </div>
 
 <router-outlet></router-outlet>

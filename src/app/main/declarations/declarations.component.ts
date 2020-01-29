@@ -1,15 +1,15 @@
-import {Component, OnInit} from "@angular/core";
-import {ApplicationStateService} from "../../application-state.service";
-import {HttpHandlerService} from "../../http-handler.service";
-import {AuthService} from "../../account/auth.service";
-import {Declaration} from "../../models/declaration.object";
-import {User} from "../../models/user.model";
-import {DeclarationService} from "../../services/declaration.service";
-import {LoadService} from "../../services/load.service";
-import {Sort} from "@angular/material/sort";
-import {CarService} from "../../services/car.service";
-import {ProjectService} from "../../services/project.service";
-import {ClientService} from "../../services/client.service";
+import {Component, OnInit} from '@angular/core';
+import {ApplicationStateService} from '../../application-state.service';
+import {HttpHandlerService} from '../../http-handler.service';
+import {AuthService} from '../../account/auth.service';
+import {Declaration} from '../../models/declaration.object';
+import {User} from '../../models/user.model';
+import {DeclarationService} from '../../services/declaration.service';
+import {LoadService} from '../../services/load.service';
+import {Sort} from '@angular/material/sort';
+import {CarService} from '../../services/car.service';
+import {ProjectService} from '../../services/project.service';
+import {ClientService} from '../../services/client.service';
 
 @Component({
   selector: 'app-declarations',
@@ -22,40 +22,33 @@ export class DeclarationsComponent implements OnInit {
   //page variables
   public pageNumberMinimum = 0;
   public pageNumberMaximum = 10;
-  private maxCountPage = 10;
   public pageBtnLeft = true;
   public pageBtnRight = true;
-
-  //empty row variables
-  private generateEmptyRows: number;
   public emptyRowsList;
-
   //checkbox variables
   public allCheckboxesSelected = false;
   public parentCheckboxSelected = false;
-
   // popup
   public showPopup = false;
   public popupDeclaration: Declaration;
   public popupEditMode = false;
-
   //edit button variables
   public removeDelete = true;
   public removeEdit = true;
-
-  public selectedDeclarations: { id: number; declaration : Declaration; }[];
-
+  public selectedDeclarations: { id: number; declaration: Declaration; }[];
   //kan volgens mij gewoon weg
   licencePlate: string;
-  projectName : string;
+  projectName: string;
   clientName: string;
-
-  public authUser : User;
+  public authUser: User;
+  private maxCountPage = 10;
+  //empty row variables
+  private generateEmptyRows: number;
 
   constructor(private applicationStateService: ApplicationStateService, private http: HttpHandlerService,
-              private auth: AuthService, private decService:DeclarationService,
-              private load:LoadService, private carService: CarService, private projectService:ProjectService,
-              private clientService:ClientService) {
+              private auth: AuthService, private decService: DeclarationService,
+              private load: LoadService, private carService: CarService, private projectService: ProjectService,
+              private clientService: ClientService) {
     this.selectedDeclarations = [];
   }
 
@@ -70,7 +63,6 @@ export class DeclarationsComponent implements OnInit {
   }
 
 
-
   sortData(sort: Sort) {
     const data = this.decService.declarations.slice();
     if (!sort.active || sort.direction === '') {
@@ -81,20 +73,25 @@ export class DeclarationsComponent implements OnInit {
     this.decService.declarations = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'omschrijving': return this.compare(a.decDesc, b.decDesc, isAsc);
+        case 'omschrijving':
+          return this.compare(a.decDesc, b.decDesc, isAsc);
         //case 'auto': return this.compare(a.dec, b.auto, isAsc);
-        case 'datum': return this.compare(a.decDate, b.decDate, isAsc);
-        case 'kilometers': return this.compare(a.decKilometers, b.decKilometers, isAsc);
-        case 'bedrag': return this.compare(a.decDeclaration, b.decDeclaration, isAsc);
-        default: return 0;
+        case 'datum':
+          return this.compare(a.decDate, b.decDate, isAsc);
+        case 'kilometers':
+          return this.compare(a.decKilometers, b.decKilometers, isAsc);
+        case 'bedrag':
+          return this.compare(a.decDeclaration, b.decDeclaration, isAsc);
+        default:
+          return 0;
       }
     });
   }
 
 
- compare(a: number | string, b: number | string, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-}
+  compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
 
   //function for checking all boxes when the parent checkbox is checked.
   onSelectAllCheckboxes(checked: boolean) {
@@ -102,13 +99,13 @@ export class DeclarationsComponent implements OnInit {
 
     if (this.allCheckboxesSelected) {
       this.resetSelectedDeclarations();
-      const tempArray: Declaration[] = this.decService.declarations.slice(this.pageNumberMinimum , this.pageNumberMaximum);
+      const tempArray: Declaration[] = this.decService.declarations.slice(this.pageNumberMinimum, this.pageNumberMaximum);
       let id = this.pageNumberMinimum;
 
       for (const declaration of tempArray) {
-            this.selectedDeclarations.push({id, declaration});
-            id++;
-        }
+        this.selectedDeclarations.push({id, declaration});
+        id++;
+      }
     } else {
       this.resetSelectedDeclarations();
     }
@@ -119,9 +116,9 @@ export class DeclarationsComponent implements OnInit {
   OnDeleteEvent() {
     const selectedDeclaration = this.selectedDeclarations[0].declaration;
     this.http.deleteDeclaration('/declaration/delete/'
-                          + this.auth.getUserData().email + '/'
-                          + selectedDeclaration.decDesc + '/'
-                          + selectedDeclaration.decDate)
+      + this.auth.getUserData().email + '/'
+      + selectedDeclaration.decDesc + '/'
+      + selectedDeclaration.decDate)
       .subscribe(
         responseData => {
           this.decService.getDeclarationArray();
@@ -134,12 +131,13 @@ export class DeclarationsComponent implements OnInit {
   //gets declarations based on page count
   getSlicedDeclaration() {
     try {
-      return this.decService.declarations.slice(this.pageNumberMinimum , this.pageNumberMaximum);
-    } catch (e) { } //no declarations
+      return this.decService.declarations.slice(this.pageNumberMinimum, this.pageNumberMaximum);
+    } catch (e) {
+    } //no declarations
   }
 
   //creates a copy of a declaration
-  createDeclarationCopy(declaration: Declaration, ): Declaration {
+  createDeclarationCopy(declaration: Declaration,): Declaration {
     if (declaration.decDesc.includes('[')) {
       const a: number = Number(declaration.decDesc.charAt(declaration.decDesc.indexOf('[') + 1));
 
@@ -160,11 +158,11 @@ export class DeclarationsComponent implements OnInit {
 
     this.http.postDeclaration(oldDeclaration, '/declaration/create')
       .subscribe(res => {
-          this.allCheckboxesSelected = false;
-          this.resetSelectedDeclarations();
-          this.decService.getDeclarationArray();
-          this.checkButtons();
-          this.checkEmptyRows();
+        this.allCheckboxesSelected = false;
+        this.resetSelectedDeclarations();
+        this.decService.getDeclarationArray();
+        this.checkButtons();
+        this.checkEmptyRows();
       });
 
   }
@@ -196,11 +194,11 @@ export class DeclarationsComponent implements OnInit {
     } else {
       let counter = 0;
       for (const selectedDeclaration of this.selectedDeclarations) {
-             if (selectedDeclaration.id === id) {
-               this.selectedDeclarations.splice(counter, 1);
-             }
-             counter++;
-           }
+        if (selectedDeclaration.id === id) {
+          this.selectedDeclarations.splice(counter, 1);
+        }
+        counter++;
+      }
     }
     this.removeButtonsFromScreen();
   }
@@ -229,7 +227,7 @@ export class DeclarationsComponent implements OnInit {
     }
   }
 
-  pageReset(){
+  pageReset() {
     this.allCheckboxesSelected = false;
     this.parentCheckboxSelected = false;
     this.resetSelectedDeclarations();
@@ -237,24 +235,10 @@ export class DeclarationsComponent implements OnInit {
     this.checkEmptyRows();
   }
 
-  private checkButtons() {
-    this.pageBtnLeft = this.pageNumberMinimum >= 2;
-    this.pageBtnRight = this.pageNumberMinimum + this.maxCountPage <= this.decService.declarations.length;
-  }
-
   resetSelectedDeclarations() {
     this.selectedDeclarations = [];
     this.removeButtonsFromScreen();
   }
-
-  private checkEmptyRows() {
-    this.generateEmptyRows = this.pageNumberMaximum - this.decService.declarations.length;
-    if (this.generateEmptyRows < 1) {
-      this.generateEmptyRows = 0;
-    }
-    this.emptyRowsList = Array(this.generateEmptyRows).fill(1);
-  }
-
 
   editDeclaration(declaration: Declaration) {
     this.popupDeclaration = new Declaration(declaration.userEmail, declaration.decDesc, declaration.decDate, declaration.decKilometers, declaration.decDeclaration, declaration.decBeginPostal, declaration.decBeginHouseNumber, declaration.decBeginStreet, declaration.decBeginCity, declaration.decBeginCountry, declaration.decEndPostal, declaration.decEndHouseNumber, declaration.decEndStreet, declaration.decEndCity, declaration.decEndCountry, declaration.clientName, declaration.projectName, declaration.licencePlate);
@@ -272,5 +256,16 @@ export class DeclarationsComponent implements OnInit {
     return returnMoney;
   }
 
+  private checkButtons() {
+    this.pageBtnLeft = this.pageNumberMinimum >= 2;
+    this.pageBtnRight = this.pageNumberMinimum + this.maxCountPage <= this.decService.declarations.length;
+  }
 
+  private checkEmptyRows() {
+    this.generateEmptyRows = this.pageNumberMaximum - this.decService.declarations.length;
+    if (this.generateEmptyRows < 1) {
+      this.generateEmptyRows = 0;
+    }
+    this.emptyRowsList = Array(this.generateEmptyRows).fill(1)
+  }
 }
