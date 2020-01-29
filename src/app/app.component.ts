@@ -28,7 +28,7 @@ export class AppComponent {
         userService.getUserData();
         decService.getDeclarationArray().subscribe();
         carService.getCarsArray();
-        clientService.getClientsArray();
+        clientService.getClientsArray().subscribe();
         projectService.getProjectsArray().subscribe();
         clearInterval(checkLogin);
       }

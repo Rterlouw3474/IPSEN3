@@ -7,6 +7,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpHandlerService} from '../../../http-handler.service';
 import {UserService} from '../../../services/user.service';
 import {CarService} from "../../../services/car.service";
+import {DeletePopupModel} from '../../shared/delete-popup/delete-popup.model';
 
 @Component({
   selector: 'app-profile-cars',
@@ -15,29 +16,35 @@ import {CarService} from "../../../services/car.service";
 })
 export class ProfileCarsComponent implements OnInit {
   private maxCountPage = 6;
-  public selectCars: Car[];
+  public selectedCars: Car[];
   public pageNumberMinimum = 0;
   public pageNumberMaximum = this.maxCountPage;
 
   private generateEmptyRows: number;
   public emptyRowsList;
 
+  public parentCheckboxSelected = false;
   public allCheckboxesSelected = false;
 
   public pageBtnLeft = true;
   public pageBtnRight = true;
 
+  public deleteButtonDisabled = true;
+
   // popup
+  public showDeletePopup = false;
+  public deletePopup: DeletePopupModel;
   public showPopup = false;
   public popupCar: Car;
   public popupEditMode = false;
 
   constructor(private auth: AuthService, private httpHandler : HttpHandlerService, private userService:UserService, private carService:CarService) {
-    this.checkEmptyRows();
-    this.checkButtons();
+    this.selectedCars = [];
   }
 
   ngOnInit() {
+    this.checkEmptyRows();
+    this.checkButtons();
   }
 
   // Wisselen van pagina's
@@ -80,14 +87,6 @@ export class ProfileCarsComponent implements OnInit {
     this.pageBtnRight = ProfileObjectsService.checkNextButton(this.pageNumberMinimum, this.maxCountPage, this.carService.cars.length);
   }
 
-  onChange(result: any) {
-    console.log("EMIT EVENT: " + result);
-    if(result){
-      this.checkEmptyRows();
-      this.checkButtons();
-    }
-  }
-
   editCar(car: Car) {
     this.popupCar = new Car(car.licencePlate, car.userEmail, car.carName, car.carBrand, car.carColor, car.carType, car.fuelType);
     this.popupEditMode = true;
@@ -99,4 +98,14 @@ export class ProfileCarsComponent implements OnInit {
     this.popupEditMode = false;
     this.showPopup = true;
   }
+
+
+  onChange(result: any) {
+    console.log("EMIT EVENT: " + result);
+    if(result){
+      this.checkEmptyRows();
+      this.checkButtons();
+    }
+  }
+
 }

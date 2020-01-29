@@ -40,12 +40,13 @@ export class ProfileProjectsComponent implements OnInit {
   public popupEditMode = false;
 
   constructor(private auth: AuthService, private httpHandler: HttpHandlerService, private userService: UserService, private projectService: ProjectService) {
-    this.selectedProjects = [];
-    this.checkEmptyRows();
-    this.checkButtons();
+
   }
 
   ngOnInit() {
+    this.selectedProjects = [];
+    this.checkEmptyRows();
+    this.checkButtons();
   }
 
 
@@ -110,7 +111,7 @@ export class ProfileProjectsComponent implements OnInit {
   }
 
   onChange(result: any) {
-    console.log("EMIT EVENT: " + result);
+    // console.log("EMIT EVENT: " + result);
     if (result) {
       this.projectService.getProjectsArray().subscribe(res => {
           this.checkEmptyRows();
@@ -132,7 +133,7 @@ export class ProfileProjectsComponent implements OnInit {
       }
     }
     this.checkDeleteButton();
-    console.log(this.selectedProjects);
+    // console.log(this.selectedProjects);
   }
 
   onSelectAllCheckboxes(checked: boolean) {
@@ -149,7 +150,7 @@ export class ProfileProjectsComponent implements OnInit {
     }
     this.checkDeleteButton();
 
-    console.log(this.selectedProjects);
+    // console.log(this.selectedProjects);
   }
 
   private resetSelectedProjects() {
@@ -171,15 +172,15 @@ export class ProfileProjectsComponent implements OnInit {
             res => {
               this.projectService.getProjectsArray().subscribe(res => {
                 this.checkEmptyRows();
-                this.checkButtons()
+                this.checkButtons();
               })
             })
       }
 
-
-
       this.resetSelectedProjects();
-      this.projectService.projects = [];
+      this.projectService.getProjectsArray();
+      this.checkEmptyRows();
+      this.checkButtons();
       //this.onChange(true);
       this.showDeletePopup = false;
     } else {

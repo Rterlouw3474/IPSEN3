@@ -19,6 +19,8 @@ export class ClientsPopupComponent implements OnInit {
 
   @Input() showPopup: boolean;
   @Output() showPopupChange = new EventEmitter<boolean>();
+  @Output() returnChange = new EventEmitter<boolean>();
+
 
   clientName: string;
   clientPostalCode: string;
@@ -49,17 +51,33 @@ export class ClientsPopupComponent implements OnInit {
   }
 
   createClient(){
-    if(this.clientName != " " && this.clientPostalCode != " " && this.clientHouseNumber != 0 && this.clientCity != " " && this.clientCountry != " ") {
+    let ok = true;
+    ok = this.checkValues();
+    if(!ok) {
+      if(this.editMode) {
+        alert("Klant niet gewijzigd, niet alle velden zijn ingevuld.")
+      } else {
+        alert("Klant niet aangemaakt, niet alle velden zijn ingevuld.")
+      }
+    }
+    if(ok) {
       let client = new Client(this.auth.getUserData().email, this.client.clientName, this.client.clientPostalCode.replace(" ", ""), this.client.clientHouseNumber, this.client.clientCity, this.client.clientCountry);
-      console.log(client);
-      this.httpHandler.postClient(client, "/client/create").subscribe(res=> {
-        console.log(res);
-        this.clientService.getClientsArray();
-      }, err=>{
-        console.log(err);
-        this.clientService.getClientsArray();
-      });
-      this.closePopup();
+      // console.log(client);
+      if (this.editMode) {
+        this.httpHandler.postClient(client, "/client/update").subscribe();
+      } else {
+        this.httpHandler.postClient(client, "/client/create").subscribe();
+      }
+      const that = this;
+      setTimeout(function() {
+        that.returnChange.emit(true);
+        that.closePopup();
+      },200);
     }
   }
+
+  private checkValues(){
+    return this.clientName != " " && this.clientPostalCode != " " && this.clientHouseNumber != 0 && this.clientCity != " " && this.clientCountry != " ";
+  }
+
 }
