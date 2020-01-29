@@ -1,0 +1,23 @@
+.nav-bar {
+  margin: 0;
+  width: 200px;
+  height: 100vh;
+  background-color: #5D656F;
+}
+
+.mat-icon {
+  margin-right: 10px;
+}
+
+a {
+  color: #c4eae1;
+  display: block;
+  padding: 16px;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.6;
+  }
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AuthService} from '../account/auth.service';
 
 @Component({
@@ -7,10 +7,16 @@ import {AuthService} from '../account/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  opened: boolean;
 
   constructor(public auth: AuthService) { }
 
   ngOnInit() {
+    this.opened = false;
+  }
+
+  toggleSideNav() {
+    this.opened = !this.opened;
   }
 
   isMobile() {
@@ -21,9 +27,9 @@ export class HeaderComponent implements OnInit {
 
   routerUrlEquals(route) {
     if (this.isMobile()) {
-      const hash = window.location.hash;
+      const pathname = window.location.pathname;
       const pattern = new RegExp(`${route}`);
-      return pattern.test(hash);
+      return pattern.test(pathname);
     } else { return true; }
   }
 }
