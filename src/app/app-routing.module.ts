@@ -34,7 +34,7 @@ const routes: Routes = [
 
 // @ts-ignore
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true}),  BrowserAnimationsModule],
+  imports: [RouterModule.forRoot(routes),  BrowserAnimationsModule],
   exports: [RouterModule],
   providers: [{provide: APP_BASE_HREF, useValue: window.location.pathname}]
 })

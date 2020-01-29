@@ -1,10 +1,10 @@
 <div class="container dashboard">
   <div class="sidenav">
     <div class="img-wrapper">
-      <img src="{{ userService.authUser.profileImage }}" alt="">
+      <img src="{{ userService.user.profileImage }}" alt="">
     </div>
     <div class="nameHeading">
-      <a routerLink="/profile"><p>{{ userService.databaseUser.username }}</p></a>
+      <a routerLink="/profile"><p>{{ userService.user.username }}</p></a>
     </div>
     <ul class="profielMenu">
       <li>

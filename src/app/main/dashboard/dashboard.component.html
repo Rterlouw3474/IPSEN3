@@ -3,7 +3,7 @@
 <div class="container dashboard" [ngClass]="{'mobile': isMobile()}" *ngIf="!load.isLoading">
   <div class="row" style="height: 150px">
     <div id="welkom">
-      <h1 style="color: #5D656F;">Welkom, {{userService.username}}</h1>
+      <h1 style="color: #5D656F;">Welkom, {{userService.user.username}}</h1>
     </div>
   </div>
 

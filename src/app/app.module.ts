@@ -15,6 +15,20 @@ import {CarsPopupComponent} from "./main/profile/profile-cars/cars-popup/cars-po
 import {ClientsPopupComponent} from "./main/profile/profile-clients/clients-popup/clients-popup.component";
 import {ProfileCarsComponent} from "./main/profile/profile-cars/profile-cars.component";
 import {ProfileClientsComponent} from "./main/profile/profile-clients/profile-clients.component";
+import {BrowserModule} from "@angular/platform-browser";
+import {HttpClientModule} from "@angular/common/http";
+import {AppRoutingModule} from "./app-routing.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatInputModule} from "@angular/material/input";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {DatePipe, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import {MatSortModule} from "@angular/material/sort";
+import { TableFilterPipe } from './table-filter.pipe';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {HttpHandlerService} from "./http-handler.service";
 import {DeclarationService} from "./services/declaration.service";
 import {UserService} from "./services/user.service";
@@ -57,6 +71,7 @@ import {MatSortModule} from "@angular/material/sort";
     ProfileProjectsComponent,
     ProfileClientsComponent,
     ProfileCarsComponent,
+    TableFilterPipe,
     ProjectsPopupComponent,
     ClientsPopupComponent,
     CarsPopupComponent,
@@ -69,8 +84,7 @@ import {MatSortModule} from "@angular/material/sort";
     ProfileSettingsComponent,
     ProfileProjectsComponent,
     ProfileClientsComponent,
-    ProfileCarsComponent,
-
+    ProfileCarsComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +95,7 @@ import {MatSortModule} from "@angular/material/sort";
     MatInputModule,
     MatCheckboxModule,
     FormsModule,
+    MatSortModule,
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
