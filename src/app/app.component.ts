@@ -29,7 +29,7 @@ export class AppComponent {
         decService.getDeclarationArray();
         carService.getCarsArray();
         clientService.getClientsArray();
-        projectService.getProjectsArray();
+        projectService.getProjectsArray().subscribe();
         clearInterval(checkLogin);
       }
     }, 200);

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Project} from '../../../models/project.model';
 import {ProfileObjectsService} from '../profile-objects.service';
 import {User} from '../../../models/user.model';
 import {AuthService} from '../../../account/auth.service';
 import {HttpHandlerService} from '../../../http-handler.service';
-import {timeout} from 'rxjs/operators';
+import {map, timeout} from 'rxjs/operators';
 import {DeletePopupModel} from '../../shared/delete-popup/delete-popup.model';
 import {UserService} from "../../../services/user.service";
 import {ProjectService} from "../../../services/project.service";
@@ -39,7 +39,7 @@ export class ProfileProjectsComponent implements OnInit {
   public popupProject: Project;
   public popupEditMode = false;
 
-  constructor(private auth: AuthService, private httpHandler : HttpHandlerService, private userService:UserService, private projectService:ProjectService) {
+  constructor(private auth: AuthService, private httpHandler: HttpHandlerService, private userService: UserService, private projectService: ProjectService) {
     this.selectedProjects = [];
     this.checkEmptyRows();
     this.checkButtons();
@@ -47,7 +47,6 @@ export class ProfileProjectsComponent implements OnInit {
 
   ngOnInit() {
   }
-
 
 
   // Wisselen van pagina's
@@ -84,14 +83,15 @@ export class ProfileProjectsComponent implements OnInit {
   }
 
   private checkEmptyRows() {
+    // alert("Check empty rows");
     this.generateEmptyRows = this.pageNumberMaximum - this.projectService.projects.length;
-    if (this.generateEmptyRows < 1){
+    if (this.generateEmptyRows < 1) {
       this.generateEmptyRows = 0;
     }
     this.emptyRowsList = Array(this.generateEmptyRows).fill(1);
   }
 
-  private checkButtons(){
+  private checkButtons() {
     this.pageBtnLeft = ProfileObjectsService.checkPrevButton(this.pageNumberMinimum);
     this.pageBtnRight = ProfileObjectsService.checkNextButton(this.pageNumberMinimum, this.maxCountPage, this.projectService.projects.length);
   }
@@ -104,16 +104,22 @@ export class ProfileProjectsComponent implements OnInit {
 
   createProject() {
     // email wordt toegevoegd onCreate
-    this.popupProject = new Project("","","","","");
+    this.popupProject = new Project("", "", "", "", "");
     this.popupEditMode = false;
     this.showPopup = true;
   }
 
   onChange(result: any) {
     console.log("EMIT EVENT: " + result);
-    if(result){
-        this.checkEmptyRows();
-        this.checkButtons();
+    if (result) {
+      this.projectService.getProjectsArray().subscribe(res => {
+          this.checkEmptyRows();
+          this.checkButtons()
+        },
+        error => {
+          this.checkEmptyRows();
+          this.checkButtons()
+        });
       console.log("getprojects");
     }
   }
@@ -125,7 +131,7 @@ export class ProfileProjectsComponent implements OnInit {
       let counter = 0;
       for (const selectedProject of this.selectedProjects) {
         if (selectedProject.projectName === project.projectName) {
-          this.selectedProjects.splice(counter,1);
+          this.selectedProjects.splice(counter, 1);
         }
         counter++;
       }
@@ -139,7 +145,7 @@ export class ProfileProjectsComponent implements OnInit {
 
     if (this.allCheckboxesSelected) {
       this.resetSelectedProjects();
-      const tempArray: Project[] = this.projectService.projects.slice(this.getMinimum() , this.getMaximum());
+      const tempArray: Project[] = this.projectService.projects.slice(this.getMinimum(), this.getMaximum());
       for (const project of tempArray) {
         this.selectedProjects.push(project);
       }
@@ -151,7 +157,7 @@ export class ProfileProjectsComponent implements OnInit {
     console.log(this.selectedProjects);
   }
 
-  private resetSelectedProjects(){
+  private resetSelectedProjects() {
     this.selectedProjects = [];
     this.deleteButtonDisabled = true;
   }
@@ -160,17 +166,27 @@ export class ProfileProjectsComponent implements OnInit {
     this.deleteButtonDisabled = !(this.selectedProjects.length > 0);
   }
 
+
   deleteProjectsSelected(result: any) {
     if (result) {
       for (const selectedProject of this.selectedProjects) {
         this.httpHandler
           .deleteProject("/project/deleteProject/" + this.auth.getUserData().email + "/" + selectedProject.projectName)
           .subscribe(
-            responseData => {
-              console.log(responseData);
-            }
-          );
+            res => {
+              this.projectService.getProjectsArray().subscribe(res => {
+                  this.checkEmptyRows();
+                  this.checkButtons()
+            }, error => {
+              this.projectService.getProjectsArray().subscribe(res => {
+                this.checkEmptyRows();
+                this.checkButtons()
+              })})
+            })
       }
+
+
+
       this.resetSelectedProjects();
       this.projectService.projects = [];
       //this.onChange(true);
@@ -184,13 +200,13 @@ export class ProfileProjectsComponent implements OnInit {
   verwijderPopup() {
     if (this.selectedProjects.length < 1) {
       this.showDeletePopup = false;
-    } else if(this.selectedProjects.length === 1) {
+    } else if (this.selectedProjects.length === 1) {
       this.deletePopup = new DeletePopupModel("Project verwijderen",
         "Weet u zeker dat u het geselecteerde project wil verwijderen?",
         "Ja, verwijder project",
         "Nee, annuleer");
       this.showDeletePopup = true;
-    } else if( this.selectedProjects.length > 1) {
+    } else if (this.selectedProjects.length > 1) {
       this.deletePopup = new DeletePopupModel("Project verwijderen",
         "Weet u zeker dat u de geselecteerde projecten wil verwijderen?",
         "Ja, verwijder projecten",

@@ -99,7 +99,7 @@ export class HttpHandlerService {
   getProjects(email:string): Observable<Project[]> {
     // console.log(this.databaseUrl + "/project/get/" + email);
     return this.http
-      .get(this.databaseUrl + "/project/get/" + email)
+      .get(this.databaseUrl + "/project/get/" + email, {responseType: 'json'})
       .pipe(map(res =><Project[]>res))
   }
 
