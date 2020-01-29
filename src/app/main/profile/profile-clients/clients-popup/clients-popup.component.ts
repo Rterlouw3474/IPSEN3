@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Project} from '../../profile-projects/project.model';
+import {Project} from '../../../../models/project.model';
 import {Form, FormControl} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import {HttpHandlerService} from '../../../../http-handler.service';
-import {Client} from '../client.model';
+import {Client} from '../../../../models/client.model';
 import {ProfileObjectsService} from '../../profile-objects.service';
 import {AuthService} from '../../../../account/auth.service';
 import {ClientService} from '../../../../services/client.service';

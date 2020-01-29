@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Project} from '../../profile-projects/project.model';
+import {Project} from '../../../../models/project.model';
 import {FormControl} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import {HttpHandlerService} from '../../../../http-handler.service';
 import {ProfileObjectsService} from '../../profile-objects.service';
-import {Car} from "../car.model";
+import {Car} from "../../../../models/car.model";
 import {RDWCar} from "../../../../models/rdwcar.model";
 import {RDWFuel} from "../../../../models/rdwfuel.model";
 import {AuthService} from "../../../../account/auth.service";
@@ -21,6 +21,8 @@ export class CarsPopupComponent implements OnInit {
 
   @Input() showPopup: boolean;
   @Output() showPopupChange = new EventEmitter<boolean>();
+
+  @Output() returnChange = new EventEmitter<boolean>();
 
   licencePlate : string;
   rdwCar : RDWCar[] = [];
@@ -86,10 +88,13 @@ export class CarsPopupComponent implements OnInit {
       this.httpHandler.postCar(car, "/car/create").subscribe(responseData => {
         console.log(responseData);
         this.carService.getCarsArray();
+        this.returnChange.emit(true);
       }, err=>{
         console.log(err);
         this.carService.getCarsArray();
+        this.returnChange.emit(true);
       });
+
       this.closePopup();
     } else if(this.carName === " " && this.licencePlate != null){
       this.noCarName = true;

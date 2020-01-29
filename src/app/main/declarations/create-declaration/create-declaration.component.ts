@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {HttpHandlerService} from "../../../http-handler.service";
 import {AuthService} from '../../../account/auth.service';
-import {Project} from '../../profile/profile-projects/project.model';
-import {Car} from '../../profile/profile-cars/car.model';
-import {Client} from '../../profile/profile-clients/client.model';
+import {Project} from '../../../models/project.model';
+import {Car} from '../../../models/car.model';
+import {Client} from '../../../models/client.model';
 import {FormControl, Validators} from '@angular/forms';
 import {Declaration} from '../../../models/declaration.object';
 import {CarService} from '../../../services/car.service';

@@ -9,11 +9,11 @@ import {catchError, map} from "rxjs/operators";
 import {Declaration} from "./models/declaration.object";
 import {AuthService} from './account/auth.service';
 import {DatabaseUser} from "./models/databaseuser.model";
-import {Project} from './main/profile/profile-projects/project.model';
-import {Client} from './main/profile/profile-clients/client.model';
+import {Project} from './models/project.model';
+import {Client} from './models/client.model';
 import {RDWCar} from "./models/rdwcar.model";
 import {RDWFuel} from "./models/rdwfuel.model";
-import {Car} from "./main/profile/profile-cars/car.model";
+import {Car} from "./models/car.model";
 
 
 @Injectable()

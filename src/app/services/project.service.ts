@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpHandlerService} from "../http-handler.service";
 import {AuthService} from "../account/auth.service";
-import {Project} from '../main/profile/profile-projects/project.model';
+import {Project} from '../models/project.model';
 
 @Injectable()
 export class ProjectService {

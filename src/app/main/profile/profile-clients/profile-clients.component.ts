@@ -1,12 +1,13 @@
 
-import {Project} from '../profile-projects/project.model';
-import {Client} from './client.model';
+import {Project} from '../../../models/project.model';
+import {Client} from '../../../models/client.model';
 import {ProfileObjectsService} from '../profile-objects.service';
 import {User} from '../../../models/user.model';
 import {AuthService} from '../../../account/auth.service';
 import {HttpHandlerService} from '../../../http-handler.service';
 import {UserService} from "../../../services/user.service";
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ClientService} from "../../../services/client.service";
 
 @Component({
   selector: 'app-profile-clients',
@@ -18,7 +19,6 @@ export class ProfileClientsComponent implements OnInit {
   @Output() showPopupChange = new EventEmitter<boolean>();
 
   private maxCountPage = 6;
-  public clients: Client[];
   public selectClients: Client[];
   public pageNumberMinimum = 0;
   public pageNumberMaximum = this.maxCountPage;
@@ -36,22 +36,14 @@ export class ProfileClientsComponent implements OnInit {
   public popupClient: Client;
   public popupEditMode = false;
 
-  constructor(private auth: AuthService, private httpHandler : HttpHandlerService, private userService:UserService) {
+  constructor(private auth: AuthService, private httpHandler : HttpHandlerService, private userService:UserService, private clientService:ClientService) {
   }
 
   ngOnInit() {
-    this.getClientsArray();
+    this.checkButtons();
+    this.checkEmptyRows();
   }
 
-  getClientsArray() {
-    return this.httpHandler.getClients(this.auth.getUserData().email).subscribe(
-      res => {
-        this.clients = res;
-        this.checkEmptyRows();
-        this.checkButtons();
-      }
-    );
-  }
   // Wisselen van pagina's
   getMinimum() {
     return this.pageNumberMinimum;
@@ -62,7 +54,7 @@ export class ProfileClientsComponent implements OnInit {
   }
 
   nextPage() {
-    if (!(this.pageNumberMinimum + this.maxCountPage > this.clients.length)) {
+    if (!(this.pageNumberMinimum + this.maxCountPage > this.clientService.clients.length)) {
       this.pageNumberMinimum += this.maxCountPage;
       this.pageNumberMaximum += this.maxCountPage;
       this.checkEmptyRows();
@@ -80,7 +72,7 @@ export class ProfileClientsComponent implements OnInit {
   }
 
   private checkEmptyRows() {
-    this.generateEmptyRows = this.pageNumberMaximum - this.clients.length;
+    this.generateEmptyRows = this.pageNumberMaximum - this.clientService.clients.length;
     if (this.generateEmptyRows < 1){
       this.generateEmptyRows = 0;
     }
@@ -89,7 +81,7 @@ export class ProfileClientsComponent implements OnInit {
 
   private checkButtons() {
     this.pageBtnLeft = ProfileObjectsService.checkPrevButton(this.pageNumberMinimum);
-    this.pageBtnRight = ProfileObjectsService.checkNextButton(this.pageNumberMinimum, this.maxCountPage, this.clients.length);
+    this.pageBtnRight = ProfileObjectsService.checkNextButton(this.pageNumberMinimum, this.maxCountPage, this.clientService.clients.length);
   }
 
   editClient(client: Client) {

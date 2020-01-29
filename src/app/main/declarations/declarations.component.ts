@@ -7,6 +7,9 @@ import {User} from "../../models/user.model";
 import {DeclarationService} from "../../services/declaration.service";
 import {LoadService} from "../../services/load.service";
 import {Sort} from "@angular/material/sort";
+import {CarService} from "../../services/car.service";
+import {ProjectService} from "../../services/project.service";
+import {ClientService} from "../../services/client.service";
 
 @Component({
   selector: 'app-declarations',
@@ -42,11 +45,17 @@ export class DeclarationsComponent implements OnInit {
 
   public selectedDeclarations: { id: number; declaration : Declaration; }[];
 
+  //kan volgens mij gewoon weg
+  licencePlate: string;
+  projectName : string;
+  clientName: string;
+
   public authUser : User;
 
   constructor(private applicationStateService: ApplicationStateService, private http: HttpHandlerService,
               private auth: AuthService, private decService:DeclarationService,
-              private load:LoadService) {
+              private load:LoadService, private carService: CarService, private projectService:ProjectService,
+              private clientService:ClientService) {
     this.selectedDeclarations = [];
   }
 
@@ -60,10 +69,7 @@ export class DeclarationsComponent implements OnInit {
     return this.applicationStateService.getIsMobileResolution();
   }
 
-  //ngModel auto
-  auto: string;
-  decDeclaration : number;
-  decBeginPostal: string;
+
 
   sortData(sort: Sort) {
     const data = this.decService.declarations.slice();
