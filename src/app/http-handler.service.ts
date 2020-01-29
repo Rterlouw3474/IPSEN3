@@ -3,12 +3,14 @@ import {
   HttpClient, HttpErrorResponse,
   HttpHeaders
 } from "@angular/common/http";
+import {User} from "./models/user.model";
 import {Observable, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 import {Declaration} from "./models/declaration.object";
+import {AuthService} from './account/auth.service';
 import {DatabaseUser} from "./models/databaseuser.model";
-import {Project} from './main/profile/profile-projects/project.model';
-import {Client} from './main/profile/profile-clients/client.model';
+import {Project} from './models/project.model';
+import {Client} from './models/client.model';
 import {RDWCar} from "./models/rdwcar.model";
 import {RDWFuel} from "./models/rdwfuel.model";
 import {Car} from "./models/car.model";
@@ -19,7 +21,20 @@ export class HttpHandlerService {
   options = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
   databaseUrl: string = "http://h2858995.stratoserver.net:8080";
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private auth: AuthService) {
+  }
+
+  /**
+   * @author Edward Deen
+   * @param user
+   * @param extraUrl
+   */
+  postUser(user: User, extraUrl: string) {
+    this.http.post(
+      this.databaseUrl + extraUrl, user, this.options
+    ).subscribe(responseData => {
+      console.log(responseData)
+    });
   }
 
   postDeclaration(declaration: Declaration, extraUrl: string) {
@@ -34,29 +49,22 @@ export class HttpHandlerService {
     )
   }
 
-  postProject(project: Project, extraUrl: string){
-    console.log(project);
-    this.http.post(
-      this.databaseUrl + extraUrl, project, this.options
-    ).subscribe(responseData => {
-      console.log(responseData);
-    });
+  postClient(client: Client, extraUrl: string){
+    return this.http.post(
+      this.databaseUrl + extraUrl, client, this.options
+    )
   }
 
-  postClient(client: Client, extraUrl: string){
-    this.http.post(
-      this.databaseUrl + extraUrl, client, this.options
-    ).subscribe(responseData => {
-      console.log(responseData)
-    });
+  postProject(project: Project, extraUrl: string){
+    return this.http.post(
+      this.databaseUrl + extraUrl, project, this.options
+    )
   }
 
   postCar(car : Car, extraUrl: string){
-    this.http.post(
+    return this.http.post(
       this.databaseUrl + extraUrl, car, this.options
-    ).subscribe(responseData => {
-      console.log(responseData)
-    });
+    )
   }
 
 
@@ -84,7 +92,7 @@ export class HttpHandlerService {
     // console.log(this.databaseUrl + "/declaration/get/" + email);
     //return this.http.get(this.databaseUrl + "/declaration/getDeclarationsByOwnerID/" + ownerId);
     return this.http
-      .get(this.databaseUrl + "/declaration/get/" + email)
+      .get(this.databaseUrl + "/declaration/get/" + this.auth.getUserData().email)
       .pipe(map(res => <Declaration[]>res));
   }
 
@@ -102,10 +110,11 @@ export class HttpHandlerService {
       .pipe(map(res =><Client[]>res))
   }
 
-
-
-
-
-
+  getCars(email:string): Observable<Car[]> {
+    console.log(this.databaseUrl + "/car/get/" + email);
+    return this.http
+      .get(this.databaseUrl + "/car/get/" + email)
+      .pipe(map(res =><Car[]>res))
+  }
 
 }

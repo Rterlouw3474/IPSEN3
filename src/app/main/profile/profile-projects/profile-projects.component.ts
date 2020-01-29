@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Project} from './project.model';
+import {Project} from '../../../models/project.model';
 import {ProfileObjectsService} from '../profile-objects.service';
 import {User} from '../../../models/user.model';
 import {AuthService} from '../../../account/auth.service';
@@ -7,6 +7,7 @@ import {HttpHandlerService} from '../../../http-handler.service';
 import {timeout} from 'rxjs/operators';
 import {DeletePopupModel} from '../../shared/delete-popup/delete-popup.model';
 import {UserService} from "../../../services/user.service";
+import {ProjectService} from "../../../services/project.service";
 
 @Component({
   selector: 'app-profile-projects',
@@ -14,8 +15,8 @@ import {UserService} from "../../../services/user.service";
   styleUrls: ['./profile-projects.component.scss']
 })
 export class ProfileProjectsComponent implements OnInit {
+  user: User;
   private maxCountPage = 6;
-  public projects: Project[];
   public selectedProjects: Project[];
   public pageNumberMinimum = 0;
   public pageNumberMaximum = this.maxCountPage;
@@ -38,25 +39,16 @@ export class ProfileProjectsComponent implements OnInit {
   public popupProject: Project;
   public popupEditMode = false;
 
-  constructor(private auth: AuthService, private httpHandler : HttpHandlerService, private userService:UserService) {
+  constructor(private auth: AuthService, private httpHandler : HttpHandlerService, private userService:UserService, private projectService:ProjectService) {
     this.selectedProjects = [];
+    this.checkEmptyRows();
+    this.checkButtons();
   }
 
   ngOnInit() {
-    this.getProjectsArray();
   }
 
 
-  getProjectsArray(){
-    return this.httpHandler.getProjects(this.auth.getUserData().email).subscribe(
-      res => {
-        this.projects = res;
-        this.selectedProjects = [];
-        this.checkEmptyRows();
-        this.checkButtons();
-      }
-    );
-  }
 
   // Wisselen van pagina's
   getMinimum() {
@@ -68,7 +60,7 @@ export class ProfileProjectsComponent implements OnInit {
   }
 
   nextPage() {
-    if (!(this.pageNumberMinimum + this.maxCountPage > this.projects.length)) {
+    if (!(this.pageNumberMinimum + this.maxCountPage > this.projectService.projects.length)) {
       this.pageNumberMinimum += this.maxCountPage;
       this.pageNumberMaximum += this.maxCountPage;
       this.resetSelectedProjects();
@@ -92,7 +84,7 @@ export class ProfileProjectsComponent implements OnInit {
   }
 
   private checkEmptyRows() {
-    this.generateEmptyRows = this.pageNumberMaximum - this.projects.length;
+    this.generateEmptyRows = this.pageNumberMaximum - this.projectService.projects.length;
     if (this.generateEmptyRows < 1){
       this.generateEmptyRows = 0;
     }
@@ -101,7 +93,7 @@ export class ProfileProjectsComponent implements OnInit {
 
   private checkButtons(){
     this.pageBtnLeft = ProfileObjectsService.checkPrevButton(this.pageNumberMinimum);
-    this.pageBtnRight = ProfileObjectsService.checkNextButton(this.pageNumberMinimum, this.maxCountPage, this.projects.length);
+    this.pageBtnRight = ProfileObjectsService.checkNextButton(this.pageNumberMinimum, this.maxCountPage, this.projectService.projects.length);
   }
 
   editProject(project: Project) {
@@ -120,13 +112,10 @@ export class ProfileProjectsComponent implements OnInit {
   onChange(result: any) {
     console.log("EMIT EVENT: " + result);
     if(result){
-      const that = this;
-      setTimeout(function() {
-        that.getProjectsArray();
-      }, 200);
+        this.checkEmptyRows();
+        this.checkButtons();
       console.log("getprojects");
     }
-
   }
 
   onCheckboxEvent(project: Project, checked: boolean) {
@@ -150,7 +139,7 @@ export class ProfileProjectsComponent implements OnInit {
 
     if (this.allCheckboxesSelected) {
       this.resetSelectedProjects();
-      const tempArray: Project[] = this.projects.slice(this.getMinimum() , this.getMaximum());
+      const tempArray: Project[] = this.projectService.projects.slice(this.getMinimum() , this.getMaximum());
       for (const project of tempArray) {
         this.selectedProjects.push(project);
       }
@@ -183,8 +172,8 @@ export class ProfileProjectsComponent implements OnInit {
           );
       }
       this.resetSelectedProjects();
-      this.projects = [];
-      this.onChange(true);
+      this.projectService.projects = [];
+      //this.onChange(true);
       this.showDeletePopup = false;
     } else {
       this.showDeletePopup = false;
@@ -192,7 +181,7 @@ export class ProfileProjectsComponent implements OnInit {
 
   }
 
-  verWijderPopup() {
+  verwijderPopup() {
     if (this.selectedProjects.length < 1) {
       this.showDeletePopup = false;
     } else if(this.selectedProjects.length === 1) {

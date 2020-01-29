@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {Client} from '../profile-clients/client.model';
+
+import {Client} from '../../../models/client.model';
 import {Car} from '../../../models/car.model';
 import {ProfileObjectsService} from '../profile-objects.service';
 import {AuthService} from '../../../account/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {HttpHandlerService} from '../../../http-handler.service';
+import {UserService} from '../../../services/user.service';
+import {CarService} from "../../../services/car.service";
 
 @Component({
   selector: 'app-profile-cars',
@@ -11,8 +15,7 @@ import {AuthService} from '../../../account/auth.service';
 })
 export class ProfileCarsComponent implements OnInit {
   private maxCountPage = 6;
-  public cars: Car[];
-  public selectedCars: Car[];
+  public selectCars: Car[];
   public pageNumberMinimum = 0;
   public pageNumberMaximum = this.maxCountPage;
 
@@ -29,22 +32,7 @@ export class ProfileCarsComponent implements OnInit {
   public popupCar: Car;
   public popupEditMode = false;
 
-  constructor(private auth: AuthService) {
-    this.cars = [
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine"),
-      new Car("ole@gmail.com","AB-123-C", "Golf", "VW", "Hatchback", "Donkerblauw", "benzine")
-    ];
+  constructor(private auth: AuthService, private httpHandler : HttpHandlerService, private userService:UserService, private carService:CarService) {
     this.checkEmptyRows();
     this.checkButtons();
   }
@@ -62,7 +50,7 @@ export class ProfileCarsComponent implements OnInit {
   }
 
   nextPage() {
-    if (!(this.pageNumberMinimum + this.maxCountPage > this.cars.length)) {
+    if (!(this.pageNumberMinimum + this.maxCountPage > this.carService.cars.length)) {
       this.pageNumberMinimum += this.maxCountPage;
       this.pageNumberMaximum += this.maxCountPage;
       this.checkEmptyRows();
@@ -80,7 +68,7 @@ export class ProfileCarsComponent implements OnInit {
   }
 
   private checkEmptyRows() {
-    this.generateEmptyRows = this.pageNumberMaximum - this.cars.length;
+    this.generateEmptyRows = this.pageNumberMaximum - this.carService.cars.length;
     if (this.generateEmptyRows < 1){
       this.generateEmptyRows = 0;
     }
@@ -89,18 +77,26 @@ export class ProfileCarsComponent implements OnInit {
 
   private checkButtons() {
     this.pageBtnLeft = ProfileObjectsService.checkPrevButton(this.pageNumberMinimum);
-    this.pageBtnRight = ProfileObjectsService.checkNextButton(this.pageNumberMinimum, this.maxCountPage, this.cars.length);
+    this.pageBtnRight = ProfileObjectsService.checkNextButton(this.pageNumberMinimum, this.maxCountPage, this.carService.cars.length);
   }
 
-  createCar() {
-    this.popupEditMode = false;
-    this.showPopup = true;
+  onChange(result: any) {
+    console.log("EMIT EVENT: " + result);
+    if(result){
+      this.checkEmptyRows();
+      this.checkButtons();
+    }
   }
 
   editCar(car: Car) {
-    this.popupCar = car;
+    this.popupCar = new Car(car.licencePlate, car.userEmail, car.carName, car.carBrand, car.carColor, car.carType, car.fuelType);
     this.popupEditMode = true;
     this.showPopup = true;
   }
 
+  createCar() {
+    this.popupCar = new Car("", "", "", "", "", "", "");
+    this.popupEditMode = false;
+    this.showPopup = true;
+  }
 }

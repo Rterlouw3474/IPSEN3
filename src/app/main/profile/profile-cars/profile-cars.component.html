@@ -8,15 +8,15 @@
     <th class="table-description-text" style="width: 23.5%">Kleur</th>
   </tr>
 
-  <tr *ngFor="let car of cars.slice(getMinimum() , getMaximum()); let odd=odd; let id = index" class="table-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
+  <tr *ngFor="let car of carService.cars.slice(getMinimum() , getMaximum()); let odd=odd; let id = index" class="table-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
     <td class="table-checkbox"><mat-checkbox
         #checkbox="matCheckbox"
         (click)="onCheckboxEvent(car, checkbox.checked, id)"
         [checked]="allCheckboxesSelected"></mat-checkbox></td>
     <td class="table-text object-column" >{{car.licencePlate}}</td>
-    <td class="table-text object-column" >{{car.name}}</td>
+    <td class="table-text object-column" >{{car.carName}}</td>
     <td class="table-text object-column" >{{car.fuelType}}</td>
-    <td class="table-text object-column" >{{car.color}}</td>
+    <td class="table-text object-column" >{{car.carColor}}</td>
   </tr>
 
   <tr *ngFor="let number of emptyRowsList; let odd=odd;" [ngClass]="emptyRowsList.length %2 === 0 ? odd ? '' :'notOdd':odd? 'notOdd':''" class="table-dec-row">
@@ -43,4 +43,4 @@
   </div>
 </div>
 
-<app-cars-create-popup [editMode]="popupEditMode" [(showPopup)]="showPopup" *ngIf="showPopup"></app-cars-create-popup>
+<app-cars-create-popup [editMode]="popupEditMode" [(showPopup)]="showPopup" *ngIf="showPopup" (returnChange)="onChange($event)" ></app-cars-create-popup>

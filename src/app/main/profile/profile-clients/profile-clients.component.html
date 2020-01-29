@@ -7,7 +7,7 @@
     <th class="table-description-text" style="width: 24%">Huisnummer</th>
   </tr>
 
-  <tr *ngFor="let client of clients.slice(getMinimum() , getMaximum()); let odd=odd; let id = index" class="table-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
+  <tr *ngFor="let client of clientService.clients.slice(getMinimum() , getMaximum()); let odd=odd; let id = index" class="table-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
     <td class="table-checkbox"><mat-checkbox
         #checkbox="matCheckbox"
         (click)="onCheckboxEvent(client, checkbox.checked, id)"

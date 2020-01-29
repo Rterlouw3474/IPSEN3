@@ -1,11 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Project} from '../../profile-projects/project.model';
-import {FormControl} from '@angular/forms';
+import {Project} from '../../../../models/project.model';
+import {Form, FormControl} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import {HttpHandlerService} from '../../../../http-handler.service';
-import {Client} from '../client.model';
+import {Client} from '../../../../models/client.model';
 import {ProfileObjectsService} from '../../profile-objects.service';
 import {AuthService} from '../../../../account/auth.service';
+import {ClientService} from '../../../../services/client.service';
 
 @Component({
   selector: 'app-clients-popup',
@@ -19,11 +20,14 @@ export class ClientsPopupComponent implements OnInit {
   @Input() showPopup: boolean;
   @Output() showPopupChange = new EventEmitter<boolean>();
 
-  beginDate: FormControl;
-  endDate: FormControl;
+  clientName: string;
+  clientPostalCode: string;
+  clientHouseNumber: number;
+  clientCity: string;
+  clientCountry: string;
 
   popupHeader: string;
-  constructor(private auth: AuthService, private httpHandler : HttpHandlerService) {
+  constructor(private auth: AuthService, private httpHandler : HttpHandlerService, private clientService:ClientService) {
   }
 
   ngOnInit() {
@@ -45,10 +49,17 @@ export class ClientsPopupComponent implements OnInit {
   }
 
   createClient(){
-
-    const clientToPost = new Client(this.auth.getUserData().email, this.client.clientName, this.client.clientPostalCode.replace(" ", ""), this.client.clientHouseNumber, this.client.clientCity, this.client.clientCountry);
-    console.log(clientToPost);
-    this.httpHandler.postClient(clientToPost, "/client/create");
+    if(this.clientName != " " && this.clientPostalCode != " " && this.clientHouseNumber != 0 && this.clientCity != " " && this.clientCountry != " ") {
+      let client = new Client(this.auth.getUserData().email, this.client.clientName, this.client.clientPostalCode.replace(" ", ""), this.client.clientHouseNumber, this.client.clientCity, this.client.clientCountry);
+      console.log(client);
+      this.httpHandler.postClient(client, "/client/create").subscribe(res=> {
+        console.log(res);
+        this.clientService.getClientsArray();
+      }, err=>{
+        console.log(err);
+        this.clientService.getClientsArray();
+      });
+      this.closePopup();
+    }
   }
-
 }
