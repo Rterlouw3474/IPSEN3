@@ -100,9 +100,9 @@
     <button (click)="onCreateDeclaration()" class="create-object">Declaratie aanmaken</button>
   </div>
 
-  <app-clients-popup [client]="popupClient"[(showPopup)]="showPopupClient" *ngIf="showPopupClient"></app-clients-popup>
-  <app-projects-popup [project]="popupProject"[(showPopup)]="showPopupProject" *ngIf="showPopupProject"></app-projects-popup>
-  <app-cars-create-popup [car]="popupCar" [(showPopup)]="showPopupCar" *ngIf="showPopupCar"></app-cars-create-popup>
+  <app-clients-popup [client]="popupClient" [editMode]="popupEditMode" [(showPopup)]="showPopupClient" *ngIf="showPopupClient"></app-clients-popup>
+  <app-projects-popup [project]="popupProject" [editMode]="popupEditMode" [(showPopup)]="showPopupProject" *ngIf="showPopupProject"></app-projects-popup>
+  <app-cars-create-popup [car]="popupCar" [editMode]="popupEditMode" [(showPopup)]="showPopupCar" *ngIf="showPopupCar"></app-cars-create-popup>
 
 </div>
 
