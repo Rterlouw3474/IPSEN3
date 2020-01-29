@@ -15,23 +15,6 @@ import {CarsPopupComponent} from "./main/profile/profile-cars/cars-popup/cars-po
 import {ClientsPopupComponent} from "./main/profile/profile-clients/clients-popup/clients-popup.component";
 import {ProfileCarsComponent} from "./main/profile/profile-cars/profile-cars.component";
 import {ProfileClientsComponent} from "./main/profile/profile-clients/profile-clients.component";
-<<<<<<<<< Temporary merge branch 1
-=========
-import {BrowserModule} from "@angular/platform-browser";
-import {HttpClientModule} from "@angular/common/http";
-import {AppRoutingModule} from "./app-routing.module";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatInputModule} from "@angular/material/input";
-import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {MatCheckboxModule} from "@angular/material/checkbox";
-import {DatePipe, LocationStrategy, PathLocationStrategy} from '@angular/common';
-import {MatSortModule} from "@angular/material/sort";
-import { TableFilterPipe } from './table-filter.pipe';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
->>>>>>>>> Temporary merge branch 2
 import {HttpHandlerService} from "./http-handler.service";
 import {DeclarationService} from "./services/declaration.service";
 import {UserService} from "./services/user.service";
@@ -44,7 +27,7 @@ import {
   MatInputModule,
   MatNativeDateModule, MatOptionModule,
   MatProgressSpinnerModule,
-  MatSelectModule
+  MatSelectModule, MatSortModule
 } from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
@@ -52,10 +35,11 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DatePipe, HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {DatePipe, PathLocationStrategy, LocationStrategy} from '@angular/common';
 import {CarService} from './services/car.service';
 import {ClientService} from './services/client.service';
 import {ProjectService} from './services/project.service';
+import {TableFilterPipe} from './table-filter.pipe';
 
 
 @NgModule({
