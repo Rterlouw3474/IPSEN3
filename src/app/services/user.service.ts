@@ -30,10 +30,7 @@ export class UserService {
         }else{
           this.http.postUser(this.user, '/user/create');
         }
-      },
-      error => {
-        this.http.postUser(this.user, '/user/create');
-      });
+      })
   }
 
   onChangeUsername(nameInput: HTMLInputElement) {
