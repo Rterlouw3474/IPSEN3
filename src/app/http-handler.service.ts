@@ -27,7 +27,7 @@ export class HttpHandlerService {
 
   postDeclaration(declaration: Declaration, extraUrl: string) {
     return this.http.post(
-      this.databaseUrl + extraUrl, declaration, this.options
+      this.databaseUrl + extraUrl, declaration, {responseType: 'text'}
     )
   }
 
@@ -39,30 +39,30 @@ export class HttpHandlerService {
 
   postClient(client: Client, extraUrl: string){
     return this.http.post(
-      this.databaseUrl + extraUrl, client, this.options
+      this.databaseUrl + extraUrl, client, {responseType: 'text'}
     )
   }
 
   postProject(project: Project, extraUrl: string){
     return this.http.post(
-      this.databaseUrl + extraUrl, project, this.options
+      this.databaseUrl + extraUrl, project, {responseType: 'text'}
     )}
 
   postCar(car : Car, extraUrl: string){
     return this.http.post(
-      this.databaseUrl + extraUrl, car, this.options
+      this.databaseUrl + extraUrl, car, {responseType: 'text'}
     )}
 
   postUser(user: User, extraUrl: String) {
     this.http.post(
-      this.databaseUrl + extraUrl, user, this.options
+      this.databaseUrl + extraUrl, user, {responseType: 'text'}
     ).subscribe(responseData => {
       console.log(responseData)
     })
   }
 
   getUser(userEmail:string): Observable<User>{
-    return this.http.get<User>(this.databaseUrl + "/user/get/" + userEmail)
+    return this.http.get<User>(this.databaseUrl + "/user/get/" + userEmail, {responseType: 'json'})
       .pipe(map(
         res => <User>res,
                 userDoesntExist => this.response = userDoesntExist
@@ -70,26 +70,26 @@ export class HttpHandlerService {
   }
 
   getRDWCar(licencePlate:string): Observable<RDWCar[]>{
-    return this.http.get(this.databaseUrl + "/rdw/get/car/" + licencePlate).pipe(map(res => <RDWCar[]>res));
+    return this.http.get(this.databaseUrl + "/rdw/get/car/" + licencePlate, {responseType: 'json'}).pipe(map(res => <RDWCar[]>res));
   }
 
   getRDWFuel(licencePlate:string): Observable<RDWFuel[]>{
-    return this.http.get(this.databaseUrl + "/rdw/get/fuel/" + licencePlate).pipe(map(res => <RDWFuel[]>res));
+    return this.http.get(this.databaseUrl + "/rdw/get/fuel/" + licencePlate, {responseType: 'json'}).pipe(map(res => <RDWFuel[]>res));
   }
 
   deleteDeclaration(url:string){
-    return this.http.delete(this.databaseUrl + url);
+    return this.http.delete(this.databaseUrl + url, {responseType: 'text'});
   }
 
   deleteProject(url:string) {
-    return this.http.delete(this.databaseUrl + url);
+    return this.http.delete(this.databaseUrl + url, {responseType: 'text'});
   }
 
   getDeclarations(email:string): Observable<Declaration[]>{
     // console.log(this.databaseUrl + "/declaration/get/" + email);
     //return this.http.get(this.databaseUrl + "/declaration/getDeclarationsByOwnerID/" + ownerId);
     return this.http
-      .get(this.databaseUrl + "/declaration/get/" + this.auth.getUserData().email)
+      .get(this.databaseUrl + "/declaration/get/" + this.auth.getUserData().email, {responseType: 'json'})
       .pipe(map(res => <Declaration[]>res));
   }
 
@@ -103,14 +103,13 @@ export class HttpHandlerService {
   getClients(email:string): Observable<Client[]> {
     // console.log(this.databaseUrl + "/client/get/" + email);
     return this.http
-      .get(this.databaseUrl + "/client/get/" + email)
+      .get(this.databaseUrl + "/client/get/" + email, {responseType: 'json'})
       .pipe(map(res =><Client[]>res))
   }
 
   getCars(email:string): Observable<Car[]> {
-    console.log(this.databaseUrl + "/car/get/" + email);
     return this.http
-      .get(this.databaseUrl + "/car/get/" + email)
+      .get(this.databaseUrl + "/car/get/" + email, {responseType: 'json'})
       .pipe(map(res =><Car[]>res))
   }
 

@@ -9,6 +9,7 @@ import {Declaration} from '../../../models/declaration.object';
 import {CarService} from '../../../services/car.service';
 import {ClientService} from '../../../services/client.service';
 import {ProjectService} from '../../../services/project.service';
+import {DeclarationService} from "../../../services/declaration.service";
 
 @Component({
   selector: 'app-create-declaration',
@@ -55,18 +56,19 @@ export class CreateDeclarationComponent implements OnInit {
 
 
 
-  constructor(private httpHandler : HttpHandlerService, private auth: AuthService, private carService : CarService, private clientService:ClientService, private projectService:ProjectService) { }
+  constructor(private httpHandler : HttpHandlerService, private auth: AuthService,
+              private carService : CarService, private clientService:ClientService,
+              private projectService:ProjectService, private declarationService:DeclarationService) { }
 
   ngOnInit() {
   }
 
   onCreateDeclaration() {
-    console.log(this.klantNaam)
     const newDec = new Declaration(this.auth.getUserData().email, this.omschrijving, '12-12-2020', this.kilometers, this.declaratie,
       this.beginPostcode, this.beginHuisnummer, this.beginStraatnaam, this.beginPlaatsnaam, this.beginLand,
       this.eindPostcode, this.eindHuisnummer, this.eindStraatnaam, this.eindPlaatsnaam, this.eindLand, this.klantNaam, this.projectNaam, this.kentekenPlaat);
     this.httpHandler.postDeclaration(newDec, '/declaration/create').subscribe(res => {
-      console.log(res);
+      this.declarationService.getDeclarationArray();
     })
   }
 
