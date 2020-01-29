@@ -17,7 +17,7 @@ import {APP_BASE_HREF} from "@angular/common";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent},
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: {animation: 'HomePage'} },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], data: {animation: 'ProfPage'} , children: [
       { path: '', redirectTo: 'profile-settings', pathMatch: 'full'},
@@ -36,7 +36,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes),  BrowserAnimationsModule],
   exports: [RouterModule],
-  providers: [{provide: APP_BASE_HREF, useValue: window.location.pathname}]
+  providers: []
 })
 export class AppRoutingModule {
   public constructor(private router: Router,
