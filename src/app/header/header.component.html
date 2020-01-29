@@ -1,13 +1,13 @@
 <div class="headerContainer">
   <div class="df-logo" *ngIf="!isMobile()"><img src="../assets/images/df.png" alt=""></div>
-  <i class="menu-bars material-icons md-72" *ngIf="isMobile()">menu</i>
+  <i class="menu-button material-icons md-72" *ngIf="isMobile()" (click)="toggleSideNav()">menu</i>
   <div class="navigatorHeader">
     <div>
       <a routerLinkActive="active" routerLink="/declarations" *ngIf="routerUrlEquals('declarations')">Declaraties</a>
       <p *ngIf="!isMobile()">|</p>
-      <a routerLinkActive="active" routerLink="/dashboard" *ngIf="routerUrlEquals('dashboard')">Dashboard</a>
+      <a routerLinkActive="active" routerLink="/dashboard" *ngIf="routerUrlEquals('dashboard')" (click)="toggleSideNav()">Dashboard</a>
       <p *ngIf="!isMobile()">|</p>
-      <a routerLinkActive="active" routerLink="/profile" *ngIf="routerUrlEquals('profile')"> Profiel</a>
+      <a routerLinkActive="active" routerLink="/profile" *ngIf="routerUrlEquals('profile')">Profiel</a>
     </div>
   </div>
   <div class="logUit">
@@ -15,6 +15,7 @@
     <button (click)="auth.logout()" *ngIf="auth.loggedIn">Log Out</button>
   </div>
 </div>
+<app-mobile-side-nav [ngStyle]="(this.opened) ? {'visibility': 'visible'} : {'visibility' : 'hidden'}" *ngIf="isMobile()" (clickOutside)="toggleSideNav()"></app-mobile-side-nav>
 
 
 

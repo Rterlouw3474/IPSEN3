@@ -6,6 +6,7 @@ import {HomeComponent} from './account/home/home.component';
 import {DeclarationsComponent} from './main/declarations/declarations.component';
 import {CreateDeclarationComponent} from './main/declarations/create-declaration/create-declaration.component';
 import {HeaderComponent} from './header/header.component';
+import {MobileSideNavComponent} from './header/mobile-side-nav/mobile-side-nav.component';
 import {DashboardComponent} from './main/dashboard/dashboard.component';
 import {ProfileSettingsComponent} from './main/profile/profile-settings/profile-settings.component';
 import {ProfileProjectsComponent} from './main/profile/profile-projects/profile-projects.component';
@@ -30,6 +31,11 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSidenavModule} from '@angular/material';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -40,6 +46,7 @@ import {MatSidenavModule} from '@angular/material';
     DeclarationsComponent,
     CreateDeclarationComponent,
     HeaderComponent,
+    MobileSideNavComponent,
     DashboardComponent,
     ProfileSettingsComponent,
     ProfileProjectsComponent,
@@ -48,7 +55,7 @@ import {MatSidenavModule} from '@angular/material';
     ProjectsPopupComponent,
     ClientsPopupComponent,
     CarsPopupComponent,
-    DeclarationPopupComponent
+    DeclarationPopupComponent,
   ],
   entryComponents: [
     ProfileSettingsComponent,
@@ -69,7 +76,12 @@ import {MatSidenavModule} from '@angular/material';
     MatNativeDateModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    MatSidenavModule
+    MatSidenavModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [
     HttpHandlerService,

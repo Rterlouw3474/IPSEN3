@@ -20,8 +20,9 @@
   text-align: left;
 }
 
-menu-bars {
-  position: relative;
+.menu-button {
+  cursor: pointer;
+  z-index: 100;
 }
 
 .navigatorHeader{

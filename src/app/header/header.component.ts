@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AuthService} from '../account/auth.service';
 
 @Component({
@@ -7,10 +7,16 @@ import {AuthService} from '../account/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  opened: boolean;
 
   constructor(public auth: AuthService) { }
 
   ngOnInit() {
+    this.opened = false;
+  }
+
+  toggleSideNav() {
+    this.opened = !this.opened;
   }
 
   isMobile() {
@@ -18,12 +24,6 @@ export class HeaderComponent implements OnInit {
       return true;
     } else { return false; }
   }
-
-  // window.location.href returns the href (URL) of the current page
-  // window.location.hostname returns the domain name of the web host
-  // window.location.pathname returns the path and filename of the current page
-  // window.location.protocol returns the web protocol used (http: or https:)
-  // window.location.assign() loads a new document
 
   routerUrlEquals(route) {
     if (this.isMobile()) {
