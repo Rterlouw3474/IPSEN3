@@ -17,7 +17,7 @@ import {Car} from "./models/car.model";
 @Injectable()
 export class HttpHandlerService {
   options = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
-  databaseUrl: string = "http://localhost:8080";
+  databaseUrl: string = "http://h2858995.stratoserver.net:8080";
 
   constructor(private http: HttpClient) {
   }
@@ -35,10 +35,11 @@ export class HttpHandlerService {
   }
 
   postProject(project: Project, extraUrl: string){
+    console.log(project);
     this.http.post(
       this.databaseUrl + extraUrl, project, this.options
     ).subscribe(responseData => {
-      console.log(responseData)
+      console.log(responseData);
     });
   }
 
@@ -72,14 +73,33 @@ export class HttpHandlerService {
   }
 
   deleteDeclaration(url:string){
-    return this.http.delete(this.databaseUrl + url)
+    return this.http.delete(this.databaseUrl + url);
+  }
+
+  deleteProject(url:string) {
+    return this.http.delete(this.databaseUrl + url);
   }
 
   getDeclarations(email:string): Observable<Declaration[]>{
+    // console.log(this.databaseUrl + "/declaration/get/" + email);
     //return this.http.get(this.databaseUrl + "/declaration/getDeclarationsByOwnerID/" + ownerId);
     return this.http
       .get(this.databaseUrl + "/declaration/get/" + email)
       .pipe(map(res => <Declaration[]>res));
+  }
+
+  getProjects(email:string): Observable<Project[]> {
+    // console.log(this.databaseUrl + "/project/get/" + email);
+    return this.http
+      .get(this.databaseUrl + "/project/get/" + email)
+      .pipe(map(res =><Project[]>res))
+  }
+
+  getClients(email:string): Observable<Client[]> {
+    // console.log(this.databaseUrl + "/client/get/" + email);
+    return this.http
+      .get(this.databaseUrl + "/client/get/" + email)
+      .pipe(map(res =><Client[]>res))
   }
 
 

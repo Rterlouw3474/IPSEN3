@@ -33,6 +33,7 @@ import {HttpHandlerService} from "./http-handler.service";
 import {DeclarationService} from "./services/declaration.service";
 import {UserService} from "./services/user.service";
 import {LoadService} from "./services/load.service";
+import { DeletePopupComponent } from './main/shared/delete-popup/delete-popup.component';
 
 
 @NgModule({
@@ -52,6 +53,8 @@ import {LoadService} from "./services/load.service";
     TableFilterPipe,
     ProjectsPopupComponent,
     ClientsPopupComponent,
+    CarsPopupComponent,
+    DeletePopupComponent,
     CarsPopupComponent,
     DeclarationPopupComponent
 
@@ -77,9 +80,7 @@ import {LoadService} from "./services/load.service";
     ReactiveFormsModule,
     MatProgressSpinnerModule
   ],
-  providers: [HttpHandlerService, DeclarationService, UserService, LoadService, {provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: MAT_DATE_LOCALE, useValue: 'nl-NL'}, DatePipe],
+  providers: [HttpHandlerService, DeclarationService, UserService, LoadService, {provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}, DatePipe],
   bootstrap: [AppComponent],
 })
-
-
 export class AppModule { }

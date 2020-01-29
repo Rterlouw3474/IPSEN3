@@ -5,6 +5,7 @@ import {DatePipe} from '@angular/common';
 import {HttpHandlerService} from '../../../../http-handler.service';
 import {Client} from '../client.model';
 import {ProfileObjectsService} from '../../profile-objects.service';
+import {AuthService} from '../../../../account/auth.service';
 
 @Component({
   selector: 'app-clients-popup',
@@ -22,7 +23,7 @@ export class ClientsPopupComponent implements OnInit {
   endDate: FormControl;
 
   popupHeader: string;
-  constructor(private httpHandler : HttpHandlerService) {
+  constructor(private auth: AuthService, private httpHandler : HttpHandlerService) {
   }
 
   ngOnInit() {
@@ -44,7 +45,8 @@ export class ClientsPopupComponent implements OnInit {
   }
 
   createClient(){
-    const clientToPost = new Client(this.client.userEmail, this.client.clientName, this.client.clientPostalCode.replace(" ",""), this.client.clientHouseNumber, this.client.clientCity, this.client.clientCountry);
+
+    const clientToPost = new Client(this.auth.getUserData().email, this.client.clientName, this.client.clientPostalCode.replace(" ", ""), this.client.clientHouseNumber, this.client.clientCity, this.client.clientCountry);
     console.log(clientToPost);
     this.httpHandler.postClient(clientToPost, "/client/create");
   }
