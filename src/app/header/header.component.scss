@@ -9,25 +9,30 @@
   font-weight: bold;
 }
 
-.dfLogo{
-  width: 10%;
-  height: 82px;
+.df-logo{
+  width: 72px;
+  height: 72px;
   img{
-    width: 82px;
-    height: 82px;
+    width: 100%;
+    height: 100%;
   }
   display: inline-block;
   text-align: left;
 }
 
+.menu-button {
+  cursor: pointer;
+  z-index: 100;
+}
+
 .navigatorHeader{
-  position:relative;
-  width: 80%;
+  position:absolute;
+  width: 100%;
   left: 0;
   right: 0;
   margin: auto;
-  top: 4.5px;
-  display: inline-block;
+  top: 20px;
+  display: block;
   text-align: center;
   z-index: 10;
   a {
@@ -52,13 +57,13 @@
 
 
 .logUit {
-  position: relative;
-  width: 10%;
+  position: absolute;
+  width: 1056px;
   top: 28px;
-  display: inline-block;
+  display: block;
   text-align: right;
   a{
-    color: #56C8AD;
+    color: #999B9F;
     text-align: center;
     text-decoration: none;
     font-size: 18px;

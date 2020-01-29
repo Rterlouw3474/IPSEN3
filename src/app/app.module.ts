@@ -27,7 +27,7 @@ import {
   MatInputModule,
   MatNativeDateModule, MatOptionModule,
   MatProgressSpinnerModule,
-  MatSelectModule
+  MatSelectModule, MatSortModule
 } from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
@@ -35,12 +35,13 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DatePipe, HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {DatePipe, PathLocationStrategy, LocationStrategy} from '@angular/common';
 import {CarService} from './services/car.service';
 import {ClientService} from './services/client.service';
 import {ProjectService} from './services/project.service';
-import {TableFilterPipe} from "./table-filter.pipe";
-import {MatSortModule} from "@angular/material/sort";
+import {TableFilterPipe} from './table-filter.pipe';
+import {MobileSideNavComponent} from "./header/mobile-side-nav/mobile-side-nav.component";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import {MatSortModule} from "@angular/material/sort";
     DeletePopupComponent,
     CarsPopupComponent,
     DeclarationPopupComponent,
-    TableFilterPipe
+    TableFilterPipe,
+    MobileSideNavComponent
   ],
   entryComponents: [
     ProfileSettingsComponent,
@@ -89,8 +91,9 @@ import {MatSortModule} from "@angular/material/sort";
     MatOptionModule,
     MatSelectModule,
     MatSortModule,
+    MatIconModule
   ],
-  providers: [HttpHandlerService, DeclarationService, CarService, ClientService, ProjectService, UserService, LoadService, {provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}, DatePipe],
+  providers: [HttpHandlerService, DeclarationService, CarService, ClientService, ProjectService, UserService, LoadService, {provide: LocationStrategy, useClass: PathLocationStrategy}, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

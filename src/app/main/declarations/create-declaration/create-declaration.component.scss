@@ -41,6 +41,40 @@ h1 {
   background-color: #C4EAE1;
 }
 
+.create-object {
+  box-shadow: 0 2px 3px rgba(39, 39, 39, 0.5);
+  background-color: #9ADECE;
+  border-radius: 8px;
+  width: 200px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: none;
+  font-size: 18px;
+  color: #5D656F;
+  position: fixed;
+  bottom: 30px;
+  right: 430px;
+}
+
+.create-object:hover {
+  box-shadow: 0 1px 2px rgba(39, 39, 39, 0.5);
+  opacity: 0.9;
+}
+
+.create-object:focus {
+  outline: 0;
+  transform: scale(0.95);
+}
+
+.close-dec-icon{
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  font-size: 62px;
+}
+
 .new-declaration{
   background: url("src/assets/images/newdec80.png") no-repeat;
   height: 80px;

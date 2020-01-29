@@ -68,7 +68,7 @@ export class CreateDeclarationComponent implements OnInit {
       this.beginPostcode, this.beginHuisnummer, this.beginStraatnaam, this.beginPlaatsnaam, this.beginLand,
       this.eindPostcode, this.eindHuisnummer, this.eindStraatnaam, this.eindPlaatsnaam, this.eindLand, this.klantNaam, this.projectNaam, this.kentekenPlaat);
     this.httpHandler.postDeclaration(newDec, '/declaration/create').subscribe(res => {
-      this.declarationService.getDeclarationArray();
+      this.declarationService.getDeclarationArray().subscribe();
     })
   }
 

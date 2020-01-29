@@ -57,13 +57,12 @@ export class DeclarationsComponent implements OnInit {
               private load:LoadService, private carService: CarService, private projectService:ProjectService,
               private clientService:ClientService) {
     this.selectedDeclarations = [];
-  }
-
-  ngOnInit() {
     this.checkButtons();
     this.checkEmptyRows();
-
   }
+
+  ngOnInit() {}
+
 
   isMobile() {
     return this.applicationStateService.getIsMobileResolution();
@@ -99,7 +98,7 @@ export class DeclarationsComponent implements OnInit {
   //function for checking all boxes when the parent checkbox is checked.
   onSelectAllCheckboxes(checked: boolean) {
     this.allCheckboxesSelected = !checked;
-
+    
     if (this.allCheckboxesSelected) {
       this.resetSelectedDeclarations();
       const tempArray: Declaration[] = this.decService.declarations.slice(this.pageNumberMinimum , this.pageNumberMaximum);
@@ -124,9 +123,10 @@ export class DeclarationsComponent implements OnInit {
                           + selectedDeclaration.decDate)
       .subscribe(
         responseData => {
-          this.decService.getDeclarationArray();
-          this.checkButtons();
-          this.checkEmptyRows();
+          this.decService.getDeclarationArray().subscribe(()=>{
+            this.checkButtons();
+            this.checkEmptyRows();
+          });
         });
     this.resetSelectedDeclarations();
   }
@@ -162,9 +162,10 @@ export class DeclarationsComponent implements OnInit {
       .subscribe(res => {
           this.allCheckboxesSelected = false;
           this.resetSelectedDeclarations();
-          this.decService.getDeclarationArray();
-          this.checkButtons();
-          this.checkEmptyRows();
+          this.decService.getDeclarationArray().subscribe(()=>{
+            this.checkButtons();
+            this.checkEmptyRows();
+          });
       });
 
   }
@@ -263,11 +264,9 @@ export class DeclarationsComponent implements OnInit {
   }
 
   //converts €0.0 to normal €0,00 notation
-  convertToNormalNotation(declaration: Declaration) {
-    let money = 0;
+  convertToNormalNotation(price:number) {
     let returnMoney: string;
-    money += declaration.decDeclaration;
-    returnMoney = (Math.round(money * 1000) / 1000).toFixed(2);
+    returnMoney = (Math.round(price * 1000) / 1000).toFixed(2);
     returnMoney = returnMoney.replace('.', ',');
     return returnMoney;
   }

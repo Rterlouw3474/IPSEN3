@@ -27,7 +27,7 @@ export class HttpHandlerService {
 
   postDeclaration(declaration: Declaration, extraUrl: string) {
     return this.http.post(
-      this.databaseUrl + extraUrl, declaration, {responseType: 'text'}
+      this.databaseUrl + extraUrl, declaration, {responseType: 'text', headers: new HttpHeaders().set('Content-Type', 'application/json')}
     )
   }
 

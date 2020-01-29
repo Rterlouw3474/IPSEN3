@@ -90,13 +90,14 @@
     </div>
   </div>
 
-  <div>
-    <button class="new-declaration">
-    </button>
+  <div routerLink="/dashboard">
+    <i class="material-icons close-dec-icon">
+      close
+    </i>
   </div>
 
   <div>
-    <button (click)="onCreateDeclaration()">create dec</button>
+    <button (click)="onCreateDeclaration()" class="create-object">Declaratie aanmaken</button>
   </div>
 
   <app-clients-popup [client]="popupClient"[(showPopup)]="showPopupClient" *ngIf="showPopupClient"></app-clients-popup>

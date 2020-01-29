@@ -26,9 +26,9 @@ export class AppComponent {
     let checkLogin = setInterval(() => {
       if (auth.loggedIn) {
         userService.getUserData();
-        decService.getDeclarationArray();
         carService.getCarsArray().subscribe();
         clientService.getClientsArray().subscribe();
+        decService.getDeclarationArray().subscribe();
         projectService.getProjectsArray().subscribe();
         clearInterval(checkLogin);
       }
