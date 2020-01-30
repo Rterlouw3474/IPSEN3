@@ -61,6 +61,7 @@ export class ClientsPopupComponent implements OnInit {
       }
     }
     if(ok) {
+      this.client.clientPostalCode = this.client.clientPostalCode.replace(' ', '');
       let client = new Client(this.auth.getUserData().email, this.client.clientName, this.client.clientPostalCode.replace(" ", ""), this.client.clientHouseNumber, this.client.clientCity, this.client.clientCountry);
       // console.log(client);
       if (this.editMode) {
