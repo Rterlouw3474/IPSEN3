@@ -136,14 +136,13 @@ export class CreateDeclarationComponent implements OnInit {
 
   private getOriginDestinationAddressAndDistance() {
     this.httpHandler.getOriginDestinationAndDistance('/calculateddistance', this.origin, this.destination).subscribe(
-      response => {
+      response => {       console.log(response)
         this.beginLand = response.originCountry;
         this.beginPlaatsnaam = response.originStreet;
         this.eindLand = response.destinationCountry;
         this.eindPlaatsnaam = response.destinationStreet;
         this.kilometers = parseFloat(response.distance.replace(',', '.'));
       }
-      // console.log(response)
     );
   }
 
