@@ -10,6 +10,7 @@ import {CarService} from '../../../services/car.service';
 import {ClientService} from '../../../services/client.service';
 import {ProjectService} from '../../../services/project.service';
 import {DeclarationService} from '../../../services/declaration.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-declaration',
@@ -62,8 +63,8 @@ export class CreateDeclarationComponent implements OnInit {
   public popupEditMode = false;
 
   constructor(private httpHandler: HttpHandlerService, private auth: AuthService,
-              private carService: CarService, private clientService: ClientService,
-              private projectService: ProjectService, private declarationService: DeclarationService) {
+              public carService: CarService, public clientService: ClientService,
+              public projectService: ProjectService, public declarationService: DeclarationService, public router:Router) {
   }
 
   ngOnInit() {
@@ -76,6 +77,7 @@ export class CreateDeclarationComponent implements OnInit {
     this.httpHandler.postDeclaration(newDec, '/declaration/create').subscribe(res => {
       this.declarationService.getDeclarationArray().subscribe();
     })
+    this.router.navigate(['/declarations'])
   }
 
 

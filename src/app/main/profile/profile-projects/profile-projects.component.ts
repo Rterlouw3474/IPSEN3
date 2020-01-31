@@ -39,7 +39,7 @@ export class ProfileProjectsComponent implements OnInit {
   public popupProject: Project;
   public popupEditMode = false;
 
-  constructor(private auth: AuthService, private httpHandler: HttpHandlerService, private userService: UserService, private projectService: ProjectService) {
+  constructor(private auth: AuthService, private httpHandler: HttpHandlerService, public userService: UserService, public projectService: ProjectService) {
 
   }
 

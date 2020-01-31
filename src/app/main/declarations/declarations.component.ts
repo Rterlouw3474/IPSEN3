@@ -53,9 +53,9 @@ export class DeclarationsComponent implements OnInit {
   public authUser : User;
 
   constructor(private applicationStateService: ApplicationStateService, private http: HttpHandlerService,
-              private auth: AuthService, private decService:DeclarationService,
-              private load:LoadService, private carService: CarService, private projectService:ProjectService,
-              private clientService:ClientService) {
+              private auth: AuthService, public decService:DeclarationService,
+              public load:LoadService, public carService: CarService, public projectService:ProjectService,
+              public clientService:ClientService) {
     this.selectedDeclarations = [];
     this.checkButtons();
     this.checkEmptyRows();
@@ -267,7 +267,7 @@ export class DeclarationsComponent implements OnInit {
   convertToNormalNotation(declaration: Declaration) {
     let money = 0;
     let returnMoney: string;
-    money += declaration.decDeclaration;
+    money += declaration.decDeclaration * declaration.decKilometers;
     returnMoney = (Math.round(money * 1000) / 1000).toFixed(2);
     returnMoney = returnMoney.replace('.', ',');
     return returnMoney;

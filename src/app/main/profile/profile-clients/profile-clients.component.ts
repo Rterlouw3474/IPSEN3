@@ -42,7 +42,7 @@ export class ProfileClientsComponent implements OnInit {
   public popupClient: Client;
   public popupEditMode = false;
 
-  constructor(private auth: AuthService, private httpHandler : HttpHandlerService, private userService:UserService, private clientService:ClientService) {
+  constructor(private auth: AuthService, private httpHandler : HttpHandlerService, private userService:UserService, public clientService:ClientService) {
     this.selectClients = [];
   }
 

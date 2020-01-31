@@ -38,7 +38,7 @@ export class ProfileCarsComponent implements OnInit {
   public popupCar: Car;
   public popupEditMode = false;
 
-  constructor(private auth: AuthService, private httpHandler : HttpHandlerService, private userService:UserService, private carService:CarService) {
+  constructor(private auth: AuthService, private httpHandler : HttpHandlerService, private userService:UserService, public carService:CarService) {
     this.selectedCars = [];
   }
 

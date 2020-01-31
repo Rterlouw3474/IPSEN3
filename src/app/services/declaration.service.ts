@@ -30,7 +30,7 @@ export class DeclarationService {
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < this.declarations.length; i++) {
       this.totalKilometers += this.declarations[i].decKilometers;
-      totalMoneys += this.declarations[i].decDeclaration;
+      totalMoneys += this.declarations[i].decDeclaration * this.declarations[i].decKilometers;
     }
     this.totalMoney = (Math.round(totalMoneys * 1000) / 1000).toFixed(2);
     this.totalMoney = this.totalMoney.replace('.', ',');

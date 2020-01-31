@@ -21,8 +21,8 @@ export class DashboardComponent implements OnInit {
   public popupEditMode = false;
 
   constructor(private applicationStateService: ApplicationStateService, private http: HttpHandlerService,
-              private auth: AuthService, private decService: DeclarationService, private userService: UserService,
-              private load: LoadService) { }
+              private auth: AuthService, public decService: DeclarationService, public userService: UserService,
+              public load: LoadService) { }
 
   ngOnInit() {
   }

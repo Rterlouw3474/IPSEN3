@@ -47,10 +47,10 @@
       *ngFor="let declaration of decService.declarations.slice(decService.declarations.length-3 , decService.declarations.length); let odd=odd; let id = index"
       class="dashboard-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}">
       <td class="dec-text object-column" (click)="editDeclaration(declaration)">{{declaration.decDesc}}</td>
-      <td class="dec-text object-column" (click)="editDeclaration(declaration)">{{declaration.decBeginPostal}}</td>
-      <td class="dec-text object-column" (click)="editDeclaration(declaration)">{{declaration.decEndPostal}}</td>
+      <td class="dec-text object-column" (click)="editDeclaration(declaration)">{{declaration.licencePlate}}</td>
+      <td class="dec-text object-column" (click)="editDeclaration(declaration)">{{declaration.decDate}}</td>
       <td class="dec-text object-column" (click)="editDeclaration(declaration)">{{declaration.decKilometers}}</td>
-      <td class="dec-text object-column" (click)="editDeclaration(declaration)">€{{declaration.decDeclaration}}</td>
+      <td class="dec-text object-column" (click)="editDeclaration(declaration)">€{{declaration.decDeclaration * declaration.decKilometers}}</td>
     </tr>
 
   </table>

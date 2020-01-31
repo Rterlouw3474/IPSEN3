@@ -4,7 +4,7 @@
     <th class="table-checkbox"><mat-checkbox #checkbox="matCheckbox"  style="width: 7%" [(ngModel)]="parentCheckboxSelected" (click)="onSelectAllCheckboxes(checkbox.checked)" ></mat-checkbox></th>
     <th class="table-description-text" style="width: 23.5%">Kenteken</th>
     <th class="table-description-text" style="width: 23.5%">Naam</th>
-    <th class="table-description-text" style="width: 22.5%">Brandstof</th>
+    <th class="table-description-text" style="width: 22.5%">Type</th>
     <th class="table-description-text" style="width: 23.5%">Kleur</th>
   </tr>
 
@@ -15,7 +15,7 @@
         [checked]="allCheckboxesSelected"></mat-checkbox></td>
     <td class="table-text object-column" (click)="editCar(car)">{{car.licencePlate}}</td>
     <td class="table-text object-column" (click)="editCar(car)">{{car.carName}}</td>
-    <td class="table-text object-column" (click)="editCar(car)">{{car.fuelType}}</td>
+    <td class="table-text object-column" (click)="editCar(car)">{{car.carType}}</td>
     <td class="table-text object-column" (click)="editCar(car)">{{car.carColor}}</td>
   </tr>
 

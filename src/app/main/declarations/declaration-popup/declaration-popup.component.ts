@@ -25,7 +25,7 @@ export class DeclarationPopupComponent implements OnInit {
   carFormControl = new FormControl('', Validators.required);
 
   popupHeader: string;
-  constructor(private httpHandler : HttpHandlerService, private auth: AuthService, private decService:DeclarationService, private clientService:ClientService, private carService:CarService, private  projectService:ProjectService) {
+  constructor(private httpHandler : HttpHandlerService, private auth: AuthService, private decService:DeclarationService, public clientService:ClientService, public carService:CarService, public  projectService:ProjectService) {
 
   }
 
