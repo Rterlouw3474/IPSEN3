@@ -14,6 +14,15 @@ input:focus {
   border-radius: 0px;
 }
 
+.mat-icon {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: xx-large;
+  width: fit-content;
+  height: fit-content;
+}
+
 form{
   margin-top: 75px;
   table{
@@ -42,15 +51,17 @@ form{
 
   .btn-wrapper{
     width: 50%;
-    margin-left: 25%;
+    margin-left: 50%;
     margin-top: 75px;
     text-align: center;
     button{
       display: inline-block;
+      padding: unset;
       background-color: #9adfcd;
       border-radius: 100%;
       width:55px;
       height: 55px;
+      margin-right: 10px;
       box-shadow: 0 2px 2px rgba(57, 63, 72, 0.3);
       transition: box-shadow 0.2s ease;
       &:hover{

@@ -18,3 +18,4 @@
     </div>
   </div>
 </div>
+<app-mobile-side-nav [ngStyle]="(this.opened) ? {'display': 'flex'} : {'display' : 'none'}" *ngIf="isMobile()" (clickOutside)="toggleSideNav()"></app-mobile-side-nav>

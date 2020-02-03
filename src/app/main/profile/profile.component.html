@@ -1,5 +1,5 @@
-<div class="container dashboard">
-  <div class="sidenav">
+<div class="container dashboard" [ngClass]="{'mobile': isMobile()}">
+  <div class="sidenav" [ngClass]="{'is-open': opened}" (clickOutside)="toggleSideNav($event)">
     <div class="img-wrapper">
       <img src="{{ userService.user.profileImage }}" alt="">
     </div>
@@ -36,7 +36,7 @@
       </li>
     </ul>
   </div>
-  <div class="profielView">
+  <div class="profielView" [ngClass]="{'mobile': isMobile()}">
     <router-outlet></router-outlet>
 <!--    <app-profile-settings></app-profile-settings>-->
   </div>
