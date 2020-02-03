@@ -1,5 +1,5 @@
 <mat-spinner *ngIf="load.isLoading" class="load-spinner"></mat-spinner>
-<div class="container dashboard" *ngIf="!load.isLoading">
+<div class="container dashboard" *ngIf="!load.isLoading" [ngClass]="{'mobile': isMobile()}">
 
   <form novalidate
         #form="ngForm">
@@ -38,11 +38,17 @@
             [(ngModel)]="parentCheckboxSelected"
             name = "parentCheckboxSelected"
             style="width: 5%"></mat-checkbox></th>
-        <th mat-sort-header="omschrijving" class="dec-description-text" style="width: 31%">Omschrijving</th>
-        <th mat-sort-header="auto" class="dec-description-text" style="width: 16%">Kenteken</th>
-        <th mat-sort-header="project" class="dec-description-text" style="width: 16%">Project</th>
-        <th mat-sort-header="datum" class="dec-description-text" style="width: 16%">Datum</th>
-        <th mat-sort-header="bedrag" class="dec-description-text" style="width: 16%">Bedrag</th>
+        <ng-container *ngIf="isMobile() == true">
+          <th mat-sort-header="omschrijving" class="dec-description-text" style="width: 50%">Omschrijving</th>
+          <th mat-sort-header="datum" class="dec-description-text" style="width: 40%">Datum</th>
+        </ng-container>
+        <ng-container *ngIf="isMobile() == false">
+          <th mat-sort-header="omschrijving" class="dec-description-text" style="width: 31%">Omschrijving</th>
+          <th mat-sort-header="auto" class="dec-description-text" style="width: 16%">Kenteken</th>
+          <th mat-sort-header="project" class="dec-description-text" style="width: 16%">Project</th>
+          <th mat-sort-header="datum" class="dec-description-text" style="width: 16%">Datum</th>
+          <th mat-sort-header="bedrag" class="dec-description-text" style="width: 16%">Bedrag</th>
+        </ng-container>
       </tr>
 
       <tr *ngFor="let declaration of getSlicedDeclaration() | tableFilter: form.value; let odd=odd; let id = index " class="table-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}" >
@@ -89,7 +95,7 @@
     </div>
   </div>
 
-  <div class="edit-buttons-container"> <!--TODO waarom werkt [ngClass]="{'desktop': !isMobile()}" hier niet??!-->
+  <div class="edit-buttons-container">
     <div class="col-sm-2">
       <div class="dec-edit-button" *ngIf="!removeEdit"
            [ngClass]="{'dec-edit-button-animation': selectedDeclarations.length==1,

@@ -1,11 +1,11 @@
 <div class="headerContainer">
   <div class="dfLogo" *ngIf="!isMobile()"><img src="../assets/images/df.png" alt=""></div>
-  <i class="menu-button material-icons md-72" *ngIf="isMobile()" (click)="toggleSideNav()">menu</i>
+  <i class="menu-button material-icons md-48" *ngIf="isMobile()" (click)="toggleSideNav()">menu</i>
   <div class="navigatorHeader">
     <div>
       <a routerLinkActive="active" routerLink="/declarations" *ngIf="routerUrlEquals('declarations')">Declaraties</a>
       <p *ngIf="!isMobile()">|</p>
-      <a routerLinkActive="active" routerLink="/dashboard" *ngIf="routerUrlEquals('dashboard')" (click)="toggleSideNav()">Dashboard</a>
+      <a routerLinkActive="active" routerLink="/dashboard" *ngIf="routerUrlEquals('dashboard')">Dashboard</a>
       <p *ngIf="!isMobile()">|</p>
       <a routerLinkActive="active" routerLink="/profile" *ngIf="routerUrlEquals('profile')">Profiel</a>
     </div>

@@ -25,6 +25,8 @@
 .menu-button {
   cursor: pointer;
   z-index: 100;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .navigatorHeader {
@@ -63,11 +65,11 @@
 
 .loginLogout {
   position: absolute;
-  width: 1056px;
-  top: 28px;
+  width: 100%;
+  top: 24px;
   display: block;
   text-align: right;
-
+  padding-right: 10px;
   a {
     color: #56C8AD;
     text-align: center;

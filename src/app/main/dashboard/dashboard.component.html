@@ -14,14 +14,14 @@
       </div>
     </div>
     <div class="col-sm-10 money-column">
-      <div class="moneyicon"></div>
+      <div class="moneyicon" [ngClass]="{'mobile': isMobile()}"></div>
       <div class="dashboard-text">
         <h4>Vergoedingen ontvangen</h4>
         <h3>&euro;{{decService.totalMoney}}</h3>
       </div>
     </div>
     <div class="col-sm-10 dec-column">
-      <div class="decicon"></div>
+      <div class="decicon" [ngClass]="{'mobile': isMobile()}"></div>
       <div class="dashboard-text">
         <h4>Declaraties gemaakt</h4>
         <h3>{{decService.totalDeclarations}}</h3>

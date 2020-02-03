@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
   constructor(private applicationStateService: ApplicationStateService, private auth: AuthService, private http: HttpHandlerService, public userService:UserService) { }
 
   ngOnInit() {
-    this.opened = true;
+    this.opened = this.isMobile() ? true : false;
   }
 
   isMobile() {

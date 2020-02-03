@@ -4,6 +4,7 @@ import {HttpHandlerService} from "../../../http-handler.service";
 import {UserService} from "../../../services/user.service";
 import {User} from '../../../models/user.model';
 import {ProfileComponent} from '../profile.component';
+import {ApplicationStateService} from '../../../application-state.service';
 
 @Component({
   selector: 'app-profile-settings',
@@ -11,7 +12,7 @@ import {ProfileComponent} from '../profile.component';
   styleUrls: ['./profile-settings.component.scss']
 })
 export class ProfileSettingsComponent implements OnInit {
-  constructor(private auth: AuthService, private http:HttpHandlerService, public userService:UserService) {
+  constructor(private applicationStateService: ApplicationStateService, private auth: AuthService, private http: HttpHandlerService, public userService: UserService) {
   }
 
   ngOnInit() {}
@@ -24,5 +25,9 @@ export class ProfileSettingsComponent implements OnInit {
     } else {
       elem.classList.add('is-open');
     }
+  }
+
+  isMobile() {
+    return this.applicationStateService.getIsMobileResolution();
   }
 }
