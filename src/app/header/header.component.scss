@@ -22,9 +22,14 @@
   text-align: left;
 }
 
+.menu-button {
+  cursor: pointer;
+  z-index: 100;
+}
+
 .navigatorHeader {
   position: absolute;
-  width: 600px;
+  width: 100%;
   left: 0;
   right: 0;
   margin: auto;
