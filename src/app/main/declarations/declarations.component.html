@@ -3,7 +3,7 @@
 
   <form novalidate
         #form="ngForm">
-    <table matSort (matSortChange)="sortData($event)" style="width:90% ; margin-top: 80px; margin-left: 50px">
+    <table matSort (matSortChange)="sortData($event)" class="dec-table" [ngClass]="{'mobile': isMobile()}">
       <tr style="height: 60px;">
 
         <td><strong>Auto</strong></td>
@@ -15,15 +15,15 @@
           </select></td>
 
         <td><strong>Project</strong></td>
-        <td><select
+        <td *ngIf="isMobile() == false"><select
             [(ngModel)]="projectName"
             name="projectName">
             <option></option>
             <option *ngFor="let project of projectService.projects" [value]="project.projectName">{{project.projectName}}</option>
           </select></td>
 
-        <td><strong>Client</strong></td>
-        <td><select
+        <td *ngIf="isMobile() == false"><strong>Client</strong></td>
+        <td *ngIf="isMobile() == false"><select
             [(ngModel)]="clientName"
             name="clientName">
             <option></option>
@@ -52,13 +52,16 @@
       </tr>
 
       <tr *ngFor="let declaration of getSlicedDeclaration() | tableFilter: form.value; let odd=odd; let id = index " class="table-dec-row" [ngClass]="{'notOdd':  odd %2 === 0}" >
-        <td class="checkbox-dec"><mat-checkbox
-            #checkbox="matCheckbox"
-            (click)="onCheckboxEvent(declaration, checkbox.checked, id)"
-            [checked]="allCheckboxesSelected"
-            class="checkbox-dec"
-            style="width: 5%"></mat-checkbox></td>
-        <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >{{declaration.decDesc}}</td>
+<!--        <td class="checkbox-dec"><mat-checkbox-->
+<!--            #checkbox="matCheckbox"-->
+<!--            (click)="onCheckboxEvent(declaration, checkbox.checked, id)"-->
+<!--            [checked]="allCheckboxesSelected"-->
+<!--            class="checkbox-dec"-->
+<!--            style="width: 5%"></mat-checkbox></td>-->
+        <ng-container *ngIf="isMobile() == true">
+          <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >{{declaration.decDesc}}</td>
+          <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >{{declaration.decDate}}</td>
+        </ng-container>
         <ng-container *ngIf="isMobile() == false">
           <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >{{declaration.licencePlate}}</td>
           <td class="dashboard-text object-column" (click)="editDeclaration(declaration)" >{{declaration.projectName}}</td>
@@ -71,8 +74,12 @@
             #checkbox="matCheckbox"
             disabled="true"
             style="width: 5%"></mat-checkbox></td>
-        <th class="dec-description-text"></th>
+        <ng-container *ngIf="isMobile() == true">
+          <th class="dec-description-text"></th>
+          <th class="dec-description-text"></th>
+        </ng-container>
         <ng-container *ngIf="isMobile() == false">
+          <th class="dec-description-text"></th>
           <th class="dec-description-text"></th>
           <th class="dec-description-text"></th>
           <th class="dec-description-text"></th>
