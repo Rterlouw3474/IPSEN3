@@ -65,7 +65,7 @@
 
 .loginLogout {
   position: absolute;
-  width: 100%;
+  width: 1056px;
   top: 24px;
   display: block;
   text-align: right;
@@ -77,6 +77,10 @@
     font-size: 18px;
     transition: opacity 0.2s ease;
   }
+}
+
+.loginLogout.mobile {
+  width: 100%;
 }
 
 /* Change the link color to #111 (black) on hover */

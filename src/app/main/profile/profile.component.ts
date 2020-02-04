@@ -20,7 +20,9 @@ export class ProfileComponent implements OnInit {
   }
 
   isMobile() {
-    return this.applicationStateService.getIsMobileResolution();
+    if (window.innerWidth < 768) {
+      return true;
+    } else { return false; }
   }
 
   toggleSideNav(e: Event) {

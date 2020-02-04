@@ -10,7 +10,7 @@
       <a routerLinkActive="active" routerLink="/profile" *ngIf="routerUrlEquals('profile')">Profiel</a>
     </div>
   </div>
-  <div class="loginLogout">
+  <div class="loginLogout" [ngClass]="{'mobile': isMobile()}">
     <div (click)="auth.login()" *ngIf="!auth.loggedIn">
       <a>Login</a>
     </div>
